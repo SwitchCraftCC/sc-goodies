@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "sc-goodies",
+  "version": "${version}",
+
+  "name": "SwitchCraft Goodies",
+  "description": "Lemmmy's bag of tricks for the SwitchCraft server.",
+  "authors": [
+    "SwitchCraft",
+    "Lemmmy"
+  ],
+  "contact": {
+    "homepage": "https://switchcraft.pw/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/sc-goodies/icon.png",
+
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.goodies.ScGoodies"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.goodies.client.ScGoodiesClient"
+      }
+    ],
+    "fabric-datagen": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.goodies.datagen.ScGoodiesDatagen"
+      }
+    ]
+  },
+  "mixins": [
+    "sc-goodies.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_target_version}",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}"
+  }
+}

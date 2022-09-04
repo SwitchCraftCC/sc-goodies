@@ -2,6 +2,7 @@ package pw.switchcraft.goodies
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
@@ -33,6 +34,9 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 
 object Registration {
   internal fun init() {
+    // Force static initializers to run
+    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens)
+
     IronChestVariant.values().forEach { variant ->
       registerIronChest(variant)
 
@@ -50,6 +54,8 @@ object Registration {
 
     IronShulkerRecipes.registerSerializers()
     IronShulkerCauldronBehavior.registerBehavior()
+
+    EnderStorageBlockEntity.initEvents()
   }
 
   private fun registerIronChest(variant: IronChestVariant) {
@@ -152,6 +158,6 @@ object Registration {
 
   object ModScreens {
     val enderStorage: ScreenHandlerType<EnderStorageScreenHandler> =
-      register(SCREEN_HANDLER, ModId("ender_storage"), ScreenHandlerType(::EnderStorageScreenHandler))
+      register(SCREEN_HANDLER, ModId("ender_storage"), ExtendedScreenHandlerType(::EnderStorageScreenHandler))
   }
 }

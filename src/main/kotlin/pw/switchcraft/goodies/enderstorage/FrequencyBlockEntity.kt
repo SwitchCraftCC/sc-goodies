@@ -1,5 +1,6 @@
 package pw.switchcraft.goodies.enderstorage
 
+import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.nbt.NbtCompound
@@ -16,26 +17,30 @@ abstract class FrequencyBlockEntity(
 ) : BaseBlockEntity(type, pos, state) {
   var frequency = Frequency()
     set(value) {
+      if (field != value) {
+        onFrequencyChange(field, value)
+      }
+
       field = value
-      update()
+      onUpdate()
     }
 
   var computerChangesEnabled = false
     set(value) {
       field = value
-      update()
+      onUpdate()
     }
 
   override fun readNbt(nbt: NbtCompound) {
     super.readNbt(nbt)
-    nbt.put("frequency", frequency.toNbt())
-    nbt.putBoolean("computerChangesEnabled", computerChangesEnabled)
+    frequency = Frequency.fromNbt(nbt.getCompound("frequency"), world?.server)
+    computerChangesEnabled = nbt.getBoolean("computerChangesEnabled")
   }
 
   override fun writeNbt(nbt: NbtCompound) {
     super.writeNbt(nbt)
-    frequency = Frequency.fromNbt(nbt.getCompound("frequency"))
-    computerChangesEnabled = nbt.getBoolean("computerChangesEnabled")
+    nbt.put("frequency", frequency.toNbt())
+    nbt.putBoolean("computerChangesEnabled", computerChangesEnabled)
   }
 
   override fun toInitialChunkDataNbt(): NbtCompound = createNbt()
@@ -43,8 +48,15 @@ abstract class FrequencyBlockEntity(
   override fun toUpdatePacket(): Packet<ClientPlayPacketListener> =
     BlockEntityUpdateS2CPacket.create(this)
 
-  private fun update() {
+  open fun onUpdate() {
     markDirty()
-    world?.updateNeighborsAlways(pos, cachedState.block)
+
+    val world = world ?: return
+    val state = world.getBlockState(pos)
+
+    world.updateListeners(pos, state, state, Block.NOTIFY_ALL)
+    world.updateNeighborsAlways(pos, state.block)
   }
+
+  open fun onFrequencyChange(oldValue: Frequency, newValue: Frequency) {}
 }

@@ -1,48 +1,55 @@
 package pw.switchcraft.goodies.enderstorage
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.ChestLidAnimator
 import net.minecraft.block.entity.LidOpenable
-import net.minecraft.block.entity.ViewerCountManager
 import net.minecraft.entity.player.PlayerEntity
-import net.minecraft.sound.SoundEvents.BLOCK_ENDER_CHEST_CLOSE
-import net.minecraft.sound.SoundEvents.BLOCK_ENDER_CHEST_OPEN
+import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.network.PacketByteBuf
+import net.minecraft.screen.ScreenHandler
+import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.server.world.ServerWorld
+import net.minecraft.text.Text
+import net.minecraft.text.Text.translatable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import pw.switchcraft.goodies.Registration
 import pw.switchcraft.goodies.Registration.ModBlockEntities
-import pw.switchcraft.goodies.util.ChestUtil
+import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
 
 class EnderStorageBlockEntity(
   pos: BlockPos,
   state: BlockState,
-) : FrequencyBlockEntity(ModBlockEntities.enderStorage, pos, state), LidOpenable {
+) : FrequencyBlockEntity(ModBlockEntities.enderStorage, pos, state), LidOpenable, ExtendedScreenHandlerFactory {
   private val lidAnimator = ChestLidAnimator()
-  val stateManager = object : ViewerCountManager() {
-    override fun onContainerOpen(world: World, pos: BlockPos, state: BlockState) {
-      ChestUtil.playSound(world, pos, BLOCK_ENDER_CHEST_OPEN)
+
+  val inv: EnderStorageInventory?
+    get() {
+      val world = world ?: return null
+      return when {
+        !world.isClient && world is ServerWorld -> {
+          EnderStorageProvider.getInventory(world.server, frequency, this)
+        }
+        else -> null
+      }
     }
 
-    override fun onContainerClose(world: World, pos: BlockPos, state: BlockState) {
-      ChestUtil.playSound(world, pos, BLOCK_ENDER_CHEST_CLOSE)
-    }
+  private var viewerCount = 0
 
-    override fun onViewerCountUpdate(world: World, pos: BlockPos, state: BlockState, oldViewerCount: Int,
-                                     newViewerCount: Int) {
-      onInvOpenOrClose(world, pos, state, newViewerCount)
+  val ownerText: Text
+    get() {
+      val key = Registration.ModBlocks.enderStorage.translationKey
+      return if (frequency.personal) {
+        translatable("$key.owner_name", frequency.ownerName ?: "Unknown")
+      } else {
+        translatable("$key.public")
+      }
     }
-
-    override fun isPlayerViewing(player: PlayerEntity): Boolean {
-      return false // TODO
-    }
-  }
 
   override fun getAnimationProgress(tickDelta: Float) =
     lidAnimator.getProgress(tickDelta)
-
-  private fun onInvOpenOrClose(world: World, pos: BlockPos, state: BlockState, newViewerCount: Int) {
-    val block = state.block
-    world.addSyncedBlockEvent(pos, block, 1, newViewerCount)
-  }
 
   override fun onSyncedBlockEvent(type: Int, data: Int): Boolean = if (type == 1) {
     lidAnimator.setOpen(data > 0)
@@ -51,16 +58,33 @@ class EnderStorageBlockEntity(
     super.onSyncedBlockEvent(type, data)
   }
 
-  fun onOpen(player: PlayerEntity) {
-    if (!removed && !player.isSpectator) {
-      stateManager.openContainer(player, world, pos, cachedState)
+  fun updateViewerCount() {
+    val world = world ?: return
+
+    val invViewers = inv?.viewerCount ?: 0
+    if (!world.isClient && viewerCount != invViewers) {
+      viewerCount = invViewers
+      world.addSyncedBlockEvent(pos, cachedState.block, 1, invViewers)
     }
   }
 
-  fun onClose(player: PlayerEntity) {
-    if (!removed && !player.isSpectator) {
-      stateManager.closeContainer(player, world, pos, cachedState)
-    }
+  override fun onFrequencyChange(oldValue: Frequency, newValue: Frequency) {
+    // At this point, `inv` has not changed to the new block entity. Remove us as a viewer
+    inv?.removeBlockEntity(this)
+  }
+
+  override fun onUpdate() {
+    super.onUpdate()
+    inv?.addBlockEntity(this)
+  }
+
+  override fun createMenu(syncId: Int, playerInv: PlayerInventory, player: PlayerEntity): ScreenHandler? =
+    inv?.let { EnderStorageScreenHandler(syncId, playerInv, it) }
+
+  override fun getDisplayName(): Text = cachedState.block.name
+
+  override fun writeScreenOpeningData(player: ServerPlayerEntity, buf: PacketByteBuf) {
+    buf.writeBlockPos(pos)
   }
 
   companion object {
@@ -71,7 +95,21 @@ class EnderStorageBlockEntity(
     fun scheduledTick(world: World, pos: BlockPos) {
       val be = world.getBlockEntity(pos) as? EnderStorageBlockEntity ?: return
       if (!be.removed) {
-        be.stateManager.updateViewerCount(be.world, be.pos, be.cachedState)
+        be.updateViewerCount()
+      }
+    }
+
+    internal fun initEvents() {
+      ServerBlockEntityEvents.BLOCK_ENTITY_LOAD.register { be, _ ->
+        if (be is EnderStorageBlockEntity) {
+          be.inv?.addBlockEntity(be)
+        }
+      }
+
+      ServerBlockEntityEvents.BLOCK_ENTITY_UNLOAD.register { be, _ ->
+        if (be is EnderStorageBlockEntity) {
+          be.inv?.removeBlockEntity(be)
+        }
       }
     }
   }

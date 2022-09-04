@@ -9,8 +9,15 @@
   "block.sc-goodies.diamond_chest.desc": "Capable of storing up to 108 stacks of items.",
 
   "block.sc-goodies.ender_storage": "Ender Storage",
-  "block.sc-goodies.ender_storage.desc": "Advanced Ender Chest that links chests based on color patterns.\nUse wool on the lid to change the frequency.\nUse a diamond on the latch to use a personal frequency.",
+  "block.sc-goodies.ender_storage.desc": "Advanced Ender Chest that links chests based on color patterns.\nUse dye on the lid to change the frequency.\nUse a diamond on the latch to use a personal frequency.",
   "block.sc-goodies.ender_storage.desc.computercraft": "Use an emerald on the latch to allow ComputerCraft to change the frequency.",
+  "block.sc-goodies.ender_storage.not_owner": "You are not the owner of this Ender Storage.",
+  "block.sc-goodies.ender_storage.computer_changes.allowed": "Computers are now %s to change the frequency of this Ender Storage.",
+  "block.sc-goodies.ender_storage.computer_changes.allowed.colored": "ALLOWED",
+  "block.sc-goodies.ender_storage.computer_changes.denied": "Computers are now %s from changing the frequency of this Ender Storage.",
+  "block.sc-goodies.ender_storage.computer_changes.denied.colored": "DENIED",
+  "block.sc-goodies.ender_storage.owner_name": "Owner: %s",
+  "block.sc-goodies.ender_storage.public": "Public",
 
   "block.sc-goodies.shulker_box_iron": "Iron Shulker Box",
   "block.sc-goodies.shulker_box_iron_black": "Black Iron Shulker Box",

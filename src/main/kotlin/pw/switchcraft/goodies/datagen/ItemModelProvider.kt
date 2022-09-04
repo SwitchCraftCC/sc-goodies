@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.client.BlockStateModelGenerator
 import net.minecraft.data.client.ItemModelGenerator
 import net.minecraft.data.client.Models
-import pw.switchcraft.goodies.chest.IronChestUpgrade
+import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 
 class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(generator) {
   override fun generateBlockStateModels(gen: BlockStateModelGenerator) {

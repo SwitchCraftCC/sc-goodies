@@ -6,9 +6,9 @@ import it.unimi.dsi.fastutil.ints.IntList
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.RecipeMatcher
-import pw.switchcraft.goodies.chest.IronChestVariant
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerItem
+import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import java.util.stream.Stream
 
 class IronShulkerIngredient(

@@ -1,12 +1,12 @@
-package pw.switchcraft.goodies.shulker
+package pw.switchcraft.goodies.ironshulker
 
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.screen.slot.ShulkerBoxSlot
 import net.minecraft.screen.slot.Slot
-import pw.switchcraft.goodies.chest.IronChestScreenHandler
-import pw.switchcraft.goodies.chest.IronChestVariant
+import pw.switchcraft.goodies.ironchest.IronChestScreenHandler
+import pw.switchcraft.goodies.ironchest.IronChestVariant
 
 class IronShulkerScreenHandler(
   variant: IronChestVariant,

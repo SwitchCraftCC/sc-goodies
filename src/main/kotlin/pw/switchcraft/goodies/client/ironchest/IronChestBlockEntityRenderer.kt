@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.chest
+package pw.switchcraft.goodies.client.ironchest
 
 import net.minecraft.client.model.ModelPart
 import net.minecraft.client.render.RenderLayer
@@ -10,8 +10,8 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Vec3f
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.chest.IronChestBlock
-import pw.switchcraft.goodies.chest.IronChestBlockEntity
+import pw.switchcraft.goodies.ironchest.IronChestBlock
+import pw.switchcraft.goodies.ironchest.IronChestBlockEntity
 import kotlin.math.pow
 
 class IronChestBlockEntityRenderer(

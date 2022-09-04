@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.ChestLidAnimator
@@ -10,14 +10,14 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventories
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.sound.SoundCategory.BLOCKS
-import net.minecraft.sound.SoundEvent
-import net.minecraft.sound.SoundEvents
+import net.minecraft.sound.SoundEvents.BLOCK_CHEST_CLOSE
+import net.minecraft.sound.SoundEvents.BLOCK_CHEST_OPEN
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
+import pw.switchcraft.goodies.util.ChestUtil
 
 class IronChestBlockEntity(
   private val variant: IronChestVariant,
@@ -30,11 +30,11 @@ class IronChestBlockEntity(
   private val lidAnimator = ChestLidAnimator()
   val stateManager = object : ViewerCountManager() {
     override fun onContainerOpen(world: World, pos: BlockPos, state: BlockState) {
-      playSound(world, pos, SoundEvents.BLOCK_CHEST_OPEN)
+      ChestUtil.playSound(world, pos, BLOCK_CHEST_OPEN)
     }
 
     override fun onContainerClose(world: World, pos: BlockPos, state: BlockState) {
-      playSound(world, pos, SoundEvents.BLOCK_CHEST_CLOSE)
+      ChestUtil.playSound(world, pos, BLOCK_CHEST_CLOSE)
     }
 
     override fun onViewerCountUpdate(world: World, pos: BlockPos, state: BlockState, oldViewerCount: Int,
@@ -105,13 +105,6 @@ class IronChestBlockEntity(
   }
 
   companion object {
-    fun playSound(world: World, pos: BlockPos, soundEvent: SoundEvent) {
-      val x = pos.x.toDouble() + 0.5
-      val y = pos.y.toDouble() + 0.5
-      val z = pos.z.toDouble() + 0.5
-      world.playSound(null, x, y, z, soundEvent, BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f)
-    }
-
     fun clientTick(world: World, pos: BlockPos, state: BlockState, be: IronChestBlockEntity) {
       be.lidAnimator.step()
     }

@@ -1,8 +1,8 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.chest.IronChestVariant.*
+import pw.switchcraft.goodies.ironchest.IronChestVariant.*
 
 enum class IronChestUpgrade(
   val itemName: String,

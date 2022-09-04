@@ -5,7 +5,7 @@ import net.minecraft.data.server.RecipeProvider.conditionsFromTag
 import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.SHULKER_SHELL
-import pw.switchcraft.goodies.chest.IronChestUpgrade
+import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import java.util.function.Consumer
 
 object IronShulkerUpgradeRecipes {

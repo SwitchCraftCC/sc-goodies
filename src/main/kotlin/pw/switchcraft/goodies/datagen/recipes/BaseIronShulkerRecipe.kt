@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerItem
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.util.BetterSpecialRecipe
 
 abstract class BaseIronShulkerRecipe(

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.shulker
+package pw.switchcraft.goodies.client.ironchest
 
 import net.minecraft.client.model.ModelPart
 import net.minecraft.client.render.RenderLayer
@@ -10,9 +10,9 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.chest.IronChestVariant
-import pw.switchcraft.goodies.shulker.IronShulkerBlock.Companion.facing
-import pw.switchcraft.goodies.shulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock.Companion.facing
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 
 class IronShulkerBlockEntityRenderer(
   private val variant: IronChestVariant,

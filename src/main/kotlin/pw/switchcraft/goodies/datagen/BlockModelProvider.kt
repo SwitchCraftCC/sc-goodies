@@ -6,7 +6,7 @@ import net.minecraft.data.client.*
 import net.minecraft.util.DyeColor
 import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.chest.IronChestVariant
+import pw.switchcraft.goodies.ironchest.IronChestVariant
 import java.util.*
 
 class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(generator) {

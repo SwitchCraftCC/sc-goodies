@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory

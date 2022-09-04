@@ -14,9 +14,9 @@ import net.minecraft.loot.function.SetContentsLootFunction
 import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.chest.IronChestVariant
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 
 class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTableProvider(generator) {
   override fun generateBlockLootTables() {

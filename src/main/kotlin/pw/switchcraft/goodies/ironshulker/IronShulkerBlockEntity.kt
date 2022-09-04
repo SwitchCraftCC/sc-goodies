@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.shulker
+package pw.switchcraft.goodies.ironshulker
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -13,8 +13,6 @@ import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.SidedInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.sound.SoundCategory.BLOCKS
-import net.minecraft.sound.SoundEvent
 import net.minecraft.sound.SoundEvents.BLOCK_SHULKER_BOX_CLOSE
 import net.minecraft.sound.SoundEvents.BLOCK_SHULKER_BOX_OPEN
 import net.minecraft.text.Text
@@ -24,8 +22,9 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.*
 import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
-import pw.switchcraft.goodies.chest.IronChestVariant
-import pw.switchcraft.goodies.shulker.IronShulkerBlock.Companion.facing
+import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock.Companion.facing
+import pw.switchcraft.goodies.util.ChestUtil
 import java.util.stream.IntStream
 
 class IronShulkerBlockEntity(
@@ -165,7 +164,7 @@ class IronShulkerBlockEntity(
     // Play the sound for the first player to open the shulker box
     if (viewerCount == 1) {
       world.emitGameEvent(player, GameEvent.CONTAINER_OPEN, pos)
-      playSound(world, pos, BLOCK_SHULKER_BOX_OPEN)
+      ChestUtil.playSound(world, pos, BLOCK_SHULKER_BOX_OPEN)
     }
   }
 
@@ -179,7 +178,7 @@ class IronShulkerBlockEntity(
 
     if (viewerCount <= 0) {
       world.emitGameEvent(player, GameEvent.CONTAINER_CLOSE, pos)
-      playSound(world, pos, BLOCK_SHULKER_BOX_CLOSE)
+      ChestUtil.playSound(world, pos, BLOCK_SHULKER_BOX_CLOSE)
     }
   }
 
@@ -193,13 +192,6 @@ class IronShulkerBlockEntity(
   fun suffocates() = animationStage == CLOSED
 
   companion object {
-    fun playSound(world: World, pos: BlockPos, soundEvent: SoundEvent) {
-      val x = pos.x.toDouble() + 0.5
-      val y = pos.y.toDouble() + 0.5
-      val z = pos.z.toDouble() + 0.5
-      world.playSound(null, x, y, z, soundEvent, BLOCKS, 0.5f, world.random.nextFloat() * 0.1f + 0.9f)
-    }
-
     fun tick(world: World, pos: BlockPos, state: BlockState, be: IronShulkerBlockEntity) {
       be.updateAnimation(world, pos, state)
     }

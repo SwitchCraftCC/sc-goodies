@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.block.ChestBlock
 import net.minecraft.block.ShulkerBoxBlock
@@ -14,8 +14,8 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.Direction
 import pw.switchcraft.goodies.mixin.ShulkerBoxBlockEntityAccessor
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.goodies.util.WaterloggableBlock
 

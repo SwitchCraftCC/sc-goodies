@@ -1,9 +1,11 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.enderstorage
 
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
@@ -11,12 +13,12 @@ import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.stat.Stat
 import net.minecraft.stat.Stats
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.DirectionProperty
+import net.minecraft.text.Text
 import net.minecraft.util.*
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
@@ -25,16 +27,17 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
+import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.util.BaseBlockWithEntity
+import pw.switchcraft.goodies.util.Tooltips.addDescLines
 import pw.switchcraft.goodies.util.WaterloggableBlock
 import pw.switchcraft.goodies.util.WaterloggableBlock.Companion.waterlogged
 
-class IronChestBlock(
-  settings: Settings,
-  val variant: IronChestVariant
+class EnderStorageBlock(
+  settings: Settings
 ) : BaseBlockWithEntity(settings), WaterloggableBlock {
   private val openStat: Stat<Identifier> by lazy {
-    Stats.CUSTOM.getOrCreateStat(Stats.OPEN_CHEST)
+    Stats.CUSTOM.getOrCreateStat(Stats.OPEN_ENDERCHEST)
   }
 
   init {
@@ -52,25 +55,11 @@ class IronChestBlock(
     .with(waterlogged, placementWaterlogged(ctx))
 
   override fun onPlaced(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, stack: ItemStack) {
-    if (stack.hasCustomName()) {
-      val be = world.getBlockEntity(pos) as? IronChestBlockEntity ?: return
-      be.customName = stack.name
-    }
+    // TODO: Inherit owner, frequency from stack
   }
 
   override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity =
-    IronChestBlockEntity(variant, pos, state)
-
-  override fun onStateReplaced(state: BlockState, world: World, pos: BlockPos, newState: BlockState,
-                               moved: Boolean) {
-    if (state.isOf(newState.block)) return
-
-    val be = world.getBlockEntity(pos) as? IronChestBlockEntity ?: return
-    ItemScatterer.spawn(world, pos, be)
-    world.updateComparators(pos, this)
-
-    super.onStateReplaced(state, world, pos, newState, moved)
-  }
+    EnderStorageBlockEntity(pos, state)
 
   override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
                      hit: BlockHitResult): ActionResult {
@@ -84,11 +73,7 @@ class IronChestBlock(
 
   override fun createScreenHandlerFactory(state: BlockState, world: World,
                                           pos: BlockPos): NamedScreenHandlerFactory? {
-    val be = world.getBlockEntity(pos) as? IronChestBlockEntity ?: return null
-    val name = be.name
-    return SimpleNamedScreenHandlerFactory({ syncId, playerInv, _ ->
-      IronChestScreenHandler(variant, syncId, playerInv, be, variant.chestScreenHandlerType)
-    }, name)
+    return null // TODO
   }
 
   override fun <T : BlockEntity> getTicker(
@@ -97,14 +82,14 @@ class IronChestBlock(
     type: BlockEntityType<T>
   ): BlockEntityTicker<T>? {
     if (!world.isClient) return null
-    return checkType(type, variant.chestBlockEntityType, IronChestBlockEntity.Companion::clientTick)
+    return checkType(type, ModBlockEntities.enderStorage, EnderStorageBlockEntity.Companion::clientTick)
   }
 
   override fun hasComparatorOutput(state: BlockState) = true
 
   override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos): Int {
     val be = world.getBlockEntity(pos) ?: return 0
-    return ScreenHandler.calculateComparatorOutput(be)
+    return ScreenHandler.calculateComparatorOutput(be) // TODO
   }
 
   override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: ShapeContext) = shape
@@ -121,7 +106,7 @@ class IronChestBlock(
     false
 
   override fun scheduledTick(state: BlockState, world: ServerWorld, pos: BlockPos, random: Random) {
-    IronChestBlockEntity.scheduledTick(world, pos)
+    EnderStorageBlockEntity.scheduledTick(world, pos)
   }
 
   // Waterlogging
@@ -132,9 +117,19 @@ class IronChestBlock(
     return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
   }
 
+  override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
+    super.appendTooltip(stack, world, tooltip, options)
+
+    if (computercraftLoaded) {
+      addDescLines(tooltip, translationKey, suffix = ".desc.computercraft")
+    }
+  }
+
   companion object {
     val facing: DirectionProperty = HorizontalFacingBlock.FACING
 
     private val shape = createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0)
+
+    private val computercraftLoaded by lazy { FabricLoader.getInstance().isModLoaded("computercraft") }
   }
 }

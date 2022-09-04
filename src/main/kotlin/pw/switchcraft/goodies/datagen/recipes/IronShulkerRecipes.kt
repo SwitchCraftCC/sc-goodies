@@ -14,9 +14,9 @@ import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.RecipeGenerator.Companion.specialRecipe
 import java.util.function.Consumer
-import pw.switchcraft.goodies.chest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
-import pw.switchcraft.goodies.chest.IronChestVariant.GOLD as GOLD_VARIANT
-import pw.switchcraft.goodies.chest.IronChestVariant.IRON as IRON_VARIANT
+import pw.switchcraft.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
+import pw.switchcraft.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT
+import pw.switchcraft.goodies.ironchest.IronChestVariant.IRON as IRON_VARIANT
 
 object IronShulkerRecipes {
   private val iron = fromTag(IRON_INGOTS)

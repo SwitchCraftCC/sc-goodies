@@ -10,6 +10,7 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
+import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry.*
@@ -20,12 +21,15 @@ import pw.switchcraft.goodies.Registration.ModBlocks.shulkerSettings
 import pw.switchcraft.goodies.Registration.ModItems.itemSettings
 import pw.switchcraft.goodies.Registration.ModItems.rItem
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.chest.*
 import pw.switchcraft.goodies.datagen.recipes.IronShulkerRecipes
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerBlockEntity
-import pw.switchcraft.goodies.shulker.IronShulkerCauldronBehavior
-import pw.switchcraft.goodies.shulker.IronShulkerItem
+import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
+import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
+import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
+import pw.switchcraft.goodies.ironchest.*
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
+import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 
 object Registration {
   internal fun init() {
@@ -84,6 +88,9 @@ object Registration {
   }
 
   object ModBlocks {
+    val enderStorage = rBlock("ender_storage", EnderStorageBlock(AbstractBlock.Settings
+      .of(Material.STONE).requiresTool().strength(22.5f, 600.0f)))
+
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
 
@@ -117,6 +124,8 @@ object Registration {
   object ModItems {
     private val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
 
+    val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
+
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)
 
@@ -132,6 +141,8 @@ object Registration {
   }
 
   object ModBlockEntities {
+    val enderStorage = rBlockEntity("ender_storage", ModBlocks.enderStorage, factory = ::EnderStorageBlockEntity)
+
     fun <T : BlockEntity> rBlockEntity(name: String, vararg block: Block,
                                        factory: (BlockPos, BlockState) -> T): BlockEntityType<T> {
       val blockEntityType = FabricBlockEntityTypeBuilder.create(factory, *block).build()
@@ -140,6 +151,7 @@ object Registration {
   }
 
   object ModScreens {
-
+    val enderStorage: ScreenHandlerType<EnderStorageScreenHandler> =
+      register(SCREEN_HANDLER, ModId("ender_storage"), ScreenHandlerType(::EnderStorageScreenHandler))
   }
 }

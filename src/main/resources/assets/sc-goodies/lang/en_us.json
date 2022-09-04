@@ -8,6 +8,10 @@
   "block.sc-goodies.gold_chest.desc": "Capable of storing up to 81 stacks of items.",
   "block.sc-goodies.diamond_chest.desc": "Capable of storing up to 108 stacks of items.",
 
+  "block.sc-goodies.ender_storage": "Ender Storage",
+  "block.sc-goodies.ender_storage.desc": "Advanced Ender Chest that links chests based on color patterns.\nUse wool on the lid to change the frequency.\nUse a diamond on the latch to use a personal frequency.",
+  "block.sc-goodies.ender_storage.desc.computercraft": "Use an emerald on the latch to allow ComputerCraft to change the frequency.",
+
   "block.sc-goodies.shulker_box_iron": "Iron Shulker Box",
   "block.sc-goodies.shulker_box_iron_black": "Black Iron Shulker Box",
   "block.sc-goodies.shulker_box_iron_blue": "Blue Iron Shulker Box",

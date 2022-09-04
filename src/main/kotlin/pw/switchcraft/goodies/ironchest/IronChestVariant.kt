@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.chest
+package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.screen.ScreenHandlerType
@@ -6,10 +6,10 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.shulker.IronShulkerBlock
-import pw.switchcraft.goodies.shulker.IronShulkerBlockEntity
-import pw.switchcraft.goodies.shulker.IronShulkerItem
-import pw.switchcraft.goodies.shulker.IronShulkerScreenHandler
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
+import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.ironshulker.IronShulkerItem
+import pw.switchcraft.goodies.ironshulker.IronShulkerScreenHandler
 
 enum class IronChestVariant(
   val chestId: String,

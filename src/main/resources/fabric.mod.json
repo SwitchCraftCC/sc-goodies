@@ -39,7 +39,7 @@
   "mixins": [
     "sc-goodies.mixins.json"
   ],
-
+  "accessWidener": "sc-goodies.accesswidener",
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric-api": "*",

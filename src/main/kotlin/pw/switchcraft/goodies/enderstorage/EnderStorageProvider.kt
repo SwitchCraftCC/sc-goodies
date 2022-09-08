@@ -88,7 +88,7 @@ object EnderStorageProvider {
       }
     }
 
-    private fun updateViewers() {
+    fun updateViewers() {
       blockEntities.forEach {
         if (!it.isRemoved) {
           it.updateViewerCount()

@@ -1,7 +1,6 @@
 package pw.switchcraft.goodies.client.enderstorage
 
 import com.mojang.blaze3d.systems.RenderSystem
-import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.screen.ingame.HandledScreen
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
@@ -10,7 +9,6 @@ import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
 import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
 
 class EnderStorageScreen(
@@ -41,15 +39,13 @@ class EnderStorageScreen(
   override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
     super.drawForeground(matrices, mouseX, mouseY)
 
-    val be = MinecraftClient.getInstance().world?.getBlockEntity(handler.pos) as? EnderStorageBlockEntity ?: return
-    val ownerText = be.ownerText
-    val frequency = be.frequency
+    val freq = handler.frequency
 
-    drawFrequencyWool(matrices, 0, frequency.left)
-    drawFrequencyWool(matrices, 1, frequency.middle)
-    drawFrequencyWool(matrices, 2, frequency.right)
+    drawFrequencyWool(matrices, 0, freq.left)
+    drawFrequencyWool(matrices, 1, freq.middle)
+    drawFrequencyWool(matrices, 2, freq.right)
 
-    textRenderer.draw(matrices, ownerText, 30.0f, 6.0f, 0xFFFFFF)
+    textRenderer.draw(matrices, freq.ownerText, 30.0f, 6.0f, 0xFFFFFF)
   }
 
   override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {

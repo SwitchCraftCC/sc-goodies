@@ -12,10 +12,8 @@ import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
-import net.minecraft.text.Text.translatable
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import pw.switchcraft.goodies.Registration
 import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
 
@@ -37,16 +35,7 @@ class EnderStorageBlockEntity(
     }
 
   private var viewerCount = 0
-
-  val ownerText: Text
-    get() {
-      val key = Registration.ModBlocks.enderStorage.translationKey
-      return if (frequency.personal) {
-        translatable("$key.owner_name", frequency.ownerName ?: "Unknown")
-      } else {
-        translatable("$key.public")
-      }
-    }
+  private val viewingPlayers = mutableSetOf<PlayerEntity>()
 
   override fun getAnimationProgress(tickDelta: Float) =
     lidAnimator.getProgress(tickDelta)
@@ -71,20 +60,48 @@ class EnderStorageBlockEntity(
   override fun onFrequencyChange(oldValue: Frequency, newValue: Frequency) {
     // At this point, `inv` has not changed to the new block entity. Remove us as a viewer
     inv?.removeBlockEntity(this)
+    closeViewers()
+    inv?.updateViewers()
   }
 
   override fun onUpdate() {
     super.onUpdate()
     inv?.addBlockEntity(this)
+    inv?.updateViewers()
   }
 
-  override fun createMenu(syncId: Int, playerInv: PlayerInventory, player: PlayerEntity): ScreenHandler? =
-    inv?.let { EnderStorageScreenHandler(syncId, playerInv, it) }
+  override fun onBroken() {
+    super.onBroken()
+    closeViewers()
+    inv?.updateViewers()
+  }
+
+  override fun createMenu(syncId: Int, playerInv: PlayerInventory, player: PlayerEntity): ScreenHandler? {
+    val inv = inv ?: return null
+    viewingPlayers.add(player)
+    return EnderStorageScreenHandler(syncId, playerInv, inv, pos, frequency)
+  }
 
   override fun getDisplayName(): Text = cachedState.block.name
 
   override fun writeScreenOpeningData(player: ServerPlayerEntity, buf: PacketByteBuf) {
     buf.writeBlockPos(pos)
+    frequency.toPacket(buf)
+  }
+
+  fun removeViewer(player: PlayerEntity) {
+    viewingPlayers.remove(player)
+  }
+
+  private fun closeViewers() {
+    viewingPlayers.forEach {
+      val handler = it.currentScreenHandler as? EnderStorageScreenHandler ?: return@forEach
+      if (it is ServerPlayerEntity && it.world == world && handler.pos == pos) {
+        it.closeHandledScreen()
+      }
+    }
+
+    viewingPlayers.clear()
   }
 
   companion object {

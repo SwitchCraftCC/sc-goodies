@@ -3,8 +3,10 @@ package pw.switchcraft.goodies.datagen
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.client.*
+import net.minecraft.data.client.BlockStateModelGenerator.createSingletonBlockState
 import net.minecraft.util.DyeColor
 import net.minecraft.util.registry.Registry
+import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import java.util.*
@@ -18,6 +20,10 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
       registerIronShulker(gen, variant) // Undyed shulker
       DyeColor.values().forEach { registerIronShulker(gen, variant, it) }
     }
+
+    // Ender Storage
+    gen.blockStateCollector.accept(createSingletonBlockState(enderStorage, ModId("block/ender_storage")))
+    gen.registerParentedItemModel(enderStorage, ModelIds.getBlockModelId(enderStorage))
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {

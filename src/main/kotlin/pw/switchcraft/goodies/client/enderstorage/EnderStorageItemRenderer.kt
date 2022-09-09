@@ -10,9 +10,11 @@ import pw.switchcraft.goodies.client.enderstorage.EnderStorageBlockEntityRendere
 import pw.switchcraft.goodies.enderstorage.Frequency
 
 object EnderStorageItemRenderer : DynamicItemRenderer {
+  private val defaultFrequency = Frequency()
+
   override fun render(stack: ItemStack, mode: ModelTransformation.Mode, matrices: MatrixStack,
                       vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int) {
-    val frequency = Frequency.fromStack(stack) ?: return
+    val frequency = Frequency.fromStack(stack) ?: defaultFrequency
     renderChest(matrices, vertexConsumers, Direction.NORTH, 0.0f, frequency, false, light, overlay)
   }
 }

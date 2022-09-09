@@ -17,6 +17,7 @@ class RecipeGenerator(generator: FabricDataGenerator) : FabricRecipeProvider(gen
     IronChestUpgradeRecipes.generateRecipes(exporter)
     IronShulkerRecipes.generateRecipes(exporter)
     IronShulkerUpgradeRecipes.generateRecipes(exporter)
+    EnderStorageRecipes.generateRecipes(exporter)
   }
 
   companion object {

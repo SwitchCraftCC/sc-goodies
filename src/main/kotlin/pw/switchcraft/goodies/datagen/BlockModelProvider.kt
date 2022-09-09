@@ -23,7 +23,6 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
 
     // Ender Storage
     gen.blockStateCollector.accept(createSingletonBlockState(enderStorage, ModId("block/ender_storage")))
-    gen.registerParentedItemModel(enderStorage, ModelIds.getBlockModelId(enderStorage))
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {

@@ -1,8 +1,10 @@
 {
 	"credit": "Made with Blockbench",
-	"parent": "block/block",
+	"parent": "minecraft:builtin/entity",
 	"textures": {
 		"1": "block/white_wool",
+		"2": "block/white_wool",
+		"3": "block/white_wool",
 		"texture": "sc-goodies:entity/chest/ender_storage",
 		"particle": "block/obsidian"
 	},
@@ -59,24 +61,24 @@
 			"from": [7, 14, 6],
 			"to": [9, 15, 10],
 			"faces": {
-				"north": {"uv": [5, 1, 7, 2], "texture": "#1"},
-				"east": {"uv": [5, 1, 9, 2], "texture": "#1"},
-				"south": {"uv": [5, 1, 7, 2], "texture": "#1"},
-				"west": {"uv": [5, 1, 9, 2], "texture": "#1"},
-				"up": {"uv": [5, 1, 7, 5], "texture": "#1"},
-				"down": {"uv": [5, 1, 7, 5], "texture": "#1"}
+				"north": {"uv": [5, 1, 7, 2], "texture": "#2"},
+				"east": {"uv": [5, 1, 9, 2], "texture": "#2"},
+				"south": {"uv": [5, 1, 7, 2], "texture": "#2"},
+				"west": {"uv": [5, 1, 9, 2], "texture": "#2"},
+				"up": {"uv": [5, 1, 7, 5], "texture": "#2"},
+				"down": {"uv": [5, 1, 7, 5], "texture": "#2"}
 			}
 		},
 		{
 			"from": [4, 14, 6],
 			"to": [6, 15, 10],
 			"faces": {
-				"north": {"uv": [9, 1, 11, 2], "texture": "#1"},
-				"east": {"uv": [9, 1, 13, 2], "texture": "#1"},
-				"south": {"uv": [9, 1, 11, 2], "texture": "#1"},
-				"west": {"uv": [9, 1, 13, 2], "texture": "#1"},
-				"up": {"uv": [9, 1, 11, 5], "texture": "#1"},
-				"down": {"uv": [9, 1, 11, 5], "texture": "#1"}
+				"north": {"uv": [9, 1, 11, 2], "texture": "#3"},
+				"east": {"uv": [9, 1, 13, 2], "texture": "#3"},
+				"south": {"uv": [9, 1, 11, 2], "texture": "#3"},
+				"west": {"uv": [9, 1, 13, 2], "texture": "#3"},
+				"up": {"uv": [9, 1, 11, 5], "texture": "#3"},
+				"down": {"uv": [9, 1, 11, 5], "texture": "#3"}
 			}
 		}
 	],

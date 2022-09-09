@@ -1,22 +1,23 @@
 package pw.switchcraft.goodies.enderstorage
 
+import net.fabricmc.fabric.api.util.NbtType.COMPOUND
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.client.item.TooltipContext
+import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
+import net.minecraft.item.BlockItem
 import net.minecraft.item.DyeItem
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items.DIAMOND
 import net.minecraft.item.Items.EMERALD
-import net.minecraft.screen.NamedScreenHandlerFactory
 import net.minecraft.screen.ScreenHandler
-import net.minecraft.screen.SimpleNamedScreenHandlerFactory
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.stat.Stat
 import net.minecraft.stat.Stats
@@ -37,6 +38,7 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import pw.switchcraft.goodies.Registration.ModBlockEntities
+import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.BUTTON
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
 import pw.switchcraft.goodies.util.*
@@ -69,11 +71,36 @@ class EnderStorageBlock(
     .with(waterlogged, placementWaterlogged(ctx))
 
   override fun onPlaced(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, stack: ItemStack) {
-    // TODO: Inherit owner, frequency from stack
+    val be = world.getBlockEntity(pos) as? EnderStorageBlockEntity ?: return
+    Frequency.fromStack(stack)?.let { be.frequency = it }
   }
 
   override fun createBlockEntity(pos: BlockPos, state: BlockState): BlockEntity =
     EnderStorageBlockEntity(pos, state)
+
+  override fun onBreak(world: World, pos: BlockPos, state: BlockState, player: PlayerEntity) {
+    val be = world.getBlockEntity(pos) as? EnderStorageBlockEntity ?: run {
+      super.onBreak(world, pos, state, player)
+      return
+    }
+
+    if (!world.isClient && player.isCreative) {
+      val stack = ItemStack(ModItems.enderStorage)
+      be.setStackNbt(stack)
+
+      val itemEntity = ItemEntity(world, pos.x + 0.5, pos.y + 0.5, pos.z + 0.5, stack)
+      itemEntity.setToDefaultPickupDelay()
+      world.spawnEntity(itemEntity)
+    }
+
+    super.onBreak(world, pos, state, player)
+  }
+
+  override fun getPickStack(world: BlockView, pos: BlockPos, state: BlockState): ItemStack {
+    val stack = super.getPickStack(world, pos, state)
+    world.getBlockEntity(pos, ModBlockEntities.enderStorage).ifPresent { it.setStackNbt(stack) }
+    return stack
+  }
 
   override fun onUse(state: BlockState, world: World, pos: BlockPos, player: PlayerEntity, hand: Hand,
                      hit: BlockHitResult): ActionResult {
@@ -248,8 +275,28 @@ class EnderStorageBlock(
   }
 
   override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
+    // Add the NBT data prior to the description lines
+    val nbt = BlockItem.getBlockEntityNbt(stack)
+    if (nbt != null) {
+      if (nbt.contains("frequency", COMPOUND)) {
+        val frequency = Frequency.fromNbt(nbt.getCompound("frequency"))
+
+        // Frequency: White, White, White
+        tooltip.add(frequency.toText())
+
+        // Public, or Owner: <name>
+        if (frequency.personal) {
+          tooltip.add(translatable("$translationKey.owner_name", frequency.ownerName ?: "Unknown"))
+        } else {
+          tooltip.add(translatable("$translationKey.public"))
+        }
+      }
+    }
+
+    // Description lines
     super.appendTooltip(stack, world, tooltip, options)
 
+    // CC locking description line, only if CC is installed
     if (computercraftLoaded) {
       addDescLines(tooltip, translationKey, suffix = ".desc.computercraft")
     }

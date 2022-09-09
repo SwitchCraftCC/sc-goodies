@@ -1,12 +1,16 @@
 package pw.switchcraft.goodies.enderstorage
 
 import com.google.gson.Gson
+import net.minecraft.item.BlockItem
+import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.server.MinecraftServer
 import net.minecraft.text.Text
+import net.minecraft.text.Text.translatable
 import net.minecraft.util.DyeColor
 import pw.switchcraft.goodies.Registration.ModBlocks
+import pw.switchcraft.goodies.util.optCompound
 import java.util.*
 
 private val gson = Gson()
@@ -25,9 +29,9 @@ data class Frequency(
   val ownerText: Text by lazy {
     val key = ModBlocks.enderStorage.translationKey
     if (personal) {
-      Text.translatable("$key.owner_name", ownerName ?: "Unknown")
+      translatable("$key.owner_name", ownerName ?: "Unknown")
     } else {
-      Text.translatable("$key.public")
+      translatable("$key.public")
     }
   }
 
@@ -50,6 +54,16 @@ data class Frequency(
   }
 
   fun toKey() = gson.toJson(this)
+
+  fun toText(): Text {
+    val key = "block.sc-goodies.ender_storage.frequency"
+    return translatable(
+      key,
+      translatable("$key.${left.getName()}"),
+      translatable("$key.${middle.getName()}"),
+      translatable("$key.${right.getName()}")
+    )
+  }
 
   fun dyeColor(index: Int): DyeColor = when (index) {
     0 -> left
@@ -88,5 +102,12 @@ data class Frequency(
     )
 
     fun fromKey(key: String) = gson.fromJson(key, Frequency::class.java)
+
+    fun fromStack(stack: ItemStack): Frequency? {
+      // Get the frequency either from the item's direct NBT, or its BlockEntity NBT tag (creative pick)
+      val frequencyNbt = stack.getSubNbt("frequency")
+        ?: BlockItem.getBlockEntityNbt(stack)?.optCompound("frequency")
+      return fromNbt(frequencyNbt ?: return null)
+    }
   }
 }

@@ -2,11 +2,14 @@ package pw.switchcraft.goodies.client
 
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry
+import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry
 import net.minecraft.client.gui.screen.ingame.HandledScreens
 import org.slf4j.LoggerFactory
 import pw.switchcraft.goodies.Registration.ModBlockEntities
+import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.Registration.ModScreens
 import pw.switchcraft.goodies.client.enderstorage.EnderStorageBlockEntityRenderer
+import pw.switchcraft.goodies.client.enderstorage.EnderStorageItemRenderer
 import pw.switchcraft.goodies.client.enderstorage.EnderStorageScreen
 import pw.switchcraft.goodies.client.ironchest.IronChestBlockEntityRenderer
 import pw.switchcraft.goodies.client.ironchest.IronChestScreen
@@ -27,6 +30,7 @@ object ScGoodiesClient : ClientModInitializer {
 
     // Ender Storage
     BlockEntityRendererRegistry.register(ModBlockEntities.enderStorage, ::EnderStorageBlockEntityRenderer)
+    BuiltinItemRendererRegistry.INSTANCE.register(ModItems.enderStorage, EnderStorageItemRenderer)
     HandledScreens.register(ModScreens.enderStorage, ::EnderStorageScreen)
   }
 

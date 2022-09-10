@@ -11,9 +11,9 @@ SwitchCraft server in the style of many older mods.
 - Basic iron chests, in the style of cpw's [ironchest](https://github.com/progwml6/ironchest).
   - This is a significantly more primitive take on the iron chests concept with "no BS" - it simply adds iron, gold,
     and diamond versions of chests and shulker boxes.
+- [EnderStorage](https://github.com/TheCBProject/EnderStorage) style chests
 
 #### Planned
-- EnderStorage style chests
 - Hover boots
 - Item magnet
 - Popcorn

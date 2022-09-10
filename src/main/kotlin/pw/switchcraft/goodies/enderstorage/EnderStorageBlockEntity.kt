@@ -1,5 +1,6 @@
 package pw.switchcraft.goodies.enderstorage
 
+import dan200.computercraft.api.peripheral.IPeripheralTile
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
@@ -13,6 +14,7 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
@@ -20,7 +22,8 @@ import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInve
 class EnderStorageBlockEntity(
   pos: BlockPos,
   state: BlockState,
-) : FrequencyBlockEntity(ModBlockEntities.enderStorage, pos, state), LidOpenable, ExtendedScreenHandlerFactory {
+) : FrequencyBlockEntity(ModBlockEntities.enderStorage, pos, state), LidOpenable, ExtendedScreenHandlerFactory,
+  IPeripheralTile {
   private val lidAnimator = ChestLidAnimator()
 
   val inv: EnderStorageInventory?
@@ -130,4 +133,7 @@ class EnderStorageBlockEntity(
       }
     }
   }
+
+  private val peripheral by lazy { EnderStoragePeripheral(this) }
+  override fun getPeripheral(side: Direction) = peripheral
 }

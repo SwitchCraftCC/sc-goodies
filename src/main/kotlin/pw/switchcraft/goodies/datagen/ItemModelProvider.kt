@@ -24,6 +24,8 @@ class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(ge
     ModItems.hoverBoots.values.forEach {
       gen.register(it, Models.GENERATED)
     }
+
+    gen.register(ModItems.itemMagnet, Models.GENERATED)
   }
 
   companion object {

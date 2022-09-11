@@ -22,7 +22,7 @@ class HoverBootsModel(
 
   companion object {
     private fun createModelData(): TexturedModelData {
-      val modelData = getModelData(Dilation.NONE, 0f)
+      val modelData = getModelData(Dilation.NONE, 0.0f)
       val root = modelData.root
 
       root.addChild(

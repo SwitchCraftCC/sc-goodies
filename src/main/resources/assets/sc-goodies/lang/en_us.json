@@ -156,5 +156,8 @@
   "item.sc-goodies.gold_diamond_shulker_upgrade.desc": "Upgrade a gold shulker box to a diamond shulker box.\nCapable of storing up to 108 stacks of items.",
 
   "item.sc-goodies.hover_boots": "Hover Boots",
-  "item.sc-goodies.hover_boots.desc": "Allows you to jump higher."
+  "item.sc-goodies.hover_boots.desc": "Allows you to jump higher.",
+
+  "item.sc-goodies.item_magnet": "Item Magnet",
+  "item.sc-goodies.item_magnet.desc": "Vacuums items in an 6 block radius.\nPress TODO to toggle."
 }

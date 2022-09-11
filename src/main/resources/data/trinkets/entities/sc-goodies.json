@@ -3,6 +3,7 @@
     "player"
   ],
   "slots": [
+    "hand/glove",
     "feet/shoes"
   ]
 }

@@ -16,6 +16,7 @@ import pw.switchcraft.goodies.client.hoverboots.HoverBootsTrinketRenderer
 import pw.switchcraft.goodies.client.ironchest.IronChestBlockEntityRenderer
 import pw.switchcraft.goodies.client.ironchest.IronChestScreen
 import pw.switchcraft.goodies.client.ironchest.IronShulkerBlockEntityRenderer
+import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 
 object ScGoodiesClient : ClientModInitializer {
@@ -39,6 +40,9 @@ object ScGoodiesClient : ClientModInitializer {
     ModItems.hoverBoots.values.forEach {
       TrinketRendererRegistry.registerRenderer(it, HoverBootsTrinketRenderer)
     }
+
+    // Item Magnet
+    TrinketRendererRegistry.registerRenderer(ModItems.itemMagnet, ItemMagnetTrinketRenderer)
   }
 
   private fun registerIronChestRenderer(variant: IronChestVariant) {

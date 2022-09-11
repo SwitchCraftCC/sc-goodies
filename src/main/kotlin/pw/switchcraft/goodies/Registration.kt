@@ -32,6 +32,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
+import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 
 object Registration {
   internal fun init() {
@@ -136,6 +137,8 @@ object Registration {
     val hoverBoots = DyeColor.values().associateWith {
       rItem("hover_boots_${it.getName()}", HoverBootsItem(it, itemSettings().maxCount(1)))
     }
+
+    val itemMagnet = rItem("item_magnet", ItemMagnetItem(itemSettings().maxCount(1)))
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

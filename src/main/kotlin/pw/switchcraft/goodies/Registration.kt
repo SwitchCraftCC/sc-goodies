@@ -26,6 +26,7 @@ import pw.switchcraft.goodies.datagen.recipes.IronShulkerRecipes
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
 import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
+import pw.switchcraft.goodies.hoverboots.HoverBootsItem
 import pw.switchcraft.goodies.ironchest.*
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
@@ -131,6 +132,10 @@ object Registration {
     private val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
+
+    val hoverBoots = DyeColor.values().associateWith {
+      rItem("hover_boots_${it.getName()}", HoverBootsItem(it, itemSettings().maxCount(1)))
+    }
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

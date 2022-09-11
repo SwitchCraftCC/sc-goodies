@@ -4,6 +4,7 @@
   "package": "pw.switchcraft.goodies.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "LivingEntityMixin",
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [

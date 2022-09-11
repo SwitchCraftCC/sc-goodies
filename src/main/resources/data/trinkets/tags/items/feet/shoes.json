@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "sc-goodies:hover_boots_white",
+    "sc-goodies:hover_boots_orange",
+    "sc-goodies:hover_boots_magenta",
+    "sc-goodies:hover_boots_light_blue",
+    "sc-goodies:hover_boots_yellow",
+    "sc-goodies:hover_boots_lime",
+    "sc-goodies:hover_boots_pink",
+    "sc-goodies:hover_boots_gray",
+    "sc-goodies:hover_boots_light_gray",
+    "sc-goodies:hover_boots_cyan",
+    "sc-goodies:hover_boots_purple",
+    "sc-goodies:hover_boots_blue",
+    "sc-goodies:hover_boots_brown",
+    "sc-goodies:hover_boots_green",
+    "sc-goodies:hover_boots_red",
+    "sc-goodies:hover_boots_black"
+  ]
+}

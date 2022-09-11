@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.data.client.BlockStateModelGenerator
 import net.minecraft.data.client.ItemModelGenerator
 import net.minecraft.data.client.Models
+import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 
 class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(generator) {
@@ -18,6 +19,10 @@ class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(ge
 
       log.info("Registering item model for $upgrade shulker upgrade")
       gen.register(upgrade.shulkerUpgrade, Models.GENERATED)
+    }
+
+    ModItems.hoverBoots.values.forEach {
+      gen.register(it, Models.GENERATED)
     }
   }
 

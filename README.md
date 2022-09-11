@@ -11,10 +11,10 @@ SwitchCraft server in the style of many older mods.
 - Basic iron chests, in the style of cpw's [ironchest](https://github.com/progwml6/ironchest).
   - This is a significantly more primitive take on the iron chests concept with "no BS" - it simply adds iron, gold,
     and diamond versions of chests and shulker boxes.
-- [EnderStorage](https://github.com/TheCBProject/EnderStorage) style chests
+- [EnderStorage](https://github.com/TheCBProject/EnderStorage) style chests.
+- Hover Boots, in the style of [OpenComputers](https://github.com/MightyPirates/OpenComputers).
 
 #### Planned
-- Hover boots
 - Item magnet
 - Popcorn
 
@@ -31,4 +31,4 @@ your modpack.
 
 ## License
 
-This repository is licensed under the [MIT license](LICENSE.md).
+This repository is licensed under the [MIT license](LICENSE).

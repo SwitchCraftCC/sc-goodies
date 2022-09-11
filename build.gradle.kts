@@ -27,6 +27,8 @@ val clothConfigVersion: String by project
 val clothApiVersion: String by project
 val modMenuVersion: String by project
 
+val trinketsVersion: String by project
+
 val archivesBaseName = "sc-goodies"
 version = modVersion
 group = mavenGroup
@@ -44,6 +46,7 @@ repositories {
   maven("https://jitpack.io") // CC:Restitched
   maven("https://maven.terraformersmc.com/releases") // Mod Menu
   maven("https://maven.shedaniel.me") // Cloth Config
+  maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
 }
 
 dependencies {
@@ -58,6 +61,8 @@ dependencies {
 
   implementation(include("com.electronwill.night-config", "core", nightConfigVersion))
   implementation(include("com.electronwill.night-config", "toml", nightConfigVersion))
+
+  modImplementation("dev.emi:trinkets:${trinketsVersion}")
 
   modApi("me.shedaniel.cloth:cloth-config-fabric:$clothConfigVersion") {
     exclude("net.fabricmc.fabric-api")

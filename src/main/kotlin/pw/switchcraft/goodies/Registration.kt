@@ -22,7 +22,8 @@ import pw.switchcraft.goodies.Registration.ModBlocks.shulkerSettings
 import pw.switchcraft.goodies.Registration.ModItems.itemSettings
 import pw.switchcraft.goodies.Registration.ModItems.rItem
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.datagen.recipes.IronShulkerRecipes
+import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
+import pw.switchcraft.goodies.datagen.recipes.handlers.RecipeHandler
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
 import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
@@ -54,10 +55,11 @@ object Registration {
       rItem(upgrade.itemName + "_shulker_upgrade", IronChestUpgradeItem(upgrade, true, itemSettings()))
     }
 
-    IronShulkerRecipes.registerSerializers()
     IronShulkerCauldronBehavior.registerBehavior()
 
     EnderStorageBlockEntity.initEvents()
+
+    RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
 
   private fun registerIronChest(variant: IronChestVariant) {

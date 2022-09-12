@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.minecraft.data.server.RecipeProvider
 import net.minecraft.data.server.recipe.RecipeJsonProvider
@@ -7,8 +7,8 @@ import net.minecraft.item.Items.*
 import pw.switchcraft.goodies.Registration.ModItems
 import java.util.function.Consumer
 
-object EnderStorageRecipes {
-  internal fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
+object EnderStorageRecipes : RecipeHandler {
+  override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Ender Storage
     ShapedRecipeJsonBuilder
       .create(ModItems.enderStorage)

@@ -9,15 +9,12 @@ import net.minecraft.recipe.Recipe
 import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry
+import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import java.util.function.Consumer
 
 class RecipeGenerator(generator: FabricDataGenerator) : FabricRecipeProvider(generator) {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
-    IronChestRecipes.generateRecipes(exporter)
-    IronChestUpgradeRecipes.generateRecipes(exporter)
-    IronShulkerRecipes.generateRecipes(exporter)
-    IronShulkerUpgradeRecipes.generateRecipes(exporter)
-    EnderStorageRecipes.generateRecipes(exporter)
+    RECIPE_HANDLERS.forEach { it.generateRecipes(exporter) }
   }
 
   companion object {

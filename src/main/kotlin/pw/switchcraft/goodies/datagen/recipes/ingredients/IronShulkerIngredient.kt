@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package pw.switchcraft.goodies.datagen.recipes.ingredients
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.ints.IntComparators

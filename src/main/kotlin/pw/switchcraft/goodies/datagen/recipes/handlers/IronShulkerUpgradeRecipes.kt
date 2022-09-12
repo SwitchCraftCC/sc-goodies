@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.RecipeProvider.conditionsFromTag
@@ -8,8 +8,8 @@ import net.minecraft.item.Items.SHULKER_SHELL
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import java.util.function.Consumer
 
-object IronShulkerUpgradeRecipes {
-  internal fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
+object IronShulkerUpgradeRecipes : RecipeHandler {
+  override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Vanilla to Iron Shulker Upgrade
     ShapedRecipeJsonBuilder
       .create(IronChestUpgrade.VANILLA_IRON.shulkerUpgrade)

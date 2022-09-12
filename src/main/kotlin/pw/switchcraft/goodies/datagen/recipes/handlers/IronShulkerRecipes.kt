@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.RecipeProvider.conditionsFromTag
@@ -12,20 +12,24 @@ import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
 import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
+import pw.switchcraft.goodies.datagen.recipes.BaseIronShulkerRecipe
+import pw.switchcraft.goodies.datagen.recipes.BetterComplexRecipeJsonBuilder
+import pw.switchcraft.goodies.datagen.recipes.DyedIronShulkerRecipe
+import pw.switchcraft.goodies.datagen.recipes.ingredients.IronShulkerIngredient
 import pw.switchcraft.goodies.datagen.recipes.RecipeGenerator.Companion.specialRecipe
 import java.util.function.Consumer
 import pw.switchcraft.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
 import pw.switchcraft.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT
 import pw.switchcraft.goodies.ironchest.IronChestVariant.IRON as IRON_VARIANT
 
-object IronShulkerRecipes {
+object IronShulkerRecipes : RecipeHandler {
   private val iron = fromTag(IRON_INGOTS)
   private val gold = fromTag(GOLD_INGOTS)
   private val diamond = ofItems(DIAMOND)
   private val glass = fromTag(GLASS_BLOCKS)
   private val vanillaShulkers = fromTag(SHULKER_BOXES)
 
-  internal fun registerSerializers() {
+  override fun registerSerializers() {
     register(RECIPE_SERIALIZER, ModId("iron_shulker"), ironShulkerRecipeSerializer)
     register(RECIPE_SERIALIZER, ModId("gold_shulker"), goldShulkerRecipeSerializer)
     register(RECIPE_SERIALIZER, ModId("diamond_shulker_with_iron_shulker"), diamondShulkerIronRecipeSerializer)
@@ -35,7 +39,7 @@ object IronShulkerRecipes {
     register(RECIPE_SERIALIZER, ModId("dyed_iron_shulker"), DyedIronShulkerRecipe.recipeSerializer)
   }
 
-  internal fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
+  override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     BetterComplexRecipeJsonBuilder(IRON_VARIANT.shulkerBlock, ironShulkerRecipeSerializer)
       .criterion("has_shulker_box", conditionsFromTag(SHULKER_BOXES))
       .offerTo(exporter)

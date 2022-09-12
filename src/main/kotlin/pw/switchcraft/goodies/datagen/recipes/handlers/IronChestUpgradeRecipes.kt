@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.RecipeProvider.conditionsFromItem
@@ -9,8 +9,8 @@ import net.minecraft.tag.ItemTags.PLANKS
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import java.util.function.Consumer
 
-object IronChestUpgradeRecipes {
-  internal fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
+object IronChestUpgradeRecipes : RecipeHandler {
+  override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Wood to Iron Chest Upgrade
     ShapedRecipeJsonBuilder
       .create(IronChestUpgrade.VANILLA_IRON.chestUpgrade)

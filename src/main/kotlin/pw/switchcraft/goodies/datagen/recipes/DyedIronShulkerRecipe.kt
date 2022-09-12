@@ -9,6 +9,7 @@ import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
+import pw.switchcraft.goodies.datagen.recipes.ingredients.IronShulkerIngredient
 import pw.switchcraft.goodies.ironchest.IronChestVariant.IRON
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 

@@ -10,7 +10,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.world.World
 import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.goodies.util.Tooltips.addDescLines
+import pw.switchcraft.library.Tooltips.addDescLines
 
 class HoverBootsItem(
   val color: DyeColor,

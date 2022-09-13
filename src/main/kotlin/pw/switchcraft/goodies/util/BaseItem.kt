@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.world.World
 import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.goodies.util.Tooltips.addDescLines
+import pw.switchcraft.library.Tooltips.addDescLines
 
 abstract class BaseItem(
   private val itemName: String,

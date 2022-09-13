@@ -14,7 +14,7 @@ import net.minecraft.text.Text.translatable
 import net.minecraft.util.Formatting.GREEN
 import net.minecraft.util.Formatting.RED
 import net.minecraft.world.World
-import pw.switchcraft.goodies.util.Tooltips
+import pw.switchcraft.library.Tooltips
 import kotlin.math.absoluteValue
 
 private const val TICK_FREQ = 3

@@ -29,6 +29,8 @@ val modMenuVersion: String by project
 
 val trinketsVersion: String by project
 
+val scLibraryVersion: String by project
+
 val archivesBaseName = "sc-goodies"
 version = modVersion
 group = mavenGroup
@@ -55,6 +57,8 @@ dependencies {
   modImplementation("net.fabricmc", "fabric-loader", loaderVersion)
   modImplementation("net.fabricmc.fabric-api", "fabric-api", fabricVersion)
   modImplementation("net.fabricmc", "fabric-language-kotlin", fabricKotlinVersion)
+
+  modApi("pw.switchcraft", "sc-library", scLibraryVersion)
 
   // CC: Restitched
   modApi("com.github.cc-tweaked:cc-restitched:${ccVersion}")

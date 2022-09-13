@@ -162,7 +162,5 @@
   "item.sc-goodies.item_magnet.enabled": "Magnet enabled (press %s to toggle)",
   "item.sc-goodies.item_magnet.disabled": "Magnet disabled (press %s to toggle)",
   "item.sc-goodies.item_magnet.level": "Level %s (%s block radius)",
-  "item.sc-goodies.item_magnet.desc": "Vacuums nearby items into your inventory.\nCharge with experience orbs.\nUpgrade with Nether Stars and Netherite Ingots.",
-
-  "sc-goodies.tooltip.more_info": "(Hold %s for more information)"
+  "item.sc-goodies.item_magnet.desc": "Vacuums nearby items into your inventory.\nCharge with experience orbs.\nUpgrade with Nether Stars and Netherite Ingots."
 }

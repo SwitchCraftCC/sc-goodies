@@ -10,7 +10,7 @@ import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.DyeColor
 import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.util.optCompound
+import pw.switchcraft.library.ext.optCompound
 import java.util.*
 
 private val gson = Gson()

@@ -42,8 +42,10 @@ import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.BUTTON
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
 import pw.switchcraft.goodies.util.*
-import pw.switchcraft.goodies.util.Tooltips.addDescLines
-import pw.switchcraft.goodies.util.WaterloggableBlock.Companion.waterlogged
+import pw.switchcraft.library.Tooltips.addDescLines
+import pw.switchcraft.library.ext.rotateTowards
+import pw.switchcraft.library.ext.toDiv16
+import pw.switchcraft.library.ext.toDiv16VoxelShape
 
 // Raycasts hit the very edge of the shape so the .contains() check will fail without a slight expansion. This is half
 // of a voxel.

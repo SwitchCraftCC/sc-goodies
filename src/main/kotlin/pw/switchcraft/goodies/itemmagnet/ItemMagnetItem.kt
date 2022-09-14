@@ -11,9 +11,10 @@ import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
-import net.minecraft.util.Formatting.GREEN
-import net.minecraft.util.Formatting.RED
+import net.minecraft.util.Formatting.*
 import net.minecraft.world.World
+import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
+import pw.switchcraft.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
 import pw.switchcraft.library.Tooltips
 import kotlin.math.absoluteValue
 
@@ -35,6 +36,10 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     val enabled = stackEnabled(stack)
     if (world?.isClient == true) {
       addEnabledTooltip(stack, tooltip, enabled)
+
+      if (stackBlocked(stack)) {
+        tooltip.add(translatable("$translationKey.blocked").formatted(RED))
+      }
     }
 
     val level = stackLevel(stack)
@@ -50,17 +55,16 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     val trinket = TrinketsApi.getTrinketComponent(player).orElse(null) ?: return
     if (!trinket.isEquipped { it == stack }) return
 
-    // TODO: Add hotkey text
     val key = if (enabled) "enabled" else "disabled"
     val color = if (enabled) GREEN else RED
-    tooltip.add(translatable("$translationKey.$key", "TODO").formatted(color))
+    val keybinding = toggleBinding.boundKeyLocalizedText.copy().formatted(WHITE)
+    tooltip.add(translatable("$translationKey.$key", keybinding).formatted(color))
   }
 
   override fun tick(magnetStack: ItemStack, slot: SlotReference, player: LivingEntity) {
-    // TODO: Check enabled state from magnetStack
     val radius = stackRadius(magnetStack)
 
-    // Only run on the server and once every four ticks. Give each player their own tick offset so that the load is
+    // Only run on the server and once every three ticks. Give each player their own tick offset so that the load is
     // spread out a bit.
     val tickOffset = player.uuid.hashCode().absoluteValue % TICK_FREQ
     val world = player.world
@@ -69,8 +73,29 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     }
 
     val range = player.boundingBox.expand(radius.toDouble())
-    val items = world.getEntitiesByClass(ItemEntity::class.java, range) { true }
 
+    // Look for other players with magnets in the range in case they will conflict
+    val otherPlayers = world.getEntitiesByClass(ServerPlayerEntity::class.java, range) {
+      it != player && it.isAlive && !it.isSpectator
+    }
+    val blocked = player.isSpectator || otherPlayers.any {
+      val components = ItemMagnetState.magnetComponents(it)
+      val otherRadius = playerMagnetRadius(components) ?: return@any false
+      val otherRange = it.boundingBox.expand(otherRadius.toDouble())
+      range.intersects(otherRange)
+    }
+
+    // If there are conflicts, disable the magnet
+    if (blocked != stackBlocked(magnetStack)) {
+      setStackBlocked(magnetStack, blocked)
+      if (blocked) return
+    }
+
+    // Do nothing if the magnet is disabled, or we are in spectator mode
+    if (!stackEnabled(magnetStack) || player.isSpectator) return
+
+    // Look for items to pick up
+    val items = world.getEntitiesByClass(ItemEntity::class.java, range) { true }
     for (item in items) {
       // Ensure the item can actually be picked up (pickup delay)
       val stack = item.stack
@@ -99,12 +124,18 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
       return stack.orCreateNbt.getInt("level")
     }
 
-    fun radius(level: Int): Int =
-      (MIN_RANGE + level).coerceAtMost(MAX_RANGE)
-
+    fun radius(level: Int): Int
+      = (MIN_RANGE + level).coerceAtMost(MAX_RANGE)
     fun stackRadius(stack: ItemStack): Int = radius(stackLevel(stack))
 
     fun stackEnabled(stack: ItemStack): Boolean =
       stack.orCreateNbt.getBoolean("enabled")
+    fun setStackEnabled(stack: ItemStack, enabled: Boolean) =
+      stack.orCreateNbt.putBoolean("enabled", enabled)
+
+    fun stackBlocked(stack: ItemStack): Boolean =
+      stack.orCreateNbt.getBoolean("blocked")
+    fun setStackBlocked(stack: ItemStack, blocked: Boolean) =
+      stack.orCreateNbt.putBoolean("blocked", blocked)
   }
 }

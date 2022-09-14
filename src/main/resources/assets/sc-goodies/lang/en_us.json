@@ -159,8 +159,12 @@
   "item.sc-goodies.hover_boots.desc": "Allows you to jump higher.",
 
   "item.sc-goodies.item_magnet": "Item Magnet",
-  "item.sc-goodies.item_magnet.enabled": "Magnet enabled (press %s to toggle)",
-  "item.sc-goodies.item_magnet.disabled": "Magnet disabled (press %s to toggle)",
+  "item.sc-goodies.item_magnet.enabled": "Magnet enabled (press %s to toggle in-game)",
+  "item.sc-goodies.item_magnet.disabled": "Magnet disabled (press %s to toggle in-game)",
+  "item.sc-goodies.item_magnet.blocked": "Magnet blocked (other players are nearby)",
   "item.sc-goodies.item_magnet.level": "Level %s (%s block radius)",
-  "item.sc-goodies.item_magnet.desc": "Vacuums nearby items into your inventory.\nCharge with experience orbs.\nUpgrade with Nether Stars and Netherite Ingots."
+  "item.sc-goodies.item_magnet.desc": "Vacuums nearby items into your inventory.\nCharge with experience orbs.\nUpgrade with Nether Stars and Netherite Ingots.",
+
+  "category.sc-goodies": "SwitchCraft Goodies",
+  "key.sc-goodies.toggle_item_magnet": "Toggle Item Magnet"
 }

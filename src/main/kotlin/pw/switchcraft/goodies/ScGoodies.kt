@@ -5,10 +5,10 @@ import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
 
 object ScGoodies : ModInitializer {
-  val log = LoggerFactory.getLogger("ScGoodies")!!
+  internal val log = LoggerFactory.getLogger("ScGoodies")!!
 
-  val modId = "sc-goodies"
-  fun ModId(value: String) = Identifier(modId, value)
+  internal const val modId = "sc-goodies"
+  internal fun ModId(value: String) = Identifier(modId, value)
 
   override fun onInitialize() {
     log.info("sc-goodies initializing")

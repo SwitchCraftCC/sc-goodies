@@ -33,6 +33,8 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
+import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
+import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
 
 object Registration {
@@ -58,6 +60,8 @@ object Registration {
     IronShulkerCauldronBehavior.registerBehavior()
 
     EnderStorageBlockEntity.initEvents()
+
+    registerServerReceiver(ToggleItemMagnetPacket.id, ToggleItemMagnetPacket::fromBytes)
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }

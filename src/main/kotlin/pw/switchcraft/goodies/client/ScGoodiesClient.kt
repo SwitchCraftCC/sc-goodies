@@ -16,8 +16,10 @@ import pw.switchcraft.goodies.client.hoverboots.HoverBootsTrinketRenderer
 import pw.switchcraft.goodies.client.ironchest.IronChestBlockEntityRenderer
 import pw.switchcraft.goodies.client.ironchest.IronChestScreen
 import pw.switchcraft.goodies.client.ironchest.IronShulkerBlockEntityRenderer
+import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetHud
 import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
 import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey
 
 object ScGoodiesClient : ClientModInitializer {
   val log = LoggerFactory.getLogger("ScGoodies/ScGoodiesClient")!!
@@ -43,6 +45,8 @@ object ScGoodiesClient : ClientModInitializer {
 
     // Item Magnet
     TrinketRendererRegistry.registerRenderer(ModItems.itemMagnet, ItemMagnetTrinketRenderer)
+    ItemMagnetHotkey.initEvents()
+    ItemMagnetHud.initEvents()
   }
 
   private fun registerIronChestRenderer(variant: IronChestVariant) {

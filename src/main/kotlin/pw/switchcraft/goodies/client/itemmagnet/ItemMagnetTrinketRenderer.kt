@@ -3,13 +3,16 @@ package pw.switchcraft.goodies.client.itemmagnet
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.client.TrinketRenderer
 import net.minecraft.client.render.OverlayTexture
+import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.VertexConsumerProvider
+import net.minecraft.client.render.VertexConsumers
 import net.minecraft.client.render.entity.model.EntityModel
 import net.minecraft.client.render.entity.model.PlayerEntityModel
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
 import pw.switchcraft.goodies.ScGoodies.ModId
+import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.mixin.PlayerEntityModelAccessor
 
 object ItemMagnetTrinketRenderer : TrinketRenderer {
@@ -18,7 +21,7 @@ object ItemMagnetTrinketRenderer : TrinketRenderer {
   private val model by lazy { ItemMagnetModel() }
 
   override fun render(stack: ItemStack, slotReference: SlotReference, contextModel: EntityModel<out LivingEntity>,
-                      matrices: MatrixStack, vertexConsumers: VertexConsumerProvider, light: Int, entity: LivingEntity,
+                      matrices: MatrixStack, provider: VertexConsumerProvider, light: Int, entity: LivingEntity,
                       limbAngle: Float, limbDistance: Float, tickDelta: Float, animationProgress: Float, headYaw: Float,
                       headPitch: Float) {
     model.setAngles(entity, limbAngle, limbDistance, animationProgress, headYaw, headPitch)
@@ -32,7 +35,17 @@ object ItemMagnetTrinketRenderer : TrinketRenderer {
       matrices.translate(-1.5 / 16.0, 0.0, 0.0)
     }
 
-    val consumer = vertexConsumers.getBuffer(model.getLayer(texture))
+    val enabled = ItemMagnetItem.stackEnabled(stack)
+
+    val consumer = if (enabled) {
+      VertexConsumers.union(
+        provider.getBuffer(RenderLayer.getEntityGlint()),
+        provider.getBuffer(model.getLayer(texture))
+      )
+    } else {
+      provider.getBuffer(model.getLayer(texture))
+    }
+
     model.render(matrices, consumer, light, OverlayTexture.DEFAULT_UV, 1.0f, 1.0f, 1.0f, 1.0f)
 
     matrices.pop()

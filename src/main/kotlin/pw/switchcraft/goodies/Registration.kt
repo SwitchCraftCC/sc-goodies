@@ -23,7 +23,6 @@ import pw.switchcraft.goodies.Registration.ModItems.itemSettings
 import pw.switchcraft.goodies.Registration.ModItems.rItem
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
-import pw.switchcraft.goodies.datagen.recipes.handlers.RecipeHandler
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
 import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
@@ -34,6 +33,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
+import pw.switchcraft.library.recipe.RecipeHandler
 
 object Registration {
   internal fun init() {

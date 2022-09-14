@@ -5,6 +5,7 @@ import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.*
 import pw.switchcraft.goodies.Registration.ModItems
+import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object EnderStorageRecipes : RecipeHandler {

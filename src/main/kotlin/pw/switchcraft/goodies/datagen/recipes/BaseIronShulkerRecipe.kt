@@ -9,7 +9,7 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
-import pw.switchcraft.goodies.util.BetterSpecialRecipe
+import pw.switchcraft.library.recipe.BetterSpecialRecipe
 
 abstract class BaseIronShulkerRecipe(
   id: Identifier,

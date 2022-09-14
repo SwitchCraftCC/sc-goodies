@@ -16,6 +16,20 @@
   "license": "MIT",
   "icon": "assets/sc-goodies/icon.png",
 
+  "custom": {
+    "modmenu": {
+      "links": {
+        "switchcraft.discord": "https://discord.switchcraft.pw"
+      },
+      "parent": {
+        "id": "switchcraft",
+        "name": "SwitchCraft",
+        "url": "https://switchcraft.pw",
+        "icon": "assets/sc-goodies/icon.png"
+      }
+    }
+  },
+
   "entrypoints": {
     "main": [
       {

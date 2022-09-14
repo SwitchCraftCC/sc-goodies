@@ -7,6 +7,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
+import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object IronChestRecipes : RecipeHandler {

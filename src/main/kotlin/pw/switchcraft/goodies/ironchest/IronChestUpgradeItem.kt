@@ -17,6 +17,7 @@ import pw.switchcraft.goodies.mixin.ShulkerBoxBlockEntityAccessor
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.util.BaseItem
+import pw.switchcraft.library.WaterloggableBlock
 
 class IronChestUpgradeItem(
   private val upgrade: IronChestUpgrade,

@@ -43,6 +43,8 @@ import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeTy
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
 import pw.switchcraft.goodies.util.*
 import pw.switchcraft.library.Tooltips.addDescLines
+import pw.switchcraft.library.WaterloggableBlock
+import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
 import pw.switchcraft.library.ext.rotateTowards
 import pw.switchcraft.library.ext.toDiv16
 import pw.switchcraft.library.ext.toDiv16VoxelShape

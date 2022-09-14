@@ -13,10 +13,11 @@ import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
 import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.BaseIronShulkerRecipe
-import pw.switchcraft.goodies.datagen.recipes.BetterComplexRecipeJsonBuilder
 import pw.switchcraft.goodies.datagen.recipes.DyedIronShulkerRecipe
 import pw.switchcraft.goodies.datagen.recipes.ingredients.IronShulkerIngredient
-import pw.switchcraft.goodies.datagen.recipes.RecipeGenerator.Companion.specialRecipe
+import pw.switchcraft.library.recipe.BetterComplexRecipeJsonBuilder
+import pw.switchcraft.library.recipe.RecipeHandler
+import pw.switchcraft.library.recipe.specialRecipe
 import java.util.function.Consumer
 import pw.switchcraft.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
 import pw.switchcraft.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT

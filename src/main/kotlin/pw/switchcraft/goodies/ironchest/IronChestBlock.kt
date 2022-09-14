@@ -26,6 +26,8 @@ import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 import pw.switchcraft.goodies.util.BaseBlockWithEntity
+import pw.switchcraft.library.WaterloggableBlock
+import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
 
 class IronChestBlock(
   settings: Settings,

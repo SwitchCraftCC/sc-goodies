@@ -6,6 +6,7 @@ import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.SHULKER_SHELL
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
+import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object IronShulkerUpgradeRecipes : RecipeHandler {

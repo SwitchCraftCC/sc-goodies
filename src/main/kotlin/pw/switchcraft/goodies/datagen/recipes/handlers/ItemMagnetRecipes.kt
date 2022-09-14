@@ -8,8 +8,9 @@ import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
 import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.datagen.recipes.BetterComplexRecipeJsonBuilder
 import pw.switchcraft.goodies.datagen.recipes.ItemMagnetUpgradeRecipe
+import pw.switchcraft.library.recipe.BetterComplexRecipeJsonBuilder
+import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object ItemMagnetRecipes : RecipeHandler {

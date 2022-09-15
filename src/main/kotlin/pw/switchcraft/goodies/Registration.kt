@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
+import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry.*
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
@@ -34,6 +35,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
+import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
 
@@ -145,6 +147,7 @@ object Registration {
     }
 
     val itemMagnet = rItem("item_magnet", ItemMagnetItem(itemSettings().maxCount(1)))
+    val dragonScale = rItem("dragon_scale", BaseItem(itemSettings().maxCount(16).rarity(EPIC)))
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

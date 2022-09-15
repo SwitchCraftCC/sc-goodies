@@ -26,6 +26,7 @@ class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(ge
     }
 
     gen.register(ModItems.itemMagnet, Models.GENERATED)
+    gen.register(ModItems.dragonScale, Models.GENERATED)
   }
 
   companion object {

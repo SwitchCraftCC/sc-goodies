@@ -13,9 +13,9 @@ import net.minecraft.util.ActionResult.SUCCESS
 import net.minecraft.util.DyeColor
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.Direction
-import pw.switchcraft.goodies.mixin.ShulkerBoxBlockEntityAccessor
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.mixin.ShulkerBoxBlockEntityAccessor
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.WaterloggableBlock
 
@@ -23,10 +23,7 @@ class IronChestUpgradeItem(
   private val upgrade: IronChestUpgrade,
   private val shulker: Boolean,
   settings: Settings
-) : BaseItem(
-  upgrade.itemName + (if (shulker) "_shulker_upgrade" else "_chest_upgrade"),
-  settings
-) {
+) : BaseItem(settings) {
   private val from by upgrade::from
   private val to by upgrade::to
 

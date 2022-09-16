@@ -1,7 +1,7 @@
 # sc-goodies
 
 Fabric 1.19 mod for the SwitchCraft server. "Lemmmy's bag of tricks" - a collection of tiny additions designed for the
-SwitchCraft server in the style of many older mods.
+SwitchCraft server in the style of many older mods. Highly opinionated.
 
 ![sc-goodies](img/header.png)
 
@@ -13,9 +13,11 @@ SwitchCraft server in the style of many older mods.
     and diamond versions of chests and shulker boxes.
 - [EnderStorage](https://github.com/TheCBProject/EnderStorage) style chests.
 - Hover Boots, in the style of [OpenComputers](https://github.com/MightyPirates/OpenComputers).
+- Item Magnet
+- Dragon Scales, in the style of [Quark](https://github.com/VazkiiMods/Quark/).
+- Dyeable Elytra, in the style of Quark. Adds Elytra in the 16 dye colors, as well as a few special ones.
 
 #### Planned
-- Item magnet
 - Popcorn
 
 ## Modpacks

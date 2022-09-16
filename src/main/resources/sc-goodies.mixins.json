@@ -4,11 +4,13 @@
   "package": "pw.switchcraft.goodies.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "EnderDragonEntityMixin",
     "LivingEntityMixin",
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [
-    "PlayerEntityModelAccessor"
+    "client.PlayerEntityModelAccessor",
+    "client.PlayerEntityRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

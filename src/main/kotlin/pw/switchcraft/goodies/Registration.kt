@@ -1,18 +1,21 @@
 package pw.switchcraft.goodies
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.entity.EquipmentSlot
 import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
+import net.minecraft.util.Rarity
 import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry.*
@@ -20,10 +23,15 @@ import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
 import pw.switchcraft.goodies.Registration.ModBlocks.chestSettings
 import pw.switchcraft.goodies.Registration.ModBlocks.rBlock
 import pw.switchcraft.goodies.Registration.ModBlocks.shulkerSettings
+import pw.switchcraft.goodies.Registration.ModItems.elytraSettings
 import pw.switchcraft.goodies.Registration.ModItems.itemSettings
 import pw.switchcraft.goodies.Registration.ModItems.rItem
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
+import pw.switchcraft.goodies.elytra.DyedElytraItem
+import pw.switchcraft.goodies.elytra.ElytraEvents
+import pw.switchcraft.goodies.elytra.SpecialElytraItem
+import pw.switchcraft.goodies.elytra.SpecialElytraType
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
 import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
@@ -44,6 +52,7 @@ object Registration {
     // Force static initializers to run
     listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens)
 
+    // Iron Chests and Shulkers
     IronChestVariant.values().forEach { variant ->
       registerIronChest(variant)
 
@@ -61,9 +70,18 @@ object Registration {
 
     IronShulkerCauldronBehavior.registerBehavior()
 
+    // Ender Storage
     EnderStorageBlockEntity.initEvents()
 
+    // Item Magnets
     registerServerReceiver(ToggleItemMagnetPacket.id, ToggleItemMagnetPacket::fromBytes)
+
+    // Dyed + Special Elytra
+    DyeColor.values()
+      .forEach { rItem("elytra_${it.getName()}", DyedElytraItem(it, elytraSettings())) }
+    SpecialElytraType.values()
+      .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
+    ElytraEvents.initEvents()
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
@@ -159,8 +177,13 @@ object Registration {
       return o
     }
 
-    fun itemSettings(): Item.Settings = Item.Settings()
+    fun itemSettings(): FabricItemSettings = FabricItemSettings()
       .group(itemGroup)
+
+    fun elytraSettings(): FabricItemSettings = itemSettings()
+      .maxDamage(432)
+      .rarity(Rarity.UNCOMMON)
+      .equipmentSlot { EquipmentSlot.CHEST }
   }
 
   object ModBlockEntities {

@@ -13,7 +13,7 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
-import pw.switchcraft.goodies.mixin.PlayerEntityModelAccessor
+import pw.switchcraft.goodies.mixin.client.PlayerEntityModelAccessor
 
 object ItemMagnetTrinketRenderer : TrinketRenderer {
   private val texture = ModId("textures/entity/item_magnet.png")

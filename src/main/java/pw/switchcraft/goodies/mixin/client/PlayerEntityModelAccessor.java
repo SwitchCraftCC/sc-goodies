@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package pw.switchcraft.goodies.mixin.client;
 
 import net.minecraft.client.render.entity.model.PlayerEntityModel;
 import org.spongepowered.asm.mixin.Mixin;

@@ -42,6 +42,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 import pw.switchcraft.goodies.ironshulker.IronShulkerCauldronBehavior
 import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
+import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
@@ -164,8 +165,11 @@ object Registration {
       rItem("hover_boots_${it.getName()}", HoverBootsItem(it, itemSettings().maxCount(1)))
     }
 
-    val itemMagnet = rItem("item_magnet", ItemMagnetItem(itemSettings().maxCount(1)))
-    val dragonScale = rItem("dragon_scale", BaseItem(itemSettings().maxCount(16).rarity(EPIC)))
+    val itemMagnet = rItem("item_magnet", ItemMagnetItem(itemSettings()
+      .maxDamage(MAGNET_MAX_DAMAGE )))
+    val dragonScale = rItem("dragon_scale", BaseItem(itemSettings()
+      .maxCount(16)
+      .rarity(EPIC)))
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

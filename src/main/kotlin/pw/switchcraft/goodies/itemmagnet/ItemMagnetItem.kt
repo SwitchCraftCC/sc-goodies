@@ -25,6 +25,9 @@ private const val SPEED = 0.75
 private const val MIN_RANGE = 3
 private const val MAX_RANGE = 6
 
+const val MAGNET_MAX_DAMAGE = 6912
+const val MAGNET_XP_MULTIPLIER = 16
+
 class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
   override fun hasGlint(stack: ItemStack) = stackEnabled(stack)
 
@@ -63,6 +66,8 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
 
   override fun tick(magnetStack: ItemStack, slot: SlotReference, player: LivingEntity) {
     val radius = stackRadius(magnetStack)
+    val damage = magnetStack.damage
+    val maxDamage = magnetStack.maxDamage
 
     // Only run on the server and once every three ticks. Give each player their own tick offset so that the load is
     // spread out a bit.
@@ -91,8 +96,10 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
       if (blocked) return
     }
 
-    // Do nothing if the magnet is disabled, or we are in spectator mode
-    if (!stackEnabled(magnetStack) || player.isSpectator) return
+    // Do nothing if the magnet is disabled, out of charge, or we are in spectator mode
+    if (!stackEnabled(magnetStack) || damage >= maxDamage || player.isSpectator) {
+      return
+    }
 
     // Look for items to pick up
     val items = world.getEntitiesByClass(ItemEntity::class.java, range) { true }
@@ -114,6 +121,7 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
         val vector = player.eyePos.subtract(item.pos).normalize().multiply(SPEED)
         item.velocity = vector
         item.velocityDirty = true
+        ItemMagnetState.magnetizeItem(item, player)
       }
     }
   }

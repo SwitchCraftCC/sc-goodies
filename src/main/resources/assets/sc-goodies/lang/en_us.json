@@ -164,6 +164,7 @@
   "item.sc-goodies.item_magnet.blocked": "Magnet blocked (other players are nearby)",
   "item.sc-goodies.item_magnet.level": "Level %s (%s block radius)",
   "item.sc-goodies.item_magnet.desc": "Vacuums nearby items into your inventory.\nCharge with experience orbs.\nUpgrade with Nether Stars and Netherite Ingots.",
+  "item.sc-goodies.item_magnet.charge": "Charge: %s / %s",
 
   "item.sc-goodies.dragon_scale": "Dragon Scale",
   "item.sc-goodies.dragon_scale.desc": "Can clone Elytra in the crafting table.\nThe scale will be consumed when crafting.",

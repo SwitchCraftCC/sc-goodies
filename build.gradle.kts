@@ -88,7 +88,7 @@ dependencies {
 
   modImplementation(include("com.terraformersmc", "modmenu", modMenuVersion))
 
-  modImplementation("me.lucko", "fabric-permissions-api", fabricPermissionsApiVersion)
+  modImplementation(include("me.lucko", "fabric-permissions-api", fabricPermissionsApiVersion))
 }
 
 tasks {

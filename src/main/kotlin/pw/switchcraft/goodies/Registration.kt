@@ -29,7 +29,6 @@ import pw.switchcraft.goodies.Registration.ModItems.rItem
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import pw.switchcraft.goodies.elytra.DyedElytraItem
-import pw.switchcraft.goodies.elytra.ElytraEvents
 import pw.switchcraft.goodies.elytra.SpecialElytraItem
 import pw.switchcraft.goodies.elytra.SpecialElytraType
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
@@ -84,7 +83,6 @@ object Registration {
       .forEach { rItem("elytra_${it.getName()}", DyedElytraItem(it, elytraSettings())) }
     SpecialElytraType.values()
       .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
-    ElytraEvents.initEvents()
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }

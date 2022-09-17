@@ -8,5 +8,6 @@ val RECIPE_HANDLERS by lazy { listOf(
   EnderStorageRecipes,
   ItemMagnetRecipes,
   DragonScaleRecipes,
-  ElytraRecipes
+  ElytraRecipes,
+  HoverBootsRecipes
 )}

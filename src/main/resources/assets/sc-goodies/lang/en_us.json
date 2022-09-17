@@ -18,6 +18,7 @@
   "block.sc-goodies.ender_storage.computer_changes.denied.colored": "DENIED",
   "block.sc-goodies.ender_storage.owner_name": "Owner: %s",
   "block.sc-goodies.ender_storage.public": "Public",
+  "block.sc-goodies.ender_storage.not_found": "That Ender Storage does not exist.",
   "block.sc-goodies.ender_storage.frequency": "Frequency: %s, %s, %s",
   "block.sc-goodies.ender_storage.frequency.black": "Black",
   "block.sc-goodies.ender_storage.frequency.blue": "Blue",

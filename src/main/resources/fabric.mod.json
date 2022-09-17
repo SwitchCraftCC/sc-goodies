@@ -60,6 +60,7 @@
     "minecraft": "${minecraft_target_version}",
     "java": ">=17",
     "fabric-language-kotlin": ">=${fabric_kotlin_version}",
+    "fabric-permissions-api-v0": "*",
     "sc-library": "1.x",
     "trinkets": ">=3.4.0"
   }

@@ -30,6 +30,7 @@ val modMenuVersion: String by project
 val trinketsVersion: String by project
 
 val scLibraryVersion: String by project
+val fabricPermissionsApiVersion: String by project
 
 val archivesBaseName = "sc-goodies"
 version = modVersion
@@ -55,6 +56,7 @@ repositories {
   maven("https://maven.terraformersmc.com/releases") // Mod Menu
   maven("https://maven.shedaniel.me") // Cloth Config
   maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
+  maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
 }
 
 dependencies {
@@ -85,6 +87,8 @@ dependencies {
   modImplementation(include("me.shedaniel.cloth.api", "cloth-utils-v1", clothApiVersion))
 
   modImplementation(include("com.terraformersmc", "modmenu", modMenuVersion))
+
+  modImplementation("me.lucko", "fabric-permissions-api", fabricPermissionsApiVersion)
 }
 
 tasks {

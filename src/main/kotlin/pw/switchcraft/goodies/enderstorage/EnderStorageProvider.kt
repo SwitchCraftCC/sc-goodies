@@ -6,6 +6,7 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.server.MinecraftServer
 import net.minecraft.util.collection.DefaultedList
+import pw.switchcraft.goodies.ScGoodies.modId
 
 object EnderStorageProvider {
   const val INVENTORY_SIZE = 27
@@ -19,7 +20,7 @@ object EnderStorageProvider {
   }
 
   fun getInventory(server: MinecraftServer, frequency: Frequency,
-                   be: EnderStorageBlockEntity? = null): EnderStorageInventory {
+                   be: EnderStorageBlockEntity? = null, create: Boolean = true): EnderStorageInventory? {
     // NB: We can execute this task on the server thread and re-join later, but I think it's probably better to leave it
     // to the caller to ensure they are only running this on the server thread.
     if (!server.isOnThread) {
@@ -29,10 +30,15 @@ object EnderStorageProvider {
     state = server.overworld.persistentStateManager.getOrCreate(
       EnderStorageState::fromNbt,
       this::createState,
-      "sc-goodies-ender-storage"
+      "$modId-ender-storage"
     )
 
-    val inv = state.inventories.computeIfAbsent(frequency) { EnderStorageInventory() }
+    val inv = if (create) {
+      state.inventories.computeIfAbsent(frequency) { EnderStorageInventory() }
+    } else {
+      state.inventories[frequency] ?: return null
+    }
+
     be?.let { inv.addBlockEntity(it) }
     return inv
   }

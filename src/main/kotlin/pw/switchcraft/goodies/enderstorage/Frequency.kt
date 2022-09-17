@@ -72,6 +72,28 @@ data class Frequency(
     else -> throw IllegalArgumentException("Invalid index $index")
   }
 
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as Frequency
+
+    if (owner != other.owner) return false
+    if (left != other.left) return false
+    if (middle != other.middle) return false
+    if (right != other.right) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    var result = owner?.hashCode() ?: 0
+    result = 31 * result + left.hashCode()
+    result = 31 * result + middle.hashCode()
+    result = 31 * result + right.hashCode()
+    return result
+  }
+
   companion object {
     fun fromNbt(nbt: NbtCompound, server: MinecraftServer? = null): Frequency {
       val owner = if (nbt.containsUuid("owner")) nbt.getUuid("owner") else null

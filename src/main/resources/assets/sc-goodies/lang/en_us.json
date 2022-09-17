@@ -212,6 +212,9 @@
   "item.sc-goodies.elytra_pride.desc": "Dyed Elytra. Worn in the chest slot.",
   "item.sc-goodies.elytra_trans.desc": "Dyed Elytra. Worn in the chest slot.",
 
+  "item.sc-goodies.popcorn": "Popcorn",
+  "item.sc-goodies.popcorn.desc": "A bottomless bag of popcorn.",
+
   "category.sc-goodies": "SwitchCraft Goodies",
   "key.sc-goodies.toggle_item_magnet": "Toggle Item Magnet"
 }

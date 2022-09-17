@@ -44,6 +44,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
+import pw.switchcraft.goodies.misc.PopcornItem
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
@@ -166,10 +167,13 @@ object Registration {
     }
 
     val itemMagnet = rItem("item_magnet", ItemMagnetItem(itemSettings()
-      .maxDamage(MAGNET_MAX_DAMAGE )))
+      .maxDamage(MAGNET_MAX_DAMAGE)))
     val dragonScale = rItem("dragon_scale", BaseItem(itemSettings()
       .maxCount(16)
       .rarity(EPIC)))
+    val popcorn = rItem("popcorn", PopcornItem(itemSettings()
+      .food(PopcornItem.foodComponent)
+      .maxCount(1)))
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

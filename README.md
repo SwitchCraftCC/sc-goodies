@@ -16,8 +16,6 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 - Item Magnet
 - Dragon Scales, in the style of [Quark](https://github.com/VazkiiMods/Quark/).
 - Dyeable Elytra, in the style of Quark. Adds Elytra in the 16 dye colors, as well as a few special ones.
-
-#### Planned
 - Popcorn
 
 ## Modpacks

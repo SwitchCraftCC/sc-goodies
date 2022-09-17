@@ -30,6 +30,7 @@ class ItemModelProvider(generator: FabricDataGenerator) : FabricModelProvider(ge
 
     gen.register(ModItems.itemMagnet, GENERATED)
     gen.register(ModItems.dragonScale, GENERATED)
+    gen.register(ModItems.popcorn, GENERATED)
 
     // Dyed + Special Elytra
     DyedElytraItem.dyedElytraItems.values

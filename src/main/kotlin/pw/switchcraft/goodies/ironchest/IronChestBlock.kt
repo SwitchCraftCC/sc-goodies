@@ -4,6 +4,7 @@ import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.ai.pathing.NavigationType
 import net.minecraft.entity.player.PlayerEntity
@@ -17,6 +18,8 @@ import net.minecraft.stat.Stat
 import net.minecraft.stat.Stats
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.DirectionProperty
+import net.minecraft.text.Text
+import net.minecraft.text.Text.translatable
 import net.minecraft.util.*
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
@@ -25,6 +28,7 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
+import pw.switchcraft.goodies.ScGoodies.modId
 import pw.switchcraft.goodies.util.BaseBlockWithEntity
 import pw.switchcraft.library.WaterloggableBlock
 import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
@@ -130,6 +134,12 @@ class IronChestBlock(
                                          world: WorldAccess, pos: BlockPos, neighborPos: BlockPos): BlockState {
     neighborUpdate(state, world,  pos)
     return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos)
+  }
+
+  override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
+    // Don't call super, we don't want the default .desc implementation
+    tooltip.add(translatable("block.$modId.storage.desc", variant.size)
+      .formatted(Formatting.GRAY))
   }
 
   companion object {

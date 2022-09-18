@@ -41,7 +41,7 @@ import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.BUTTON
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
-import pw.switchcraft.goodies.util.*
+import pw.switchcraft.goodies.util.BaseBlockWithEntity
 import pw.switchcraft.library.Tooltips.addDescLines
 import pw.switchcraft.library.WaterloggableBlock
 import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
@@ -58,6 +58,14 @@ class EnderStorageBlock(
 ) : BaseBlockWithEntity(settings), WaterloggableBlock {
   private val openStat: Stat<Identifier> by lazy {
     Stats.CUSTOM.getOrCreateStat(Stats.OPEN_ENDERCHEST)
+  }
+
+  private val tooltipExtra by lazy {
+    if (computercraftLoaded) {
+      listOf(translatable("$translationKey.desc.computercraft").formatted(GRAY))
+    } else {
+      emptyList()
+    }
   }
 
   init {
@@ -298,12 +306,7 @@ class EnderStorageBlock(
     }
 
     // Description lines
-    super.appendTooltip(stack, world, tooltip, options)
-
-    // CC locking description line, only if CC is installed
-    if (computercraftLoaded) {
-      addDescLines(tooltip, translationKey, suffix = ".desc.computercraft")
-    }
+    addDescLines(tooltip, translationKey, extraLines = tooltipExtra)
   }
 
   data class HitShape(val type: HitShapeType, val buttonId: Int? = null) {

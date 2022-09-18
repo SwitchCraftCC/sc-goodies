@@ -32,9 +32,9 @@ class ItemMagnetUpgradeRecipe(id: Identifier) : ShapelessRecipe(
       result.count = 1
 
       // Only increment the level if the magnet is not already at the max - i.e. only if the radius is now different
-      val oldLevel: Int = ItemMagnetItem.stackLevel(stack)
-      val oldRadius: Int = ItemMagnetItem.stackRadius(stack)
-      val newRadius: Int = ItemMagnetItem.radius(oldLevel + 1)
+      val oldLevel = ItemMagnetItem.stackLevel(stack)
+      val oldRadius = ItemMagnetItem.stackRadius(stack)
+      val newRadius = ItemMagnetItem.radius(oldLevel + 1)
       if (oldRadius == newRadius) return ItemStack.EMPTY
 
       // Increment the level by updating the NBT of the result item

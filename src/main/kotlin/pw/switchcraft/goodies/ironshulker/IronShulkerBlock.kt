@@ -36,6 +36,7 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
+import pw.switchcraft.goodies.ScGoodies
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.util.BaseBlockWithEntity
@@ -168,7 +169,10 @@ class IronShulkerBlock(
   override fun getPistonBehavior(state: BlockState) = PistonBehavior.DESTROY
 
   override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
-    super.appendTooltip(stack, world, tooltip, options)
+    // Don't call super, we don't want the default .desc implementation
+    tooltip.add(translatable("block.${ScGoodies.modId}.storage.desc", variant.size)
+      .formatted(Formatting.GRAY))
+
     val nbt = BlockItem.getBlockEntityNbt(stack) ?: return
 
     if (nbt.contains("LootTable", STRING)) {

@@ -6,6 +6,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawableHelper
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
+import net.minecraft.util.Arm.LEFT
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetState
@@ -23,7 +24,10 @@ object ItemMagnetHud {
 
     val magnet = ItemMagnetState.magnetComponents(player).firstOrNull() ?: return
 
-    val x = mc.window.scaledWidth / 2 - 110
+    val x = when (player.mainArm) {
+      LEFT -> mc.window.scaledWidth / 2 - 91 - 26
+      else -> mc.window.scaledWidth / 2 + 91 + 10
+    }
     val y = mc.window.scaledHeight - 19
 
     if (ItemMagnetItem.stackBlocked(magnet) && ItemMagnetItem.stackEnabled(magnet)) {

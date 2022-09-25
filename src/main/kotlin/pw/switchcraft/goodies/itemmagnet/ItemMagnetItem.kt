@@ -137,9 +137,9 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     fun stackRadius(stack: ItemStack): Int = radius(stackLevel(stack))
 
     fun stackEnabled(stack: ItemStack): Boolean =
-      stack.orCreateNbt.getBoolean("enabled")
+      !stack.orCreateNbt.getBoolean("disabled")
     fun setStackEnabled(stack: ItemStack, enabled: Boolean) =
-      stack.orCreateNbt.putBoolean("enabled", enabled)
+      stack.orCreateNbt.putBoolean("disabled", !enabled)
 
     fun stackBlocked(stack: ItemStack): Boolean =
       stack.orCreateNbt.getBoolean("blocked")

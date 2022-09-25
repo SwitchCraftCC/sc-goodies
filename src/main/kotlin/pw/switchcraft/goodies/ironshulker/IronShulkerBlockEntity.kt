@@ -184,6 +184,8 @@ class IronShulkerBlockEntity(
 
   override fun getAvailableSlots(side: Direction) = availableSlots
 
+  override fun isValid(slot: Int, stack: ItemStack) = stack.item.canBeNested()
+
   override fun canInsert(slot: Int, stack: ItemStack, dir: Direction?): Boolean =
     Block.getBlockFromItem(stack.item) !is IronShulkerBlock
 

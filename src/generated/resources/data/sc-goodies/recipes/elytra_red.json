@@ -1,0 +1,10 @@
+{
+  "type": "sc-goodies:elytra",
+  "dyes": [
+    "red"
+  ],
+  "group": "dyedElytra",
+  "result": {
+    "item": "sc-goodies:elytra_red"
+  }
+}

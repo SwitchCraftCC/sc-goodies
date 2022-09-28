@@ -11,9 +11,11 @@ object ScGoodiesDatagen : DataGeneratorEntrypoint {
   override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
     log.info("sc-goodies datagen initializing")
 
+    generator.addProvider(ItemTagProvider(generator))
     generator.addProvider(BlockModelProvider(generator))
     generator.addProvider(ItemModelProvider(generator))
     generator.addProvider(BlockLootTableProvider(generator))
     generator.addProvider(RecipeGenerator(generator))
+    generator.addProvider(LanguageProvider(generator))
   }
 }

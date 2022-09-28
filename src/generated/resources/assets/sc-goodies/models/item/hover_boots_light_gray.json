@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "sc-goodies:item/hover_boots_light_gray"
+  }
+}

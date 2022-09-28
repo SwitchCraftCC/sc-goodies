@@ -12,15 +12,16 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.ironshulker.IronShulkerScreenHandler
 
 enum class IronChestVariant(
+  val humanName: String,
   val chestId: String,
   val shulkerId: String,
   val chestParticle: Identifier,
   val rows: Int,
   val columns: Int = 9
 ) {
-  IRON("iron_chest", "shulker_box_iron", Identifier("block/iron_block"), 6),
-  GOLD("gold_chest", "shulker_box_gold", Identifier("block/gold_block"), 9),
-  DIAMOND("diamond_chest", "shulker_box_diamond", Identifier("block/diamond_block"), 9, 12);
+  IRON("Iron", "iron_chest", "shulker_box_iron", Identifier("block/iron_block"), 6),
+  GOLD("Gold", "gold_chest", "shulker_box_gold", Identifier("block/gold_block"), 9),
+  DIAMOND("Diamond", "diamond_chest", "shulker_box_diamond", Identifier("block/diamond_block"), 9, 12);
 
   val size = rows * columns
   val screenTex = ModId("textures/gui/container/iron_chest_${columns}x${rows}.png")

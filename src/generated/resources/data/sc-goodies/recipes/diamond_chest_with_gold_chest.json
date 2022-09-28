@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "sc-goodies:gold_chest"
+    },
+    "D": {
+      "tag": "c:diamonds"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "DCD",
+    "GGG"
+  ],
+  "result": {
+    "item": "sc-goodies:diamond_chest"
+  }
+}

@@ -28,6 +28,7 @@ val clothApiVersion: String by project
 val modMenuVersion: String by project
 
 val trinketsVersion: String by project
+val cardinalComponentsVersion: String by project
 
 val scLibraryVersion: String by project
 val fabricPermissionsApiVersion: String by project
@@ -89,6 +90,9 @@ dependencies {
   modImplementation(include("com.terraformersmc", "modmenu", modMenuVersion))
 
   modImplementation(include("me.lucko", "fabric-permissions-api", fabricPermissionsApiVersion))
+
+  modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-base", cardinalComponentsVersion))
+  modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-entity", cardinalComponentsVersion))
 }
 
 tasks {

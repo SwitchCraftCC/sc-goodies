@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "sc-goodies:iron_chest"
+    },
+    "I": {
+      "tag": "c:gold_ingots"
+    }
+  },
+  "pattern": [
+    "III",
+    "ICI",
+    "III"
+  ],
+  "result": {
+    "item": "sc-goodies:gold_chest"
+  }
+}

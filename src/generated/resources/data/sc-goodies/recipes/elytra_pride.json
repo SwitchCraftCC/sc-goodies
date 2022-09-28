@@ -1,0 +1,15 @@
+{
+  "type": "sc-goodies:elytra",
+  "dyes": [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "purple"
+  ],
+  "group": "dyedElytra",
+  "result": {
+    "item": "sc-goodies:elytra_pride"
+  }
+}

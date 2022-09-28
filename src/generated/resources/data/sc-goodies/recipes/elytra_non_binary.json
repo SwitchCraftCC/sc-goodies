@@ -1,0 +1,13 @@
+{
+  "type": "sc-goodies:elytra",
+  "dyes": [
+    "yellow",
+    "white",
+    "purple",
+    "black"
+  ],
+  "group": "dyedElytra",
+  "result": {
+    "item": "sc-goodies:elytra_non_binary"
+  }
+}

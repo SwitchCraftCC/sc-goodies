@@ -1,0 +1,12 @@
+{
+  "type": "sc-goodies:elytra",
+  "dyes": [
+    "light_blue",
+    "pink",
+    "white"
+  ],
+  "group": "dyedElytra",
+  "result": {
+    "item": "sc-goodies:elytra_trans"
+  }
+}

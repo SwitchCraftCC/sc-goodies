@@ -44,6 +44,7 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
+import pw.switchcraft.goodies.misc.ConcreteExtras
 import pw.switchcraft.goodies.misc.PopcornItem
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
@@ -84,6 +85,12 @@ object Registration {
       .forEach { rItem("elytra_${it.getName()}", DyedElytraItem(it, elytraSettings())) }
     SpecialElytraType.values()
       .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
+
+    // Concrete Slabs
+    ConcreteExtras.colors.values.forEach {
+      val slabBlock = rBlock(it.slabBlockId.path, SlabBlock(AbstractBlock.Settings.copy(it.baseBlock)))
+      rItem(slabBlock, ::BlockItem)
+    }
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
@@ -158,7 +165,7 @@ object Registration {
   }
 
   object ModItems {
-    private val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
+    val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
 

@@ -5,11 +5,15 @@ import net.minecraft.util.DyeColor.*
 import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
 
-enum class SpecialElytraType(val type: String, val recipeColors: List<DyeColor>) {
-  LESBIAN("lesbian", listOf(RED, ORANGE, WHITE, PINK, MAGENTA)),
-  NON_BINARY("non_binary", listOf(YELLOW, WHITE, PURPLE, BLACK)),
-  PRIDE("pride", listOf(RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE)),
-  TRANS("trans", listOf(LIGHT_BLUE, PINK, WHITE));
+enum class SpecialElytraType(
+  val humanName: String,
+  val type: String,
+  val recipeColors: List<DyeColor>
+) {
+  LESBIAN("Lesbian", "lesbian", listOf(RED, ORANGE, WHITE, PINK, MAGENTA)),
+  NON_BINARY("Non-Binary", "non_binary", listOf(YELLOW, WHITE, PURPLE, BLACK)),
+  PRIDE("Pride", "pride", listOf(RED, ORANGE, YELLOW, GREEN, BLUE, PURPLE)),
+  TRANS("Trans", "trans", listOf(LIGHT_BLUE, PINK, WHITE));
 
   val modelTexture = ModId("textures/entity/elytra/elytra_$type.png")
 

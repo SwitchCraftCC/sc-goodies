@@ -1,0 +1,62 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "sc-goodies:dyed_hover_boots",
+  "ingredients": [
+    [
+      {
+        "item": "sc-goodies:hover_boots_white"
+      },
+      {
+        "item": "sc-goodies:hover_boots_orange"
+      },
+      {
+        "item": "sc-goodies:hover_boots_magenta"
+      },
+      {
+        "item": "sc-goodies:hover_boots_light_blue"
+      },
+      {
+        "item": "sc-goodies:hover_boots_yellow"
+      },
+      {
+        "item": "sc-goodies:hover_boots_lime"
+      },
+      {
+        "item": "sc-goodies:hover_boots_pink"
+      },
+      {
+        "item": "sc-goodies:hover_boots_gray"
+      },
+      {
+        "item": "sc-goodies:hover_boots_light_gray"
+      },
+      {
+        "item": "sc-goodies:hover_boots_cyan"
+      },
+      {
+        "item": "sc-goodies:hover_boots_purple"
+      },
+      {
+        "item": "sc-goodies:hover_boots_blue"
+      },
+      {
+        "item": "sc-goodies:hover_boots_brown"
+      },
+      {
+        "item": "sc-goodies:hover_boots_green"
+      },
+      {
+        "item": "sc-goodies:hover_boots_red"
+      },
+      {
+        "item": "sc-goodies:hover_boots_black"
+      }
+    ],
+    {
+      "item": "minecraft:black_dye"
+    }
+  ],
+  "result": {
+    "item": "sc-goodies:hover_boots_black"
+  }
+}

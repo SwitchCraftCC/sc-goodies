@@ -1,0 +1,14 @@
+{
+  "type": "sc-goodies:elytra",
+  "dyes": [
+    "red",
+    "orange",
+    "white",
+    "pink",
+    "magenta"
+  ],
+  "group": "dyedElytra",
+  "result": {
+    "item": "sc-goodies:elytra_lesbian"
+  }
+}

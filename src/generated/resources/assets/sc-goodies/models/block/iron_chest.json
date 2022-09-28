@@ -1,0 +1,7 @@
+{
+  "parent": "sc-goodies:block/iron_chest_base",
+  "textures": {
+    "particle": "minecraft:block/iron_block",
+    "texture": "sc-goodies:entity/chest/iron_chest"
+  }
+}

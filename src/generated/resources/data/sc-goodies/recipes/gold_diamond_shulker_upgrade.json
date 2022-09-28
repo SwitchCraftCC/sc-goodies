@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "tag": "c:diamonds"
+    },
+    "G": {
+      "tag": "c:gold_ingots"
+    },
+    "L": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    "LDL",
+    "LGL",
+    "LDL"
+  ],
+  "result": {
+    "item": "sc-goodies:gold_diamond_shulker_upgrade"
+  }
+}

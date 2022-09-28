@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "tag": "c:gold_ingots"
+    },
+    "I": {
+      "tag": "c:iron_ingots"
+    }
+  },
+  "pattern": [
+    "GIG",
+    "GGG",
+    "GGG"
+  ],
+  "result": {
+    "item": "sc-goodies:iron_gold_shulker_upgrade"
+  }
+}

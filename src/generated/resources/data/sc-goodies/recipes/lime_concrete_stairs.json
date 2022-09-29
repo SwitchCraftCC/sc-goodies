@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "concrete_stairs",
+  "key": {
+    "#": {
+      "item": "minecraft:lime_concrete"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "item": "sc-goodies:lime_concrete_stairs"
+  }
+}

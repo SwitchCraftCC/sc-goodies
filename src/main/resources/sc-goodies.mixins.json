@@ -12,6 +12,7 @@
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [
+    "client.ClientPlayerEntityMixin",
     "client.PlayerEntityModelAccessor",
     "client.PlayerEntityRendererMixin"
   ],

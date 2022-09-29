@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory
 import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.Registration.ModScreens
+import pw.switchcraft.goodies.client.elytra.ElytraClientEvents
 import pw.switchcraft.goodies.client.enderstorage.EnderStorageBlockEntityRenderer
 import pw.switchcraft.goodies.client.enderstorage.EnderStorageItemRenderer
 import pw.switchcraft.goodies.client.enderstorage.EnderStorageScreen
@@ -18,7 +19,7 @@ import pw.switchcraft.goodies.client.ironchest.IronChestScreen
 import pw.switchcraft.goodies.client.ironchest.IronShulkerBlockEntityRenderer
 import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetHud
 import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
-import pw.switchcraft.goodies.client.elytra.ElytraClientEvents
+import pw.switchcraft.goodies.client.misc.ConcreteSpeedupHandler
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey
 
@@ -51,6 +52,8 @@ object ScGoodiesClient : ClientModInitializer {
 
     // Elytra
     ElytraClientEvents.initEvents()
+
+    ConcreteSpeedupHandler.initEvents()
   }
 
   private fun registerIronChestRenderer(variant: IronChestVariant) {

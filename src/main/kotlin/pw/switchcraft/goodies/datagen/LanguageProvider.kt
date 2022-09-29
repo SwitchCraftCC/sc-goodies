@@ -114,9 +114,10 @@ class LanguageProvider(gen: FabricDataGenerator) : FabricLanguageProvider(gen) {
     builder.add(ModItems.popcorn, "Popcorn")
     builder.sub(ModItems.popcorn, "A bottomless bag of popcorn.")
 
-    // Concrete Slabs
+    // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
       builder.add(it.slabBlock, colorNames[it.color] + " Concrete Slab")
+      builder.add(it.stairsBlock, colorNames[it.color] + " Concrete Stairs")
     }
   }
 

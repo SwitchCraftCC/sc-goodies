@@ -86,10 +86,15 @@ object Registration {
     SpecialElytraType.values()
       .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
 
-    // Concrete Slabs
+    // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
-      val slabBlock = rBlock(it.slabBlockId.path, SlabBlock(AbstractBlock.Settings.copy(it.baseBlock)))
+      val settings = AbstractBlock.Settings.copy(it.baseBlock)
+
+      val slabBlock = rBlock(it.slabBlockId.path, SlabBlock(settings))
       rItem(slabBlock, ::BlockItem)
+
+      val stairsBlock = rBlock(it.stairsBlockId.path, StairsBlock(it.baseBlock.defaultState, settings))
+      rItem(stairsBlock, ::BlockItem)
     }
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)

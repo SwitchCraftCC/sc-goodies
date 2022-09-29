@@ -18,6 +18,9 @@ object ConcreteExtras {
     val slabBlockId = ModId("${col}_concrete_slab")
     val slabBlock by lazy { BLOCK.get(slabBlockId) }
 
+    val stairsBlockId = ModId("${col}_concrete_stairs")
+    val stairsBlock by lazy { BLOCK.get(stairsBlockId) }
+
     val texture = Identifier("block/${col}_concrete")
   }
 }

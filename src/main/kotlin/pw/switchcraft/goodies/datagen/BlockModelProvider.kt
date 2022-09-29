@@ -4,8 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
 import net.minecraft.data.client.*
-import net.minecraft.data.client.BlockStateModelGenerator.createSingletonBlockState
-import net.minecraft.data.client.BlockStateModelGenerator.createSlabBlockState
+import net.minecraft.data.client.BlockStateModelGenerator.*
 import net.minecraft.data.client.ModelIds.getBlockModelId
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
@@ -29,9 +28,10 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
     // Ender Storage
     gen.blockStateCollector.accept(createSingletonBlockState(enderStorage, ModId("block/ender_storage")))
 
-    // Concrete Slabs
+    // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
       registerSlab(gen, it.baseBlock, it.slabBlock, it.texture)
+      registerStairs(gen, it.stairsBlock, it.texture)
     }
   }
 
@@ -86,6 +86,19 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
     val top = Models.SLAB_TOP.upload(slabBlock, map, gen.modelCollector)
     gen.blockStateCollector.accept(createSlabBlockState(slabBlock, bottom, top, getBlockModelId(baseBlock)))
     gen.registerParentedItemModel(slabBlock, bottom)
+  }
+
+  private fun registerStairs(gen: BlockStateModelGenerator, stairsBlock: Block, texture: Identifier) {
+    val map = TextureMap()
+      .put(TextureKey.BOTTOM, texture)
+      .put(TextureKey.TOP, texture)
+      .put(TextureKey.SIDE, texture)
+
+    val inner = Models.INNER_STAIRS.upload(stairsBlock, map, gen.modelCollector)
+    val stairs = Models.STAIRS.upload(stairsBlock, map, gen.modelCollector)
+    val outer = Models.OUTER_STAIRS.upload(stairsBlock, map, gen.modelCollector)
+    gen.blockStateCollector.accept(createStairsBlockState(stairsBlock, inner, stairs, outer))
+    gen.registerParentedItemModel(stairsBlock, stairs)
   }
 
   companion object {

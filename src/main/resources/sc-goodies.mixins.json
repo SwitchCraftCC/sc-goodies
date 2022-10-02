@@ -9,7 +9,9 @@
     "ItemEntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
-    "ShulkerBoxBlockEntityAccessor"
+    "ShulkerBoxBlockEntityAccessor",
+    "client.AnvilScreenHandlerMixin",
+    "client.ForgingScreenHandlerAccessor"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",

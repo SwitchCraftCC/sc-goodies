@@ -89,7 +89,7 @@ class LanguageProvider(gen: FabricDataGenerator) : FabricLanguageProvider(gen) {
     builder.sub(hb, "Allows you to jump higher.")
 
     // Item Magnet
-    val im = ModItems.itemMagnet; val imk = im.translationKey
+    val im = ModItems.itemMagnet
     builder.add(im, "Item Magnet")
     builder.sub(im, "Vacuums nearby items into your inventory.\n" +
       "Charge with experience orbs.\n" +
@@ -106,6 +106,12 @@ class LanguageProvider(gen: FabricDataGenerator) : FabricLanguageProvider(gen) {
       .forEach { builder.add(ITEM.get(ModId("elytra_${it.getName()}")), "${colorNames[it]} Elytra") }
     SpecialElytraType.values()
       .forEach { builder.add(ITEM.get(ModId("elytra_${it.type}")), "${it.humanName} Elytra") }
+
+    // Ancient Tome
+    val at = ModItems.ancientTome
+    builder.add(at, "Ancient Tome")
+    builder.sub(at, "Can enchant an item one level beyond the max level.")
+    builder.sub(at, "+I %s (max. %s)", "level_tooltip")
 
     // Misc
     builder.add(ModItems.dragonScale, "Dragon Scale")

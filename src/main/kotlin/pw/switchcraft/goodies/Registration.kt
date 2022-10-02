@@ -17,6 +17,7 @@ import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Rarity
 import net.minecraft.util.Rarity.EPIC
+import net.minecraft.util.Rarity.UNCOMMON
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.registry.Registry.*
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
@@ -46,6 +47,8 @@ import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
 import pw.switchcraft.goodies.misc.ConcreteExtras
 import pw.switchcraft.goodies.misc.PopcornItem
+import pw.switchcraft.goodies.tomes.AncientTomeItem
+import pw.switchcraft.goodies.tomes.TomeEnchantments
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
@@ -97,6 +100,7 @@ object Registration {
       rItem(stairsBlock, ::BlockItem)
     }
 
+    TomeEnchantments.init()
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
 
@@ -186,6 +190,9 @@ object Registration {
     val popcorn = rItem("popcorn", PopcornItem(itemSettings()
       .food(PopcornItem.foodComponent)
       .maxCount(1)))
+    val ancientTome = rItem("ancient_tome", AncientTomeItem(itemSettings()
+      .maxCount(1)
+      .rarity(UNCOMMON)))
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

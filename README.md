@@ -24,7 +24,7 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 Modpack use: **allowed**
 
 This mod (`sc-goodies`) was created primarily for use by the SwitchCraft server, but you are **allowed** to use the
-mod in your own modpack. The mod is provided as-is: there are a hodgepodge of features, and it is not planned to make
+mod in your own modpack. The mod is provided as-is: there is a hodgepodge of features, and it is not planned to make
 the feature set configurable for other people's needs; it is created specifically for SwitchCraft.
 
 Please note that each custom SwitchCraft mod has its own license, so check the license of each mod before using it in

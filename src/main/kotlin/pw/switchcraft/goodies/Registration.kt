@@ -32,10 +32,7 @@ import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import pw.switchcraft.goodies.elytra.DyedElytraItem
 import pw.switchcraft.goodies.elytra.SpecialElytraItem
 import pw.switchcraft.goodies.elytra.SpecialElytraType
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
-import pw.switchcraft.goodies.enderstorage.EnderStorageCommands
-import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
+import pw.switchcraft.goodies.enderstorage.*
 import pw.switchcraft.goodies.hoverboots.HoverBootsItem
 import pw.switchcraft.goodies.ironchest.*
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
@@ -79,6 +76,7 @@ object Registration {
     // Ender Storage
     EnderStorageBlockEntity.initEvents()
     EnderStorageCommands.register()
+    EnderStorageMethods.register()
 
     // Item Magnets
     registerServerReceiver(ToggleItemMagnetPacket.id, ToggleItemMagnetPacket::fromBytes)

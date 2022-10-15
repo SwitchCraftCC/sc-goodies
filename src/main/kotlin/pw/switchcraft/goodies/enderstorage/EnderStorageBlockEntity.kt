@@ -1,6 +1,5 @@
 package pw.switchcraft.goodies.enderstorage
 
-import dan200.computercraft.api.peripheral.IPeripheralTile
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
@@ -8,13 +7,14 @@ import net.minecraft.block.entity.ChestLidAnimator
 import net.minecraft.block.entity.LidOpenable
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
+import net.minecraft.inventory.Inventory
+import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 import pw.switchcraft.goodies.Registration.ModBlockEntities
 import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
@@ -23,7 +23,7 @@ class EnderStorageBlockEntity(
   pos: BlockPos,
   state: BlockState,
 ) : FrequencyBlockEntity(ModBlockEntities.enderStorage, pos, state), LidOpenable, ExtendedScreenHandlerFactory,
-  IPeripheralTile {
+  Inventory {
   private val lidAnimator = ChestLidAnimator()
 
   val inv: EnderStorageInventory?
@@ -107,6 +107,29 @@ class EnderStorageBlockEntity(
     viewingPlayers.clear()
   }
 
+  override fun size() = inv?.size() ?: 0
+  override fun isEmpty() = inv?.isEmpty ?: true
+
+  override fun getStack(slot: Int): ItemStack =
+    inv?.getStack(slot) ?: ItemStack.EMPTY
+
+  override fun removeStack(slot: Int, amount: Int): ItemStack =
+    inv?.removeStack(slot, amount) ?: ItemStack.EMPTY
+
+  override fun removeStack(slot: Int): ItemStack =
+    inv?.removeStack(slot) ?: ItemStack.EMPTY
+
+  override fun canPlayerUse(player: PlayerEntity): Boolean =
+    inv?.canPlayerUse(player) ?: false
+
+  override fun setStack(slot: Int, stack: ItemStack) {
+    inv?.setStack(slot, stack)
+  }
+
+  override fun clear() {
+    inv?.clear()
+  }
+
   companion object {
     fun clientTick(world: World, pos: BlockPos, state: BlockState, be: EnderStorageBlockEntity) {
       be.lidAnimator.step()
@@ -133,7 +156,4 @@ class EnderStorageBlockEntity(
       }
     }
   }
-
-  private val peripheral by lazy { EnderStoragePeripheral(this) }
-  override fun getPeripheral(side: Direction) = peripheral
 }

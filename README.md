@@ -18,6 +18,7 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 - Dyeable Elytra, in the style of Quark. Adds Elytra in the 16 dye colors, as well as a few special ones.
 - Ancient Tomes, in the style of Quark.
 - Popcorn
+- Concrete stairs and slabs, speed-up when walking on concrete
 
 ## Modpacks
 

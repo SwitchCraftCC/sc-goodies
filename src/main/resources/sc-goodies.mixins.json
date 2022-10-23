@@ -4,6 +4,7 @@
   "package": "pw.switchcraft.goodies.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AnvilScreenHandlerMixin",
     "EnderDragonEntityMixin",
     "ExperienceOrbEntityMixin",
     "ItemEntityMixin",
@@ -12,7 +13,6 @@
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [
-    "client.AnvilScreenHandlerMixin",
     "client.ClientPlayerEntityMixin",
     "client.ForgingScreenHandlerAccessor",
     "client.PlayerEntityModelAccessor",

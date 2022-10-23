@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin.client;
+package pw.switchcraft.goodies.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;

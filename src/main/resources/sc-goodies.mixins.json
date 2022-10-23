@@ -7,6 +7,7 @@
     "AnvilScreenHandlerMixin",
     "EnderDragonEntityMixin",
     "ExperienceOrbEntityMixin",
+    "ForgingScreenHandlerAccessor",
     "ItemEntityMixin",
     "ItemStackMixin",
     "LivingEntityMixin",
@@ -14,7 +15,6 @@
   ],
   "client": [
     "client.ClientPlayerEntityMixin",
-    "client.ForgingScreenHandlerAccessor",
     "client.PlayerEntityModelAccessor",
     "client.PlayerEntityRendererMixin"
   ],

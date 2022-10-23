@@ -33,7 +33,10 @@ object ConcreteSpeedupHandler {
     if (speedupBlocks.contains(floor)) {
       input.tick(cp.shouldSlowDown(), 0.0f) // TODO: Does this need to be handled?
 
-      if ((input.movementForward != 0.0f || input.movementSideways != 0.0f) && !cp.isSwimming) {
+      if (
+        (input.movementForward != 0.0f || input.movementSideways != 0.0f)
+        && !cp.isSwimming && !cp.isFallFlying && !cp.abilities.flying
+      ) {
         cp.setVelocity(
           cp.velocity.x * VEL_MULTIPLIER,
           cp.velocity.y,

@@ -10,7 +10,10 @@
     "ForgingScreenHandlerAccessor",
     "ItemEntityMixin",
     "ItemStackMixin",
+    "LivingEntityAccessor",
     "LivingEntityMixin",
+    "MobEntityAccessor",
+    "ShulkerAccessor",
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [

@@ -43,6 +43,7 @@ import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
 import pw.switchcraft.goodies.misc.ConcreteExtras
+import pw.switchcraft.goodies.misc.EndermitesFormShulkers
 import pw.switchcraft.goodies.misc.PopcornItem
 import pw.switchcraft.goodies.tomes.AncientTomeItem
 import pw.switchcraft.goodies.tomes.TomeEnchantments
@@ -99,6 +100,7 @@ object Registration {
     }
 
     TomeEnchantments.init()
+    EndermitesFormShulkers.init()
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
 

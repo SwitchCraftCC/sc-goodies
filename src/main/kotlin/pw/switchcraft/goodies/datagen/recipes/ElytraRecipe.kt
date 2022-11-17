@@ -1,11 +1,13 @@
 package pw.switchcraft.goodies.datagen.recipes
 
+import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
-import dan200.computercraft.shared.util.RecipeUtil
+import com.mojang.brigadier.exceptions.CommandSyntaxException
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.DyeItem
 import net.minecraft.item.ItemStack
+import net.minecraft.nbt.StringNbtReader
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.network.PacketByteBuf.getMaxValidator
 import net.minecraft.recipe.Ingredient
@@ -53,12 +55,22 @@ class ElytraRecipe(
 }
 
 object ElytraRecipeSerializer : RecipeSerializer<ElytraRecipe> {
+  private val GSON = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
+
   override fun read(id: Identifier, json: JsonObject): ElytraRecipe {
     val dyes = readDyes(JsonHelper.getArray(json, "dyes"))
 
     val outputObject = JsonHelper.getObject(json, "result")
     val output = ShapedRecipe.outputFromJson(outputObject)
-    RecipeUtil.setNbt(output, outputObject)
+
+    outputObject.get("nbt")?.let {
+      try {
+        val nbtJson = if (it.isJsonObject) GSON.toJson(it) else JsonHelper.asString(it, "nbt")
+        output.nbt = StringNbtReader.parse(nbtJson)
+      } catch (e: CommandSyntaxException) {
+        throw RuntimeException("Invalid NBT entry: ", e)
+      }
+    }
 
     return ElytraRecipe(id, output, dyes)
   }

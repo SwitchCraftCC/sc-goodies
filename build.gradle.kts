@@ -54,7 +54,14 @@ repositories {
     }
   }
 
-  maven("https://squiddev.cc/maven")
+  maven("https://squiddev.cc/maven") {
+    content {
+      includeGroup("cc.tweaked")
+      includeModule("org.squiddev", "Cobalt")
+      includeModule("net.minecraftforge", "forgeconfigapiport-fabric")
+    }
+  }
+
   maven("https://jitpack.io") // CC:Restitched
   maven("https://maven.terraformersmc.com/releases") // Mod Menu
   maven("https://maven.shedaniel.me") // Cloth Config
@@ -73,8 +80,7 @@ dependencies {
 
   modImplementation(include("pw.switchcraft", "sc-library", scLibraryVersion))
 
-  // CC: Restitched
-  modApi("com.github.cc-tweaked:cc-restitched:${ccVersion}") {
+  modApi("cc.tweaked:cc-tweaked-$minecraftVersion-fabric-api:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
   }
 
@@ -138,6 +144,9 @@ tasks {
     }
 
     runs {
+      configureEach {
+        property("fabric.debug.disableModShuffle")
+      }
       create("datagen") {
         client()
         name("Data Generation")

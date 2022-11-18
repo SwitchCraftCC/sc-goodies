@@ -80,7 +80,10 @@ dependencies {
 
   modImplementation(include("pw.switchcraft", "sc-library", scLibraryVersion))
 
-  modApi("cc.tweaked:cc-tweaked-$minecraftVersion-fabric-api:$ccVersion") {
+  modCompileOnly("cc.tweaked:cc-tweaked-$minecraftVersion-fabric-api:$ccVersion") {
+    exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
+  }
+  modRuntimeOnly("cc.tweaked:cc-tweaked-$minecraftVersion-fabric:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
   }
 

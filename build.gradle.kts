@@ -62,7 +62,6 @@ repositories {
     }
   }
 
-  maven("https://jitpack.io") // CC:Restitched
   maven("https://maven.terraformersmc.com/releases") // Mod Menu
   maven("https://maven.shedaniel.me") // Cloth Config
   maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets

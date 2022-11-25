@@ -1,8 +1,8 @@
 package pw.switchcraft.goodies.misc
 
+import net.minecraft.registry.Registries.BLOCK
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry.BLOCK
 import pw.switchcraft.goodies.ScGoodies.ModId
 
 object ConcreteExtras {

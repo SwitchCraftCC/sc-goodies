@@ -1,7 +1,7 @@
 package pw.switchcraft.goodies
 
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
@@ -9,17 +9,14 @@ import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
+import net.minecraft.item.*
+import net.minecraft.registry.Registries.*
+import net.minecraft.registry.Registry.register
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
-import net.minecraft.util.Rarity
 import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.Rarity.UNCOMMON
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.registry.Registry.*
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
 import pw.switchcraft.goodies.Registration.ModBlocks.chestSettings
 import pw.switchcraft.goodies.Registration.ModBlocks.rBlock
@@ -52,6 +49,8 @@ import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
 
 object Registration {
+  private val items = mutableListOf<Item>()
+
   internal fun init() {
     // Force static initializers to run
     listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens)
@@ -174,7 +173,10 @@ object Registration {
   }
 
   object ModItems {
-    val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
+    val itemGroup: ItemGroup = FabricItemGroup.builder(ModId("main"))
+      .icon { ItemStack(Items.AXOLOTL_BUCKET) }
+      .entries { _, entries, _ -> items.forEach(entries::add) }
+      .build()
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
 
@@ -195,21 +197,21 @@ object Registration {
       .rarity(UNCOMMON)))
 
     fun <T : Item> rItem(name: String, value: T): T =
-      register(ITEM, ModId(name), value)
+      register(ITEM, ModId(name), value).also { items.add(it) }
 
     fun <B : Block, I : Item> rItem(parent: B, supplier: (B, Item.Settings) -> I,
                                     settings: Item.Settings = itemSettings()): I {
-      val o = register(ITEM, BLOCK.getId(parent), supplier(parent, settings))
-      Item.BLOCK_ITEMS[parent] = o
-      return o
+      val item = register(ITEM, BLOCK.getId(parent), supplier(parent, settings))
+      Item.BLOCK_ITEMS[parent] = item
+      items.add(item)
+      return item
     }
 
     fun itemSettings(): FabricItemSettings = FabricItemSettings()
-      .group(itemGroup)
 
     fun elytraSettings(): FabricItemSettings = itemSettings()
       .maxDamage(432)
-      .rarity(Rarity.UNCOMMON)
+      .rarity(UNCOMMON)
       .equipmentSlot { EquipmentSlot.CHEST }
   }
 

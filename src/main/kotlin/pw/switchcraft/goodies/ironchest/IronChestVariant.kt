@@ -27,11 +27,11 @@ enum class IronChestVariant(
   val screenTex = ModId("textures/gui/container/iron_chest_${columns}x${rows}.png")
 
   // Chests
-  val chestBlock by lazy { Registry.BLOCK.get(ModId(chestId)) as IronChestBlock }
+  val chestBlock by lazy { Registries.BLOCK.get(ModId(chestId)) as IronChestBlock }
 
   val chestBlockEntityType by lazy {
     @Suppress("UNCHECKED_CAST")
-    Registry.BLOCK_ENTITY_TYPE.get(ModId(chestId)) as BlockEntityType<IronChestBlockEntity>
+    Registries.BLOCK_ENTITY_TYPE.get(ModId(chestId)) as BlockEntityType<IronChestBlockEntity>
   }
 
   val chestScreenHandlerType: ScreenHandlerType<IronChestScreenHandler> by lazy {
@@ -39,21 +39,21 @@ enum class IronChestVariant(
   }
 
   // Shulkers
-  val shulkerBlock by lazy { Registry.BLOCK.get(ModId(shulkerId)) as IronShulkerBlock }
+  val shulkerBlock by lazy { Registries.BLOCK.get(ModId(shulkerId)) as IronShulkerBlock }
   val dyedShulkerBlocks: Map<DyeColor, IronShulkerBlock> by lazy {
     DyeColor.values().associateWith { color ->
-      Registry.BLOCK.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerBlock
+      Registries.BLOCK.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerBlock
     }
   }
   val dyedShulkerItems: Map<DyeColor, IronShulkerItem> by lazy {
     DyeColor.values().associateWith { color ->
-      Registry.ITEM.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerItem
+      Registries.ITEM.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerItem
     }
   }
 
   val shulkerBlockEntityType by lazy {
     @Suppress("UNCHECKED_CAST")
-    Registry.BLOCK_ENTITY_TYPE.get(ModId(shulkerId)) as BlockEntityType<IronShulkerBlockEntity>
+    Registries.BLOCK_ENTITY_TYPE.get(ModId(shulkerId)) as BlockEntityType<IronShulkerBlockEntity>
   }
 
   val shulkerScreenHandlerType: ScreenHandlerType<IronShulkerScreenHandler> by lazy {

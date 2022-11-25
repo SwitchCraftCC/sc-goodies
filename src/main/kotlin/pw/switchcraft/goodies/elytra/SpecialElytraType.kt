@@ -18,6 +18,6 @@ enum class SpecialElytraType(
   val modelTexture = ModId("textures/entity/elytra/elytra_$type.png")
 
   val item: SpecialElytraItem by lazy {
-    Registry.ITEM.get(ModId("elytra_$type")) as SpecialElytraItem
+    Registries.ITEM.get(ModId("elytra_$type")) as SpecialElytraItem
   }
 }

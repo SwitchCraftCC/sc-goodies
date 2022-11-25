@@ -1,16 +1,17 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
-import net.minecraft.data.server.RecipeProvider.conditionsFromTag
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromTag
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items.DIAMOND
 import net.minecraft.recipe.Ingredient.fromTag
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.SpecialRecipeSerializer
+import net.minecraft.recipe.book.CraftingRecipeCategory
+import net.minecraft.registry.Registries.RECIPE_SERIALIZER
+import net.minecraft.registry.Registry.register
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
-import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.BaseIronShulkerRecipe
 import pw.switchcraft.goodies.datagen.recipes.DyedIronShulkerRecipe
@@ -58,9 +59,9 @@ object IronShulkerRecipes : RecipeHandler {
     specialRecipe(exporter, DyedIronShulkerRecipe.recipeSerializer)
   }
 
-  private val ironShulkerRecipeSerializer = SpecialRecipeSerializer { IronShulkerRecipe(it) }
-  class IronShulkerRecipe(id: Identifier) : BaseIronShulkerRecipe(
-    id,
+  private val ironShulkerRecipeSerializer = SpecialRecipeSerializer(::IronShulkerRecipe)
+  class IronShulkerRecipe(id: Identifier, category: CraftingRecipeCategory) : BaseIronShulkerRecipe(
+    id, category,
     ItemStack(IRON_VARIANT.shulkerBlock),
     listOf(
       iron, iron, iron,
@@ -71,9 +72,9 @@ object IronShulkerRecipes : RecipeHandler {
     override fun getSerializer() = ironShulkerRecipeSerializer
   }
 
-  private val goldShulkerRecipeSerializer = SpecialRecipeSerializer { GoldShulkerRecipe(it) }
-  class GoldShulkerRecipe(id: Identifier) : BaseIronShulkerRecipe(
-    id,
+  private val goldShulkerRecipeSerializer = SpecialRecipeSerializer(::GoldShulkerRecipe)
+  class GoldShulkerRecipe(id: Identifier, category: CraftingRecipeCategory) : BaseIronShulkerRecipe(
+    id, category,
     ItemStack(GOLD_VARIANT.shulkerBlock),
     listOf(
       gold, gold, gold,
@@ -84,9 +85,9 @@ object IronShulkerRecipes : RecipeHandler {
     override fun getSerializer() = goldShulkerRecipeSerializer
   }
 
-  private val diamondShulkerIronRecipeSerializer = SpecialRecipeSerializer { DiamondShulkerIronRecipe(it) }
-  class DiamondShulkerIronRecipe(id: Identifier) : BaseIronShulkerRecipe(
-    id,
+  private val diamondShulkerIronRecipeSerializer = SpecialRecipeSerializer(::DiamondShulkerIronRecipe)
+  class DiamondShulkerIronRecipe(id: Identifier, category: CraftingRecipeCategory) : BaseIronShulkerRecipe(
+    id, category,
     ItemStack(DIAMOND_VARIANT.shulkerBlock),
     listOf(
       glass, glass, glass,
@@ -97,9 +98,9 @@ object IronShulkerRecipes : RecipeHandler {
     override fun getSerializer() = diamondShulkerIronRecipeSerializer
   }
 
-  private val diamondShulkerGoldRecipeSerializer = SpecialRecipeSerializer { DiamondShulkerGoldRecipe(it) }
-  class DiamondShulkerGoldRecipe(id: Identifier) : BaseIronShulkerRecipe(
-    id,
+  private val diamondShulkerGoldRecipeSerializer = SpecialRecipeSerializer(::DiamondShulkerGoldRecipe)
+  class DiamondShulkerGoldRecipe(id: Identifier, category: CraftingRecipeCategory) : BaseIronShulkerRecipe(
+    id, category,
     ItemStack(DIAMOND_VARIANT.shulkerBlock),
     listOf(
       glass, glass, glass,

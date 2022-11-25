@@ -1,6 +1,6 @@
 package pw.switchcraft.goodies.datagen
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.minecraft.block.Block
 import net.minecraft.block.entity.BlockEntityType
@@ -18,8 +18,8 @@ import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 
-class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTableProvider(generator) {
-  override fun generateBlockLootTables() {
+class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvider(out) {
+  override fun generate() {
     IronChestVariant.values().forEach { variant ->
       with (variant) {
         val type = shulkerBlockEntityType

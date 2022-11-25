@@ -1,21 +1,21 @@
 package pw.switchcraft.goodies.datagen
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
 import net.minecraft.data.client.*
 import net.minecraft.data.client.BlockStateModelGenerator.*
 import net.minecraft.data.client.ModelIds.getBlockModelId
+import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry.BLOCK
 import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
 import java.util.*
 
-class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(generator) {
+class BlockModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
     // Register block models for each iron chest variant
     IronChestVariant.values().forEach { variant ->
@@ -61,7 +61,7 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
       val block = (if (color != null) dyedShulkerBlocks[color] else shulkerBlock)
         ?: throw IllegalStateException("Shulker block for variant=$this color=$color is null")
 
-      val id = BLOCK.getId(block).path
+      val id = Registries.BLOCK.getId(block).path
       val texId = ModId("entity/shulker/$id")
 
       gen.registerSingleton(

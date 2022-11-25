@@ -1,10 +1,11 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
-import net.minecraft.data.server.RecipeProvider.conditionsFromTag
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromTag
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.SHULKER_SHELL
+import net.minecraft.recipe.book.RecipeCategory
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
@@ -13,7 +14,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Vanilla to Iron Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.VANILLA_IRON.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.VANILLA_IRON.shulkerUpgrade)
       .pattern("III")
       .pattern("ISI")
       .pattern("III")
@@ -24,7 +25,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
 
     // Iron to Gold Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.IRON_GOLD.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_GOLD.shulkerUpgrade)
       .pattern("GIG")
       .pattern("GGG")
       .pattern("GGG")
@@ -35,7 +36,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
 
     // Gold to Diamond Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.GOLD_DIAMOND.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.GOLD_DIAMOND.shulkerUpgrade)
       .pattern("LDL")
       .pattern("LGL")
       .pattern("LDL")

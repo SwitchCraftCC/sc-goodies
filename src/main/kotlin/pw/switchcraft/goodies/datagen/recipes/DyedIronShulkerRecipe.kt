@@ -6,6 +6,7 @@ import net.minecraft.item.DyeItem
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient.fromTag
 import net.minecraft.recipe.SpecialRecipeSerializer
+import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
@@ -18,8 +19,9 @@ private val dye = fromTag(DYES)
 
 class DyedIronShulkerRecipe(
   id: Identifier,
+  category: CraftingRecipeCategory
 ) : BaseIronShulkerRecipe(
-  id,
+  id, category,
   ItemStack(IRON.shulkerBlock),
   listOf(ironShulker, dye)
 ) {
@@ -78,6 +80,6 @@ class DyedIronShulkerRecipe(
   override fun getSerializer() = recipeSerializer
 
   companion object {
-    val recipeSerializer = SpecialRecipeSerializer { DyedIronShulkerRecipe(it) }
+    val recipeSerializer = SpecialRecipeSerializer(::DyedIronShulkerRecipe)
   }
 }

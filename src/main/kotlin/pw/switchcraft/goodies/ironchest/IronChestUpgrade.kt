@@ -1,6 +1,6 @@
 package pw.switchcraft.goodies.ironchest
 
-import net.minecraft.util.registry.Registry
+import net.minecraft.registry.Registries
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant.*
 
@@ -14,10 +14,10 @@ enum class IronChestUpgrade(
   GOLD_DIAMOND("gold_diamond", from = GOLD, to = DIAMOND);
 
   val chestUpgrade by lazy {
-    Registry.ITEM.get(ModId(itemName + "_chest_upgrade")) as IronChestUpgradeItem
+    Registries.ITEM.get(ModId(itemName + "_chest_upgrade")) as IronChestUpgradeItem
   }
 
   val shulkerUpgrade by lazy {
-    Registry.ITEM.get(ModId(itemName + "_shulker_upgrade")) as IronChestUpgradeItem
+    Registries.ITEM.get(ModId(itemName + "_shulker_upgrade")) as IronChestUpgradeItem
   }
 }

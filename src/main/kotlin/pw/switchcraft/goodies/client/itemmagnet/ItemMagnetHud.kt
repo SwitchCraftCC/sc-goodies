@@ -32,7 +32,7 @@ object ItemMagnetHud {
 
     if (ItemMagnetItem.stackBlocked(magnet) && ItemMagnetItem.stackEnabled(magnet)) {
       // Blocked icon
-      RenderSystem.setShader(GameRenderer::getPositionTexShader)
+      RenderSystem.setShader(GameRenderer::getPositionTexProgram)
       RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
       RenderSystem.setShaderTexture(0, blockedTex)
       DrawableHelper.drawTexture(matrices, x, y, 200, 0.0f, 0.0f, 16, 16, 16, 16)

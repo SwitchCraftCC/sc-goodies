@@ -7,6 +7,7 @@ import net.minecraft.item.Items.*
 import net.minecraft.potion.Potions.LEAPING
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.SpecialRecipeSerializer
+import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import pw.switchcraft.goodies.Registration.ModItems
@@ -14,7 +15,10 @@ import pw.switchcraft.library.recipe.BetterSpecialRecipe
 import pw.switchcraft.library.recipe.IngredientBrew
 import pw.switchcraft.library.recipe.IngredientEnchanted
 
-class HoverBootsRecipe(id: Identifier) : BetterSpecialRecipe(id) {
+class HoverBootsRecipe(
+  id: Identifier,
+  category: CraftingRecipeCategory = CraftingRecipeCategory.EQUIPMENT
+) : BetterSpecialRecipe(id, category) {
   private val featherFalling = IngredientEnchanted(mapOf(FEATHER_FALLING to 1))
   private val jumpBoost = IngredientBrew(JUMP_BOOST, LEAPING)
 
@@ -29,6 +33,6 @@ class HoverBootsRecipe(id: Identifier) : BetterSpecialRecipe(id) {
   override fun getSerializer() = recipeSerializer
 
   companion object {
-    val recipeSerializer = SpecialRecipeSerializer { HoverBootsRecipe(it) }
+    val recipeSerializer = SpecialRecipeSerializer(::HoverBootsRecipe)
   }
 }

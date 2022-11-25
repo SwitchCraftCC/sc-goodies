@@ -1,10 +1,11 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
-import net.minecraft.data.server.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
+import net.minecraft.recipe.book.RecipeCategory
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.library.recipe.RecipeHandler
@@ -14,7 +15,7 @@ object IronChestRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Iron Chest
     ShapedRecipeJsonBuilder
-      .create(IronChestVariant.IRON.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronChestVariant.IRON.chestBlock)
       .pattern("III")
       .pattern("ICI")
       .pattern("III")
@@ -25,7 +26,7 @@ object IronChestRecipes : RecipeHandler {
 
     // Gold Chest
     ShapedRecipeJsonBuilder
-      .create(IronChestVariant.GOLD.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronChestVariant.GOLD.chestBlock)
       .pattern("III")
       .pattern("ICI")
       .pattern("III")
@@ -36,7 +37,7 @@ object IronChestRecipes : RecipeHandler {
 
     // Diamond Chest (with Iron Chest)
     ShapedRecipeJsonBuilder
-      .create(IronChestVariant.DIAMOND.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronChestVariant.DIAMOND.chestBlock)
       .pattern("GGG")
       .pattern("GCG")
       .pattern("DDD")
@@ -48,7 +49,7 @@ object IronChestRecipes : RecipeHandler {
 
     // Diamond Chest (with Gold Chest)
     ShapedRecipeJsonBuilder
-      .create(IronChestVariant.DIAMOND.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronChestVariant.DIAMOND.chestBlock)
       .pattern("GGG")
       .pattern("DCD")
       .pattern("GGG")

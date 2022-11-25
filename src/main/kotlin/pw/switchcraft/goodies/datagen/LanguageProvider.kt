@@ -1,12 +1,12 @@
 package pw.switchcraft.goodies.datagen
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.block.Block
 import net.minecraft.item.Item
+import net.minecraft.registry.Registries.ITEM
 import net.minecraft.util.DyeColor
 import net.minecraft.util.DyeColor.*
-import net.minecraft.util.registry.Registry.ITEM
 import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.Registration.ModItems.itemGroup
@@ -16,7 +16,7 @@ import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
 
-class LanguageProvider(gen: FabricDataGenerator) : FabricLanguageProvider(gen) {
+class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
   private val colorNames = mapOf(
     WHITE      to "White",
     ORANGE     to "Orange",

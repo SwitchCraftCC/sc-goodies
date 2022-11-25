@@ -1,10 +1,10 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
-import net.minecraft.data.server.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.item.Items
-import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
-import net.minecraft.util.registry.Registry.register
+import net.minecraft.registry.Registries.RECIPE_SERIALIZER
+import net.minecraft.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.DragonScaleRecipe
 import pw.switchcraft.library.recipe.BetterComplexRecipeJsonBuilder

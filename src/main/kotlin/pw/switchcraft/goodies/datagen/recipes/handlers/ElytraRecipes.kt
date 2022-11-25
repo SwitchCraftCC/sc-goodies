@@ -6,16 +6,17 @@ import net.minecraft.advancement.Advancement
 import net.minecraft.advancement.AdvancementRewards
 import net.minecraft.advancement.CriterionMerger
 import net.minecraft.advancement.criterion.RecipeUnlockedCriterion
-import net.minecraft.data.server.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.item.ItemConvertible
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
+import net.minecraft.recipe.book.CraftingRecipeCategory.EQUIPMENT
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registries.RECIPE_SERIALIZER
+import net.minecraft.registry.Registry.register
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
-import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
-import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.ElytraRecipe
 import pw.switchcraft.goodies.datagen.recipes.ElytraRecipeSerializer
@@ -34,7 +35,7 @@ object ElytraRecipes : RecipeHandler {
     DyeColor.values().forEach { color ->
       val elytra = DyedElytraItem.dyedElytraItems[color]!!
       val id = itemId(elytra)
-      ElytraRecipeJsonBuilder(ElytraRecipe(id, ItemStack(elytra), listOf(color)))
+      ElytraRecipeJsonBuilder(ElytraRecipe(id, EQUIPMENT, ItemStack(elytra), listOf(color)))
         .offerTo(exporter)
     }
 
@@ -42,7 +43,7 @@ object ElytraRecipes : RecipeHandler {
     SpecialElytraType.values().forEach { type ->
       val elytra = type.item
       val id = itemId(elytra)
-      ElytraRecipeJsonBuilder(ElytraRecipe(id, ItemStack(elytra), type.recipeColors))
+      ElytraRecipeJsonBuilder(ElytraRecipe(id, EQUIPMENT, ItemStack(elytra), type.recipeColors))
         .offerTo(exporter)
     }
   }
@@ -53,8 +54,7 @@ class ElytraRecipeJsonBuilder(val recipe: ElytraRecipe) {
   private val outputId by lazy { itemId(outputItem) }
 
   fun offerTo(exporter: Consumer<RecipeJsonProvider>, recipeId: Identifier = outputId) {
-    val advancementId = Identifier(recipeId.namespace, "recipes/" +
-      (outputItem.group?.name ?: "item") + "/" + recipeId.path)
+    val advancementId = recipeId.withPrefixedPath("recipes/" + recipe.category.name + "/")
     val advancement = Advancement.Builder.create()
       .criterion("has_elytra", conditionsFromItem(Items.ELYTRA))
       .parent(Identifier("recipes/root"))
@@ -65,6 +65,8 @@ class ElytraRecipeJsonBuilder(val recipe: ElytraRecipe) {
 
     exporter.accept(object : RecipeJsonProvider {
       override fun serialize(json: JsonObject) {
+        json.addProperty("category", recipe.category.asString())
+
         if (recipe.group.isNotEmpty()) {
           json.addProperty("group", recipe.group)
         }
@@ -86,4 +88,4 @@ class ElytraRecipeJsonBuilder(val recipe: ElytraRecipe) {
   }
 }
 
-private fun itemId(item: ItemConvertible) = Registry.ITEM.getId(item.asItem())
+private fun itemId(item: ItemConvertible) = Registries.ITEM.getId(item.asItem())

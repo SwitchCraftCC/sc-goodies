@@ -12,7 +12,7 @@ import kotlin.math.floor
 import kotlin.math.log2
 
 object EnderStorageMethods : GenericPeripheral {
-  override fun id() = ModId("ender_storage")
+  override fun id() = ModId("ender_storage").toString()
 
   override fun getType(): PeripheralType =
     PeripheralType.ofType("ender_storage")

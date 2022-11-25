@@ -1,11 +1,12 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
-import net.minecraft.data.server.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
-import net.minecraft.tag.ItemTags.PLANKS
+import net.minecraft.recipe.book.RecipeCategory
+import net.minecraft.registry.tag.ItemTags.PLANKS
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.function.Consumer
@@ -14,7 +15,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Wood to Iron Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.VANILLA_IRON.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.VANILLA_IRON.chestUpgrade)
       .pattern("III")
       .pattern("IPI")
       .pattern("III")
@@ -25,7 +26,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
 
     // Iron to Gold Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.IRON_GOLD.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_GOLD.chestUpgrade)
       .pattern("GGG")
       .pattern("GIG")
       .pattern("GGG")
@@ -36,7 +37,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
 
     // Gold to Diamond Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(IronChestUpgrade.GOLD_DIAMOND.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.GOLD_DIAMOND.chestUpgrade)
       .pattern("LLL")
       .pattern("DGD")
       .pattern("LLL")

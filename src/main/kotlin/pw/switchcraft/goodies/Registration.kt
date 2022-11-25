@@ -1,7 +1,7 @@
 package pw.switchcraft.goodies
 
-import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
@@ -9,20 +9,19 @@ import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
+import net.minecraft.item.*
+import net.minecraft.registry.Registerable
+import net.minecraft.registry.Registries.*
+import net.minecraft.registry.Registry.register
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.DyeColor
-import net.minecraft.util.Rarity
 import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.Rarity.UNCOMMON
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.intprovider.ConstantIntProvider
-import net.minecraft.util.registry.Registry.*
-import net.minecraft.util.registry.RegistryEntry
 import net.minecraft.world.gen.feature.ConfiguredFeature
 import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.Feature
@@ -34,6 +33,8 @@ import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
 import pw.switchcraft.goodies.Registration.ModBlocks.chestSettings
 import pw.switchcraft.goodies.Registration.ModBlocks.rBlock
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraTreeFeature
 import pw.switchcraft.goodies.Registration.ModBlocks.shulkerSettings
 import pw.switchcraft.goodies.Registration.ModItems.elytraSettings
 import pw.switchcraft.goodies.Registration.ModItems.itemSettings
@@ -62,6 +63,8 @@ import pw.switchcraft.library.recipe.RecipeHandler
 import java.util.*
 
 object Registration {
+  private val items = mutableListOf<Item>()
+
   internal fun init() {
     // Force static initializers to run
     listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens)
@@ -115,6 +118,18 @@ object Registration {
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
 
+  internal fun bootstrapFeatures(featureRegisterable: Registerable<ConfiguredFeature<*, *>>) {
+    ConfiguredFeatures.register(featureRegisterable, sakuraTreeFeature, Feature.TREE,
+      TreeFeatureConfig.Builder(
+        BlockStateProvider.of(Blocks.SPRUCE_LOG),
+        LargeOakTrunkPlacer(3, 11, 0),
+        BlockStateProvider.of(sakuraLeaves),
+        LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+        TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
+      ).ignoreVines().build()
+    )
+  }
+
   private fun registerIronChest(variant: IronChestVariant) {
     with (variant) {
       // Register the block and item
@@ -156,17 +171,8 @@ object Registration {
 
     val sakuraSapling = rBlock("sakura_sapling", SaplingBlock(SakuraSaplingGenerator(), saplingSettings()))
     val sakuraLeaves = rBlock("sakura_leaves", LeavesBlock(leavesSettings()))
-    val sakuraTreeFeature: RegistryEntry<ConfiguredFeature<TreeFeatureConfig, *>> = ConfiguredFeatures.register(
-      ModId("sakura_tree").toString(),
-      Feature.TREE,
-      TreeFeatureConfig.Builder(
-        BlockStateProvider.of(Blocks.SPRUCE_LOG),
-        LargeOakTrunkPlacer(3, 11, 0),
-        BlockStateProvider.of(sakuraLeaves),
-        LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
-        TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
-      ).ignoreVines().build()
-    )
+    val sakuraTreeFeature: RegistryKey<ConfiguredFeature<*, *>> =
+      RegistryKey.of(CONFIGURED_FEATURE, ModId("sakura_tree"))
     val pottedSakuraSapling = rBlock("potted_sakura_sapling", FlowerPotBlock(sakuraSapling, potSettings()))
 
     fun <T : Block> rBlock(name: String, value: T): T =
@@ -219,7 +225,13 @@ object Registration {
   }
 
   object ModItems {
-    val itemGroup = FabricItemGroupBuilder.build(ModId("main")) { ItemStack(Items.AXOLOTL_BUCKET) }
+    val itemGroup: ItemGroup = FabricItemGroup.builder(ModId("main"))
+      .icon { ItemStack(Items.AXOLOTL_BUCKET) }
+      .entries { _, entries, _ ->
+        items.forEach(entries::add)
+        entries.addAll(AncientTomeItem.getTomeStacks())
+      }
+      .build()
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
 
@@ -243,21 +255,21 @@ object Registration {
     val sakuraLeaves = rItem(ModBlocks.sakuraLeaves, ::BlockItem, itemSettings())
 
     fun <T : Item> rItem(name: String, value: T): T =
-      register(ITEM, ModId(name), value)
+      register(ITEM, ModId(name), value).also { items.add(it) }
 
     fun <B : Block, I : Item> rItem(parent: B, supplier: (B, Item.Settings) -> I,
                                     settings: Item.Settings = itemSettings()): I {
-      val o = register(ITEM, BLOCK.getId(parent), supplier(parent, settings))
-      Item.BLOCK_ITEMS[parent] = o
-      return o
+      val item = register(ITEM, BLOCK.getId(parent), supplier(parent, settings))
+      Item.BLOCK_ITEMS[parent] = item
+      items.add(item)
+      return item
     }
 
     fun itemSettings(): FabricItemSettings = FabricItemSettings()
-      .group(itemGroup)
 
     fun elytraSettings(): FabricItemSettings = itemSettings()
       .maxDamage(432)
-      .rarity(Rarity.UNCOMMON)
+      .rarity(UNCOMMON)
       .equipmentSlot { EquipmentSlot.CHEST }
   }
 

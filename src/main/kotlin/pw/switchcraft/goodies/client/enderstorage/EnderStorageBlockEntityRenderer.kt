@@ -9,7 +9,7 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.Direction
-import net.minecraft.util.math.Vec3f
+import net.minecraft.util.math.RotationAxis
 import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
@@ -88,7 +88,7 @@ class EnderStorageBlockEntityRenderer(
       matrices.push()
 
       matrices.translate(0.5, 0.5, 0.5)
-      matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-facing.asRotation()))
+      matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-facing.asRotation()))
       matrices.translate(-0.5, -0.5, -0.5)
 
       // End portal effect

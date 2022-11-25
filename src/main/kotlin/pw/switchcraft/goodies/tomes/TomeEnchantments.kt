@@ -15,14 +15,14 @@ import net.minecraft.loot.LootManager
 import net.minecraft.loot.LootTable
 import net.minecraft.loot.LootTables.*
 import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.registry.Registries.LOOT_FUNCTION_TYPE
+import net.minecraft.registry.Registry.register
 import net.minecraft.resource.ResourceManager
 import net.minecraft.screen.AnvilScreenHandler
 import net.minecraft.screen.Property
 import net.minecraft.text.Text.literal
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.random.Random
-import net.minecraft.util.registry.Registry.LOOT_FUNCTION_TYPE
-import net.minecraft.util.registry.Registry.register
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.tomes.AncientTomeItem.Companion.stackEnchantment

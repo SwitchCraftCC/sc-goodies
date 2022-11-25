@@ -1,11 +1,12 @@
 package pw.switchcraft.goodies.datagen.recipes.handlers
 
-import net.minecraft.data.server.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.RecipeJsonProvider
+import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.*
-import net.minecraft.util.registry.Registry.RECIPE_SERIALIZER
-import net.minecraft.util.registry.Registry.register
+import net.minecraft.recipe.book.RecipeCategory
+import net.minecraft.registry.Registries.RECIPE_SERIALIZER
+import net.minecraft.registry.Registry.register
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.ItemMagnetUpgradeRecipe
@@ -21,7 +22,7 @@ object ItemMagnetRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Item Magnet
     ShapedRecipeJsonBuilder
-      .create(ModItems.itemMagnet)
+      .create(RecipeCategory.TOOLS, ModItems.itemMagnet)
       .pattern("I I")
       .pattern("R L")
       .pattern("RNL")

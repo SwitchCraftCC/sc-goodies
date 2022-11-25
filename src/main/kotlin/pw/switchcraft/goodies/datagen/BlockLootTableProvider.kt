@@ -1,6 +1,6 @@
 package pw.switchcraft.goodies.datagen
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.minecraft.block.Block
 import net.minecraft.block.entity.BlockEntityType
@@ -20,10 +20,10 @@ import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 
-class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTableProvider(generator) {
+class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvider(out) {
   private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)
 
-  override fun generateBlockLootTables() {
+  override fun generate() {
     IronChestVariant.values().forEach { variant ->
       with (variant) {
         val type = shulkerBlockEntityType
@@ -38,7 +38,7 @@ class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTa
       }
     }
 
-    addDrop(sakuraLeaves) { block -> leavesDrop(block, sakuraSapling, *saplingDropChance) }
+    addDrop(sakuraLeaves) { block -> leavesDrops(block, sakuraSapling, *saplingDropChance) }
     addDrop(sakuraSapling)
   }
 

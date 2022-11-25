@@ -2,7 +2,10 @@ package pw.switchcraft.goodies.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator
+import net.minecraft.registry.RegistryBuilder
+import net.minecraft.registry.RegistryKeys
 import org.slf4j.LoggerFactory
+import pw.switchcraft.goodies.Registration
 import pw.switchcraft.goodies.datagen.recipes.RecipeGenerator
 
 object ScGoodiesDatagen : DataGeneratorEntrypoint {
@@ -11,11 +14,16 @@ object ScGoodiesDatagen : DataGeneratorEntrypoint {
   override fun onInitializeDataGenerator(generator: FabricDataGenerator) {
     log.info("sc-goodies datagen initializing")
 
-    generator.addProvider(ItemTagProvider(generator))
-    generator.addProvider(BlockModelProvider(generator))
-    generator.addProvider(ItemModelProvider(generator))
-    generator.addProvider(BlockLootTableProvider(generator))
-    generator.addProvider(RecipeGenerator(generator))
-    generator.addProvider(LanguageProvider(generator))
+    val pack = generator.createPack()
+    pack.addProvider(::ItemTagProvider)
+    pack.addProvider(::BlockModelProvider)
+    pack.addProvider(::ItemModelProvider)
+    pack.addProvider(::BlockLootTableProvider)
+    pack.addProvider(::RecipeGenerator)
+    pack.addProvider(::LanguageProvider)
+  }
+
+  override fun buildRegistry(registryBuilder: RegistryBuilder) {
+    registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, Registration::bootstrapFeatures)
   }
 }

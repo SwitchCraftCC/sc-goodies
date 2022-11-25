@@ -98,7 +98,7 @@ object EnderStorageProvider {
       blockEntities.forEach {
         if (!it.isRemoved) {
           it.updateViewerCount()
-          it.world?.createAndScheduleBlockTick(it.pos, it.cachedState.block, 5)
+          it.world?.scheduleBlockTick(it.pos, it.cachedState.block, 5)
         }
       }
     }

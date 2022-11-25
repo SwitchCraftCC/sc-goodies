@@ -8,7 +8,7 @@ import net.minecraft.client.render.block.entity.BlockEntityRendererFactory
 import net.minecraft.client.render.entity.model.EntityModelLayers
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.Direction
-import net.minecraft.util.math.Vec3f
+import net.minecraft.util.math.RotationAxis
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestBlock
 import pw.switchcraft.goodies.ironchest.IronChestBlockEntity
@@ -39,7 +39,7 @@ class IronChestBlockEntityRenderer(
     matrices.push()
 
     matrices.translate(0.5, 0.5, 0.5)
-    matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-facing.asRotation()))
+    matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-facing.asRotation()))
     matrices.translate(-0.5, -0.5, -0.5)
 
     val progress = easeOutCubic(entity.getAnimationProgress(tickDelta))

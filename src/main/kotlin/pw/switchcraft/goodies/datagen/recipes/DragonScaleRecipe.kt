@@ -6,6 +6,7 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.ShapelessRecipe
 import net.minecraft.recipe.SpecialRecipeSerializer
+import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
@@ -13,8 +14,12 @@ import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.datagen.recipes.ingredients.ElytraIngredient
 import pw.switchcraft.goodies.elytra.DyedElytraItem.Companion.dyedElytraItems
 
-class DragonScaleRecipe(id: Identifier) : ShapelessRecipe(
-  id, "dragonScaleElytra", ItemStack(dyedElytraItems[DyeColor.BLACK]!!), DefaultedList.copyOf(
+class DragonScaleRecipe(
+  id: Identifier,
+  category: CraftingRecipeCategory = CraftingRecipeCategory.MISC
+) : ShapelessRecipe(
+  id, "dragonScaleElytra", category,
+  ItemStack(dyedElytraItems[DyeColor.BLACK]!!), DefaultedList.copyOf(
     Ingredient.EMPTY, // Defaulted item
     ofItems(ModItems.dragonScale),
     ElytraIngredient()
@@ -43,6 +48,6 @@ class DragonScaleRecipe(id: Identifier) : ShapelessRecipe(
   override fun getSerializer() = recipeSerializer
 
   companion object {
-    val recipeSerializer = SpecialRecipeSerializer { DragonScaleRecipe(it) }
+    val recipeSerializer = SpecialRecipeSerializer(::DragonScaleRecipe)
   }
 }

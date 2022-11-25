@@ -7,13 +7,18 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.ShapelessRecipe
 import net.minecraft.recipe.SpecialRecipeSerializer
+import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 
-class ItemMagnetUpgradeRecipe(id: Identifier) : ShapelessRecipe(
-  id, "itemMagnetUpgrade", ItemStack(ModItems.itemMagnet), DefaultedList.copyOf(
+class ItemMagnetUpgradeRecipe(
+  id: Identifier,
+  category: CraftingRecipeCategory = CraftingRecipeCategory.EQUIPMENT
+) : ShapelessRecipe(
+  id, "itemMagnetUpgrade", category,
+  ItemStack(ModItems.itemMagnet), DefaultedList.copyOf(
     Ingredient.EMPTY, // Defaulted item
     ofItems(ModItems.itemMagnet),
     ofItems(Items.NETHER_STAR),
@@ -50,6 +55,6 @@ class ItemMagnetUpgradeRecipe(id: Identifier) : ShapelessRecipe(
   override fun getSerializer() = recipeSerializer
 
   companion object {
-    val recipeSerializer = SpecialRecipeSerializer { ItemMagnetUpgradeRecipe(it) }
+    val recipeSerializer = SpecialRecipeSerializer(::ItemMagnetUpgradeRecipe)
   }
 }

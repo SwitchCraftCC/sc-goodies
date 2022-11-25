@@ -5,6 +5,7 @@ import net.minecraft.block.ShulkerBoxBlock
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient
+import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
@@ -13,9 +14,10 @@ import pw.switchcraft.library.recipe.BetterSpecialRecipe
 
 abstract class BaseIronShulkerRecipe(
   id: Identifier,
+  category: CraftingRecipeCategory = CraftingRecipeCategory.MISC,
   override val outputItem: ItemStack,
   override val ingredients: List<Ingredient>
-) : BetterSpecialRecipe(id) {
+) : BetterSpecialRecipe(id, category) {
   override fun craft(inventory: CraftingInventory): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft

@@ -175,7 +175,10 @@ object Registration {
   object ModItems {
     val itemGroup: ItemGroup = FabricItemGroup.builder(ModId("main"))
       .icon { ItemStack(Items.AXOLOTL_BUCKET) }
-      .entries { _, entries, _ -> items.forEach(entries::add) }
+      .entries { _, entries, _ ->
+        items.forEach(entries::add)
+        entries.addAll(AncientTomeItem.getTomeStacks())
+      }
       .build()
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())

@@ -17,7 +17,7 @@ abstract class BaseIronShulkerRecipe(
   category: CraftingRecipeCategory = CraftingRecipeCategory.MISC,
   override val outputItem: ItemStack,
   override val ingredients: List<Ingredient>
-) : BetterSpecialRecipe(id) {
+) : BetterSpecialRecipe(id, category) {
   override fun craft(inventory: CraftingInventory): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft

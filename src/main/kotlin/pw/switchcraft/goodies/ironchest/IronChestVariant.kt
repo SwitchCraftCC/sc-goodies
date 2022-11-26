@@ -1,10 +1,10 @@
 package pw.switchcraft.goodies.ironchest
 
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.registry.Registries
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity

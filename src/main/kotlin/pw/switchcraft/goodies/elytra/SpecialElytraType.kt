@@ -1,8 +1,8 @@
 package pw.switchcraft.goodies.elytra
 
+import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
 import net.minecraft.util.DyeColor.*
-import net.minecraft.util.registry.Registry
 import pw.switchcraft.goodies.ScGoodies.ModId
 
 enum class SpecialElytraType(

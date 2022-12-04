@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "sc-goodies:block/sakura_sapling"
+  }
+}

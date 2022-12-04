@@ -10,6 +10,9 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.registry.Registry.BLOCK
 import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
+import pw.switchcraft.goodies.Registration.ModBlocks.pottedSakuraSapling
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
@@ -33,6 +36,10 @@ class BlockModelProvider(generator: FabricDataGenerator) : FabricModelProvider(g
       registerSlab(gen, it.baseBlock, it.slabBlock, it.texture)
       registerStairs(gen, it.stairsBlock, it.texture)
     }
+
+    // Sakura leaves
+    gen.registerSingleton(sakuraLeaves, TexturedModel.LEAVES)
+    gen.registerFlowerPotPlant(sakuraSapling, pottedSakuraSapling, TintType.NOT_TINTED)
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {

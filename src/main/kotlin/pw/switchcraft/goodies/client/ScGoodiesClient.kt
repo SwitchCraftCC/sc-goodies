@@ -2,11 +2,14 @@ package pw.switchcraft.goodies.client
 
 import dev.emi.trinkets.api.client.TrinketRendererRegistry
 import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.client.rendering.v1.BlockEntityRendererRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry
 import net.minecraft.client.gui.screen.ingame.HandledScreens
+import net.minecraft.client.render.RenderLayer
 import org.slf4j.LoggerFactory
 import pw.switchcraft.goodies.Registration.ModBlockEntities
+import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.Registration.ModScreens
 import pw.switchcraft.goodies.client.elytra.ElytraClientEvents
@@ -54,6 +57,9 @@ object ScGoodiesClient : ClientModInitializer {
     ElytraClientEvents.initEvents()
 
     ConcreteSpeedupHandler.initEvents()
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.sakuraLeaves, RenderLayer.getCutoutMipped())
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.sakuraSapling, RenderLayer.getCutout())
+    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.pottedSakuraSapling, RenderLayer.getCutout())
   }
 
   private fun registerIronChestRenderer(variant: IronChestVariant) {

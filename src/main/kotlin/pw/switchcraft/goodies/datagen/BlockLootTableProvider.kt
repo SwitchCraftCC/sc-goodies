@@ -14,11 +14,15 @@ import net.minecraft.loot.function.SetContentsLootFunction
 import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
 
 class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTableProvider(generator) {
+  private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)
+
   override fun generateBlockLootTables() {
     IronChestVariant.values().forEach { variant ->
       with (variant) {
@@ -33,6 +37,9 @@ class BlockLootTableProvider(generator: FabricDataGenerator) : FabricBlockLootTa
         }
       }
     }
+
+    addDrop(sakuraLeaves) { block -> leavesDrop(block, sakuraSapling, *saplingDropChance) }
+    addDrop(sakuraSapling)
   }
 
   private fun registerIronShulkerDrops(type: BlockEntityType<IronShulkerBlockEntity>, block: Block) {

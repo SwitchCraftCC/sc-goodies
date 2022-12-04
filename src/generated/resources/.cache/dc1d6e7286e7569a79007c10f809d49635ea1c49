@@ -1,4 +1,4 @@
-// 1.19.2	2022-10-05T19:27:08.5300333	Block Loot Tables
+// 1.19.2	2022-12-04T05:51:34.1483332	Block Loot Tables
 a0edf2d9d3f5a19284cd445570899f89a22922fc data\sc-goodies\loot_tables\blocks\shulker_box_diamond_black.json
 cb2dc1f339f47496b74b2be56c92e07d87c3a742 data\sc-goodies\loot_tables\blocks\shulker_box_gold_blue.json
 c66d5467555ad51f6ccf03e96408e0500b6f9abf data\sc-goodies\loot_tables\blocks\shulker_box_diamond_lime.json
@@ -12,6 +12,7 @@ f7420a9adbe09e6b453b3a2c1301313fce12d404 data\sc-goodies\loot_tables\blocks\shul
 15129b5605a1185a5f29bb2696750e69460f0a21 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_blue.json
 83580608d12ab4ee5c5a22d9b0da969f53015454 data\sc-goodies\loot_tables\blocks\shulker_box_iron_gray.json
 b022b62579f36342aa0b7b4336de46e243a64f95 data\sc-goodies\loot_tables\blocks\shulker_box_iron_yellow.json
+87fab543b5118a90a4955e4c80d1794af11ab303 data\sc-goodies\loot_tables\blocks\sakura_leaves.json
 6572937fa914e76b2a6dcd9a7f528ae417e4380b data\sc-goodies\loot_tables\blocks\shulker_box_gold_light_blue.json
 55bf1a9a3eb2f23d6380e8077e997fc54b0e7193 data\sc-goodies\loot_tables\blocks\shulker_box_iron_black.json
 22546b5c71d1e3ef0b8a74a8bc73221c37972bdd data\sc-goodies\loot_tables\blocks\shulker_box_gold_white.json
@@ -33,6 +34,7 @@ e06a29d503473c7a7c76f99900cb7a1dc76dd343 data\sc-goodies\loot_tables\blocks\shul
 fc94b929f792d3e32309966a7b5470a7a70460ac data\sc-goodies\loot_tables\blocks\shulker_box_gold_cyan.json
 695830bf5a31804a75adc488d9efd99c7eca15a1 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_gray.json
 b293dbc4523e276ac532e81a8fc23b583baf8730 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_pink.json
+5ecb039c38a43a433645e93c1afefda09e52453b data\sc-goodies\loot_tables\blocks\sakura_sapling.json
 e1bc5c2314e64ea06e8a3514e681f432529c58f0 data\sc-goodies\loot_tables\blocks\shulker_box_iron.json
 9dee057145831ee8d5546b0f034048389b30a460 data\sc-goodies\loot_tables\blocks\shulker_box_gold_brown.json
 d68cbaceec285c917e3d73ca5098e3f3cf5636bd data\sc-goodies\loot_tables\blocks\shulker_box_diamond_red.json

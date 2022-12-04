@@ -2,6 +2,7 @@ package pw.switchcraft.goodies
 
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
@@ -13,20 +14,38 @@ import net.minecraft.item.BlockItem
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
+import net.minecraft.loot.LootTables.SIMPLE_DUNGEON_CHEST
+import net.minecraft.loot.LootTables.VILLAGE_PLAINS_CHEST
+import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.function.SetCountLootFunction
+import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Rarity
 import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.Rarity.UNCOMMON
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.intprovider.ConstantIntProvider
 import net.minecraft.util.registry.Registry.*
+import net.minecraft.util.registry.RegistryEntry
+import net.minecraft.world.gen.feature.ConfiguredFeature
+import net.minecraft.world.gen.feature.ConfiguredFeatures
+import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.TreeFeatureConfig
+import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
+import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer
+import net.minecraft.world.gen.stateprovider.BlockStateProvider
+import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
 import pw.switchcraft.goodies.Registration.ModBlocks.chestSettings
 import pw.switchcraft.goodies.Registration.ModBlocks.rBlock
+import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLootWeights
 import pw.switchcraft.goodies.Registration.ModBlocks.shulkerSettings
 import pw.switchcraft.goodies.Registration.ModItems.elytraSettings
 import pw.switchcraft.goodies.Registration.ModItems.itemSettings
 import pw.switchcraft.goodies.Registration.ModItems.rItem
+import pw.switchcraft.goodies.Registration.ModItems.sakuraSapling
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import pw.switchcraft.goodies.elytra.DyedElytraItem
@@ -45,11 +64,13 @@ import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
 import pw.switchcraft.goodies.misc.ConcreteExtras
 import pw.switchcraft.goodies.misc.EndermitesFormShulkers
 import pw.switchcraft.goodies.misc.PopcornItem
+import pw.switchcraft.goodies.misc.SakuraSaplingGenerator
 import pw.switchcraft.goodies.tomes.AncientTomeItem
 import pw.switchcraft.goodies.tomes.TomeEnchantments
 import pw.switchcraft.goodies.util.BaseItem
 import pw.switchcraft.library.networking.registerServerReceiver
 import pw.switchcraft.library.recipe.RecipeHandler
+import java.util.*
 
 object Registration {
   internal fun init() {
@@ -102,6 +123,18 @@ object Registration {
     TomeEnchantments.init()
     EndermitesFormShulkers.init()
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
+
+    // Sakura Sapling chest loot tables
+    LootTableEvents.MODIFY.register { _, _, id, builder, _ ->
+      val weight = sakuraLootWeights[id] ?: return@register
+      val entry = ItemEntry.builder(ModItems.sakuraSapling)
+        .weight(weight)
+        .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 4.0f)))
+        .build()
+
+      builder.modifyPools { it.with(entry) }
+    }
+    ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(sakuraSapling.asItem(), 0.3f)
   }
 
   private fun registerIronChest(variant: IronChestVariant) {
@@ -143,6 +176,26 @@ object Registration {
     val enderStorage = rBlock("ender_storage", EnderStorageBlock(AbstractBlock.Settings
       .of(Material.STONE).requiresTool().strength(22.5f, 600.0f)))
 
+    val sakuraSapling = rBlock("sakura_sapling", SaplingBlock(SakuraSaplingGenerator(), saplingSettings()))
+    val sakuraLeaves = rBlock("sakura_leaves", LeavesBlock(leavesSettings()))
+    val sakuraTreeFeature: RegistryEntry<ConfiguredFeature<TreeFeatureConfig, *>> = ConfiguredFeatures.register(
+      ModId("sakura_tree").toString(),
+      Feature.TREE,
+      TreeFeatureConfig.Builder(
+        BlockStateProvider.of(Blocks.SPRUCE_LOG),
+        LargeOakTrunkPlacer(3, 11, 0),
+        BlockStateProvider.of(sakuraLeaves),
+        LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+        TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
+      ).ignoreVines().build()
+    )
+    val pottedSakuraSapling = rBlock("potted_sakura_sapling", FlowerPotBlock(sakuraSapling, potSettings()))
+
+    val sakuraLootWeights = mapOf(
+      VILLAGE_PLAINS_CHEST to 6,
+      SIMPLE_DUNGEON_CHEST to 3,
+    )
+
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
 
@@ -171,6 +224,25 @@ object Registration {
         .suffocates(predicate)
         .blockVision(predicate)
     }
+
+    private fun leavesSettings(): AbstractBlock.Settings = AbstractBlock.Settings
+      .of(Material.LEAVES)
+      .strength(0.2f)
+      .ticksRandomly()
+      .sounds(BlockSoundGroup.GRASS)
+      .nonOpaque()
+      .allowsSpawning { _, _, _, _ -> false }
+      .suffocates { _, _, _ -> false }
+      .blockVision { _, _, _ -> false }
+
+    private fun saplingSettings(): AbstractBlock.Settings = AbstractBlock.Settings
+      .of(Material.PLANT)
+      .noCollision()
+      .ticksRandomly()
+      .breakInstantly()
+      .sounds(BlockSoundGroup.GRASS)
+
+    private fun potSettings(): AbstractBlock.Settings = AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING)
   }
 
   object ModItems {
@@ -193,6 +265,9 @@ object Registration {
     val ancientTome = rItem("ancient_tome", AncientTomeItem(itemSettings()
       .maxCount(1)
       .rarity(UNCOMMON)))
+
+    val sakuraSapling = rItem(ModBlocks.sakuraSapling, ::BlockItem, itemSettings())
+    val sakuraLeaves = rItem(ModBlocks.sakuraLeaves, ::BlockItem, itemSettings())
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value)

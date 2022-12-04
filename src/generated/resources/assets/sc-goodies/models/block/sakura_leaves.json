@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "sc-goodies:block/sakura_leaves"
+  }
+}

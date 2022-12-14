@@ -1,3 +1,7 @@
 {
-  "parent": "sc-goodies:block/shulker_box_diamond_yellow"
+  "parent": "sc-goodies:block/iron_shulker_base",
+  "textures": {
+    "particle": "sc-goodies:block/shulker_box_diamond_yellow",
+    "texture": "sc-goodies:entity/shulker/shulker_box_diamond_yellow"
+  }
 }

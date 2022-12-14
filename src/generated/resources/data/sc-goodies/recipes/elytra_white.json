@@ -1,5 +1,6 @@
 {
   "type": "sc-goodies:elytra",
+  "category": "equipment",
   "dyes": [
     "white"
   ],

@@ -1,6 +1,8 @@
 package pw.switchcraft.goodies.client.enderstorage
 
 import net.minecraft.client.model.*
+import net.minecraft.client.model.ModelPartBuilder.create
+import net.minecraft.client.model.ModelTransform.pivot
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.block.entity.BlockEntityRenderer
@@ -48,15 +50,15 @@ class EnderStorageBlockEntityRenderer(
       val model = ModelData()
       val root = model.root
 
-      root.addChild("bottom", ModelPartBuilder.create().uv(0, 19).cuboid(1.0f, 0.0f, 1.0f, 14.0f, 10.0f, 14.0f), ModelTransform.NONE)
-      root.addChild("lid", ModelPartBuilder.create().uv(0, 0).cuboid(1.0f, 0.0f, 0.0f, 14.0f, 5.0f, 14.0f), ModelTransform.pivot(0.0f, 9.0f, 1.0f))
+      root.addChild("bottom", create().uv(0, 19).cuboid(1.0f, 0.0f, 1.0f, 14.0f, 10.0f, 14.0f), ModelTransform.NONE)
+      root.addChild("lid", create().uv(0, 0).cuboid(1.0f, 0.0f, 0.0f, 14.0f, 5.0f, 14.0f), pivot(0.0f, 9.0f, 1.0f))
 
-      val latchPivot = ModelTransform.pivot(0.0f, 8.0f, 0.0f)
+      val latchPivot = pivot(0.0f, 8.0f, 0.0f)
       root.addChild("latch_normal", makeLatch(0, 0), latchPivot)
       root.addChild("latch_personal", makeLatch(6, 0), latchPivot)
       root.addChild("latch_automated", makeLatch(0, 5), latchPivot)
 
-      val buttonPivot = ModelTransform.pivot(0.0f, 9.0f, 1.0f)
+      val buttonPivot = pivot(0.0f, 9.0f, 1.0f)
       for (i in 0 until 3) {
         root.addChild("button_$i", makeButton(i), buttonPivot)
       }
@@ -73,10 +75,10 @@ class EnderStorageBlockEntityRenderer(
     private val buttons: List<ModelPart> = (0 until 3).map { part.getChild("button_$it") }.toList()
 
     private fun makeLatch(u: Int, v: Int) =
-      ModelPartBuilder.create().uv(u, v).cuboid(7.0f, -1.0f, 15.0f, 2.0f, 4.0f, 1.0f)
+      create().uv(u, v).cuboid(7.0f, -1.0f, 15.0f, 2.0f, 4.0f, 1.0f)
 
     private fun makeButton(i: Int) =
-      ModelPartBuilder.create().uv(1 + (i * 2), 1).cuboid(4.0f + (i * 3.0f), 5.0f, 5.0f, 2.0f, 1.0f, 4.0f, Dilation.NONE, 0.25f, 0.25f)
+      create().uv(1 + (i * 2), 1).cuboid(4.0f + (i * 3.0f), 5.0f, 5.0f, 2.0f, 1.0f, 4.0f, Dilation.NONE, 0.25f, 0.25f)
 
     private fun easeOutCubic(x: Float) = 1.0f - (1.0f - x).pow(3)
 

@@ -16,11 +16,11 @@ object ScGoodiesDatagen : DataGeneratorEntrypoint {
 
     val pack = generator.createPack()
     pack.addProvider(::ItemTagProvider)
-    pack.addProvider(::BlockModelProvider)
-    pack.addProvider(::ItemModelProvider)
+    pack.addProvider(::ModelProvider)
     pack.addProvider(::BlockLootTableProvider)
     pack.addProvider(::RecipeGenerator)
     pack.addProvider(::LanguageProvider)
+    pack.addProvider(::WorldgenProvider)
   }
 
   override fun buildRegistry(registryBuilder: RegistryBuilder) {

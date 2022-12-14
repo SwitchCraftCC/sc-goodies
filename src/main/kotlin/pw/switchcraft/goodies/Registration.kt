@@ -23,7 +23,6 @@ import net.minecraft.util.Rarity.UNCOMMON
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.intprovider.ConstantIntProvider
 import net.minecraft.world.gen.feature.ConfiguredFeature
-import net.minecraft.world.gen.feature.ConfiguredFeatures
 import net.minecraft.world.gen.feature.Feature
 import net.minecraft.world.gen.feature.TreeFeatureConfig
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
@@ -119,14 +118,18 @@ object Registration {
   }
 
   internal fun bootstrapFeatures(featureRegisterable: Registerable<ConfiguredFeature<*, *>>) {
-    ConfiguredFeatures.register(featureRegisterable, sakuraTreeFeature, Feature.TREE,
-      TreeFeatureConfig.Builder(
-        BlockStateProvider.of(Blocks.SPRUCE_LOG),
-        LargeOakTrunkPlacer(3, 11, 0),
-        BlockStateProvider.of(sakuraLeaves),
-        LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
-        TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
-      ).ignoreVines().build()
+    featureRegisterable.register(
+      sakuraTreeFeature,
+      ConfiguredFeature(
+        Feature.TREE,
+        TreeFeatureConfig.Builder(
+          BlockStateProvider.of(Blocks.SPRUCE_LOG),
+          LargeOakTrunkPlacer(3, 11, 0),
+          BlockStateProvider.of(sakuraLeaves),
+          LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+          TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
+        ).ignoreVines().build()
+      )
     )
   }
 

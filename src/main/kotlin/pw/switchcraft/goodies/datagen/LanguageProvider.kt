@@ -9,7 +9,6 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.DyeColor.*
 import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.Registration.ModItems.itemGroup
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.elytra.SpecialElytraType
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
@@ -37,7 +36,7 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
   )
 
   override fun generateTranslations(builder: TranslationBuilder) {
-    builder.add(itemGroup, "SwitchCraft Goodies")
+    builder.add("itemGroup.sc-goodies.main", "SwitchCraft Goodies")
     builder.add("category.sc-goodies", "SwitchCraft Goodies") // Keybind category
 
     // Iron Chests and Shulkers

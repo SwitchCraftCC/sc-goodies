@@ -54,7 +54,7 @@ class ElytraRecipeJsonBuilder(val recipe: ElytraRecipe) {
   private val outputId by lazy { itemId(outputItem) }
 
   fun offerTo(exporter: Consumer<RecipeJsonProvider>, recipeId: Identifier = outputId) {
-    val advancementId = recipeId.withPrefixedPath("recipes/" + recipe.category.name + "/")
+    val advancementId = recipeId.withPrefixedPath("recipes/" + recipe.category.asString() + "/")
     val advancement = Advancement.Builder.create()
       .criterion("has_elytra", conditionsFromItem(Items.ELYTRA))
       .parent(Identifier("recipes/root"))

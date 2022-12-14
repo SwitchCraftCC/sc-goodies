@@ -1,34 +1,29 @@
 package pw.switchcraft.goodies.client.ironchest
 
+import net.minecraft.client.model.ModelData
 import net.minecraft.client.model.ModelPart
+import net.minecraft.client.model.ModelPartBuilder.create
+import net.minecraft.client.model.ModelTransform
+import net.minecraft.client.model.ModelTransform.pivot
+import net.minecraft.client.model.TexturedModelData
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.block.entity.BlockEntityRenderer
-import net.minecraft.client.render.block.entity.BlockEntityRendererFactory
-import net.minecraft.client.render.entity.model.EntityModelLayers
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.ironchest.IronChestBlock
 import pw.switchcraft.goodies.ironchest.IronChestBlockEntity
+import pw.switchcraft.goodies.ironchest.IronChestVariant
 import kotlin.math.pow
 
-class IronChestBlockEntityRenderer(
-  private val block: IronChestBlock,
-  ctx: BlockEntityRendererFactory.Context
-) : BlockEntityRenderer<IronChestBlockEntity> {
+class IronChestBlockEntityRenderer(private val block: IronChestBlock) : BlockEntityRenderer<IronChestBlockEntity> {
   private val variant by block::variant
-  private val texture = ModId("textures/entity/chest/${variant.chestId}.png")
 
   private val defaultState by lazy {
     block.defaultState.with(IronChestBlock.facing, Direction.SOUTH)
   }
-
-  private val part: ModelPart = ctx.getLayerModelPart(EntityModelLayers.CHEST)
-  private val base: ModelPart = part.getChild("bottom")
-  private val lid: ModelPart = part.getChild("lid")
-  private val latch: ModelPart = part.getChild("lock")
 
   override fun render(entity: IronChestBlockEntity, tickDelta: Float, matrices: MatrixStack,
                       vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int) {
@@ -36,25 +31,54 @@ class IronChestBlockEntityRenderer(
     val state = if (world != null) entity.cachedState else defaultState
     val facing = state.get(IronChestBlock.facing)
 
-    matrices.push()
+    val progress = entity.getAnimationProgress(tickDelta)
 
-    matrices.translate(0.5, 0.5, 0.5)
-    matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-facing.asRotation()))
-    matrices.translate(-0.5, -0.5, -0.5)
-
-    val progress = easeOutCubic(entity.getAnimationProgress(tickDelta))
-    lid.pitch = -(progress * (Math.PI / 2).toFloat())
-    latch.pitch = lid.pitch
-
-    val consumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(texture))
-    base.render(matrices, consumer, light, overlay)
-    lid.render(matrices, consumer, light, overlay)
-    latch.render(matrices, consumer, light, overlay)
-
-    matrices.pop()
+    renderChest(matrices, facing, progress, vertexConsumers, variant, light, overlay)
   }
 
   companion object {
     private fun easeOutCubic(x: Float) = 1.0f - (1.0f - x).pow(3)
+
+    private val textures = IronChestVariant.values()
+      .associateWith { ModId("textures/entity/chest/${it.chestId}.png") }
+
+    private val modelData by lazy {
+      val model = ModelData()
+      val root = model.root
+
+      root.addChild("bottom", create().uv(0, 19).cuboid(1.0f, 0.0f, 1.0f, 14.0f, 10.0f, 14.0f), ModelTransform.NONE)
+      root.addChild("lid", create().uv(0, 0).cuboid(1.0f, 0.0f, 0.0f, 14.0f, 5.0f, 14.0f), pivot(0.0f, 9.0f, 1.0f))
+      root.addChild("lock", create().uv(0, 0).cuboid(7.0f, -2.0f, 14.0f, 2.0f, 4.0f, 1.0f), pivot(0.0f, 9.0f, 1.0f))
+
+      TexturedModelData.of(model, 64, 64)
+    }
+
+    private val part: ModelPart = modelData.createModel()
+    private val base: ModelPart = part.getChild("bottom")
+    private val lid: ModelPart = part.getChild("lid")
+    private val latch: ModelPart = part.getChild("lock")
+
+    fun renderChest(matrices: MatrixStack, facing: Direction, animationProgress: Float,
+                    vertexConsumers: VertexConsumerProvider, variant: IronChestVariant,
+                    light: Int, overlay: Int) {
+      val texture = textures[variant] ?: return
+
+      matrices.push()
+
+      matrices.translate(0.5, 0.5, 0.5)
+      matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-facing.asRotation()))
+      matrices.translate(-0.5, -0.5, -0.5)
+
+      val progress = easeOutCubic(animationProgress)
+      lid.pitch = -(progress * (Math.PI / 2).toFloat())
+      latch.pitch = lid.pitch
+
+      val consumer = vertexConsumers.getBuffer(RenderLayer.getEntityCutout(texture))
+      base.render(matrices, consumer, light, overlay)
+      lid.render(matrices, consumer, light, overlay)
+      latch.render(matrices, consumer, light, overlay)
+
+      matrices.pop()
+    }
   }
 }

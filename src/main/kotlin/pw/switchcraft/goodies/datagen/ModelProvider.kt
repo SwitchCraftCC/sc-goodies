@@ -6,6 +6,9 @@ import net.minecraft.block.Block
 import net.minecraft.data.client.*
 import net.minecraft.data.client.BlockStateModelGenerator.*
 import net.minecraft.data.client.ModelIds.getBlockModelId
+import net.minecraft.data.client.ModelIds.getItemModelId
+import net.minecraft.data.client.Models.GENERATED
+import net.minecraft.data.client.TexturedModel.makeFactory
 import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
@@ -13,12 +16,16 @@ import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
 import pw.switchcraft.goodies.Registration.ModBlocks.pottedSakuraSapling
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
+import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ScGoodies.ModId
+import pw.switchcraft.goodies.elytra.DyedElytraItem
+import pw.switchcraft.goodies.elytra.SpecialElytraType
+import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
 import java.util.*
 
-class BlockModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
+class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
     // Register block models for each iron chest variant
     IronChestVariant.values().forEach { variant ->
@@ -43,21 +50,45 @@ class BlockModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {
+    // Iron Chests and Shulkers
+    IronChestUpgrade.values().forEach { upgrade ->
+      log.info("Registering item model for $upgrade chest upgrade")
+      gen.register(upgrade.chestUpgrade, GENERATED)
+
+      log.info("Registering item model for $upgrade shulker upgrade")
+      gen.register(upgrade.shulkerUpgrade, GENERATED)
+    }
+
+    ModItems.hoverBoots.values.forEach {
+      gen.register(it, GENERATED)
+    }
+
+    gen.register(ModItems.itemMagnet, GENERATED)
+    gen.register(ModItems.dragonScale, GENERATED)
+    gen.register(ModItems.popcorn, GENERATED)
+    gen.register(ModItems.ancientTome, GENERATED)
+
+    // Dyed + Special Elytra
+    DyedElytraItem.dyedElytraItems.values
+      .forEach { gen.register(it, GENERATED) }
+    SpecialElytraType.values()
+      .forEach { gen.register(it.item, GENERATED) }
   }
 
   private fun registerIronChest(gen: BlockStateModelGenerator, variant: IronChestVariant) {
     log.info("Registering iron chest model for variant=$variant")
 
     with (variant) {
-      gen.registerSingleton(
-        chestBlock,
+      gen.registerSingleton(chestBlock,
+        makeFactory({ TextureMap().put(TextureKey.PARTICLE, chestParticle) }, Models.PARTICLE))
+
+      ironChestModel.upload(
+        getItemModelId(chestBlock.asItem()),
         TextureMap()
           .put(TextureKey.TEXTURE, ModId("entity/chest/${chestId}"))
           .put(TextureKey.PARTICLE, chestParticle),
-        ironChestModel
+        gen.modelCollector
       )
-
-      gen.registerParentedItemModel(chestBlock, getBlockModelId(chestBlock))
     }
   }
 
@@ -68,18 +99,17 @@ class BlockModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       val block = (if (color != null) dyedShulkerBlocks[color] else shulkerBlock)
         ?: throw IllegalStateException("Shulker block for variant=$this color=$color is null")
 
-      val id = Registries.BLOCK.getId(block).path
-      val texId = ModId("entity/shulker/$id")
+      val blockId = Registries.BLOCK.getId(block)
 
-      gen.registerSingleton(
-        block,
+      gen.registerSingleton(block, TexturedModel.PARTICLE)
+
+      ironShulkerModel.upload(
+        getItemModelId(block.asItem()),
         TextureMap()
-          .put(TextureKey.TEXTURE, texId)
-          .put(TextureKey.PARTICLE, texId),
-        ironShulkerModel
+          .put(TextureKey.TEXTURE, ModId("entity/shulker/${blockId.path}"))
+          .put(TextureKey.PARTICLE, ModId("block/${blockId.path}")),
+        gen.modelCollector
       )
-
-      gen.registerParentedItemModel(block, getBlockModelId(block))
     }
   }
 

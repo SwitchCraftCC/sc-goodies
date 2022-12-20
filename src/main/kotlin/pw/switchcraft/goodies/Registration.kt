@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
+import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
@@ -96,7 +97,9 @@ object Registration {
     // Ender Storage
     EnderStorageBlockEntity.initEvents()
     EnderStorageCommands.register()
-    EnderStorageMethods.register()
+    if (FabricLoader.getInstance().isModLoaded("computercraft")) {
+      EnderStorageMethods.register()
+    }
 
     // Item Magnets
     registerServerReceiver(ToggleItemMagnetPacket.id, ToggleItemMagnetPacket::fromBytes)

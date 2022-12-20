@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.misc
+package pw.switchcraft.goodies.nature
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.trade.TradeOfferHelper

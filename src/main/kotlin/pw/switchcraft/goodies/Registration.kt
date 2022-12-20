@@ -3,6 +3,7 @@ package pw.switchcraft.goodies
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
@@ -31,6 +32,7 @@ import net.minecraft.world.gen.stateprovider.BlockStateProvider
 import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer
 import pw.switchcraft.goodies.Registration.ModBlockEntities.rBlockEntity
 import pw.switchcraft.goodies.Registration.ModBlocks.chestSettings
+import pw.switchcraft.goodies.Registration.ModBlocks.pinkGrass
 import pw.switchcraft.goodies.Registration.ModBlocks.rBlock
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraTreeFeature
@@ -53,7 +55,12 @@ import pw.switchcraft.goodies.ironshulker.IronShulkerItem
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
 import pw.switchcraft.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import pw.switchcraft.goodies.itemmagnet.ToggleItemMagnetPacket
-import pw.switchcraft.goodies.misc.*
+import pw.switchcraft.goodies.misc.ConcreteExtras
+import pw.switchcraft.goodies.misc.EndermitesFormShulkers
+import pw.switchcraft.goodies.misc.PopcornItem
+import pw.switchcraft.goodies.nature.PinkGrass
+import pw.switchcraft.goodies.nature.SakuraSaplingGenerator
+import pw.switchcraft.goodies.nature.SakuraTrees
 import pw.switchcraft.goodies.tomes.AncientTomeItem
 import pw.switchcraft.goodies.tomes.TomeEnchantments
 import pw.switchcraft.goodies.util.BaseItem
@@ -114,6 +121,7 @@ object Registration {
     TomeEnchantments.init()
     EndermitesFormShulkers.init()
     SakuraTrees.init()
+    FlattenableBlockRegistry.register(pinkGrass, Blocks.DIRT_PATH.defaultState)
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }
 
@@ -177,6 +185,8 @@ object Registration {
     val sakuraTreeFeature: RegistryKey<ConfiguredFeature<*, *>> =
       RegistryKey.of(CONFIGURED_FEATURE, ModId("sakura_tree"))
     val pottedSakuraSapling = rBlock("potted_sakura_sapling", FlowerPotBlock(sakuraSapling, potSettings()))
+    val pinkGrass = rBlock("pink_grass", PinkGrass(AbstractBlock.Settings
+      .of(Material.SOLID_ORGANIC, MapColor.PINK).ticksRandomly().strength(0.6f).sounds(BlockSoundGroup.GRASS)))
 
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
@@ -256,6 +266,7 @@ object Registration {
 
     val sakuraSapling = rItem(ModBlocks.sakuraSapling, ::BlockItem, itemSettings())
     val sakuraLeaves = rItem(ModBlocks.sakuraLeaves, ::BlockItem, itemSettings())
+    val pinkGrass = rItem(ModBlocks.pinkGrass, ::BlockItem, itemSettings())
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value).also { items.add(it) }

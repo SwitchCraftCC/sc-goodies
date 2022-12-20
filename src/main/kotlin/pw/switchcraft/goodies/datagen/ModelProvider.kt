@@ -3,6 +3,7 @@ package pw.switchcraft.goodies.datagen
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
+import net.minecraft.block.Blocks
 import net.minecraft.data.client.*
 import net.minecraft.data.client.BlockStateModelGenerator.*
 import net.minecraft.data.client.ModelIds.getBlockModelId
@@ -12,6 +13,7 @@ import net.minecraft.data.client.TexturedModel.makeFactory
 import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
+import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
 import pw.switchcraft.goodies.Registration.ModBlocks.pottedSakuraSapling
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
@@ -47,6 +49,22 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     // Sakura leaves
     gen.registerSingleton(sakuraLeaves, TexturedModel.LEAVES)
     gen.registerFlowerPotPlant(sakuraSapling, pottedSakuraSapling, TintType.NOT_TINTED)
+
+    // Top soils
+    val dirt = TextureMap.getId(Blocks.DIRT)
+    val textureMap = TextureMap()
+      .put(TextureKey.BOTTOM, dirt)
+      .inherit(TextureKey.BOTTOM, TextureKey.PARTICLE)
+      .put(TextureKey.TOP, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_top"))
+      .put(TextureKey.SIDE, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_snow"))
+    val topSoilVariant = BlockStateVariant.create().put(
+      VariantSettings.MODEL,
+      Models.CUBE_BOTTOM_TOP.upload(Blocks.GRASS_BLOCK, "_snow", textureMap, gen.modelCollector)
+    )
+    gen.registerTopSoil(ModBlocks.pinkGrass, TexturedModel.CUBE_BOTTOM_TOP
+      .get(ModBlocks.pinkGrass)
+      .textures { t -> t.put(TextureKey.BOTTOM, dirt) }
+      .upload(ModBlocks.pinkGrass, gen.modelCollector), topSoilVariant)
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {

@@ -15,6 +15,7 @@ object ScGoodiesDatagen : DataGeneratorEntrypoint {
     log.info("sc-goodies datagen initializing")
 
     val pack = generator.createPack()
+    pack.addProvider(::BlockTagProvider)
     pack.addProvider(::ItemTagProvider)
     pack.addProvider(::ModelProvider)
     pack.addProvider(::BlockLootTableProvider)

@@ -3,6 +3,7 @@ package pw.switchcraft.goodies.datagen
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.minecraft.block.Block
+import net.minecraft.block.Blocks
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTable
@@ -14,6 +15,7 @@ import net.minecraft.loot.function.SetContentsLootFunction
 import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
+import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
 import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
 import pw.switchcraft.goodies.ironchest.IronChestVariant
@@ -40,6 +42,7 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
 
     addDrop(sakuraLeaves) { block -> leavesDrops(block, sakuraSapling, *saplingDropChance) }
     addDrop(sakuraSapling)
+    addDrop(ModBlocks.pinkGrass) { block -> drops(block, Blocks.DIRT) }
   }
 
   private fun registerIronShulkerDrops(type: BlockEntityType<IronShulkerBlockEntity>, block: Block) {

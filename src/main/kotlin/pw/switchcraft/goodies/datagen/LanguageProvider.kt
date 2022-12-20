@@ -122,6 +122,7 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(ModBlocks.sakuraLeaves, "Sakura Leaves")
     builder.add(ModBlocks.sakuraSapling, "Sakura Sapling")
     builder.add(ModBlocks.pottedSakuraSapling, "Potted Sakura Sapling")
+    builder.add(ModBlocks.pinkGrass, "Pink Grass")
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {

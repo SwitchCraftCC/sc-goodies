@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.misc
+package pw.switchcraft.goodies.nature
 
 import net.minecraft.block.sapling.SaplingGenerator
 import net.minecraft.util.math.random.Random

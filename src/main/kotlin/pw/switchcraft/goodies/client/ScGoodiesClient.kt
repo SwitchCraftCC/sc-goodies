@@ -24,6 +24,7 @@ import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
 import pw.switchcraft.goodies.client.misc.ConcreteSpeedupHandler
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey
+import pw.switchcraft.goodies.nature.ScTree
 
 object ScGoodiesClient : ClientModInitializer {
   val log = LoggerFactory.getLogger("ScGoodies/ScGoodiesClient")!!
@@ -56,9 +57,9 @@ object ScGoodiesClient : ClientModInitializer {
     ElytraClientEvents.initEvents()
 
     ConcreteSpeedupHandler.initEvents()
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.sakuraLeaves, RenderLayer.getCutoutMipped())
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.sakuraSapling, RenderLayer.getCutout())
-    BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.pottedSakuraSapling, RenderLayer.getCutout())
+    registerTreeRenderLayers(ModBlocks.sakuraSapling)
+    registerTreeRenderLayers(ModBlocks.mapleSapling)
+    registerTreeRenderLayers(ModBlocks.blueSapling)
   }
 
   private fun registerIronChestRenderer(variant: IronChestVariant) {
@@ -82,5 +83,11 @@ object ScGoodiesClient : ClientModInitializer {
 
       HandledScreens.register(shulkerScreenHandlerType, ::IronChestScreen)
     }
+  }
+
+  private fun registerTreeRenderLayers(tree: ScTree) {
+    BlockRenderLayerMap.INSTANCE.putBlock(tree.leaves, RenderLayer.getCutoutMipped())
+    BlockRenderLayerMap.INSTANCE.putBlock(tree.sapling, RenderLayer.getCutout())
+    BlockRenderLayerMap.INSTANCE.putBlock(tree.potted, RenderLayer.getCutout())
   }
 }

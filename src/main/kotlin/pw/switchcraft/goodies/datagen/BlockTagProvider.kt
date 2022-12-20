@@ -15,8 +15,8 @@ class BlockTagProvider(
 ) : FabricTagProvider<Block>(out, RegistryKeys.BLOCK, future) {
   override fun configure(arg: RegistryWrapper.WrapperLookup) {
     getOrCreateTagBuilder(BlockTags.DIRT)
-      .add(ModBlocks.pinkGrass)
+      .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
     getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
-      .add(ModBlocks.pinkGrass)
+      .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
   }
 }

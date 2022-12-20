@@ -15,9 +15,6 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import pw.switchcraft.goodies.Registration.ModBlocks
 import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
-import pw.switchcraft.goodies.Registration.ModBlocks.pottedSakuraSapling
-import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
-import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
 import pw.switchcraft.goodies.Registration.ModItems
 import pw.switchcraft.goodies.ScGoodies.ModId
 import pw.switchcraft.goodies.elytra.DyedElytraItem
@@ -25,6 +22,7 @@ import pw.switchcraft.goodies.elytra.SpecialElytraType
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
+import pw.switchcraft.goodies.nature.ScTree
 import java.util.*
 
 class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
@@ -46,25 +44,11 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       registerStairs(gen, it.stairsBlock, it.texture)
     }
 
-    // Sakura leaves
-    gen.registerSingleton(sakuraLeaves, TexturedModel.LEAVES)
-    gen.registerFlowerPotPlant(sakuraSapling, pottedSakuraSapling, TintType.NOT_TINTED)
-
-    // Top soils
-    val dirt = TextureMap.getId(Blocks.DIRT)
-    val textureMap = TextureMap()
-      .put(TextureKey.BOTTOM, dirt)
-      .inherit(TextureKey.BOTTOM, TextureKey.PARTICLE)
-      .put(TextureKey.TOP, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_top"))
-      .put(TextureKey.SIDE, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_snow"))
-    val topSoilVariant = BlockStateVariant.create().put(
-      VariantSettings.MODEL,
-      Models.CUBE_BOTTOM_TOP.upload(Blocks.GRASS_BLOCK, "_snow", textureMap, gen.modelCollector)
-    )
-    gen.registerTopSoil(ModBlocks.pinkGrass, TexturedModel.CUBE_BOTTOM_TOP
-      .get(ModBlocks.pinkGrass)
-      .textures { t -> t.put(TextureKey.BOTTOM, dirt) }
-      .upload(ModBlocks.pinkGrass, gen.modelCollector), topSoilVariant)
+    // Nature
+    registerTree(gen, ModBlocks.sakuraSapling)
+    registerTree(gen, ModBlocks.mapleSapling)
+    registerTree(gen, ModBlocks.blueSapling)
+    registerTopSoils(gen, ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {
@@ -154,6 +138,31 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     val outer = Models.OUTER_STAIRS.upload(stairsBlock, map, gen.modelCollector)
     gen.blockStateCollector.accept(createStairsBlockState(stairsBlock, inner, stairs, outer))
     gen.registerParentedItemModel(stairsBlock, stairs)
+  }
+
+  private fun registerTree(gen: BlockStateModelGenerator, tree: ScTree) {
+    gen.registerSingleton(tree.leaves, TexturedModel.LEAVES)
+    gen.registerFlowerPotPlant(tree.sapling, tree.potted, TintType.NOT_TINTED)
+  }
+
+  private fun registerTopSoils(gen: BlockStateModelGenerator, vararg blocks: Block) {
+    val dirt = TextureMap.getId(Blocks.DIRT)
+    val textureMap = TextureMap()
+      .put(TextureKey.BOTTOM, dirt)
+      .inherit(TextureKey.BOTTOM, TextureKey.PARTICLE)
+      .put(TextureKey.TOP, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_top"))
+      .put(TextureKey.SIDE, TextureMap.getSubId(Blocks.GRASS_BLOCK, "_snow"))
+    val topSoilVariant = BlockStateVariant.create().put(
+      VariantSettings.MODEL,
+      Models.CUBE_BOTTOM_TOP.upload(Blocks.GRASS_BLOCK, "_snow", textureMap, gen.modelCollector)
+    )
+
+    blocks.forEach {
+      gen.registerTopSoil(it, TexturedModel.CUBE_BOTTOM_TOP
+        .get(it)
+        .textures { t -> t.put(TextureKey.BOTTOM, dirt) }
+        .upload(it, gen.modelCollector), topSoilVariant)
+    }
   }
 
   companion object {

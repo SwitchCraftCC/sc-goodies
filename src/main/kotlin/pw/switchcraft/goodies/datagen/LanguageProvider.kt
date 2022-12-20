@@ -14,6 +14,7 @@ import pw.switchcraft.goodies.elytra.SpecialElytraType
 import pw.switchcraft.goodies.ironchest.IronChestUpgrade
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.misc.ConcreteExtras
+import pw.switchcraft.goodies.nature.ScTree
 
 class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
   private val colorNames = mapOf(
@@ -119,10 +120,12 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(ModItems.popcorn, "Popcorn")
     builder.sub(ModItems.popcorn, "A bottomless bag of popcorn.")
 
-    builder.add(ModBlocks.sakuraLeaves, "Sakura Leaves")
-    builder.add(ModBlocks.sakuraSapling, "Sakura Sapling")
-    builder.add(ModBlocks.pottedSakuraSapling, "Potted Sakura Sapling")
+    builder.add(ModBlocks.sakuraSapling, "Sakura")
+    builder.add(ModBlocks.mapleSapling, "Maple")
+    builder.add(ModBlocks.blueSapling, "Blue")
     builder.add(ModBlocks.pinkGrass, "Pink Grass")
+    builder.add(ModBlocks.autumnGrass, "Autumn Grass")
+    builder.add(ModBlocks.blueGrass, "Blue Grass")
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
@@ -140,4 +143,10 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
   }
 
   private fun String.addArticle() = if (lowercase().matches(Regex("^[aeiou].*"))) "an $this" else "a $this"
+
+  private fun TranslationBuilder.add(tree: ScTree, name: String) {
+    add(tree.leaves, "$name Leaves")
+    add(tree.sapling, "$name Sapling")
+    add(tree.potted, "Potted $name Sapling")
+  }
 }

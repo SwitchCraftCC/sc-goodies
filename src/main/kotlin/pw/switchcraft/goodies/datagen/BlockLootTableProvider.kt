@@ -16,11 +16,10 @@ import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
 import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.Registration.ModBlocks.sakuraLeaves
-import pw.switchcraft.goodies.Registration.ModBlocks.sakuraSapling
 import pw.switchcraft.goodies.ironchest.IronChestVariant
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
 import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
+import pw.switchcraft.goodies.nature.ScTree
 
 class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvider(out) {
   private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)
@@ -40,9 +39,12 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
       }
     }
 
-    addDrop(sakuraLeaves) { block -> leavesDrops(block, sakuraSapling, *saplingDropChance) }
-    addDrop(sakuraSapling)
+    addTreeDrops(ModBlocks.sakuraSapling)
+    addTreeDrops(ModBlocks.mapleSapling)
+    addTreeDrops(ModBlocks.blueSapling)
     addDrop(ModBlocks.pinkGrass) { block -> drops(block, Blocks.DIRT) }
+    addDrop(ModBlocks.autumnGrass) { block -> drops(block, Blocks.DIRT) }
+    addDrop(ModBlocks.blueGrass) { block -> drops(block, Blocks.DIRT) }
   }
 
   private fun registerIronShulkerDrops(type: BlockEntityType<IronShulkerBlockEntity>, block: Block) {
@@ -64,5 +66,10 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
       ))
 
     addDrop(block, builder)
+  }
+
+  private fun addTreeDrops(tree: ScTree) {
+    addDrop(tree.leaves) { block -> leavesDrops(block, tree.sapling, *saplingDropChance) }
+    addDrop(tree.sapling)
   }
 }

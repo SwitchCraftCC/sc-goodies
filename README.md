@@ -20,8 +20,8 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 - Popcorn
 - Concrete stairs and slabs, speed-up when walking on concrete
 - Endermites bury into Purpur Blocks to form Shulkers, similar to Quark.
-- Sakura Trees
-- Pink Grass
+- Sakura Trees, Maple Trees, Blue Trees
+- Pink Grass, Autumn Grass, Blue Grass
 
 ## Modpacks
 

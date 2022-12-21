@@ -286,6 +286,7 @@ object Registration {
       val leaves = rBlock("${name}_leaves", LeavesBlock(leavesSettings()))
       val potted = rBlock("potted_${name}_sapling", FlowerPotBlock(sapling, potSettings()))
       val saplingItem = rItem(sapling, ::BlockItem, itemSettings())
+      val leavesItem = rItem(leaves, ::BlockItem, itemSettings())
 
       val tree = ScTree(
         sapling,

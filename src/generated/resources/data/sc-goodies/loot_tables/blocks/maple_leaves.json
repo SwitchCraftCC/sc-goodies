@@ -37,7 +37,7 @@
                   ]
                 }
               ],
-              "name": "minecraft:air"
+              "name": "sc-goodies:maple_leaves"
             },
             {
               "type": "minecraft:item",

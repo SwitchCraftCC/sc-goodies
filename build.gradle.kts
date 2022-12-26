@@ -51,7 +51,7 @@ repositories {
   maven {
     url = uri("https://repo.lem.sh/releases")
     content {
-      includeGroup("pw.switchcraft")
+      includeGroup("io.sc3")
     }
   }
 
@@ -84,7 +84,7 @@ dependencies {
   }
   modImplementation("net.fabricmc", "fabric-language-kotlin", fabricKotlinVersion)
 
-  modImplementation(include("pw.switchcraft", "sc-library", scLibraryVersion))
+  modImplementation(include("io.sc3", "sc-library", scLibraryVersion))
 
   modImplementation("cc.tweaked:cc-tweaked-$ccMcVersion-fabric-api:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")

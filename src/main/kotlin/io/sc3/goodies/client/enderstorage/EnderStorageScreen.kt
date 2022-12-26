@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.enderstorage
+package io.sc3.goodies.client.enderstorage
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.minecraft.client.gui.screen.ingame.HandledScreen
@@ -8,8 +8,8 @@ import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.enderstorage.EnderStorageScreenHandler
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.enderstorage.EnderStorageScreenHandler
 
 class EnderStorageScreen(
   handler: EnderStorageScreenHandler,

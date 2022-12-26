@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.itemmagnet
+package io.sc3.goodies.itemmagnet
 
 import dev.emi.trinkets.api.TrinketsApi
 import net.minecraft.entity.ExperienceOrbEntity
@@ -7,10 +7,10 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
-import pw.switchcraft.goodies.Registration
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem.Companion.setStackEnabled
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem.Companion.stackEnabled
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem.Companion.stackRadius
+import io.sc3.goodies.Registration
+import io.sc3.goodies.itemmagnet.ItemMagnetItem.Companion.setStackEnabled
+import io.sc3.goodies.itemmagnet.ItemMagnetItem.Companion.stackEnabled
+import io.sc3.goodies.itemmagnet.ItemMagnetItem.Companion.stackRadius
 import java.util.*
 import kotlin.math.min
 

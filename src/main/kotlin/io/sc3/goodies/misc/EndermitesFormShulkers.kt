@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.misc
+package io.sc3.goodies.misc
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents
 import net.minecraft.block.Blocks
@@ -11,9 +11,9 @@ import net.minecraft.entity.mob.ShulkerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Direction.NORTH
-import pw.switchcraft.goodies.mixin.LivingEntityAccessor
-import pw.switchcraft.goodies.mixin.MobEntityAccessor
-import pw.switchcraft.goodies.mixin.ShulkerAccessor
+import io.sc3.goodies.mixin.LivingEntityAccessor
+import io.sc3.goodies.mixin.MobEntityAccessor
+import io.sc3.goodies.mixin.ShulkerAccessor
 import java.util.*
 
 // TODO: Config for this

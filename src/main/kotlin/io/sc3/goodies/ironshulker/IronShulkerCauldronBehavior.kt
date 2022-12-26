@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironshulker
+package io.sc3.goodies.ironshulker
 
 import net.minecraft.block.Block
 import net.minecraft.block.LeveledCauldronBlock
@@ -7,7 +7,7 @@ import net.minecraft.block.cauldron.CauldronBehavior.WATER_CAULDRON_BEHAVIOR
 import net.minecraft.item.ItemStack
 import net.minecraft.stat.Stats
 import net.minecraft.util.ActionResult
-import pw.switchcraft.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironchest.IronChestVariant
 
 object IronShulkerCauldronBehavior {
   private val cleanShulker = CauldronBehavior { state, world, pos, player, hand, stack ->

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen
+package io.sc3.goodies.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
@@ -13,16 +13,16 @@ import net.minecraft.data.client.TexturedModel.makeFactory
 import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.Registration.ModBlocks.enderStorage
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.elytra.DyedElytraItem
-import pw.switchcraft.goodies.elytra.SpecialElytraType
-import pw.switchcraft.goodies.ironchest.IronChestUpgrade
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.misc.ConcreteExtras
-import pw.switchcraft.goodies.nature.ScTree
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.Registration.ModBlocks.enderStorage
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.elytra.DyedElytraItem
+import io.sc3.goodies.elytra.SpecialElytraType
+import io.sc3.goodies.ironchest.IronChestUpgrade
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.misc.ConcreteExtras
+import io.sc3.goodies.nature.ScTree
 import java.util.*
 
 class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {

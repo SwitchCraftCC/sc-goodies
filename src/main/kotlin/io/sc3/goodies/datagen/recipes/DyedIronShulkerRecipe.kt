@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.DYES
 import net.minecraft.inventory.CraftingInventory
@@ -10,9 +10,9 @@ import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.world.World
-import pw.switchcraft.goodies.datagen.recipes.ingredients.IronShulkerIngredient
-import pw.switchcraft.goodies.ironchest.IronChestVariant.IRON
-import pw.switchcraft.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.datagen.recipes.ingredients.IronShulkerIngredient
+import io.sc3.goodies.ironchest.IronChestVariant.IRON
+import io.sc3.goodies.ironshulker.IronShulkerItem
 
 private val ironShulker = IronShulkerIngredient()
 private val dye = fromTag(DYES)

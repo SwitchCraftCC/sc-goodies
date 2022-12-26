@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironshulker
+package io.sc3.goodies.ironshulker
 
 import net.fabricmc.fabric.api.util.NbtType.LIST
 import net.fabricmc.fabric.api.util.NbtType.STRING
@@ -36,10 +36,10 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
-import pw.switchcraft.goodies.ScGoodies
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.util.BaseBlockWithEntity
+import io.sc3.goodies.ScGoodies
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.util.BaseBlockWithEntity
 
 class IronShulkerBlock(
   settings: Settings,

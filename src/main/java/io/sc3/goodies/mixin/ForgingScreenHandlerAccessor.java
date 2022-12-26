@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.CraftingResultInventory;

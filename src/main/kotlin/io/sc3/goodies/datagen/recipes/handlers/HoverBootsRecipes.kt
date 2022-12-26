@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
@@ -10,12 +10,12 @@ import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.Registries.RECIPE_SERIALIZER
 import net.minecraft.registry.Registry.register
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.datagen.ScGoodiesDatagen
-import pw.switchcraft.goodies.datagen.recipes.HoverBootsRecipe
-import pw.switchcraft.library.recipe.BetterComplexRecipeJsonBuilder
-import pw.switchcraft.library.recipe.RecipeHandler
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.datagen.ScGoodiesDatagen
+import io.sc3.goodies.datagen.recipes.HoverBootsRecipe
+import io.sc3.library.recipe.BetterComplexRecipeJsonBuilder
+import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object HoverBootsRecipes : RecipeHandler {

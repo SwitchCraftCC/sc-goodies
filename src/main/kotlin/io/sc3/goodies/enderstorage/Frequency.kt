@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import com.google.gson.Gson
 import net.minecraft.item.BlockItem
@@ -9,8 +9,8 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.library.ext.optCompound
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.library.ext.optCompound
 import java.util.*
 
 private val gson = Gson()

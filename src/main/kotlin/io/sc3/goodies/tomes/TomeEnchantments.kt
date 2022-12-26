@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.tomes
+package io.sc3.goodies.tomes
 
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.loot.v2.LootTableSource
@@ -23,10 +23,10 @@ import net.minecraft.screen.Property
 import net.minecraft.text.Text.literal
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.random.Random
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
-import pw.switchcraft.goodies.util.AnvilEvents
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
+import io.sc3.goodies.util.AnvilEvents
 
 private const val UPGRADE_COST = 10
 private const val UPGRADE_COST_MAXED = 30

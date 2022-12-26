@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.nature
+package io.sc3.goodies.nature
 
 import net.minecraft.block.SpreadableBlock
 

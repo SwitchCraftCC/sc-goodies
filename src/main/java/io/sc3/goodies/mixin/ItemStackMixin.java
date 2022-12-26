@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pw.switchcraft.goodies.Registration.ModItems;
-import pw.switchcraft.goodies.ScGoodies;
+import io.sc3.goodies.Registration.ModItems;
+import io.sc3.goodies.ScGoodies;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.recipe.RecipeJsonProvider
@@ -12,17 +12,17 @@ import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.registry.Registries.RECIPE_SERIALIZER
 import net.minecraft.registry.Registry.register
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.datagen.recipes.BaseIronShulkerRecipe
-import pw.switchcraft.goodies.datagen.recipes.DyedIronShulkerRecipe
-import pw.switchcraft.goodies.datagen.recipes.ingredients.IronShulkerIngredient
-import pw.switchcraft.library.recipe.BetterComplexRecipeJsonBuilder
-import pw.switchcraft.library.recipe.RecipeHandler
-import pw.switchcraft.library.recipe.specialRecipe
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.datagen.recipes.BaseIronShulkerRecipe
+import io.sc3.goodies.datagen.recipes.DyedIronShulkerRecipe
+import io.sc3.goodies.datagen.recipes.ingredients.IronShulkerIngredient
+import io.sc3.library.recipe.BetterComplexRecipeJsonBuilder
+import io.sc3.library.recipe.RecipeHandler
+import io.sc3.library.recipe.specialRecipe
 import java.util.function.Consumer
-import pw.switchcraft.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
-import pw.switchcraft.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT
-import pw.switchcraft.goodies.ironchest.IronChestVariant.IRON as IRON_VARIANT
+import io.sc3.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
+import io.sc3.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT
+import io.sc3.goodies.ironchest.IronChestVariant.IRON as IRON_VARIANT
 
 object IronShulkerRecipes : RecipeHandler {
   private val iron = fromTag(IRON_INGOTS)

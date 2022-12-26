@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
@@ -6,8 +6,8 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.math.BlockPos
-import pw.switchcraft.goodies.Registration.ModScreens
-import pw.switchcraft.goodies.util.ChestScreenHandler
+import io.sc3.goodies.Registration.ModScreens
+import io.sc3.goodies.util.ChestScreenHandler
 
 class EnderStorageScreenHandler(
   syncId: Int,

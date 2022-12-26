@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 val RECIPE_HANDLERS by lazy { listOf(
   IronChestRecipes,

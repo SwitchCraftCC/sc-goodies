@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import net.minecraft.inventory.Inventories
 import net.minecraft.nbt.NbtCompound

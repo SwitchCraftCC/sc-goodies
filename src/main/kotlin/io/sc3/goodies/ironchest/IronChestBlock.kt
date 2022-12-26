@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironchest
+package io.sc3.goodies.ironchest
 
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
@@ -28,10 +28,10 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
-import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.goodies.util.BaseBlockWithEntity
-import pw.switchcraft.library.WaterloggableBlock
-import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.util.BaseBlockWithEntity
+import io.sc3.library.WaterloggableBlock
+import io.sc3.library.WaterloggableBlock.Companion.waterlogged
 
 class IronChestBlock(
   settings: Settings,

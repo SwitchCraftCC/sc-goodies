@@ -34,19 +34,19 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "pw.switchcraft.goodies.ScGoodies"
+        "value": "io.sc3.goodies.ScGoodies"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "pw.switchcraft.goodies.client.ScGoodiesClient"
+        "value": "io.sc3.goodies.client.ScGoodiesClient"
       }
     ],
     "fabric-datagen": [
       {
         "adapter": "kotlin",
-        "value": "pw.switchcraft.goodies.datagen.ScGoodiesDatagen"
+        "value": "io.sc3.goodies.datagen.ScGoodiesDatagen"
       }
     ]
   },

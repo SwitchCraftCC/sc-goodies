@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.util
+package io.sc3.goodies.util
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory

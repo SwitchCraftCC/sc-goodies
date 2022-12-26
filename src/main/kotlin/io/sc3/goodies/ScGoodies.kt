@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies
+package io.sc3.goodies
 
 import net.fabricmc.api.ModInitializer
 import net.minecraft.util.Identifier

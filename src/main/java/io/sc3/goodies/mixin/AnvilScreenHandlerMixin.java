@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.AnvilScreenHandler;
@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pw.switchcraft.goodies.util.AnvilEvents;
+import io.sc3.goodies.util.AnvilEvents;
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(AnvilScreenHandler.class)

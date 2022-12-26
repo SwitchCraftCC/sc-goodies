@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.util
+package io.sc3.goodies.util
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity

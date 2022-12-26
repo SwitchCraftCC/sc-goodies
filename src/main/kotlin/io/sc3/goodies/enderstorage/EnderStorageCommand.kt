@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.Command.SINGLE_SUCCESS
@@ -17,11 +17,11 @@ import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.math.BlockPos
-import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.goodies.util.dyeArg
-import pw.switchcraft.goodies.util.parseDyeArg
-import pw.switchcraft.goodies.util.parseUserArg
-import pw.switchcraft.goodies.util.userArg
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.util.dyeArg
+import io.sc3.goodies.util.parseDyeArg
+import io.sc3.goodies.util.parseUserArg
+import io.sc3.goodies.util.userArg
 
 val NO_FREQUENCY = SimpleCommandExceptionType(translatable("block.$modId.ender_storage.not_found"))
 

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client
+package io.sc3.goodies.client
 
 import dev.emi.trinkets.api.client.TrinketRendererRegistry
 import net.fabricmc.api.ClientModInitializer
@@ -9,22 +9,22 @@ import net.minecraft.client.gui.screen.ingame.HandledScreens
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.util.DyeColor
 import org.slf4j.LoggerFactory
-import pw.switchcraft.goodies.Registration.ModBlockEntities
-import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.Registration.ModScreens
-import pw.switchcraft.goodies.client.elytra.ElytraClientEvents
-import pw.switchcraft.goodies.client.enderstorage.EnderStorageBlockEntityRenderer
-import pw.switchcraft.goodies.client.enderstorage.EnderStorageItemRenderer
-import pw.switchcraft.goodies.client.enderstorage.EnderStorageScreen
-import pw.switchcraft.goodies.client.hoverboots.HoverBootsTrinketRenderer
-import pw.switchcraft.goodies.client.ironchest.*
-import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetHud
-import pw.switchcraft.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
-import pw.switchcraft.goodies.client.misc.ConcreteSpeedupHandler
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey
-import pw.switchcraft.goodies.nature.ScTree
+import io.sc3.goodies.Registration.ModBlockEntities
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.Registration.ModScreens
+import io.sc3.goodies.client.elytra.ElytraClientEvents
+import io.sc3.goodies.client.enderstorage.EnderStorageBlockEntityRenderer
+import io.sc3.goodies.client.enderstorage.EnderStorageItemRenderer
+import io.sc3.goodies.client.enderstorage.EnderStorageScreen
+import io.sc3.goodies.client.hoverboots.HoverBootsTrinketRenderer
+import io.sc3.goodies.client.ironchest.*
+import io.sc3.goodies.client.itemmagnet.ItemMagnetHud
+import io.sc3.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
+import io.sc3.goodies.client.misc.ConcreteSpeedupHandler
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.itemmagnet.ItemMagnetHotkey
+import io.sc3.goodies.nature.ScTree
 
 object ScGoodiesClient : ClientModInitializer {
   val log = LoggerFactory.getLogger("ScGoodies/ScGoodiesClient")!!

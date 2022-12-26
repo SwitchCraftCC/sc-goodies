@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import net.fabricmc.fabric.api.util.NbtType.COMPOUND
 import net.fabricmc.loader.api.FabricLoader
@@ -37,17 +37,17 @@ import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
-import pw.switchcraft.goodies.Registration.ModBlockEntities
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.BUTTON
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
-import pw.switchcraft.goodies.util.BaseBlockWithEntity
-import pw.switchcraft.library.Tooltips.addDescLines
-import pw.switchcraft.library.WaterloggableBlock
-import pw.switchcraft.library.WaterloggableBlock.Companion.waterlogged
-import pw.switchcraft.library.ext.rotateTowards
-import pw.switchcraft.library.ext.toDiv16
-import pw.switchcraft.library.ext.toDiv16VoxelShape
+import io.sc3.goodies.Registration.ModBlockEntities
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.BUTTON
+import io.sc3.goodies.enderstorage.EnderStorageBlock.HitShape.HitShapeType.LATCH
+import io.sc3.goodies.util.BaseBlockWithEntity
+import io.sc3.library.Tooltips.addDescLines
+import io.sc3.library.WaterloggableBlock
+import io.sc3.library.WaterloggableBlock.Companion.waterlogged
+import io.sc3.library.ext.rotateTowards
+import io.sc3.library.ext.toDiv16
+import io.sc3.library.ext.toDiv16VoxelShape
 
 // Raycasts hit the very edge of the shape so the .contains() check will fail without a slight expansion. This is half
 // of a voxel.

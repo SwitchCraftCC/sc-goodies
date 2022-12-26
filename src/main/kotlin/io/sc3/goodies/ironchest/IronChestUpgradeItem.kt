@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironchest
+package io.sc3.goodies.ironchest
 
 import net.minecraft.block.ChestBlock
 import net.minecraft.block.ShulkerBoxBlock
@@ -18,13 +18,13 @@ import net.minecraft.util.Formatting.GRAY
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
-import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
-import pw.switchcraft.goodies.mixin.ShulkerBoxBlockEntityAccessor
-import pw.switchcraft.goodies.util.BaseItem
-import pw.switchcraft.library.Tooltips.addDescLines
-import pw.switchcraft.library.WaterloggableBlock
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.mixin.ShulkerBoxBlockEntityAccessor
+import io.sc3.goodies.util.BaseItem
+import io.sc3.library.Tooltips.addDescLines
+import io.sc3.library.WaterloggableBlock
 
 class IronChestUpgradeItem(
   private val upgrade: IronChestUpgrade,

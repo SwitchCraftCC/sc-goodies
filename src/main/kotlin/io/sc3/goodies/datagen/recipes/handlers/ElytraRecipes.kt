@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
@@ -17,12 +17,12 @@ import net.minecraft.registry.Registries.RECIPE_SERIALIZER
 import net.minecraft.registry.Registry.register
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.datagen.recipes.ElytraRecipe
-import pw.switchcraft.goodies.datagen.recipes.ElytraRecipeSerializer
-import pw.switchcraft.goodies.elytra.DyedElytraItem
-import pw.switchcraft.goodies.elytra.SpecialElytraType
-import pw.switchcraft.library.recipe.RecipeHandler
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.datagen.recipes.ElytraRecipe
+import io.sc3.goodies.datagen.recipes.ElytraRecipeSerializer
+import io.sc3.goodies.elytra.DyedElytraItem
+import io.sc3.goodies.elytra.SpecialElytraType
+import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object ElytraRecipes : RecipeHandler {

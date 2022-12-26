@@ -1,11 +1,11 @@
-package pw.switchcraft.goodies.util
+package io.sc3.goodies.util
 
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.CraftingResultInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.screen.AnvilScreenHandler
 import net.minecraft.screen.Property
-import pw.switchcraft.library.ext.event
+import io.sc3.library.ext.event
 
 object AnvilEvents {
   @JvmField

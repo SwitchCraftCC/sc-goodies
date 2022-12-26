@@ -1,8 +1,8 @@
-package pw.switchcraft.goodies.client.elytra
+package io.sc3.goodies.client.elytra
 
 import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityFeatureRenderEvents
 import net.minecraft.entity.EquipmentSlot
-import pw.switchcraft.goodies.elytra.BaseElytraItem
+import io.sc3.goodies.elytra.BaseElytraItem
 
 object ElytraClientEvents {
   internal fun initEvents() {

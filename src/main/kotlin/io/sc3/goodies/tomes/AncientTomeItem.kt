@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.tomes
+package io.sc3.goodies.tomes
 
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.enchantment.EnchantmentHelper.fromNbt
@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting.GRAY
 import net.minecraft.world.World
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.util.BaseItem
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.util.BaseItem
 import net.minecraft.text.Text.translatable as trans
 
 class AncientTomeItem(settings: Settings) : BaseItem(settings) {

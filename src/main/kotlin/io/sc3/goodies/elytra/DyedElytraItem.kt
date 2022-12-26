@@ -1,9 +1,9 @@
-package pw.switchcraft.goodies.elytra
+package io.sc3.goodies.elytra
 
 import net.minecraft.registry.Registries
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.ScGoodies.modId
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.modId
 
 class DyedElytraItem(
   val color: DyeColor,

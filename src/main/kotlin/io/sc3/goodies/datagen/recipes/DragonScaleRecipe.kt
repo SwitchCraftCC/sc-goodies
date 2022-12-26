@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
@@ -10,9 +10,9 @@ import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.datagen.recipes.ingredients.ElytraIngredient
-import pw.switchcraft.goodies.elytra.DyedElytraItem.Companion.dyedElytraItems
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.datagen.recipes.ingredients.ElytraIngredient
+import io.sc3.goodies.elytra.DyedElytraItem.Companion.dyedElytraItems
 
 class DragonScaleRecipe(
   id: Identifier,

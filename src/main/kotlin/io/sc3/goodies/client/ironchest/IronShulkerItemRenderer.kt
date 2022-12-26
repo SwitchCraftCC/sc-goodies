@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.ironchest
+package io.sc3.goodies.client.ironchest
 
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry.DynamicItemRenderer
 import net.minecraft.client.render.VertexConsumerProvider
@@ -7,8 +7,8 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.item.ItemStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
-import pw.switchcraft.goodies.client.ironchest.IronShulkerBlockEntityRenderer.Companion.renderShulker
-import pw.switchcraft.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.client.ironchest.IronShulkerBlockEntityRenderer.Companion.renderShulker
+import io.sc3.goodies.ironchest.IronChestVariant
 
 class IronShulkerItemRenderer(
   private val variant: IronChestVariant,

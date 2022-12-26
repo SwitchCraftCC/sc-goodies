@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.itemmagnet
+package io.sc3.goodies.itemmagnet
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.TrinketItem
@@ -13,9 +13,9 @@ import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.Formatting.*
 import net.minecraft.world.World
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
-import pw.switchcraft.library.Tooltips
+import io.sc3.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
+import io.sc3.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
+import io.sc3.library.Tooltips
 import kotlin.math.absoluteValue
 
 private const val TICK_FREQ = 3

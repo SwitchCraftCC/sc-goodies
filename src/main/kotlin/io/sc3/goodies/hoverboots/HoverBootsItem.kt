@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.hoverboots
+package io.sc3.goodies.hoverboots
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.TrinketItem
@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack
 import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.world.World
-import pw.switchcraft.goodies.ScGoodies.modId
-import pw.switchcraft.library.Tooltips.addDescLines
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.library.Tooltips.addDescLines
 
 class HoverBootsItem(
   val color: DyeColor,

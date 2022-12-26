@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.elytra
+package io.sc3.goodies.elytra
 
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem
 import net.minecraft.block.DispenserBlock
@@ -16,7 +16,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Hand
 import net.minecraft.util.TypedActionResult
 import net.minecraft.world.World
-import pw.switchcraft.goodies.util.BaseItem
+import io.sc3.goodies.util.BaseItem
 
 abstract class BaseElytraItem(settings: Settings) : BaseItem(settings), FabricElytraItem, Wearable {
   init {

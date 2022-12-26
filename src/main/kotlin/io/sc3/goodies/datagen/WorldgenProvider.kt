@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen
+package io.sc3.goodies.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider

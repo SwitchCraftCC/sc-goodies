@@ -1,11 +1,11 @@
-package pw.switchcraft.goodies.client.misc
+package io.sc3.goodies.client.misc
 
 import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.input.KeyboardInput
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.util.math.BlockPos
-import pw.switchcraft.goodies.misc.ConcreteExtras
+import io.sc3.goodies.misc.ConcreteExtras
 
 private const val VEL_MULTIPLIER = 1.25f
 private const val Y_OFFSET = 1.0 / 16.0

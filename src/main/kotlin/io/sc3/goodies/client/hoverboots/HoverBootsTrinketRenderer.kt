@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.hoverboots
+package io.sc3.goodies.client.hoverboots
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.client.TrinketRenderer
@@ -9,8 +9,8 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.hoverboots.HoverBootsItem
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.hoverboots.HoverBootsItem
 
 object HoverBootsTrinketRenderer : TrinketRenderer {
   private val textures = DyeColor.values().associateWith {

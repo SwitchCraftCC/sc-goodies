@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.util
+package io.sc3.goodies.util
 
 import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent

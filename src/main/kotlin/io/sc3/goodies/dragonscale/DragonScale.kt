@@ -1,9 +1,9 @@
-package pw.switchcraft.goodies.dragonscale
+package io.sc3.goodies.dragonscale
 
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.boss.dragon.EnderDragonEntity
 import net.minecraft.item.ItemStack
-import pw.switchcraft.goodies.Registration.ModItems
+import io.sc3.goodies.Registration.ModItems
 
 object DragonScale {
   @JvmStatic

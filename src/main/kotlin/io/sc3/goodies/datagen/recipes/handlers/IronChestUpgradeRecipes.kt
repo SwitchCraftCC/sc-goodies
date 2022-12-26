@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.recipe.RecipeJsonProvider
@@ -7,8 +7,8 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.tag.ItemTags.PLANKS
-import pw.switchcraft.goodies.ironchest.IronChestUpgrade
-import pw.switchcraft.library.recipe.RecipeHandler
+import io.sc3.goodies.ironchest.IronChestUpgrade
+import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object IronChestUpgradeRecipes : RecipeHandler {

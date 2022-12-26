@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.*
 import net.minecraft.data.server.recipe.RecipeJsonProvider
@@ -6,9 +6,9 @@ import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromItem
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
 import net.minecraft.recipe.book.RecipeCategory
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.library.recipe.RecipeHandler
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object IronChestRecipes : RecipeHandler {

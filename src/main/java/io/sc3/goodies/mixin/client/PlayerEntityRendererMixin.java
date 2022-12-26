@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin.client;
+package io.sc3.goodies.mixin.client;
 
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRendererFactory;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import pw.switchcraft.goodies.client.elytra.BaseElytraFeatureRenderer;
+import io.sc3.goodies.client.elytra.BaseElytraFeatureRenderer;
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(PlayerEntityRenderer.class)

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.util
+package io.sc3.goodies.util
 
 import com.mojang.authlib.GameProfile
 import com.mojang.brigadier.arguments.StringArgumentType.getString

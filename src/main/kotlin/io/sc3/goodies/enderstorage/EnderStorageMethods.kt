@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import dan200.computercraft.api.ComputerCraftAPI
 import dan200.computercraft.api.lua.LuaException
@@ -7,7 +7,7 @@ import dan200.computercraft.api.peripheral.GenericPeripheral
 import dan200.computercraft.api.peripheral.PeripheralType
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.ModId
 import kotlin.math.floor
 import kotlin.math.log2
 

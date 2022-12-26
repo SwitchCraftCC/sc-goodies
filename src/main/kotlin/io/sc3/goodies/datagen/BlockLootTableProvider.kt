@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen
+package io.sc3.goodies.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
@@ -15,11 +15,11 @@ import net.minecraft.loot.function.SetContentsLootFunction
 import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
-import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
-import pw.switchcraft.goodies.nature.ScTree
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.nature.ScTree
 
 class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvider(out) {
   private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.itemmagnet
+package io.sc3.goodies.client.itemmagnet
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.client.TrinketRenderer
@@ -11,9 +11,9 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
-import pw.switchcraft.goodies.mixin.client.PlayerEntityModelAccessor
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
+import io.sc3.goodies.mixin.client.PlayerEntityModelAccessor
 
 object ItemMagnetTrinketRenderer : TrinketRenderer {
   private val texture = ModId("textures/entity/item_magnet.png")

@@ -1,10 +1,10 @@
-package pw.switchcraft.goodies.misc
+package io.sc3.goodies.misc
 
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.FoodComponent
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
-import pw.switchcraft.goodies.util.BaseItem
+import io.sc3.goodies.util.BaseItem
 
 class PopcornItem(settings: Settings) : BaseItem(settings) {
   override fun finishUsing(stack: ItemStack, world: World, user: LivingEntity): ItemStack {

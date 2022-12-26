@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen
+package io.sc3.goodies.datagen
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
@@ -8,7 +8,7 @@ import net.minecraft.registry.RegistryWrapper
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.ModId
 import java.util.concurrent.CompletableFuture
 
 class ItemTagProvider(

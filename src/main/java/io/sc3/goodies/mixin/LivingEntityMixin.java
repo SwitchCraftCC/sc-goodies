@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import pw.switchcraft.goodies.hoverboots.HoverBootsItem;
+import io.sc3.goodies.hoverboots.HoverBootsItem;
 
 @SuppressWarnings("ConstantConditions")
 @Mixin(LivingEntity.class)

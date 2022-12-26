@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.hoverboots
+package io.sc3.goodies.client.hoverboots
 
 import net.minecraft.client.model.Dilation
 import net.minecraft.client.model.ModelPartBuilder.create

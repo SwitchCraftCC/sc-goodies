@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironshulker
+package io.sc3.goodies.ironshulker
 
 import net.fabricmc.fabric.api.util.NbtType.COMPOUND
 import net.fabricmc.fabric.api.util.NbtType.LIST

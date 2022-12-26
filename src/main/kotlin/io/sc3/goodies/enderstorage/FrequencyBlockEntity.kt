@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -8,7 +8,7 @@ import net.minecraft.network.Packet
 import net.minecraft.network.listener.ClientPlayPacketListener
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket
 import net.minecraft.util.math.BlockPos
-import pw.switchcraft.goodies.util.BaseBlockEntity
+import io.sc3.goodies.util.BaseBlockEntity
 
 abstract class FrequencyBlockEntity(
   type: BlockEntityType<*>,

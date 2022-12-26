@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.entity.LivingEntity;
 import org.spongepowered.asm.mixin.Mixin;

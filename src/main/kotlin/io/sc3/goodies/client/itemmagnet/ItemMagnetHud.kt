@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.itemmagnet
+package io.sc3.goodies.client.itemmagnet
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
@@ -7,9 +7,9 @@ import net.minecraft.client.gui.DrawableHelper
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Arm.LEFT
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetState
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
+import io.sc3.goodies.itemmagnet.ItemMagnetState
 
 object ItemMagnetHud {
   private val blockedTex = ModId("textures/gui/item_magnet_blocked.png")

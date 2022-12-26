@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.tomes
+package io.sc3.goodies.tomes
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonObject

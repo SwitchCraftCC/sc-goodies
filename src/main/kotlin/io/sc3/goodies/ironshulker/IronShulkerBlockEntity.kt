@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironshulker
+package io.sc3.goodies.ironshulker
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -22,9 +22,9 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.*
 import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock.Companion.facing
-import pw.switchcraft.goodies.util.ChestUtil
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironshulker.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.util.ChestUtil
 import java.util.stream.IntStream
 
 class IronShulkerBlockEntity(

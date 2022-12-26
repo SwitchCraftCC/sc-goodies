@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.ironchest
+package io.sc3.goodies.client.ironchest
 
 import com.mojang.blaze3d.systems.RenderSystem
 import net.minecraft.client.gui.screen.ingame.HandledScreen
@@ -6,7 +6,7 @@ import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
-import pw.switchcraft.goodies.ironchest.IronChestScreenHandler
+import io.sc3.goodies.ironchest.IronChestScreenHandler
 
 class IronChestScreen(
   handler: IronChestScreenHandler,

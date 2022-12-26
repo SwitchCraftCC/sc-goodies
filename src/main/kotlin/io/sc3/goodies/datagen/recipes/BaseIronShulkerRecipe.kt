@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import net.minecraft.block.Block
 import net.minecraft.block.ShulkerBoxBlock
@@ -8,9 +8,9 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
-import pw.switchcraft.goodies.ironshulker.IronShulkerItem
-import pw.switchcraft.library.recipe.BetterSpecialRecipe
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.library.recipe.BetterSpecialRecipe
 
 abstract class BaseIronShulkerRecipe(
   id: Identifier,

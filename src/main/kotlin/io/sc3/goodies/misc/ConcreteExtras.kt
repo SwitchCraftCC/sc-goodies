@@ -1,9 +1,9 @@
-package pw.switchcraft.goodies.misc
+package io.sc3.goodies.misc
 
 import net.minecraft.registry.Registries.BLOCK
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.ModId
 
 object ConcreteExtras {
   val colors = DyeColor.values().associateWith(::ConcreteExtra)

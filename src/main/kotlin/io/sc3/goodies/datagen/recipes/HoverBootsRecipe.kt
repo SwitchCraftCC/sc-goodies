@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import net.minecraft.enchantment.Enchantments.FEATHER_FALLING
 import net.minecraft.entity.effect.StatusEffects.JUMP_BOOST
@@ -10,10 +10,10 @@ import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.library.recipe.BetterSpecialRecipe
-import pw.switchcraft.library.recipe.IngredientBrew
-import pw.switchcraft.library.recipe.IngredientEnchanted
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.library.recipe.BetterSpecialRecipe
+import io.sc3.library.recipe.IngredientBrew
+import io.sc3.library.recipe.IngredientEnchanted
 
 class HoverBootsRecipe(
   id: Identifier,

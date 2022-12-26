@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.ironchest
+package io.sc3.goodies.ironchest
 
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.ChestLidAnimator
@@ -17,7 +17,7 @@ import net.minecraft.text.Text.translatable
 import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import pw.switchcraft.goodies.util.ChestUtil
+import io.sc3.goodies.util.ChestUtil
 
 class IronChestBlockEntity(
   private val variant: IronChestVariant,

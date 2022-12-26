@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
@@ -10,8 +10,8 @@ import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
-import pw.switchcraft.goodies.Registration.ModItems
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetItem
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
 
 class ItemMagnetUpgradeRecipe(
   id: Identifier,

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes
+package io.sc3.goodies.datagen.recipes
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonArray
@@ -21,7 +21,7 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.JsonHelper
 import net.minecraft.util.collection.DefaultedList
-import pw.switchcraft.goodies.datagen.recipes.ingredients.ElytraIngredient
+import io.sc3.goodies.datagen.recipes.ingredients.ElytraIngredient
 
 class ElytraRecipe(
   id: Identifier,

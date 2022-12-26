@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.mixin;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-import pw.switchcraft.goodies.itemmagnet.ItemMagnetState;
+import io.sc3.goodies.itemmagnet.ItemMagnetState;
 
 @Mixin(ItemEntity.class)
 @SuppressWarnings("ConstantConditions")

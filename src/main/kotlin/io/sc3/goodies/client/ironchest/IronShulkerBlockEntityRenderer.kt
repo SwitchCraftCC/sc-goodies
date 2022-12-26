@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.ironchest
+package io.sc3.goodies.client.ironchest
 
 import net.minecraft.client.model.ModelData
 import net.minecraft.client.model.ModelPart
@@ -12,10 +12,10 @@ import net.minecraft.client.render.entity.model.EntityModelPartNames.HEAD
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock.Companion.facing
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironshulker.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
 
 class IronShulkerBlockEntityRenderer(
   private val variant: IronChestVariant

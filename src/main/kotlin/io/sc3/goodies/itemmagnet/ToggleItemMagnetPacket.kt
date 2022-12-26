@@ -1,12 +1,12 @@
-package pw.switchcraft.goodies.itemmagnet
+package io.sc3.goodies.itemmagnet
 
 import net.fabricmc.fabric.api.networking.v1.PacketSender
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayNetworkHandler
 import net.minecraft.server.network.ServerPlayerEntity
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.library.networking.ScLibraryPacket
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.library.networking.ScLibraryPacket
 
 class ToggleItemMagnetPacket : ScLibraryPacket() {
   override val id = ToggleItemMagnetPacket.id

@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.datagen.recipes.ingredients
+package io.sc3.goodies.datagen.recipes.ingredients
 
 import it.unimi.dsi.fastutil.ints.IntArrayList
 import it.unimi.dsi.fastutil.ints.IntComparators
@@ -6,9 +6,9 @@ import it.unimi.dsi.fastutil.ints.IntList
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.RecipeMatcher
-import pw.switchcraft.goodies.ironchest.IronChestVariant
-import pw.switchcraft.goodies.ironshulker.IronShulkerBlock
-import pw.switchcraft.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerItem
 import java.util.stream.Stream
 
 class IronShulkerIngredient(

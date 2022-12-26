@@ -1,10 +1,10 @@
-package pw.switchcraft.goodies.ironchest
+package io.sc3.goodies.ironchest
 
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.screen.ScreenHandlerType
-import pw.switchcraft.goodies.util.ChestScreenHandler
+import io.sc3.goodies.util.ChestScreenHandler
 
 open class IronChestScreenHandler(
   val variant: IronChestVariant,

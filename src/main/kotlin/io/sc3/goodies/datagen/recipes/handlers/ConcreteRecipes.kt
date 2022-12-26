@@ -1,12 +1,12 @@
-package pw.switchcraft.goodies.datagen.recipes.handlers
+package io.sc3.goodies.datagen.recipes.handlers
 
 import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.RecipeProvider.*
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.book.RecipeCategory
-import pw.switchcraft.goodies.datagen.ItemTagProvider.Companion.CONCRETE
-import pw.switchcraft.goodies.misc.ConcreteExtras
-import pw.switchcraft.library.recipe.RecipeHandler
+import io.sc3.goodies.datagen.ItemTagProvider.Companion.CONCRETE
+import io.sc3.goodies.misc.ConcreteExtras
+import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
 object ConcreteRecipes : RecipeHandler {

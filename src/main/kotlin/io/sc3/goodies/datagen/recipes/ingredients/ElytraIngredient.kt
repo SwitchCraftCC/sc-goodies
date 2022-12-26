@@ -1,12 +1,12 @@
-package pw.switchcraft.goodies.datagen.recipes.ingredients
+package io.sc3.goodies.datagen.recipes.ingredients
 
 import net.fabricmc.fabric.api.entity.event.v1.FabricElytraItem
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
-import pw.switchcraft.goodies.elytra.BaseElytraItem
-import pw.switchcraft.goodies.elytra.DyedElytraItem
-import pw.switchcraft.goodies.elytra.SpecialElytraType
-import pw.switchcraft.library.recipe.BaseIngredient
+import io.sc3.goodies.elytra.BaseElytraItem
+import io.sc3.goodies.elytra.DyedElytraItem
+import io.sc3.goodies.elytra.SpecialElytraType
+import io.sc3.library.recipe.BaseIngredient
 
 class ElytraIngredient : BaseIngredient() {
   private val matched by lazy {

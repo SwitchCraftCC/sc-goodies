@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.enderstorage
+package io.sc3.goodies.enderstorage
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
@@ -16,8 +16,8 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import pw.switchcraft.goodies.Registration.ModBlockEntities
-import pw.switchcraft.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
+import io.sc3.goodies.Registration.ModBlockEntities
+import io.sc3.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
 
 class EnderStorageBlockEntity(
   pos: BlockPos,

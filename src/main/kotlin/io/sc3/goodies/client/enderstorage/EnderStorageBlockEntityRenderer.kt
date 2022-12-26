@@ -1,4 +1,4 @@
-package pw.switchcraft.goodies.client.enderstorage
+package io.sc3.goodies.client.enderstorage
 
 import net.minecraft.client.model.*
 import net.minecraft.client.model.ModelPartBuilder.create
@@ -12,11 +12,11 @@ import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
-import pw.switchcraft.goodies.Registration.ModBlocks
-import pw.switchcraft.goodies.ScGoodies.ModId
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlock
-import pw.switchcraft.goodies.enderstorage.EnderStorageBlockEntity
-import pw.switchcraft.goodies.enderstorage.Frequency
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.enderstorage.EnderStorageBlock
+import io.sc3.goodies.enderstorage.EnderStorageBlockEntity
+import io.sc3.goodies.enderstorage.Frequency
 import kotlin.math.pow
 
 class EnderStorageBlockEntityRenderer(

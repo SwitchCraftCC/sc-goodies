@@ -1,6 +1,6 @@
-package pw.switchcraft.goodies.elytra
+package io.sc3.goodies.elytra
 
-import pw.switchcraft.goodies.ScGoodies.modId
+import io.sc3.goodies.ScGoodies.modId
 
 class SpecialElytraItem(
   val type: SpecialElytraType,

@@ -59,7 +59,6 @@ repositories {
     content {
       includeGroup("cc.tweaked")
       includeModule("org.squiddev", "Cobalt")
-      includeModule("net.minecraftforge", "forgeconfigapiport-fabric")
     }
   }
 
@@ -67,6 +66,13 @@ repositories {
   maven("https://maven.shedaniel.me") // Cloth Config
   maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
   maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
+
+  // forgeconfigapiport-fabric, dependency of CC: Tweaked
+  maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") {
+    content {
+      includeModule("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
+    }
+  }
 }
 
 dependencies {

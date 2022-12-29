@@ -1,4 +1,4 @@
-// 1.19.3	2022-12-21T01:24:55.693393	SwitchCraft Goodies/Block Loot Tables
+// 1.19.3	2022-12-28T23:53:59.044948	SwitchCraft Goodies/Block Loot Tables
 a0edf2d9d3f5a19284cd445570899f89a22922fc data\sc-goodies\loot_tables\blocks\shulker_box_diamond_black.json
 cb2dc1f339f47496b74b2be56c92e07d87c3a742 data\sc-goodies\loot_tables\blocks\shulker_box_gold_blue.json
 c66d5467555ad51f6ccf03e96408e0500b6f9abf data\sc-goodies\loot_tables\blocks\shulker_box_diamond_lime.json
@@ -11,16 +11,18 @@ d60e8d40964c79ac7416ae2b5fde718b17d562ba data\sc-goodies\loot_tables\blocks\shul
 441ddcdd9610a93294b93c055c8fbb5b8ff8dd56 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_light_gray.json
 f7420a9adbe09e6b453b3a2c1301313fce12d404 data\sc-goodies\loot_tables\blocks\shulker_box_gold_lime.json
 15129b5605a1185a5f29bb2696750e69460f0a21 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_blue.json
+24553750e8541806cc40e7052f6fca3b2117b5a6 data\sc-goodies\loot_tables\blocks\diamond_chest.json
 83580608d12ab4ee5c5a22d9b0da969f53015454 data\sc-goodies\loot_tables\blocks\shulker_box_iron_gray.json
 b022b62579f36342aa0b7b4336de46e243a64f95 data\sc-goodies\loot_tables\blocks\shulker_box_iron_yellow.json
-0bbe0671869de3b386c6b43c7a85850469fb7e22 data\sc-goodies\loot_tables\blocks\pink_grass.json
 87fab543b5118a90a4955e4c80d1794af11ab303 data\sc-goodies\loot_tables\blocks\sakura_leaves.json
+0bbe0671869de3b386c6b43c7a85850469fb7e22 data\sc-goodies\loot_tables\blocks\pink_grass.json
 6572937fa914e76b2a6dcd9a7f528ae417e4380b data\sc-goodies\loot_tables\blocks\shulker_box_gold_light_blue.json
 55bf1a9a3eb2f23d6380e8077e997fc54b0e7193 data\sc-goodies\loot_tables\blocks\shulker_box_iron_black.json
 22546b5c71d1e3ef0b8a74a8bc73221c37972bdd data\sc-goodies\loot_tables\blocks\shulker_box_gold_white.json
 cc23d76954f897f12c881deacada752a23c114dd data\sc-goodies\loot_tables\blocks\shulker_box_iron_cyan.json
 734d1bfd96bf4bbf0370017fa2d0f22a2ec525e4 data\sc-goodies\loot_tables\blocks\shulker_box_iron_blue.json
 312f009fdcba2827ccd2932b0edf8c290bf0a027 data\sc-goodies\loot_tables\blocks\shulker_box_gold_magenta.json
+826070558b15fc2f2559be04060fe61cfdf48274 data\sc-goodies\loot_tables\blocks\gold_chest.json
 3cb010b4e2249b5349bfd5d08e1d7165622fa9b6 data\sc-goodies\loot_tables\blocks\shulker_box_iron_red.json
 f262c526765101d3e86fc5c7b181e7e18b10bcda data\sc-goodies\loot_tables\blocks\shulker_box_iron_orange.json
 35d15325e61766ee0e806071e1aea1c1aab6bc76 data\sc-goodies\loot_tables\blocks\shulker_box_iron_green.json
@@ -44,6 +46,7 @@ e1bc5c2314e64ea06e8a3514e681f432529c58f0 data\sc-goodies\loot_tables\blocks\shul
 9dee057145831ee8d5546b0f034048389b30a460 data\sc-goodies\loot_tables\blocks\shulker_box_gold_brown.json
 d68cbaceec285c917e3d73ca5098e3f3cf5636bd data\sc-goodies\loot_tables\blocks\shulker_box_diamond_red.json
 8987ae0d66ad58d505242da4549cb334f2c67d55 data\sc-goodies\loot_tables\blocks\shulker_box_gold_gray.json
+060644998f2aabd8d0428214b40e1ba42e6c0b0a data\sc-goodies\loot_tables\blocks\iron_chest.json
 774f81b147629d194fd5fb6ef03b0a76ee52ef2c data\sc-goodies\loot_tables\blocks\shulker_box_diamond_brown.json
 43a135ac961c3231763ac6cb75777ab46cbf3c69 data\sc-goodies\loot_tables\blocks\shulker_box_iron_light_blue.json
 cc312d8a72ec37985338828bfc257cbae8b0a5f4 data\sc-goodies\loot_tables\blocks\shulker_box_gold_green.json

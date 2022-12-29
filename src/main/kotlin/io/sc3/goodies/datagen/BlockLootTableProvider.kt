@@ -1,5 +1,10 @@
 package io.sc3.goodies.datagen
 
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
 import net.minecraft.block.Block
@@ -15,11 +20,6 @@ import net.minecraft.loot.function.SetContentsLootFunction
 import net.minecraft.loot.provider.nbt.ContextLootNbtProvider
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider
 import net.minecraft.util.DyeColor
-import io.sc3.goodies.Registration.ModBlocks
-import io.sc3.goodies.ironchest.IronChestVariant
-import io.sc3.goodies.ironshulker.IronShulkerBlock
-import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
-import io.sc3.goodies.nature.ScTree
 
 class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvider(out) {
   private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)
@@ -28,6 +28,9 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
     IronChestVariant.values().forEach { variant ->
       with (variant) {
         val type = shulkerBlockEntityType
+
+        // Chest drop
+        addDrop(chestBlock) { block -> nameableContainerDrops(block) }
 
         registerIronShulkerDrops(type, shulkerBlock) // Undyed shulker
 

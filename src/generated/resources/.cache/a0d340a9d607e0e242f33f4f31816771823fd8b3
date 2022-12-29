@@ -1,4 +1,4 @@
-// 1.19.3	2022-12-21T01:24:55.7013913	SwitchCraft Goodies/Recipes
+// 1.19.3	2022-12-28T23:53:59.0554497	SwitchCraft Goodies/Recipes
 9d45880db87168143a9579a0d765fc9a8ce9cb4b data\sc-goodies\recipes\hover_boots_dyed_orange.json
 f50ec77c51248b52b15db11a2e2916c30956c70e data\sc-goodies\recipes\lime_concrete_stairs.json
 b93d78bb3cf4b6008a9ef33e1c0fbff223b3502f data\sc-goodies\advancements\recipes\building_blocks\light_gray_concrete_stairs.json
@@ -164,8 +164,8 @@ d2947c70594bc87e906ac9be60dea05a496957a5 data\sc-goodies\recipes\gray_concrete_s
 83516456a2cc89fe419881e266cfccb4276b4c01 data\sc-goodies\recipes\light_blue_concrete_stairs.json
 0e61cd17a24c400ccb647405a499ed0b104757de data\sc-goodies\advancements\recipes\building_blocks\black_concrete_stairs.json
 0426f6180e4a3525bc226c698864896b45759991 data\sc-goodies\advancements\recipes\building_blocks\orange_concrete_stairs.json
-31c3d016bfe2a21aab8fedb47cba26fe4e4f7306 data\sc-goodies\recipes\light_gray_concrete_slab.json
 cf9fa6884db0e13acb7fb288d48905b7e63079df data\sc-goodies\advancements\recipes\building_blocks\gray_concrete_stairs.json
+31c3d016bfe2a21aab8fedb47cba26fe4e4f7306 data\sc-goodies\recipes\light_gray_concrete_slab.json
 edc5be42f7cd8ca50e52101fed21cb5eb1ce607f data\sc-goodies\recipes\orange_concrete_slab.json
 2a8ba0e26f4f3ac8c2590df3fcd28c0422adb934 data\sc-goodies\recipes\green_concrete_slab.json
 53a69e80593ef48f50fa7d881e7d45d19f769930 data\sc-goodies\recipes\yellow_concrete_slab.json

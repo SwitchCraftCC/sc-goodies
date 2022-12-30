@@ -4,6 +4,7 @@ import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.ironchest.IronChestVariant
 import io.sc3.goodies.ironshulker.IronShulkerBlock
 import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider
@@ -40,6 +41,11 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
           registerIronShulkerDrops(type, block)
         }
       }
+    }
+
+    ConcreteExtras.colors.values.forEach { color ->
+      addDrop(color.slabBlock)
+      addDrop(color.stairsBlock)
     }
 
     addTreeDrops(ModBlocks.sakuraSapling)

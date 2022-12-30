@@ -1,37 +1,5 @@
 package io.sc3.goodies
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
-import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
-import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
-import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
-import net.fabricmc.loader.api.FabricLoader
-import net.minecraft.block.*
-import net.minecraft.block.AbstractBlock.ContextPredicate
-import net.minecraft.block.Material.SOLID_ORGANIC
-import net.minecraft.block.entity.BlockEntity
-import net.minecraft.block.entity.BlockEntityType
-import net.minecraft.entity.EquipmentSlot
-import net.minecraft.item.*
-import net.minecraft.registry.Registerable
-import net.minecraft.registry.Registries.*
-import net.minecraft.registry.Registry.register
-import net.minecraft.registry.RegistryKey
-import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
-import net.minecraft.screen.ScreenHandlerType
-import net.minecraft.sound.BlockSoundGroup.GRASS
-import net.minecraft.util.DyeColor
-import net.minecraft.util.Rarity.EPIC
-import net.minecraft.util.Rarity.UNCOMMON
-import net.minecraft.util.math.BlockPos
-import net.minecraft.util.math.intprovider.ConstantIntProvider
-import net.minecraft.world.gen.feature.ConfiguredFeature
-import net.minecraft.world.gen.feature.Feature
-import net.minecraft.world.gen.feature.TreeFeatureConfig
-import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
-import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer
-import net.minecraft.world.gen.stateprovider.BlockStateProvider
-import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer
 import io.sc3.goodies.Registration.ModBlockEntities.rBlockEntity
 import io.sc3.goodies.Registration.ModBlocks.autumnGrass
 import io.sc3.goodies.Registration.ModBlocks.blueGrass
@@ -70,6 +38,38 @@ import io.sc3.goodies.tomes.TomeEnchantments
 import io.sc3.goodies.util.BaseItem
 import io.sc3.library.networking.registerServerReceiver
 import io.sc3.library.recipe.RecipeHandler
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
+import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
+import net.fabricmc.loader.api.FabricLoader
+import net.minecraft.block.*
+import net.minecraft.block.AbstractBlock.ContextPredicate
+import net.minecraft.block.Material.SOLID_ORGANIC
+import net.minecraft.block.entity.BlockEntity
+import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.entity.EquipmentSlot
+import net.minecraft.item.*
+import net.minecraft.registry.Registerable
+import net.minecraft.registry.Registries.*
+import net.minecraft.registry.Registry.register
+import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
+import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.sound.BlockSoundGroup.GRASS
+import net.minecraft.util.DyeColor
+import net.minecraft.util.Rarity.EPIC
+import net.minecraft.util.Rarity.UNCOMMON
+import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.intprovider.ConstantIntProvider
+import net.minecraft.world.gen.feature.ConfiguredFeature
+import net.minecraft.world.gen.feature.Feature
+import net.minecraft.world.gen.feature.TreeFeatureConfig
+import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize
+import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer
+import net.minecraft.world.gen.stateprovider.BlockStateProvider
+import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer
 import java.util.*
 
 object Registration {
@@ -115,12 +115,12 @@ object Registration {
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
-      val settings = AbstractBlock.Settings.copy(it.baseBlock)
-
-      val slabBlock = rBlock(it.slabBlockId.path, SlabBlock(settings))
+      val slabBlock = rBlock(it.slabBlockId.path,
+        SlabBlock(AbstractBlock.Settings.copy(it.baseBlock)))
       rItem(slabBlock, ::BlockItem)
 
-      val stairsBlock = rBlock(it.stairsBlockId.path, StairsBlock(it.baseBlock.defaultState, settings))
+      val stairsBlock = rBlock(it.stairsBlockId.path, StairsBlock(it.baseBlock.defaultState,
+        AbstractBlock.Settings.copy(it.baseBlock)))
       rItem(stairsBlock, ::BlockItem)
     }
 
@@ -216,7 +216,7 @@ object Registration {
 
   object ModBlocks {
     val enderStorage = rBlock("ender_storage", EnderStorageBlock(AbstractBlock.Settings
-      .of(Material.STONE).requiresTool().strength(22.5f, 600.0f)))
+      .of(Material.STONE).requiresTool().strength(12.5f, 600.0f)))
 
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))
     val autumnGrass = rBlock("autumn_grass", ScGrass(grassSettings(MapColor.ORANGE)))
@@ -235,8 +235,9 @@ object Registration {
       .nonOpaque()
 
     fun chestSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.METAL)
-      .strength(3.0f)
+      .of(Material.STONE)
+      .strength(2.0f)
+      .requiresTool()
       .nonOpaque()
 
     fun shulkerSettings(color: DyeColor?): AbstractBlock.Settings {

@@ -1,12 +1,5 @@
 package io.sc3.goodies.datagen
 
-import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
-import net.minecraft.block.Block
-import net.minecraft.item.Item
-import net.minecraft.registry.Registries.ITEM
-import net.minecraft.util.DyeColor
-import net.minecraft.util.DyeColor.*
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
@@ -15,6 +8,13 @@ import io.sc3.goodies.ironchest.IronChestUpgrade
 import io.sc3.goodies.ironchest.IronChestVariant
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
+import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
+import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
+import net.minecraft.block.Block
+import net.minecraft.item.Item
+import net.minecraft.registry.Registries.ITEM
+import net.minecraft.util.DyeColor
+import net.minecraft.util.DyeColor.*
 
 class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
   private val colorNames = mapOf(
@@ -122,10 +122,10 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
 
     builder.add(ModBlocks.sakuraSapling, "Sakura")
     builder.add(ModBlocks.mapleSapling, "Maple")
-    builder.add(ModBlocks.blueSapling, "Blue")
+    builder.add(ModBlocks.blueSapling, "Peppy")
     builder.add(ModBlocks.pinkGrass, "Pink Grass")
     builder.add(ModBlocks.autumnGrass, "Autumn Grass")
-    builder.add(ModBlocks.blueGrass, "Blue Grass")
+    builder.add(ModBlocks.blueGrass, "Peppy Grass")
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {

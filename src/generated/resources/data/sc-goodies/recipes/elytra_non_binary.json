@@ -1,13 +1,24 @@
 {
   "type": "sc-goodies:elytra",
   "category": "equipment",
-  "dyes": [
-    "yellow",
-    "white",
-    "purple",
-    "black"
-  ],
   "group": "dyedElytra",
+  "ingredients": [
+    {
+      "tag": "sc-goodies:elytra"
+    },
+    {
+      "item": "minecraft:yellow_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:purple_dye"
+    },
+    {
+      "item": "minecraft:black_dye"
+    }
+  ],
   "result": {
     "item": "sc-goodies:elytra_non_binary"
   }

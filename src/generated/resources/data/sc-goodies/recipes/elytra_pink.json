@@ -1,10 +1,15 @@
 {
   "type": "sc-goodies:elytra",
   "category": "equipment",
-  "dyes": [
-    "pink"
-  ],
   "group": "dyedElytra",
+  "ingredients": [
+    {
+      "tag": "sc-goodies:elytra"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    }
+  ],
   "result": {
     "item": "sc-goodies:elytra_pink"
   }

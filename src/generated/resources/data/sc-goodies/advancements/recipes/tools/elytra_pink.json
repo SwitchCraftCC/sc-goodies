@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:elytra"
-            ]
+            "tag": "sc-goodies:elytra"
           }
         ]
       },
@@ -15,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sc-goodies:elytra_purple"
+        "recipe": "sc-goodies:elytra_pink"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "sc-goodies:elytra_purple"
+      "sc-goodies:elytra_pink"
     ]
   }
 }

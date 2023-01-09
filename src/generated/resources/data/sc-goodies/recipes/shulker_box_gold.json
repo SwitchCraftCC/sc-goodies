@@ -1,3 +1,20 @@
 {
-  "type": "sc-goodies:gold_shulker"
+  "type": "sc-goodies:iron_shulker",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:gold_ingots"
+    },
+    "S": {
+      "tag": "sc-goodies:iron_shulker/iron"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
+  "result": {
+    "item": "sc-goodies:shulker_box_gold"
+  }
 }

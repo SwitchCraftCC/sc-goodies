@@ -1,42 +1,31 @@
 package io.sc3.goodies.datagen.recipes
 
+import com.google.gson.JsonObject
+import io.sc3.goodies.ScGoodiesItemTags
+import io.sc3.library.recipe.ShapelessRecipeSpec
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Ingredient
-import net.minecraft.recipe.Ingredient.ofItems
+import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.ShapelessRecipe
-import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.recipe.book.CraftingRecipeCategory
-import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
-import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.datagen.recipes.ingredients.ElytraIngredient
-import io.sc3.goodies.elytra.DyedElytraItem.Companion.dyedElytraItems
 
 class DragonScaleRecipe(
   id: Identifier,
-  category: CraftingRecipeCategory = CraftingRecipeCategory.MISC
-) : ShapelessRecipe(
-  id, "dragonScaleElytra", category,
-  ItemStack(dyedElytraItems[DyeColor.BLACK]!!), DefaultedList.copyOf(
-    Ingredient.EMPTY, // Defaulted item
-    ofItems(ModItems.dragonScale),
-    ElytraIngredient()
-  )
-) {
-  private val elytraIngredient = ElytraIngredient()
-
-  // TODO: is default matches() behaviour sufficient?
-  override fun craft(craftingInventory: CraftingInventory) = output
-  override fun getOutput(): ItemStack = ItemStack(dyedElytraItems[DyeColor.BLACK]!!)
-
+  group: String,
+  category: CraftingRecipeCategory,
+  outputStack: ItemStack,
+  input: DefaultedList<Ingredient>,
+) : ShapelessRecipe(id, group, category, outputStack, input) {
   override fun getRemainder(inv: CraftingInventory): DefaultedList<ItemStack> {
     val remainder = DefaultedList.ofSize(inv.size(), ItemStack.EMPTY)
 
     for (i in 0 until remainder.size) {
       val stack = inv.getStack(i)
-      if (elytraIngredient.test(stack)) {
+      if (stack.isIn(ScGoodiesItemTags.ELYTRA)) {
         remainder[i] = stack.copy()
       }
     }
@@ -45,9 +34,15 @@ class DragonScaleRecipe(
   }
 
   override fun isIgnoredInRecipeBook() = true
-  override fun getSerializer() = recipeSerializer
+  override fun getSerializer() = DragonScaleRecipeSerializer
+}
 
-  companion object {
-    val recipeSerializer = SpecialRecipeSerializer(::DragonScaleRecipe)
-  }
+object DragonScaleRecipeSerializer : RecipeSerializer<DragonScaleRecipe> {
+  private fun make(id: Identifier, spec: ShapelessRecipeSpec) = DragonScaleRecipe(
+    id, spec.group, spec.category, spec.output, spec.input
+  )
+
+  override fun read(id: Identifier, json: JsonObject) = make(id, ShapelessRecipeSpec.ofJson(json))
+  override fun read(id: Identifier, buf: PacketByteBuf) = make(id, ShapelessRecipeSpec.ofPacket(buf))
+  override fun write(buf: PacketByteBuf, recipe: DragonScaleRecipe) = ShapelessRecipeSpec.ofRecipe(recipe).write(buf)
 }

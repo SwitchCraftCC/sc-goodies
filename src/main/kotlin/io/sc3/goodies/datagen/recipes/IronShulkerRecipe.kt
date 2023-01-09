@@ -1,23 +1,32 @@
 package io.sc3.goodies.datagen.recipes
 
+import com.google.gson.JsonObject
+import io.sc3.goodies.ironshulker.IronShulkerBlock
+import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.library.recipe.ShapedRecipeSpec
 import net.minecraft.block.Block
 import net.minecraft.block.ShulkerBoxBlock
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
+import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Ingredient
+import net.minecraft.recipe.RecipeSerializer
+import net.minecraft.recipe.ShapedRecipe
 import net.minecraft.recipe.book.CraftingRecipeCategory
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import io.sc3.goodies.ironshulker.IronShulkerBlock
-import io.sc3.goodies.ironshulker.IronShulkerItem
-import io.sc3.library.recipe.BetterSpecialRecipe
+import net.minecraft.util.collection.DefaultedList
 
-abstract class BaseIronShulkerRecipe(
+class IronShulkerRecipe(
   id: Identifier,
-  category: CraftingRecipeCategory = CraftingRecipeCategory.MISC,
-  override val outputItem: ItemStack,
-  override val ingredients: List<Ingredient>
-) : BetterSpecialRecipe(id, category) {
+  group: String,
+  category: CraftingRecipeCategory,
+  width: Int,
+  height: Int,
+  ingredients: DefaultedList<Ingredient>,
+  private val outputItem: ItemStack,
+) : ShapedRecipe(id, group, category, width, height, ingredients, outputItem) {
+
   override fun craft(inventory: CraftingInventory): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft
@@ -25,7 +34,7 @@ abstract class BaseIronShulkerRecipe(
 
     val color = shulkerColor(shulkerStack)
     val variant = (outputItem.item as IronShulkerItem).block.variant
-    val resultBlock = if (color != null) variant.dyedShulkerBlocks[color] else variant.shulkerBlock
+    val resultBlock = if (color != null) variant.dyedShulkerBlocks[color]!! else variant.shulkerBlock
 
     val result = ItemStack(resultBlock)
     result.nbt = shulkerStack.nbt?.copy()
@@ -38,8 +47,8 @@ abstract class BaseIronShulkerRecipe(
 
     fun shulkerColor(stack: ItemStack): DyeColor? =
       when (val block = Block.getBlockFromItem(stack.item)) {
-        is ShulkerBoxBlock -> { block.color }
-        is IronShulkerBlock -> { block.color }
+        is ShulkerBoxBlock -> block.color
+        is IronShulkerBlock -> block.color
         else -> null
       }
 
@@ -58,4 +67,16 @@ abstract class BaseIronShulkerRecipe(
       return shulkerStack
     }
   }
+
+  override fun getSerializer(): RecipeSerializer<*> = IronShulkerRecipeSerializer
+}
+
+object IronShulkerRecipeSerializer : RecipeSerializer<IronShulkerRecipe> {
+  private fun make(id: Identifier, spec: ShapedRecipeSpec) = IronShulkerRecipe(
+    id, spec.group, spec.category, spec.width, spec.height, spec.ingredients, spec.output
+  )
+
+  override fun read(id: Identifier, json: JsonObject) = make(id, ShapedRecipeSpec.ofJson(json))
+  override fun read(id: Identifier, buf: PacketByteBuf) = make(id, ShapedRecipeSpec.ofPacket(buf))
+  override fun write(buf: PacketByteBuf, recipe: IronShulkerRecipe) = ShapedRecipeSpec.ofRecipe(recipe).write(buf)
 }

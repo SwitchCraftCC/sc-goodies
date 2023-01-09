@@ -1,3 +1,33 @@
 {
-  "type": "minecraft:hover_boots"
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "F": {
+      "item": "minecraft:feather"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "f": {
+      "fabric:type": "sc-library:enchantment",
+      "id": "minecraft:feather_falling",
+      "level": 1
+    },
+    "j": {
+      "effect": "minecraft:jump_boost",
+      "fabric:type": "sc-library:brew",
+      "potion": "minecraft:leaping"
+    }
+  },
+  "pattern": [
+    "IDI",
+    "fFj",
+    "IFI"
+  ],
+  "result": {
+    "item": "sc-goodies:hover_boots_white"
+  }
 }

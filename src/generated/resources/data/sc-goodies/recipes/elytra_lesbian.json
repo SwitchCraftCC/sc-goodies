@@ -1,14 +1,27 @@
 {
   "type": "sc-goodies:elytra",
   "category": "equipment",
-  "dyes": [
-    "red",
-    "orange",
-    "white",
-    "pink",
-    "magenta"
-  ],
   "group": "dyedElytra",
+  "ingredients": [
+    {
+      "tag": "sc-goodies:elytra"
+    },
+    {
+      "item": "minecraft:red_dye"
+    },
+    {
+      "item": "minecraft:orange_dye"
+    },
+    {
+      "item": "minecraft:white_dye"
+    },
+    {
+      "item": "minecraft:pink_dye"
+    },
+    {
+      "item": "minecraft:magenta_dye"
+    }
+  ],
   "result": {
     "item": "sc-goodies:elytra_lesbian"
   }

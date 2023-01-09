@@ -1,10 +1,15 @@
 {
   "type": "sc-goodies:elytra",
   "category": "equipment",
-  "dyes": [
-    "green"
-  ],
   "group": "dyedElytra",
+  "ingredients": [
+    {
+      "tag": "sc-goodies:elytra"
+    },
+    {
+      "item": "minecraft:green_dye"
+    }
+  ],
   "result": {
     "item": "sc-goodies:elytra_green"
   }

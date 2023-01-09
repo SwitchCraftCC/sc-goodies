@@ -1,3 +1,20 @@
 {
-  "type": "sc-goodies:iron_shulker"
+  "type": "sc-goodies:iron_shulker",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "c:iron_ingots"
+    },
+    "S": {
+      "tag": "c:shulker_boxes"
+    }
+  },
+  "pattern": [
+    "III",
+    "ISI",
+    "III"
+  ],
+  "result": {
+    "item": "sc-goodies:shulker_box_iron"
+  }
 }

@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "sc-goodies:shulker_box_gold",
+    "sc-goodies:shulker_box_gold_white",
+    "sc-goodies:shulker_box_gold_orange",
+    "sc-goodies:shulker_box_gold_magenta",
+    "sc-goodies:shulker_box_gold_light_blue",
+    "sc-goodies:shulker_box_gold_yellow",
+    "sc-goodies:shulker_box_gold_lime",
+    "sc-goodies:shulker_box_gold_pink",
+    "sc-goodies:shulker_box_gold_gray",
+    "sc-goodies:shulker_box_gold_light_gray",
+    "sc-goodies:shulker_box_gold_cyan",
+    "sc-goodies:shulker_box_gold_purple",
+    "sc-goodies:shulker_box_gold_blue",
+    "sc-goodies:shulker_box_gold_brown",
+    "sc-goodies:shulker_box_gold_green",
+    "sc-goodies:shulker_box_gold_red",
+    "sc-goodies:shulker_box_gold_black"
+  ]
+}

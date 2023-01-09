@@ -40,7 +40,7 @@ object EnderStorageMethods : GenericPeripheral {
   @LuaFunction(mainThread = true)
   @JvmStatic
   fun areComputerChangesEnabled(be: EnderStorageBlockEntity): Boolean =
-    be.computerChangesEnabled
+    !be.frequency.personal || be.computerChangesEnabled
 
   @LuaFunction(mainThread = true)
   @JvmStatic

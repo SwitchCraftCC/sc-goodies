@@ -8,6 +8,8 @@ import net.minecraft.item.Items.SHULKER_SHELL
 import net.minecraft.recipe.book.RecipeCategory
 import io.sc3.goodies.ironchest.IronChestUpgrade
 import io.sc3.library.recipe.RecipeHandler
+import net.minecraft.data.server.recipe.RecipeProvider
+import net.minecraft.item.Items
 import java.util.function.Consumer
 
 object IronShulkerUpgradeRecipes : RecipeHandler {
@@ -31,6 +33,18 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
       .pattern("GGG")
       .input('G', GOLD_INGOTS)
       .input('I', IRON_INGOTS)
+      .criterion("has_shulker_box", conditionsFromTag(SHULKER_BOXES))
+      .offerTo(exporter)
+
+    // Iron to Diamond Shulker Upgrade
+    ShapedRecipeJsonBuilder
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_DIAMOND.shulkerUpgrade)
+      .pattern("LIL")
+      .pattern("LLL")
+      .pattern("DDD")
+      .input('L', GLASS_BLOCKS)
+      .input('I', IRON_INGOTS)
+      .input('D', DIAMONDS)
       .criterion("has_shulker_box", conditionsFromTag(SHULKER_BOXES))
       .offerTo(exporter)
 

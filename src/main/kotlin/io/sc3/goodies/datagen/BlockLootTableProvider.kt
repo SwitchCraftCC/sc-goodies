@@ -44,7 +44,7 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
     }
 
     ConcreteExtras.colors.values.forEach { color ->
-      addDrop(color.slabBlock)
+      addDrop(color.slabBlock, ::slabDrops)
       addDrop(color.stairsBlock)
     }
 

@@ -186,7 +186,7 @@ modrinth {
 
   syncBodyFrom.set(provider {
     file("README.md").readText()
-      .replace("img/header.png", "https://lemmmy.s-ul.eu/ggs8kghy.png")
+      .replace("img/header.png", "https://cdn.modrinth.com/data/glA8M6fC/images/4a678749f05541893dcba84ea92b8740644e57e9.png")
   })
 
   dependencies {

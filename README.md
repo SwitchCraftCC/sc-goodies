@@ -1,8 +1,10 @@
 # sc-goodies
 
+<!-- modrinth_exclude.start -->
 [![Modrinth Downloads](https://img.shields.io/modrinth/dt/sc-goodies)](https://modrinth.com/mod/sc-goodies/)
 
 [![Download on Modrinth](https://i.imgur.com/hbYUrTZ.png)](https://modrinth.com/mod/sc-goodies/)
+<!-- modrinth_exclude.end -->
 
 Fabric 1.19 mod for the SwitchCraft server. "Lemmmy's bag of tricks" - a collection of tiny additions designed for the
 SwitchCraft server in the style of many older mods. Highly opinionated.
@@ -11,7 +13,6 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 
 ## Features
 
-#### Current
 - Basic iron chests, in the style of cpw's [ironchest](https://github.com/progwml6/ironchest).
   - This is a significantly more primitive take on the iron chests concept with "no BS" - it simply adds iron, gold,
     and diamond versions of chests and shulker boxes.

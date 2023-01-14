@@ -1,3 +1,4 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -8,6 +9,8 @@ plugins {
   id("io.github.juuxel.loom-quiltflower") version "1.7.3"
   id("maven-publish")
   id("signing")
+  id("com.modrinth.minotaur") version "2.+"
+  id("net.darkhax.curseforgegradle") version "1.0.11"
 }
 
 val modVersion: String by project
@@ -169,6 +172,52 @@ tasks {
     }
   }
 }
+
+modrinth {
+  token.set(findProperty("modrinthApiKey") as String? ?: "")
+  projectId.set("glA8M6fC")
+  versionNumber.set("$minecraftVersion-$modVersion")
+  versionName.set(modVersion)
+  versionType.set("release")
+  uploadFile.set(tasks.remapJar as Any)
+  changelog.set("Release notes can be found on the [GitHub repository](https://github.com/SwitchCraftCC/sc-goodies/commits/$minecraftVersion).")
+  gameVersions.add(minecraftVersion)
+  loaders.add("fabric")
+
+  syncBodyFrom.set(provider {
+    file("README.md").readText()
+      .replace("img/header.png", "https://lemmmy.s-ul.eu/ggs8kghy.png")
+  })
+
+  dependencies {
+    required.project("fabric-api")
+    required.project("fabric-language-kotlin")
+    required.project("trinkets")
+  }
+}
+
+tasks.modrinth { dependsOn(tasks.modrinthSyncBody) }
+tasks.publish { dependsOn(tasks.modrinth) }
+
+val publishCurseForge by tasks.registering(TaskPublishCurseForge::class) {
+  group = PublishingPlugin.PUBLISH_TASK_GROUP
+  description = "Upload artifacts to CurseForge"
+
+  apiToken = findProperty("curseForgeApiKey") as String? ?: ""
+  enabled = apiToken != ""
+
+  val mainFile = upload("807667", tasks.remapJar.get().archiveFile)
+  dependsOn(tasks.remapJar)
+  mainFile.releaseType = "release"
+  mainFile.changelog = "Release notes can be found on the [GitHub repository](https://github.com/SwitchCraftCC/sc-goodies/commits/$minecraftVersion)."
+  mainFile.changelogType = "markdown"
+  mainFile.addGameVersion(minecraftVersion)
+  mainFile.addRequirement("fabric-api")
+  mainFile.addRequirement("fabric-language-kotlin")
+  mainFile.addRequirement("trinkets")
+}
+
+tasks.publish { dependsOn(publishCurseForge) }
 
 publishing {
   publications {

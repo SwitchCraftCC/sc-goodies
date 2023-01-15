@@ -35,6 +35,18 @@ object IronChestUpgradeRecipes : RecipeHandler {
       .criterion("has_chest", conditionsFromItem(CHEST))
       .offerTo(exporter)
 
+    // Iron to Diamond Chest Upgrade
+    ShapedRecipeJsonBuilder
+      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_DIAMOND.chestUpgrade)
+      .pattern("LLL")
+      .pattern("LIL")
+      .pattern("DDD")
+      .input('L', GLASS_BLOCKS)
+      .input('I', IRON_INGOTS)
+      .input('D', DIAMONDS)
+      .criterion("has_chest", conditionsFromItem(CHEST))
+      .offerTo(exporter)
+
     // Gold to Diamond Chest Upgrade
     ShapedRecipeJsonBuilder
       .create(RecipeCategory.DECORATIONS, IronChestUpgrade.GOLD_DIAMOND.chestUpgrade)

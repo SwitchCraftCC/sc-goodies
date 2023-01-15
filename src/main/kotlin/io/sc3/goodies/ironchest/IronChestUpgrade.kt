@@ -11,6 +11,7 @@ enum class IronChestUpgrade(
 ) {
   VANILLA_IRON("vanilla_iron", from = null, to = IRON),
   IRON_GOLD("iron_gold", from = IRON, to = GOLD),
+  IRON_DIAMOND("iron_diamond", from = IRON, to = DIAMOND),
   GOLD_DIAMOND("gold_diamond", from = GOLD, to = DIAMOND);
 
   val chestUpgrade by lazy {

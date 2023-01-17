@@ -3,6 +3,9 @@ package io.sc3.goodies.itemmagnet
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.TrinketItem
 import dev.emi.trinkets.api.TrinketsApi
+import io.sc3.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
+import io.sc3.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
+import io.sc3.library.Tooltips
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.ItemEntity
@@ -13,9 +16,6 @@ import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.Formatting.*
 import net.minecraft.world.World
-import io.sc3.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
-import io.sc3.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
-import io.sc3.library.Tooltips
 import kotlin.math.absoluteValue
 
 private const val TICK_FREQ = 3
@@ -111,7 +111,7 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
       }
 
       // Ensure there is space in the inventory for the item
-      if (!player.inventory.containsAny { it.isEmpty || it.isItemEqual(stack) && it.count < it.maxCount }) {
+      if (player.inventory.main.none { it.isEmpty || it.isItemEqual(stack) && it.count < it.maxCount }) {
         continue
       }
 

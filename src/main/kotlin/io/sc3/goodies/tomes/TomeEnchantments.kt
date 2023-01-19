@@ -34,6 +34,7 @@ private const val UPGRADE_COST_MAXED = 30
 object TomeEnchantments {
   val validEnchantments = listOf(
     FEATHER_FALLING,
+    SWIFT_SNEAK,
     THORNS,
     SHARPNESS,
     SMITE,

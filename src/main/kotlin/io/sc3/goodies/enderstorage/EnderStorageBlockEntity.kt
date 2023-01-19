@@ -1,5 +1,7 @@
 package io.sc3.goodies.enderstorage
 
+import io.sc3.goodies.Registration.ModBlockEntities
+import io.sc3.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory
 import net.minecraft.block.BlockState
@@ -16,8 +18,6 @@ import net.minecraft.server.world.ServerWorld
 import net.minecraft.text.Text
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
-import io.sc3.goodies.Registration.ModBlockEntities
-import io.sc3.goodies.enderstorage.EnderStorageProvider.EnderStorageInventory
 
 class EnderStorageBlockEntity(
   pos: BlockPos,
@@ -97,11 +97,13 @@ class EnderStorageBlockEntity(
   }
 
   private fun closeViewers() {
-    viewingPlayers.forEach {
-      val handler = it.currentScreenHandler as? EnderStorageScreenHandler ?: return@forEach
-      if (it is ServerPlayerEntity && it.world == world && handler.pos == pos) {
-        it.closeHandledScreen()
-      }
+    val screensToClose = viewingPlayers.filter {
+      val handler = it.currentScreenHandler as? EnderStorageScreenHandler ?: return@filter false
+      it.world == world && handler.pos == pos
+    }
+
+    screensToClose.forEach {
+      (it as? ServerPlayerEntity)?.closeHandledScreen()
     }
 
     viewingPlayers.clear()

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": {
+      "tag": "c:glass_panes"
+    },
+    "I": {
+      "item": "minecraft:item_frame"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GIG",
+    "GGG"
+  ],
+  "result": {
+    "item": "sc-goodies:glass_item_frame"
+  }
+}

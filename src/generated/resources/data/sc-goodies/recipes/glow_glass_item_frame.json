@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sc-goodies:glass_item_frame"
+    },
+    {
+      "item": "minecraft:glow_ink_sac"
+    }
+  ],
+  "result": {
+    "item": "sc-goodies:glow_glass_item_frame"
+  }
+}

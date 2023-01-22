@@ -24,6 +24,8 @@ import io.sc3.goodies.ironshulker.IronShulkerBlock
 import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
 import io.sc3.goodies.ironshulker.IronShulkerCauldronBehavior
 import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.itemframe.GlassItemFrameEntity
+import io.sc3.goodies.itemframe.GlassItemFrameItem
 import io.sc3.goodies.itemmagnet.ItemMagnetItem
 import io.sc3.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import io.sc3.goodies.itemmagnet.ToggleItemMagnetPacket
@@ -41,6 +43,7 @@ import io.sc3.library.recipe.RecipeHandler
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
+import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.fabricmc.loader.api.FabricLoader
@@ -49,7 +52,9 @@ import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.Material.SOLID_ORGANIC
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EquipmentSlot
+import net.minecraft.entity.SpawnGroup
 import net.minecraft.item.*
 import net.minecraft.registry.Registerable
 import net.minecraft.registry.Registries.*
@@ -77,7 +82,7 @@ object Registration {
 
   internal fun init() {
     // Force static initializers to run
-    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens)
+    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities)
 
     // Iron Chests and Shulkers
     IronChestVariant.values().forEach { variant ->
@@ -333,6 +338,12 @@ object Registration {
     val autumnGrass = rItem(ModBlocks.autumnGrass, ::BlockItem, itemSettings())
     val blueGrass = rItem(ModBlocks.blueGrass, ::BlockItem, itemSettings())
 
+    val glassItemFrame = rItem("glass_item_frame", GlassItemFrameItem(itemSettings(), ::GlassItemFrameEntity))
+    val glowGlassItemFrame = rItem("glow_glass_item_frame", GlassItemFrameItem(itemSettings()) { world, pos, facing ->
+      GlassItemFrameEntity(world, pos, facing)
+        .apply { dataTracker.set(GlassItemFrameEntity.isGlowingFrame, true) }
+    })
+
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value).also { items.add(it) }
 
@@ -365,5 +376,15 @@ object Registration {
   object ModScreens {
     val enderStorage: ScreenHandlerType<EnderStorageScreenHandler> =
       register(SCREEN_HANDLER, ModId("ender_storage"), ExtendedScreenHandlerType(::EnderStorageScreenHandler))
+  }
+
+  object ModEntities {
+    val glassItemFrameEntity = register(ENTITY_TYPE, ModId("glass_item_frame"),
+      FabricEntityTypeBuilder.create(SpawnGroup.MISC, ::GlassItemFrameEntity)
+        .dimensions(EntityDimensions.changing(0.5f, 0.5f))
+        .trackRangeChunks(10)
+        .trackedUpdateRate(Integer.MAX_VALUE)
+        .forceTrackedVelocityUpdates(false)
+        .build())
   }
 }

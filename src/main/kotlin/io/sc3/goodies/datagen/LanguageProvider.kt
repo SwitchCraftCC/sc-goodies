@@ -1,5 +1,6 @@
 package io.sc3.goodies.datagen
 
+import io.sc3.goodies.Registration
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
@@ -119,6 +120,12 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
       "The scale will be consumed when crafting.")
     builder.add(ModItems.popcorn, "Popcorn")
     builder.sub(ModItems.popcorn, "A bottomless bag of popcorn.")
+
+    builder.add(ModItems.glassItemFrame, "Glass Item Frame")
+    builder.sub(ModItems.glassItemFrame, "An item frame with an invisible background when it contains an item.")
+    builder.add(ModItems.glowGlassItemFrame, "Glow Glass Item Frame")
+    builder.sub(ModItems.glowGlassItemFrame, "A glowing item frame with an invisible background when it contains an item.")
+    builder.add(Registration.ModEntities.glassItemFrameEntity, "Glass Item Frame")
 
     builder.add(ModBlocks.sakuraSapling, "Sakura")
     builder.add(ModBlocks.mapleSapling, "Maple")

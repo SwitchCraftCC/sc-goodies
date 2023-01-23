@@ -92,13 +92,15 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
 
     // Allow ComputerCraft to render printed pages
     if (ccLoaded && ClientHooks.onRenderItemFrame(matrices, consumers, entity, stack, light)) {
+      // TODO: Apply correct translation for printouts here
+      matrices.pop() // CC pops here in its ItemFrameRendererMixin
       return
     }
 
     if (mapId.isPresent) {
       matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0f))
       matrices.scale(0.0078125f, 0.0078125f, 0.0078125f)
-      matrices.translate(-64.0, -64.0, 0.0)
+      matrices.translate(-64.0, -64.0, 62.5)
       matrices.translate(0.0, 0.0, -1.0)
       mapRenderer.draw(matrices, consumers, mapId.asInt, mapState, true, light)
     } else {

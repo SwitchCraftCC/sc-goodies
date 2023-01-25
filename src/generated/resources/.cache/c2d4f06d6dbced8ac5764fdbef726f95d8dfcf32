@@ -1,4 +1,10 @@
-// 1.19.3	2023-01-21T21:29:30.5786118	SwitchCraft Goodies/Tags for minecraft:block
-9cadd003b12c1049ca7af0470ff5c0de95f54aa3 data\minecraft\tags\blocks\mineable\pickaxe.json
+// 1.19.3	2023-01-25T16:46:16.0252279	SwitchCraft Goodies/Tags for minecraft:block
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\parrots_spawnable_on.json
 9add93461267d841a135d57165b955ef109901c1 data\minecraft\tags\blocks\dirt.json
 9add93461267d841a135d57165b955ef109901c1 data\minecraft\tags\blocks\mineable\shovel.json
+9cadd003b12c1049ca7af0470ff5c0de95f54aa3 data\minecraft\tags\blocks\mineable\pickaxe.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\lava_pool_stone_cannot_replace.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\mineable\hoe.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\computercraft\tags\blocks\turtle_always_breakable.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\completes_find_tree_tutorial.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\leaves.json

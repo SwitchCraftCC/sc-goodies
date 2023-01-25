@@ -1,5 +1,6 @@
 package io.sc3.goodies.datagen
 
+import dan200.computercraft.api.ComputerCraftTags
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.ironchest.IronChestVariant
 import io.sc3.goodies.misc.ConcreteExtras
@@ -22,6 +23,8 @@ class BlockTagProvider(
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     val pickaxeBlocks = mutableListOf<Block>(ModBlocks.enderStorage)
+    val hoeBlocks = mutableListOf<Block>()
+    val leafBlocks = mutableListOf<Block>()
 
     IronChestVariant.values().forEach {
       pickaxeBlocks.add(it.chestBlock)
@@ -34,7 +37,24 @@ class BlockTagProvider(
       pickaxeBlocks.add(it.stairsBlock)
     }
 
+    leafBlocks.add(ModBlocks.mapleSapling.leaves)
+    leafBlocks.add(ModBlocks.sakuraSapling.leaves)
+    leafBlocks.add(ModBlocks.blueSapling.leaves)
+
     getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
       .add(*pickaxeBlocks.toTypedArray())
+
+    getOrCreateTagBuilder(BlockTags.COMPLETES_FIND_TREE_TUTORIAL)
+      .add(*leafBlocks.toTypedArray())
+    getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+      .add(*leafBlocks.toTypedArray())
+    getOrCreateTagBuilder(BlockTags.LEAVES)
+      .add(*leafBlocks.toTypedArray())
+    getOrCreateTagBuilder(BlockTags.PARROTS_SPAWNABLE_ON)
+      .add(*leafBlocks.toTypedArray())
+    getOrCreateTagBuilder(BlockTags.LAVA_POOL_STONE_CANNOT_REPLACE)
+      .add(*leafBlocks.toTypedArray())
+    getOrCreateTagBuilder(ComputerCraftTags.Blocks.TURTLE_ALWAYS_BREAKABLE)
+      .add(*leafBlocks.toTypedArray())
   }
 }

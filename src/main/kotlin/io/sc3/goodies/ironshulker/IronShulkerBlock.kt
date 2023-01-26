@@ -180,7 +180,7 @@ class IronShulkerBlock(
     }
 
     if (nbt.contains("Items", LIST)) {
-      val inv = DefaultedList.ofSize(27, ItemStack.EMPTY)
+      val inv = DefaultedList.ofSize(this.variant.size, ItemStack.EMPTY)
       Inventories.readNbt(nbt, inv)
 
       var shownStacks = 0

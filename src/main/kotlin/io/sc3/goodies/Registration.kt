@@ -15,6 +15,7 @@ import io.sc3.goodies.Registration.ModItems.rItem
 import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import io.sc3.goodies.elytra.DyedElytraItem
+import io.sc3.goodies.elytra.ElytraCauldronBehavior
 import io.sc3.goodies.elytra.SpecialElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.enderstorage.*
@@ -117,6 +118,7 @@ object Registration {
       .forEach { rItem("elytra_${it.getName()}", DyedElytraItem(it, elytraSettings())) }
     SpecialElytraType.values()
       .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
+    ElytraCauldronBehavior.registerBehavior()
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {

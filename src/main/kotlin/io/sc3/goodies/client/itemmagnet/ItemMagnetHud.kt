@@ -1,15 +1,15 @@
 package io.sc3.goodies.client.itemmagnet
 
 import com.mojang.blaze3d.systems.RenderSystem
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
+import io.sc3.goodies.itemmagnet.ItemMagnetState
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.gui.DrawableHelper
 import net.minecraft.client.render.GameRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Arm.LEFT
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.itemmagnet.ItemMagnetItem
-import io.sc3.goodies.itemmagnet.ItemMagnetState
 
 object ItemMagnetHud {
   private val blockedTex = ModId("textures/gui/item_magnet_blocked.png")
@@ -20,7 +20,7 @@ object ItemMagnetHud {
 
   private fun renderHud(matrices: MatrixStack, tickDelta: Float) {
     val player = mc.player ?: return
-    if (player.isSpectator) return
+    if (player.isSpectator || mc.options.hudHidden) return
 
     val magnet = ItemMagnetState.magnetComponents(player).firstOrNull() ?: return
 

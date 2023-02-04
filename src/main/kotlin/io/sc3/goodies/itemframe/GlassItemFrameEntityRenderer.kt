@@ -91,6 +91,8 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
     val rotation = if (mapState != null) entity.rotation % 4 * 2 else entity.rotation
     matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(rotation * 360.0f / 8.0f))
 
+    matrices.translate(0.0f, 0.0f, 0.5f)
+
     // Allow ComputerCraft to render printed pages
     if (ccLoaded && ClientHooks.onRenderItemFrame(matrices, consumers, entity, stack, light)) {
       // TODO: Apply correct translation for printouts here
@@ -107,7 +109,7 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
     if (mapId.isPresent) {
       matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(180.0f))
       matrices.scale(0.0078125f, 0.0078125f, 0.0078125f)
-      matrices.translate(-64.0, -64.0, 62.5)
+      matrices.translate(-64.0, -64.0, 0.0)
       matrices.translate(0.0, 0.0, -1.0)
       mapRenderer.draw(matrices, consumers, mapId.asInt, mapState, true, light)
     } else {
@@ -117,7 +119,7 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
         val patterns = bannerEntity.patterns
 
         matrices.push()
-        matrices.translate(0.0001f, -0.5001f, 0.55f)
+        matrices.translate(0.0001f, -0.5001f, 0.05f)
         matrices.scale(0.799999f, 0.399999f, 0.5f)
         BannerBlockEntityRenderer.renderCanvas(matrices, consumers, light, OverlayTexture.DEFAULT_UV, bannerModel,
           ModelLoader.BANNER_BASE, true, patterns)
@@ -125,10 +127,10 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
       } else {
         if (stack.item is ShieldItem) {
           scale *= 2.6666667f
-          matrices.translate(-0.25f, 0.0f, 0.5f)
+          matrices.translate(-0.25f, 0.0f, 0.0f)
           matrices.scale(scale, scale, scale)
         } else {
-          matrices.translate(0.0f, 0.0f, 0.475f)
+          matrices.translate(0.0f, 0.0f, -0.025f)
           matrices.scale(scale, scale, scale)
         }
 

@@ -2,6 +2,7 @@ package io.sc3.goodies.itemframe
 
 import dan200.computercraft.client.ClientHooks
 import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.library.ext.ItemFrameEvents
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.Blocks
 import net.minecraft.block.entity.BannerBlockEntity
@@ -94,6 +95,12 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
     if (ccLoaded && ClientHooks.onRenderItemFrame(matrices, consumers, entity, stack, light)) {
       // TODO: Apply correct translation for printouts here
       matrices.pop() // CC pops here in its ItemFrameRendererMixin
+      return
+    }
+
+    // Allow sc-library mods to render custom items
+    if (ItemFrameEvents.ITEM_RENDER.invoker().invoke(entity, stack, matrices, consumers, light)) {
+      matrices.pop()
       return
     }
 

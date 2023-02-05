@@ -1,4 +1,4 @@
-package io.sc3.goodies.mixin.client;
+package io.sc3.goodies.mixin;
 
 import net.minecraft.block.entity.BarrelBlockEntity;
 import net.minecraft.block.entity.ViewerCountManager;

@@ -15,7 +15,7 @@
     "MobEntityAccessor",
     "ShulkerAccessor",
     "ShulkerBoxBlockEntityAccessor",
-    "client.BarrelBlockEntityAccessor"
+    "BarrelBlockEntityAccessor"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",

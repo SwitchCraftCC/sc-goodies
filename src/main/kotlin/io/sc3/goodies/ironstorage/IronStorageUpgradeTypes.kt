@@ -1,6 +1,6 @@
 package io.sc3.goodies.ironstorage
 
-import io.sc3.goodies.mixin.client.BarrelBlockEntityAccessor
+import io.sc3.goodies.mixin.BarrelBlockEntityAccessor
 import io.sc3.library.WaterloggableBlock
 import net.minecraft.block.BarrelBlock
 import net.minecraft.block.Block

@@ -1,4 +1,4 @@
-package io.sc3.goodies.ironshulker
+package io.sc3.goodies.ironstorage
 
 import net.fabricmc.fabric.api.util.NbtType.COMPOUND
 import net.fabricmc.fabric.api.util.NbtType.LIST

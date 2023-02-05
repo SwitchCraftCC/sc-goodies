@@ -14,7 +14,8 @@
     "LivingEntityMixin",
     "MobEntityAccessor",
     "ShulkerAccessor",
-    "ShulkerBoxBlockEntityAccessor"
+    "ShulkerBoxBlockEntityAccessor",
+    "client.BarrelBlockEntityAccessor"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",

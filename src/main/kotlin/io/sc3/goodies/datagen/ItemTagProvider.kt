@@ -4,7 +4,7 @@ import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.item.Item
@@ -31,16 +31,16 @@ class ItemTagProvider(
         SpecialElytraType.values().forEach { add(it.item) }
       }
 
-    addShulkers(ScGoodiesItemTags.IRON_SHULKER_BOX, IronChestVariant.IRON)
-    addShulkers(ScGoodiesItemTags.GOLD_SHULKER_BOX, IronChestVariant.GOLD)
-    addShulkers(ScGoodiesItemTags.DIAMOND_SHULKER_BOX, IronChestVariant.DIAMOND)
+    addShulkers(ScGoodiesItemTags.IRON_SHULKER_BOX, IronStorageVariant.IRON)
+    addShulkers(ScGoodiesItemTags.GOLD_SHULKER_BOX, IronStorageVariant.GOLD)
+    addShulkers(ScGoodiesItemTags.DIAMOND_SHULKER_BOX, IronStorageVariant.DIAMOND)
     getOrCreateTagBuilder(ScGoodiesItemTags.ANY_IRON_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.IRON_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.GOLD_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.DIAMOND_SHULKER_BOX)
   }
 
-  private fun addShulkers(tag: TagKey<Item>, variant: IronChestVariant) {
+  private fun addShulkers(tag: TagKey<Item>, variant: IronStorageVariant) {
     getOrCreateTagBuilder(tag)
       .add(variant.shulkerBlock.asItem())
       .apply { variant.dyedShulkerItems.values.forEach { add(it) } }

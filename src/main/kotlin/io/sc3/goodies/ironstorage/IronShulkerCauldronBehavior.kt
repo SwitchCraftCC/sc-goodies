@@ -1,4 +1,4 @@
-package io.sc3.goodies.ironshulker
+package io.sc3.goodies.ironstorage
 
 import net.minecraft.block.Block
 import net.minecraft.block.LeveledCauldronBlock
@@ -7,7 +7,6 @@ import net.minecraft.block.cauldron.CauldronBehavior.WATER_CAULDRON_BEHAVIOR
 import net.minecraft.item.ItemStack
 import net.minecraft.stat.Stats
 import net.minecraft.util.ActionResult
-import io.sc3.goodies.ironchest.IronChestVariant
 
 object IronShulkerCauldronBehavior {
   private val cleanShulker = CauldronBehavior { state, world, pos, player, hand, stack ->
@@ -27,7 +26,7 @@ object IronShulkerCauldronBehavior {
   }
 
   internal fun registerBehavior() {
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       variant.dyedShulkerItems.values.forEach {
         WATER_CAULDRON_BEHAVIOR[it] = cleanShulker
       }

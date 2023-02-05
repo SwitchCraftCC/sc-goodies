@@ -16,7 +16,7 @@ import io.sc3.goodies.client.ironchest.*
 import io.sc3.goodies.client.itemmagnet.ItemMagnetHud
 import io.sc3.goodies.client.itemmagnet.ItemMagnetTrinketRenderer
 import io.sc3.goodies.client.misc.ConcreteSpeedupHandler
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.itemframe.GlassItemFrameEntityRenderer
 import io.sc3.goodies.itemmagnet.ItemMagnetHotkey
 import io.sc3.goodies.nature.ScTree
@@ -40,7 +40,7 @@ object ScGoodiesClient : ClientModInitializer {
     log.info("sc-goodies client initializing")
 
     // Iron Chests
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       registerIronChestRenderer(variant)
       registerIronShulkerRenderer(variant) // Accounts for both dyed and undyed shulkers
     }
@@ -76,7 +76,7 @@ object ScGoodiesClient : ClientModInitializer {
     EntityRendererRegistry.register(Registration.ModEntities.glassItemFrameEntity, ::GlassItemFrameEntityRenderer)
   }
 
-  private fun registerIronChestRenderer(variant: IronChestVariant) {
+  private fun registerIronChestRenderer(variant: IronStorageVariant) {
     with(variant) {
       BlockEntityRendererRegistry.register(chestBlockEntityType)
         { IronChestBlockEntityRenderer(chestBlock) }
@@ -85,7 +85,7 @@ object ScGoodiesClient : ClientModInitializer {
     }
   }
 
-  private fun registerIronShulkerRenderer(variant: IronChestVariant) {
+  private fun registerIronShulkerRenderer(variant: IronStorageVariant) {
     with(variant) {
       BlockEntityRendererRegistry.register(shulkerBlockEntityType)
         { IronShulkerBlockEntityRenderer(variant) }

@@ -1,4 +1,4 @@
-package io.sc3.goodies.ironshulker
+package io.sc3.goodies.ironstorage
 
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -22,13 +22,12 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.*
 import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
-import io.sc3.goodies.ironchest.IronChestVariant
-import io.sc3.goodies.ironshulker.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
 import io.sc3.goodies.util.ChestUtil
 import java.util.stream.IntStream
 
 class IronShulkerBlockEntity(
-  private val variant: IronChestVariant,
+  private val variant: IronStorageVariant,
   pos: BlockPos,
   state: BlockState,
 ) : LootableContainerBlockEntity(variant.shulkerBlockEntityType, pos, state), SidedInventory {

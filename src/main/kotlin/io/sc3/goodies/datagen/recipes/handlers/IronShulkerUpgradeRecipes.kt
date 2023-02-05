@@ -6,17 +6,15 @@ import net.minecraft.data.server.recipe.RecipeProvider.conditionsFromTag
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.SHULKER_SHELL
 import net.minecraft.recipe.book.RecipeCategory
-import io.sc3.goodies.ironchest.IronChestUpgrade
+import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.library.recipe.RecipeHandler
-import net.minecraft.data.server.recipe.RecipeProvider
-import net.minecraft.item.Items
 import java.util.function.Consumer
 
 object IronShulkerUpgradeRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Vanilla to Iron Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.VANILLA_IRON.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.VANILLA_IRON.shulkerUpgrade)
       .pattern("III")
       .pattern("ISI")
       .pattern("III")
@@ -27,7 +25,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
 
     // Iron to Gold Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_GOLD.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.IRON_GOLD.shulkerUpgrade)
       .pattern("GIG")
       .pattern("GGG")
       .pattern("GGG")
@@ -38,7 +36,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
 
     // Iron to Diamond Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_DIAMOND.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.IRON_DIAMOND.shulkerUpgrade)
       .pattern("LIL")
       .pattern("LLL")
       .pattern("DDD")
@@ -50,7 +48,7 @@ object IronShulkerUpgradeRecipes : RecipeHandler {
 
     // Gold to Diamond Shulker Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.GOLD_DIAMOND.shulkerUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.GOLD_DIAMOND.shulkerUpgrade)
       .pattern("LDL")
       .pattern("LGL")
       .pattern("LDL")

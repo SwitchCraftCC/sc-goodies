@@ -7,7 +7,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
 import net.minecraft.recipe.book.RecipeCategory
 import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
@@ -15,7 +15,7 @@ object IronChestRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Iron Chest
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestVariant.IRON.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronStorageVariant.IRON.chestBlock)
       .pattern("III")
       .pattern("ICI")
       .pattern("III")
@@ -26,36 +26,36 @@ object IronChestRecipes : RecipeHandler {
 
     // Gold Chest
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestVariant.GOLD.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronStorageVariant.GOLD.chestBlock)
       .pattern("III")
       .pattern("ICI")
       .pattern("III")
       .input('I', GOLD_INGOTS)
-      .input('C', IronChestVariant.IRON.chestBlock)
+      .input('C', IronStorageVariant.IRON.chestBlock)
       .criterion("has_chest", conditionsFromItem(CHEST))
       .offerTo(exporter)
 
     // Diamond Chest (with Iron Chest)
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestVariant.DIAMOND.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronStorageVariant.DIAMOND.chestBlock)
       .pattern("GGG")
       .pattern("GCG")
       .pattern("DDD")
       .input('G', GLASS_BLOCKS)
       .input('D', DIAMONDS)
-      .input('C', IronChestVariant.IRON.chestBlock)
+      .input('C', IronStorageVariant.IRON.chestBlock)
       .criterion("has_chest", conditionsFromItem(CHEST))
       .offerTo(exporter, ModId("diamond_chest_with_iron_chest"))
 
     // Diamond Chest (with Gold Chest)
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestVariant.DIAMOND.chestBlock)
+      .create(RecipeCategory.DECORATIONS, IronStorageVariant.DIAMOND.chestBlock)
       .pattern("GGG")
       .pattern("DCD")
       .pattern("GGG")
       .input('G', GLASS_BLOCKS)
       .input('D', DIAMONDS)
-      .input('C', IronChestVariant.GOLD.chestBlock)
+      .input('C', IronStorageVariant.GOLD.chestBlock)
       .criterion("has_chest", conditionsFromItem(CHEST))
       .offerTo(exporter, ModId("diamond_chest_with_gold_chest"))
   }

@@ -7,7 +7,7 @@ import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder
 import net.minecraft.item.Items.CHEST
 import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.tag.ItemTags.PLANKS
-import io.sc3.goodies.ironchest.IronChestUpgrade
+import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer
 
@@ -15,7 +15,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
   override fun generateRecipes(exporter: Consumer<RecipeJsonProvider>) {
     // Wood to Iron Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.VANILLA_IRON.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.VANILLA_IRON.chestUpgrade)
       .pattern("III")
       .pattern("IPI")
       .pattern("III")
@@ -26,7 +26,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
 
     // Iron to Gold Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_GOLD.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.IRON_GOLD.chestUpgrade)
       .pattern("GGG")
       .pattern("GIG")
       .pattern("GGG")
@@ -37,7 +37,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
 
     // Iron to Diamond Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.IRON_DIAMOND.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.IRON_DIAMOND.chestUpgrade)
       .pattern("LLL")
       .pattern("LIL")
       .pattern("DDD")
@@ -49,7 +49,7 @@ object IronChestUpgradeRecipes : RecipeHandler {
 
     // Gold to Diamond Chest Upgrade
     ShapedRecipeJsonBuilder
-      .create(RecipeCategory.DECORATIONS, IronChestUpgrade.GOLD_DIAMOND.chestUpgrade)
+      .create(RecipeCategory.DECORATIONS, IronStorageUpgrade.GOLD_DIAMOND.chestUpgrade)
       .pattern("LLL")
       .pattern("DGD")
       .pattern("LLL")

@@ -1,5 +1,9 @@
-package io.sc3.goodies.ironchest
+package io.sc3.goodies.ironstorage
 
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.util.BaseBlockWithEntity
+import io.sc3.library.WaterloggableBlock
+import io.sc3.library.WaterloggableBlock.Companion.waterlogged
 import net.minecraft.block.*
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
@@ -28,14 +32,10 @@ import net.minecraft.util.math.random.Random
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
-import io.sc3.goodies.ScGoodies.modId
-import io.sc3.goodies.util.BaseBlockWithEntity
-import io.sc3.library.WaterloggableBlock
-import io.sc3.library.WaterloggableBlock.Companion.waterlogged
 
 class IronChestBlock(
   settings: Settings,
-  val variant: IronChestVariant
+  val variant: IronStorageVariant
 ) : BaseBlockWithEntity(settings), WaterloggableBlock {
   private val openStat: Stat<Identifier> by lazy {
     Stats.CUSTOM.getOrCreateStat(Stats.OPEN_CHEST)

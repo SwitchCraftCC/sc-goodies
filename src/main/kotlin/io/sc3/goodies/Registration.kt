@@ -2,6 +2,7 @@ package io.sc3.goodies
 
 import io.sc3.goodies.Registration.ModBlockEntities.rBlockEntity
 import io.sc3.goodies.Registration.ModBlocks.autumnGrass
+import io.sc3.goodies.Registration.ModBlocks.barrelSettings
 import io.sc3.goodies.Registration.ModBlocks.blueGrass
 import io.sc3.goodies.Registration.ModBlocks.blueSapling
 import io.sc3.goodies.Registration.ModBlocks.chestSettings
@@ -20,11 +21,7 @@ import io.sc3.goodies.elytra.SpecialElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.enderstorage.*
 import io.sc3.goodies.hoverboots.HoverBootsItem
-import io.sc3.goodies.ironchest.*
-import io.sc3.goodies.ironshulker.IronShulkerBlock
-import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
-import io.sc3.goodies.ironshulker.IronShulkerCauldronBehavior
-import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.ironstorage.*
 import io.sc3.goodies.itemframe.GlassItemFrameEntity
 import io.sc3.goodies.itemframe.GlassItemFrameItem
 import io.sc3.goodies.itemmagnet.ItemMagnetItem
@@ -86,7 +83,7 @@ object Registration {
     listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities)
 
     // Iron Chests and Shulkers
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       registerIronChest(variant)
 
       registerIronShulker(variant) // Undyed shulker
@@ -94,11 +91,16 @@ object Registration {
 
       // Shulker block entities, done in bulk for each dyed variant + undyed
       registerIronShulkerBlockEntities(variant)
+
+      registerIronBarrel(variant)
     }
 
-    IronChestUpgrade.values().forEach { upgrade ->
-      rItem(upgrade.itemName + "_chest_upgrade", IronChestUpgradeItem(upgrade, false, itemSettings()))
-      rItem(upgrade.itemName + "_shulker_upgrade", IronChestUpgradeItem(upgrade, true, itemSettings()))
+    IronStorageUpgrade.values().forEach { upgrade ->
+      with (upgrade) {
+        rItem("${itemName}_chest_upgrade", IronStorageUpgradeItem(this, IronChestUpgradeType, itemSettings()))
+        rItem("${itemName}_shulker_upgrade", IronStorageUpgradeItem(this, IronShulkerUpgradeType, itemSettings()))
+        rItem("${itemName}_barrel_upgrade", IronStorageUpgradeItem(this, IronBarrelUpgradeType, itemSettings()))
+      }
     }
 
     IronShulkerCauldronBehavior.registerBehavior()
@@ -186,7 +188,7 @@ object Registration {
     )
   }
 
-  private fun registerIronChest(variant: IronChestVariant) {
+  private fun registerIronChest(variant: IronStorageVariant) {
     with (variant) {
       // Register the block and item
       val chestBlock = rBlock(chestId, IronChestBlock(chestSettings(), this))
@@ -198,7 +200,7 @@ object Registration {
     }
   }
 
-  private fun registerIronShulker(variant: IronChestVariant, color: DyeColor? = null) {
+  private fun registerIronShulker(variant: IronStorageVariant, color: DyeColor? = null) {
     with (variant) {
       val id = if (color != null) "${shulkerId}_${color.getName()}" else shulkerId
 
@@ -208,7 +210,7 @@ object Registration {
     }
   }
 
-  private fun registerIronShulkerBlockEntities(variant: IronChestVariant) {
+  private fun registerIronShulkerBlockEntities(variant: IronStorageVariant) {
     with (variant) {
       val blocks = mutableSetOf(shulkerBlock)
       blocks.addAll(dyedShulkerBlocks.values)
@@ -218,6 +220,17 @@ object Registration {
         { pos, state -> IronShulkerBlockEntity(this, pos, state) }
 
       register(SCREEN_HANDLER, ModId(shulkerId), shulkerScreenHandlerType)
+    }
+  }
+
+  private fun registerIronBarrel(variant: IronStorageVariant) {
+    with (variant) {
+      // Register the block and item
+      val barrelBlock = rBlock(barrelId, IronBarrelBlock(barrelSettings(), this))
+      rItem(barrelBlock, ::BlockItem)
+
+      // Register the block entity (screen handler is shared with chest)
+      rBlockEntity(barrelId, barrelBlock) { pos, state -> IronBarrelBlockEntity(this, pos, state) }
     }
   }
 
@@ -262,6 +275,12 @@ object Registration {
         .suffocates(predicate)
         .blockVision(predicate)
     }
+
+    fun barrelSettings(): AbstractBlock.Settings = AbstractBlock.Settings
+      .of(Material.STONE)
+      .strength(2.0f)
+      .requiresTool()
+      .nonOpaque()
 
     private fun leavesSettings(): AbstractBlock.Settings = AbstractBlock.Settings
       .of(Material.LEAVES)

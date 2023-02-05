@@ -1,8 +1,8 @@
 package io.sc3.goodies.datagen.recipes
 
 import com.google.gson.JsonObject
-import io.sc3.goodies.ironshulker.IronShulkerBlock
-import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.ironstorage.IronShulkerBlock
+import io.sc3.goodies.ironstorage.IronShulkerItem
 import io.sc3.library.recipe.ShapedRecipeSpec
 import net.minecraft.block.Block
 import net.minecraft.block.ShulkerBoxBlock

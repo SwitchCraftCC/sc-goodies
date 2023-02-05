@@ -8,10 +8,10 @@ import net.minecraft.item.ItemStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
 import io.sc3.goodies.client.ironchest.IronShulkerBlockEntityRenderer.Companion.renderShulker
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageVariant
 
 class IronShulkerItemRenderer(
-  private val variant: IronChestVariant,
+  private val variant: IronStorageVariant,
   private val dyeColor: DyeColor?
 ) : DynamicItemRenderer {
   override fun render(stack: ItemStack, mode: ModelTransformation.Mode, matrices: MatrixStack,

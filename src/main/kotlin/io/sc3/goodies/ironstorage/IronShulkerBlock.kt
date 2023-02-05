@@ -1,5 +1,8 @@
-package io.sc3.goodies.ironshulker
+package io.sc3.goodies.ironstorage
 
+import io.sc3.goodies.ScGoodies
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.util.BaseBlockWithEntity
 import net.fabricmc.fabric.api.util.NbtType.LIST
 import net.fabricmc.fabric.api.util.NbtType.STRING
 import net.minecraft.block.*
@@ -36,14 +39,10 @@ import net.minecraft.util.shape.VoxelShape
 import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
-import io.sc3.goodies.ScGoodies
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironchest.IronChestVariant
-import io.sc3.goodies.util.BaseBlockWithEntity
 
 class IronShulkerBlock(
   settings: Settings,
-  val variant: IronChestVariant,
+  val variant: IronStorageVariant,
   val color: DyeColor? = null
 ) : BaseBlockWithEntity(settings) {
   private val openStat: Stat<Identifier> by lazy {
@@ -218,12 +217,12 @@ class IronShulkerBlock(
         world.isSpaceEmpty(box)
       }
 
-    fun get(variant: IronChestVariant, color: DyeColor? = null) = when(color) {
+    fun get(variant: IronStorageVariant, color: DyeColor? = null) = when(color) {
       null -> variant.shulkerBlock
       else -> variant.dyedShulkerBlocks[color]
     }
 
-    fun getItemStack(variant: IronChestVariant, color: DyeColor? = null) =
+    fun getItemStack(variant: IronStorageVariant, color: DyeColor? = null) =
       ItemStack(get(variant, color))
 
     fun getColor(block: Block) = (block as? IronShulkerBlock)?.color

@@ -58,8 +58,11 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
       val to = upgrade.to.humanName
 
       builder.add(upgrade.upgradeItem, "$from to $to Storage Upgrade")
-      builder.sub(upgrade.upgradeItem, "Upgrade $from chests, barrels, or shulker boxes to $to chests, barrels, or shulker boxes.")
+      builder.sub(upgrade.upgradeItem, "Upgrade $from chests, barrels, or shulker boxes to\n$to chests, barrels, or shulker boxes.")
     }
+
+    builder.add(ModItems.barrelHammer, "Barrel Hammer")
+    builder.sub(ModItems.barrelHammer, "Use while sneaking to convert chests into barrels and vice versa.\nAlso works on Iron, Gold and Diamond Chests and Barrels.")
 
     // Ender Storage
     val es = ModBlocks.enderStorage; val esk = es.translationKey

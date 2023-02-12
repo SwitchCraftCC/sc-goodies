@@ -13,7 +13,6 @@ import net.minecraft.util.ActionResult
 import net.minecraft.util.ActionResult.PASS
 import net.minecraft.util.ActionResult.SUCCESS
 import net.minecraft.util.Formatting.GRAY
-import net.minecraft.util.collection.DefaultedList
 import net.minecraft.world.World
 
 class IronStorageUpgradeItem(
@@ -42,7 +41,6 @@ class IronStorageUpgradeItem(
     val oldBlock = oldState.block
     val type = upgradeTypeFromBlock(oldBlock) ?: return PASS
     val properties = type.getOldProperties(be, oldState, from)
-    val customName = be.customName
 
     // Check if the upgrade is valid (vanilla -> iron, iron -> gold, gold -> diamond, and the correct block type)
     if (!type.isValidUpgrade(oldBlock, from, to)) return PASS
@@ -50,29 +48,10 @@ class IronStorageUpgradeItem(
     // Don't upgrade if the chest is opened by any player
     if (type.getViewers(be) > 0) return PASS
 
-    // Copy the items from the old inventory
-    val size = be.size()
-    val contents = DefaultedList.ofSize(size, ItemStack.EMPTY)
-    for (i in 0 until size) {
-      contents[i] = be.getStack(i)
-    }
-
-    // Remove the old inventory
-    world.removeBlockEntity(pos)
-    world.removeBlock(pos, false)
-
     // Create the new inventory
     val newBlock = type.getNewBlock(oldBlock, from, to)
     val newState = type.getNewState(newBlock, properties)
-    world.setBlockState(pos, newState)
-
-    val newBe = world.getBlockEntity(pos) as LootableContainerBlockEntity
-    newBe.customName = customName
-
-    // Copy the items to the new inventory
-    for (i in 0 until size) {
-      newBe.setStack(i, contents[i])
-    }
+    IronStorageUpgrade.convertContainerBlock(world, pos, be, newState)
 
     // Destroy the upgrade item
     ctx.stack.decrement(1)

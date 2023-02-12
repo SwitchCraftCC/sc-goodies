@@ -1,4 +1,4 @@
-// 1.19.3	2023-02-12T15:51:08.0842875	SwitchCraft Goodies/Recipes
+// 1.19.3	2023-02-12T19:26:57.6995146	SwitchCraft Goodies/Recipes
 9d45880db87168143a9579a0d765fc9a8ce9cb4b data\sc-goodies\recipes\hover_boots_dyed_orange.json
 f50ec77c51248b52b15db11a2e2916c30956c70e data\sc-goodies\recipes\lime_concrete_stairs.json
 b93d78bb3cf4b6008a9ef33e1c0fbff223b3502f data\sc-goodies\advancements\recipes\building_blocks\light_gray_concrete_stairs.json
@@ -53,6 +53,7 @@ d518e743843cde928ef8851d9cf600e475672627 data\sc-goodies\recipes\hover_boots_dye
 e17f7cabe1239c165596e1827bcea466626c17b7 data\sc-goodies\advancements\recipes\tools\elytra_white.json
 ee286043191ec865924c4e3840b1b07f75babd58 data\sc-goodies\advancements\recipes\building_blocks\orange_concrete_slab.json
 a1363dd2e1f84c872be33344594e68755b675597 data\sc-goodies\advancements\recipes\decorations\glow_glass_item_frame.json
+130d1dd8fec7fc9d1c85fd820739831117b78735 data\sc-goodies\advancements\recipes\tools\barrel_hammer.json
 096bab486c555aff94a8154c00f0d1c89771652a data\sc-goodies\recipes\elytra_lime.json
 b17d2c57b8f0dbf3e4f495e28abcab1a327f404a data\sc-goodies\advancements\recipes\tools\elytra_lesbian.json
 9a2c421f7e5ead8ddcb946a72aad81e772307bbe data\sc-goodies\advancements\recipes\tools\elytra_cyan.json
@@ -90,8 +91,8 @@ ede8d40902d8fb2e94e8ac00ef0c924f9b0a7f2a data\sc-goodies\recipes\blue_concrete_s
 d632b01d718fd181bbe1a82b166586ca6159d70f data\sc-goodies\recipes\diamond_shulker_with_gold_shulker.json
 45b1ebbb8823b94d20e10f7c9965ea0fa76a88ac data\sc-goodies\recipes\hover_boots_dyed_red.json
 cb5268caa10205e3cccd5ba98adc49c754c157a0 data\sc-goodies\advancements\recipes\decorations\gold_chest.json
-72ccdbfc0bbacb1ab5292bd5e9fbcba49b493e11 data\sc-goodies\recipes\elytra_purple.json
 58e2696aeb798bd26f2c0f4d22a4614b7acbe75b data\sc-goodies\advancements\recipes\tools\elytra_blue.json
+72ccdbfc0bbacb1ab5292bd5e9fbcba49b493e11 data\sc-goodies\recipes\elytra_purple.json
 8fa48c1f49f75805a886ae3db10a6d660b768f71 data\sc-goodies\advancements\recipes\decorations\gold_diamond_chest_upgrade.json
 b823ccb4e065651f1eb4552747544003ba179e8f data\sc-goodies\recipes\elytra_yellow.json
 1f4fe11b80fa651e8e7c9929696ded9ea6519530 data\sc-goodies\advancements\recipes\tools\elytra_lime.json
@@ -155,6 +156,7 @@ e3dab7a5d352d063241602fbed6d67a149f26302 data\sc-goodies\advancements\recipes\bu
 a10e434b469999bb2c7edc76231480581ba6823f data\sc-goodies\recipes\iron_chest.json
 ee67393c3fd190f36e83129252f097bf920c187c data\sc-goodies\recipes\magenta_concrete_stairs.json
 5b74e96bf4e193927aa33fa3731361a05693c3c3 data\sc-goodies\advancements\recipes\tools\elytra_green.json
+f2a35191d8776b5fb33c8827b38d13d5e51b15e0 data\sc-goodies\recipes\barrel_hammer.json
 89cbd8836c6276c6eb11a4419e4493e78054f4b1 data\sc-goodies\advancements\recipes\building_blocks\purple_concrete_stairs.json
 ec4f3ce303b1360f60f41925028b511bbf29bd7f data\sc-goodies\recipes\iron_diamond_chest_upgrade.json
 b5d402fde473db49659591b9c23792ac7def64fb data\sc-goodies\advancements\recipes\tools\elytra_gray.json

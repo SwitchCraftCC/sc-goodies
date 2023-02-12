@@ -332,6 +332,9 @@ object Registration {
       }
       .build()
 
+    val barrelHammer = rItem("barrel_hammer", BarrelHammerItem(itemSettings()
+      .maxDamage(64)))
+
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
 
     val hoverBoots = DyeColor.values().associateWith {

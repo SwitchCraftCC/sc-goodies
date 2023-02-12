@@ -2,22 +2,22 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "B": {
+      "item": "sc-goodies:gold_barrel"
+    },
     "D": {
       "tag": "c:diamonds"
     },
     "G": {
-      "tag": "c:gold_ingots"
-    },
-    "L": {
       "tag": "c:glass_blocks"
     }
   },
   "pattern": [
-    "LDL",
-    "LGL",
-    "LDL"
+    "GGG",
+    "DBD",
+    "GGG"
   ],
   "result": {
-    "item": "sc-goodies:gold_diamond_shulker_upgrade"
+    "item": "sc-goodies:diamond_barrel"
   }
 }

@@ -56,16 +56,10 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {
-    // Iron Chests and Shulkers
+    // Iron Storage upgrades
     IronStorageUpgrade.values().forEach { upgrade ->
-      log.info("Registering item model for $upgrade chest upgrade")
-      gen.register(upgrade.chestUpgrade, GENERATED)
-
-      log.info("Registering item model for $upgrade shulker upgrade")
-      gen.register(upgrade.shulkerUpgrade, GENERATED)
-
-      log.info("Registering item model for $upgrade barrel upgrade")
-      gen.register(upgrade.barrelUpgrade, GENERATED)
+      log.info("Registering item model for $upgrade storage upgrade")
+      gen.register(upgrade.upgradeItem, GENERATED)
     }
 
     ModItems.hoverBoots.values.forEach {

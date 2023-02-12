@@ -80,3 +80,13 @@ object IronBarrelUpgradeType : IronStorageUpgradeType() {
   override fun getNewBlock(oldBlock: Block, from: IronStorageVariant?, to: IronStorageVariant): Block =
     to.barrelBlock
 }
+
+fun upgradeTypeFromBlock(block: Block): IronStorageUpgradeType? = when (block) {
+  is ChestBlock       -> IronChestUpgradeType
+  is IronChestBlock   -> IronChestUpgradeType
+  is ShulkerBoxBlock  -> IronShulkerUpgradeType
+  is IronShulkerBlock -> IronShulkerUpgradeType
+  is BarrelBlock      -> IronBarrelUpgradeType
+  is IronBarrelBlock  -> IronBarrelUpgradeType
+  else -> null
+}

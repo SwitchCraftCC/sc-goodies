@@ -96,11 +96,7 @@ object Registration {
     }
 
     IronStorageUpgrade.values().forEach { upgrade ->
-      with (upgrade) {
-        rItem("${itemName}_chest_upgrade", IronStorageUpgradeItem(this, IronChestUpgradeType, itemSettings()))
-        rItem("${itemName}_shulker_upgrade", IronStorageUpgradeItem(this, IronShulkerUpgradeType, itemSettings()))
-        rItem("${itemName}_barrel_upgrade", IronStorageUpgradeItem(this, IronBarrelUpgradeType, itemSettings()))
-      }
+      rItem("${upgrade.itemName}_chest_upgrade", IronStorageUpgradeItem(upgrade, itemSettings()))
     }
 
     IronShulkerCauldronBehavior.registerBehavior()

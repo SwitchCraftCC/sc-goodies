@@ -18,7 +18,6 @@ import net.minecraft.world.World
 
 class IronStorageUpgradeItem(
   private val upgrade: IronStorageUpgrade,
-  private val type: IronStorageUpgradeType,
   settings: Settings
 ) : BaseItem(settings) {
   private val from by upgrade::from
@@ -41,6 +40,7 @@ class IronStorageUpgradeItem(
 
     val oldState = world.getBlockState(pos)
     val oldBlock = oldState.block
+    val type = upgradeTypeFromBlock(oldBlock) ?: return PASS
     val properties = type.getOldProperties(be, oldState, from)
     val customName = be.customName
 

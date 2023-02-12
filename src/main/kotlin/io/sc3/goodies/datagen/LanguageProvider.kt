@@ -54,22 +54,11 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     }
 
     IronStorageUpgrade.values().forEach { upgrade ->
-      val from = upgrade.from?.humanName ?: "Wood"
+      val from = upgrade.from?.humanName ?: "Vanilla"
       val to = upgrade.to.humanName
-      val toDesc = to.lowercase().addArticle()
-      val name = upgrade.from?.humanName?.lowercase()
 
-      val chestFromDesc = (name ?: "vanilla wood").addArticle()
-      builder.add(upgrade.chestUpgrade, "$from to $to Chest Upgrade")
-      builder.sub(upgrade.chestUpgrade, "Upgrade $chestFromDesc chest to $toDesc chest.")
-
-      val shulkerFromDesc = (name ?: "vanilla").addArticle()
-      builder.add(upgrade.shulkerUpgrade, "$from to $to Shulker Box Upgrade")
-      builder.sub(upgrade.shulkerUpgrade, "Upgrade $shulkerFromDesc shulker box to $toDesc shulker box.")
-
-      val barrelFromDesc = (name ?: "vanilla wood").addArticle()
-      builder.add(upgrade.barrelUpgrade, "$from to $to Barrel Upgrade")
-      builder.sub(upgrade.barrelUpgrade, "Upgrade $barrelFromDesc barrel to $toDesc barrel.")
+      builder.add(upgrade.upgradeItem, "$from to $to Storage Upgrade")
+      builder.sub(upgrade.upgradeItem, "Upgrade $from chests, barrels, or shulker boxes to $to chests, barrels, or shulker boxes.")
     }
 
     // Ender Storage

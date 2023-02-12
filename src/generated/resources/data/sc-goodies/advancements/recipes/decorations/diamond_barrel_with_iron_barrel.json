@@ -1,11 +1,13 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_shulker_box": {
+    "has_barrel": {
       "conditions": {
         "items": [
           {
-            "tag": "c:shulker_boxes"
+            "items": [
+              "minecraft:barrel"
+            ]
           }
         ]
       },
@@ -13,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "sc-goodies:iron_diamond_shulker_upgrade"
+        "recipe": "sc-goodies:diamond_barrel_with_iron_barrel"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_shulker_box",
+      "has_barrel",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "sc-goodies:iron_diamond_shulker_upgrade"
+      "sc-goodies:diamond_barrel_with_iron_barrel"
     ]
   }
 }

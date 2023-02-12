@@ -2,19 +2,19 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "B": {
+      "item": "minecraft:barrel"
+    },
     "I": {
       "tag": "c:iron_ingots"
-    },
-    "S": {
-      "item": "minecraft:shulker_shell"
     }
   },
   "pattern": [
     "III",
-    "ISI",
+    "IBI",
     "III"
   ],
   "result": {
-    "item": "sc-goodies:vanilla_iron_shulker_upgrade"
+    "item": "sc-goodies:iron_barrel"
   }
 }

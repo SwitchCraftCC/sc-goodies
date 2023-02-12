@@ -2,6 +2,7 @@ package io.sc3.goodies.ironstorage
 
 import io.sc3.goodies.ScGoodies.ModId
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.item.BlockItem
 import net.minecraft.registry.Registries
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
@@ -28,6 +29,7 @@ enum class IronStorageVariant(
 
   // Chests
   val chestBlock by lazy { Registries.BLOCK.get(ModId(chestId)) as IronChestBlock }
+  val chestItem by lazy { Registries.ITEM.get(ModId(chestId)) as BlockItem }
 
   val chestBlockEntityType by lazy {
     @Suppress("UNCHECKED_CAST")
@@ -62,6 +64,7 @@ enum class IronStorageVariant(
 
   // Barrels
   val barrelBlock by lazy { Registries.BLOCK.get(ModId(barrelId)) as IronBarrelBlock }
+  val barrelItem by lazy { Registries.ITEM.get(ModId(barrelId)) as BlockItem }
 
   val barrelBlockEntityType by lazy {
     @Suppress("UNCHECKED_CAST")

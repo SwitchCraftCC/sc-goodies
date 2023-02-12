@@ -14,15 +14,7 @@ enum class IronStorageUpgrade(
   IRON_DIAMOND("iron_diamond", from = IRON, to = DIAMOND),
   GOLD_DIAMOND("gold_diamond", from = GOLD, to = DIAMOND);
 
-  val chestUpgrade by lazy {
+  val upgradeItem by lazy {
     Registries.ITEM.get(ModId(itemName + "_chest_upgrade")) as IronStorageUpgradeItem
-  }
-
-  val shulkerUpgrade by lazy {
-    Registries.ITEM.get(ModId(itemName + "_shulker_upgrade")) as IronStorageUpgradeItem
-  }
-
-  val barrelUpgrade by lazy {
-    Registries.ITEM.get(ModId(itemName + "_barrel_upgrade")) as IronStorageUpgradeItem
   }
 }

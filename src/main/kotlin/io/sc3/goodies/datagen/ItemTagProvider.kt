@@ -1,7 +1,7 @@
 package io.sc3.goodies.datagen
 
-import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.ScGoodiesItemTags
+import io.sc3.goodies.ScGoodiesItemTags.CONCRETE
 import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageVariant
@@ -38,15 +38,25 @@ class ItemTagProvider(
       .addTag(ScGoodiesItemTags.IRON_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.GOLD_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.DIAMOND_SHULKER_BOX)
+
+    getOrCreateTagBuilder(ScGoodiesItemTags.ANY_UPGRADABLE_STORAGE)
+      .add(Items.CHEST)
+      .add(Items.SHULKER_BOX)
+      .add(Items.BARREL)
+
+    val ironStorage = getOrCreateTagBuilder(ScGoodiesItemTags.ANY_IRON_STORAGE)
+      .addTag(ScGoodiesItemTags.ANY_IRON_SHULKER_BOX)
+
+    IronStorageVariant.values().forEach { variant ->
+      ironStorage
+        .add(variant.chestItem)
+        .add(variant.barrelItem)
+    }
   }
 
   private fun addShulkers(tag: TagKey<Item>, variant: IronStorageVariant) {
     getOrCreateTagBuilder(tag)
       .add(variant.shulkerBlock.asItem())
       .apply { variant.dyedShulkerItems.values.forEach { add(it) } }
-  }
-
-  companion object {
-    val CONCRETE: TagKey<Item> = TagKey.of(RegistryKeys.ITEM, ModId("concrete"))
   }
 }

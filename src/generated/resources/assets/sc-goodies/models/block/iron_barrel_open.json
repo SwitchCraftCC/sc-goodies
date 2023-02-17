@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "sc-goodies:block/iron_barrel_bottom",
+    "side": "sc-goodies:block/iron_barrel_side",
+    "top": "sc-goodies:block/iron_barrel_top_open"
+  }
+}

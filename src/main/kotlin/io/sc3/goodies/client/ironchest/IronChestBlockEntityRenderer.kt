@@ -13,9 +13,9 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
 import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironchest.IronChestBlock
-import io.sc3.goodies.ironchest.IronChestBlockEntity
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronChestBlock
+import io.sc3.goodies.ironstorage.IronChestBlockEntity
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import kotlin.math.pow
 
 class IronChestBlockEntityRenderer(private val block: IronChestBlock) : BlockEntityRenderer<IronChestBlockEntity> {
@@ -39,7 +39,7 @@ class IronChestBlockEntityRenderer(private val block: IronChestBlock) : BlockEnt
   companion object {
     private fun easeOutCubic(x: Float) = 1.0f - (1.0f - x).pow(3)
 
-    private val textures = IronChestVariant.values()
+    private val textures = IronStorageVariant.values()
       .associateWith { ModId("textures/entity/chest/${it.chestId}.png") }
 
     private val modelData by lazy {
@@ -59,7 +59,7 @@ class IronChestBlockEntityRenderer(private val block: IronChestBlock) : BlockEnt
     private val latch: ModelPart = part.getChild("lock")
 
     fun renderChest(matrices: MatrixStack, facing: Direction, animationProgress: Float,
-                    vertexConsumers: VertexConsumerProvider, variant: IronChestVariant,
+                    vertexConsumers: VertexConsumerProvider, variant: IronStorageVariant,
                     light: Int, overlay: Int) {
       val texture = textures[variant] ?: return
 

@@ -2,7 +2,7 @@ package io.sc3.goodies.datagen
 
 import dan200.computercraft.api.ComputerCraftTags
 import io.sc3.goodies.Registration.ModBlocks
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.ConcreteExtras
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
@@ -23,13 +23,13 @@ class BlockTagProvider(
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     val pickaxeBlocks = mutableListOf<Block>(ModBlocks.enderStorage)
-    val hoeBlocks = mutableListOf<Block>()
     val leafBlocks = mutableListOf<Block>()
 
-    IronChestVariant.values().forEach {
+    IronStorageVariant.values().forEach {
       pickaxeBlocks.add(it.chestBlock)
       pickaxeBlocks.add(it.shulkerBlock)
       pickaxeBlocks.addAll(it.dyedShulkerBlocks.values)
+      pickaxeBlocks.add(it.barrelBlock)
     }
 
     ConcreteExtras.colors.values.forEach {

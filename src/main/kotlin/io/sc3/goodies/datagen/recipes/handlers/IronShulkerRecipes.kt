@@ -16,9 +16,9 @@ import net.minecraft.recipe.book.RecipeCategory
 import net.minecraft.registry.Registries.RECIPE_SERIALIZER
 import net.minecraft.registry.Registry.register
 import java.util.function.Consumer
-import io.sc3.goodies.ironchest.IronChestVariant.DIAMOND as DIAMOND_VARIANT
-import io.sc3.goodies.ironchest.IronChestVariant.GOLD as GOLD_VARIANT
-import io.sc3.goodies.ironchest.IronChestVariant.IRON as IRON_VARIANT
+import io.sc3.goodies.ironstorage.IronStorageVariant.DIAMOND as DIAMOND_VARIANT
+import io.sc3.goodies.ironstorage.IronStorageVariant.GOLD as GOLD_VARIANT
+import io.sc3.goodies.ironstorage.IronStorageVariant.IRON as IRON_VARIANT
 
 object IronShulkerRecipes : RecipeHandler {
   override fun registerSerializers() {

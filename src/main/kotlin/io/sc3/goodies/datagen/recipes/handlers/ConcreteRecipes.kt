@@ -1,10 +1,10 @@
 package io.sc3.goodies.datagen.recipes.handlers
 
+import io.sc3.goodies.ScGoodiesItemTags.CONCRETE
 import net.minecraft.data.server.recipe.RecipeJsonProvider
 import net.minecraft.data.server.recipe.RecipeProvider.*
 import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.book.RecipeCategory
-import io.sc3.goodies.datagen.ItemTagProvider.Companion.CONCRETE
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.library.recipe.RecipeHandler
 import java.util.function.Consumer

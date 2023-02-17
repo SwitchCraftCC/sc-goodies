@@ -1,9 +1,9 @@
 package io.sc3.goodies.datagen
 
 import io.sc3.goodies.Registration.ModBlocks
-import io.sc3.goodies.ironchest.IronChestVariant
-import io.sc3.goodies.ironshulker.IronShulkerBlock
-import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.ironstorage.IronShulkerBlock
+import io.sc3.goodies.ironstorage.IronShulkerBlockEntity
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -26,7 +26,7 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
   private val saplingDropChance = floatArrayOf(0.05f, 0.0625f, 0.084f, 0.1f)
 
   override fun generate() {
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       with (variant) {
         val type = shulkerBlockEntityType
 
@@ -40,6 +40,9 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
             ?: throw IllegalStateException("Shulker block for variant=$this color=$color is null")
           registerIronShulkerDrops(type, block)
         }
+
+        // Barrel drop
+        addDrop(barrelBlock) { block -> nameableContainerDrops(block) }
       }
     }
 

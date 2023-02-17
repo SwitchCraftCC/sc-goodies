@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#sc-goodies:iron_shulker",
+    "sc-goodies:iron_chest",
+    "sc-goodies:iron_barrel",
+    "sc-goodies:gold_chest",
+    "sc-goodies:gold_barrel",
+    "sc-goodies:diamond_chest",
+    "sc-goodies:diamond_barrel"
+  ]
+}

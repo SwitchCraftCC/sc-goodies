@@ -5,8 +5,8 @@ import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.elytra.SpecialElytraType
-import io.sc3.goodies.ironchest.IronChestUpgrade
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageUpgrade
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -44,27 +44,25 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     // Iron Chests and Shulkers
     builder.add("block.sc-goodies.storage.desc", "Capable of storing up to %s stacks of items.")
 
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       builder.add(variant.chestBlock, "${variant.humanName} Chest")
       builder.add(variant.shulkerBlock, "${variant.humanName} Shulker Box")
       variant.dyedShulkerBlocks.forEach { (color, block) ->
         builder.add(block, "${colorNames[color]} ${variant.humanName} Shulker Box")
       }
+      builder.add(variant.barrelBlock, "${variant.humanName} Barrel")
     }
 
-    IronChestUpgrade.values().forEach { upgrade ->
-      val from = upgrade.from?.humanName ?: "Wood"
+    IronStorageUpgrade.values().forEach { upgrade ->
+      val from = upgrade.from?.humanName ?: "Vanilla"
       val to = upgrade.to.humanName
-      val toDesc = to.lowercase().addArticle()
 
-      val chestFromDesc = (upgrade.from?.humanName?.lowercase() ?: "vanilla wood").addArticle()
-      builder.add(upgrade.chestUpgrade, "$from to $to Chest Upgrade")
-      builder.sub(upgrade.chestUpgrade, "Upgrade $chestFromDesc chest to $toDesc chest.")
-
-      val shulkerFromDesc = (upgrade.from?.humanName?.lowercase() ?: "vanilla").addArticle()
-      builder.add(upgrade.shulkerUpgrade, "$from to $to Shulker Box Upgrade")
-      builder.sub(upgrade.shulkerUpgrade, "Upgrade $shulkerFromDesc shulker box to $toDesc shulker box.")
+      builder.add(upgrade.upgradeItem, "$from to $to Storage Upgrade")
+      builder.sub(upgrade.upgradeItem, "Upgrade $from chests, barrels, or shulker boxes to\n$to chests, barrels, or shulker boxes.")
     }
+
+    builder.add(ModItems.barrelHammer, "Barrel Hammer")
+    builder.sub(ModItems.barrelHammer, "Use while sneaking to convert chests into barrels and vice versa.\nAlso works on Iron, Gold and Diamond Chests and Barrels.")
 
     // Ender Storage
     val es = ModBlocks.enderStorage; val esk = es.translationKey

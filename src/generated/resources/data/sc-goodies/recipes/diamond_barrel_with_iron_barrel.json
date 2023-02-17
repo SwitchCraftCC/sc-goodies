@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "sc-goodies:iron_barrel"
+    },
+    "D": {
+      "tag": "c:diamonds"
+    },
+    "G": {
+      "tag": "c:glass_blocks"
+    }
+  },
+  "pattern": [
+    "GGG",
+    "GBG",
+    "DDD"
+  ],
+  "result": {
+    "item": "sc-goodies:diamond_barrel"
+  }
+}

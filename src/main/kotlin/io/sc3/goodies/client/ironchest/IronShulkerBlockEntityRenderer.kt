@@ -13,12 +13,12 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
 import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironchest.IronChestVariant
-import io.sc3.goodies.ironshulker.IronShulkerBlock.Companion.facing
-import io.sc3.goodies.ironshulker.IronShulkerBlockEntity
+import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.ironstorage.IronShulkerBlockEntity
 
 class IronShulkerBlockEntityRenderer(
-  private val variant: IronChestVariant
+  private val variant: IronStorageVariant
 ) : BlockEntityRenderer<IronShulkerBlockEntity> {
   override fun render(entity: IronShulkerBlockEntity, tickDelta: Float, matrices: MatrixStack,
                       vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int) {
@@ -36,10 +36,10 @@ class IronShulkerBlockEntityRenderer(
   }
 
   companion object {
-    private val undyedTextures = IronChestVariant.values()
+    private val undyedTextures = IronStorageVariant.values()
       .associateWith { ModId("textures/entity/shulker/${it.shulkerId}.png") }
     
-    private val dyedTextures = IronChestVariant.values().associateWith { variant ->
+    private val dyedTextures = IronStorageVariant.values().associateWith { variant ->
       DyeColor.values().associateWith { ModId("textures/entity/shulker/${variant.shulkerId}_${it.getName()}.png") }
     }
     
@@ -57,9 +57,9 @@ class IronShulkerBlockEntityRenderer(
     private val part: ModelPart = modelData.createModel()
     private val lid: ModelPart = part.getChild("lid")
     
-    fun renderShulker(variant: IronChestVariant, color: DyeColor?, matrices: MatrixStack,
-                              facing: Direction, animationProgress: Float, vertexConsumers: VertexConsumerProvider,
-                              light: Int, overlay: Int) {
+    fun renderShulker(variant: IronStorageVariant, color: DyeColor?, matrices: MatrixStack,
+                      facing: Direction, animationProgress: Float, vertexConsumers: VertexConsumerProvider,
+                      light: Int, overlay: Int) {
       val texture = (if (color != null) dyedTextures[variant]!![color] else null) ?: undyedTextures[variant]!!
 
       matrices.push()

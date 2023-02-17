@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "sc-goodies:iron_barrel"
+    },
+    "I": {
+      "tag": "c:gold_ingots"
+    }
+  },
+  "pattern": [
+    "III",
+    "IBI",
+    "III"
+  ],
+  "result": {
+    "item": "sc-goodies:gold_barrel"
+  }
+}

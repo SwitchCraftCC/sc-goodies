@@ -2,7 +2,7 @@ package io.sc3.goodies.datagen.recipes
 
 import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.goodies.datagen.recipes.IronShulkerRecipe.Companion.shulkerItem
-import io.sc3.goodies.ironshulker.IronShulkerItem
+import io.sc3.goodies.ironstorage.IronShulkerItem
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.DYES
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.DyeItem

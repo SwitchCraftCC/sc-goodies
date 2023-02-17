@@ -6,8 +6,8 @@ import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
-import io.sc3.goodies.ironchest.IronChestUpgrade
-import io.sc3.goodies.ironchest.IronChestVariant
+import io.sc3.goodies.ironstorage.IronStorageUpgrade
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -21,6 +21,7 @@ import net.minecraft.data.client.ModelIds.getItemModelId
 import net.minecraft.data.client.Models.GENERATED
 import net.minecraft.data.client.TexturedModel.makeFactory
 import net.minecraft.registry.Registries
+import net.minecraft.state.property.Properties
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import java.util.*
@@ -28,11 +29,14 @@ import java.util.*
 class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   override fun generateBlockStateModels(gen: BlockStateModelGenerator) {
     // Register block models for each iron chest variant
-    IronChestVariant.values().forEach { variant ->
+    IronStorageVariant.values().forEach { variant ->
       registerIronChest(gen, variant)
 
       registerIronShulker(gen, variant) // Undyed shulker
       DyeColor.values().forEach { registerIronShulker(gen, variant, it) }
+
+      // Barrel
+      registerIronBarrel(gen, variant)
     }
 
     // Ender Storage
@@ -52,19 +56,17 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {
-    // Iron Chests and Shulkers
-    IronChestUpgrade.values().forEach { upgrade ->
-      log.info("Registering item model for $upgrade chest upgrade")
-      gen.register(upgrade.chestUpgrade, GENERATED)
-
-      log.info("Registering item model for $upgrade shulker upgrade")
-      gen.register(upgrade.shulkerUpgrade, GENERATED)
+    // Iron Storage upgrades
+    IronStorageUpgrade.values().forEach { upgrade ->
+      log.info("Registering item model for $upgrade storage upgrade")
+      gen.register(upgrade.upgradeItem, GENERATED)
     }
 
     ModItems.hoverBoots.values.forEach {
       gen.register(it, GENERATED)
     }
 
+    gen.register(ModItems.barrelHammer, GENERATED)
     gen.register(ModItems.itemMagnet, GENERATED)
     gen.register(ModItems.dragonScale, GENERATED)
     gen.register(ModItems.popcorn, GENERATED)
@@ -79,7 +81,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       .forEach { gen.register(it.item, GENERATED) }
   }
 
-  private fun registerIronChest(gen: BlockStateModelGenerator, variant: IronChestVariant) {
+  private fun registerIronChest(gen: BlockStateModelGenerator, variant: IronStorageVariant) {
     log.info("Registering iron chest model for variant=$variant")
 
     with (variant) {
@@ -96,7 +98,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     }
   }
 
-  private fun registerIronShulker(gen: BlockStateModelGenerator, variant: IronChestVariant, color: DyeColor? = null) {
+  private fun registerIronShulker(gen: BlockStateModelGenerator, variant: IronStorageVariant, color: DyeColor? = null) {
     log.info("Registering iron shulker model for variant=$variant color=$color")
 
     with (variant) {
@@ -114,6 +116,29 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
           .put(TextureKey.PARTICLE, ModId("block/${blockId.path}")),
         gen.modelCollector
       )
+    }
+  }
+
+  private fun registerIronBarrel(gen: BlockStateModelGenerator, variant: IronStorageVariant) {
+    log.info("Registering iron barrel model for variant=$variant")
+
+    with (variant) {
+      val openId = TextureMap.getSubId(barrelBlock, "_top_open")
+
+      gen.blockStateCollector.accept(VariantsBlockStateSupplier.create(barrelBlock)
+        .coordinate(gen.createUpDefaultFacingVariantMap())
+        .coordinate(BlockStateVariantMap.create(Properties.OPEN)
+          .register(false, BlockStateVariant.create().put(
+            VariantSettings.MODEL,
+            TexturedModel.CUBE_BOTTOM_TOP.upload(barrelBlock, gen.modelCollector)
+          ))
+          .register(true, BlockStateVariant.create().put(
+            VariantSettings.MODEL,
+            TexturedModel.CUBE_BOTTOM_TOP
+              .get(barrelBlock)
+              .textures { m -> m.put(TextureKey.TOP, openId) }
+              .upload(barrelBlock, "_open", gen.modelCollector)
+          ))))
     }
   }
 

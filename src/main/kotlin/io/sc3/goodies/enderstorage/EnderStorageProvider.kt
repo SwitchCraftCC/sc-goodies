@@ -1,12 +1,12 @@
 package io.sc3.goodies.enderstorage
 
+import io.sc3.goodies.ScGoodies.modId
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.inventory.Inventories
 import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.server.MinecraftServer
 import net.minecraft.util.collection.DefaultedList
-import io.sc3.goodies.ScGoodies.modId
 
 object EnderStorageProvider {
   const val INVENTORY_SIZE = 27
@@ -76,6 +76,12 @@ object EnderStorageProvider {
 
     override fun markDirty() {
       state.markDirty()
+
+      blockEntities.forEach {
+        if (!it.isRemoved) {
+          it.markDirty()
+        }
+      }
     }
 
     override fun canPlayerUse(player: PlayerEntity) = true

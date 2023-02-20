@@ -1,10 +1,12 @@
 package io.sc3.goodies.ironstorage
 
+import io.sc3.goodies.ScGoodies
 import io.sc3.goodies.util.BaseBlockWithEntity
 import net.minecraft.block.Block
 import net.minecraft.block.BlockRenderType
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemPlacementContext
@@ -18,11 +20,13 @@ import net.minecraft.state.StateManager
 import net.minecraft.state.property.BooleanProperty
 import net.minecraft.state.property.DirectionProperty
 import net.minecraft.state.property.Properties
+import net.minecraft.text.Text
 import net.minecraft.util.*
 import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
+import net.minecraft.world.BlockView
 import net.minecraft.world.World
 
 class IronBarrelBlock(
@@ -99,6 +103,13 @@ class IronBarrelBlock(
   override fun getComparatorOutput(state: BlockState, world: World, pos: BlockPos): Int {
     val be = world.getBlockEntity(pos) ?: return 0
     return ScreenHandler.calculateComparatorOutput(be)
+  }
+
+  override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
+    // Don't call super, we don't want the default .desc implementation
+    tooltip.add(
+      Text.translatable("block.${ScGoodies.modId}.storage.desc", variant.size)
+      .formatted(Formatting.GRAY))
   }
 
   companion object {

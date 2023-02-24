@@ -19,6 +19,7 @@ import net.minecraft.data.client.BlockStateModelGenerator.*
 import net.minecraft.data.client.ModelIds.getBlockModelId
 import net.minecraft.data.client.ModelIds.getItemModelId
 import net.minecraft.data.client.Models.GENERATED
+import net.minecraft.data.client.Models.HANDHELD
 import net.minecraft.data.client.TexturedModel.makeFactory
 import net.minecraft.registry.Registries
 import net.minecraft.state.property.Properties
@@ -66,7 +67,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       gen.register(it, GENERATED)
     }
 
-    gen.register(ModItems.barrelHammer, GENERATED)
+    gen.register(ModItems.barrelHammer, HANDHELD)
     gen.register(ModItems.itemMagnet, GENERATED)
     gen.register(ModItems.dragonScale, GENERATED)
     gen.register(ModItems.popcorn, GENERATED)

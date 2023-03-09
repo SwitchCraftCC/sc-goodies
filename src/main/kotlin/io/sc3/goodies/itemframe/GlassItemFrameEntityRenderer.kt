@@ -111,7 +111,10 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
       matrices.scale(0.0078125f, 0.0078125f, 0.0078125f)
       matrices.translate(-64.0, -64.0, 0.0)
       matrices.translate(0.0, 0.0, -1.0)
-      mapRenderer.draw(matrices, consumers, mapId.asInt, mapState, true, light)
+
+      if (mapState != null) {
+        mapRenderer.draw(matrices, consumers, mapId.asInt, mapState, true, light)
+      }
     } else {
       var scale = ITEM_RENDER_SCALE
       if (stack.item is BannerItem) {

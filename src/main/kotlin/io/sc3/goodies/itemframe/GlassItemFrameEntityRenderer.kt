@@ -15,7 +15,7 @@ import net.minecraft.client.render.entity.EntityRenderer
 import net.minecraft.client.render.entity.EntityRendererFactory
 import net.minecraft.client.render.entity.model.EntityModelLayers
 import net.minecraft.client.render.model.ModelLoader
-import net.minecraft.client.render.model.json.ModelTransformation
+import net.minecraft.client.render.model.json.ModelTransformationMode
 import net.minecraft.client.texture.SpriteAtlasTexture
 import net.minecraft.client.util.ModelIdentifier
 import net.minecraft.client.util.math.MatrixStack
@@ -138,8 +138,8 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
         }
 
         matrices.scale(0.5f, 0.5f, 0.5f)
-        itemRenderer.renderItem(stack, ModelTransformation.Mode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices,
-          consumers, entity.id)
+        itemRenderer.renderItem(stack, ModelTransformationMode.FIXED, light, OverlayTexture.DEFAULT_UV, matrices,
+          consumers, entity.world, entity.id)
       }
     }
 

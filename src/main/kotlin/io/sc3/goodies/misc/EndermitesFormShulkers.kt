@@ -1,5 +1,8 @@
 package io.sc3.goodies.misc
 
+import io.sc3.goodies.mixin.LivingEntityAccessor
+import io.sc3.goodies.mixin.MobEntityAccessor
+import io.sc3.goodies.mixin.ShulkerAccessor
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents
 import net.minecraft.block.Blocks
 import net.minecraft.entity.Entity
@@ -11,9 +14,6 @@ import net.minecraft.entity.mob.ShulkerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Direction.NORTH
-import io.sc3.goodies.mixin.LivingEntityAccessor
-import io.sc3.goodies.mixin.MobEntityAccessor
-import io.sc3.goodies.mixin.ShulkerAccessor
 import java.util.*
 
 // TODO: Config for this
@@ -88,7 +88,7 @@ object EndermitesFormShulkers {
 
     private fun canMerge(dir: Direction): Pair<Boolean, BlockPos> {
       val pos = endermite.pos
-      val blockPos = BlockPos(pos.x, pos.y + 0.5, pos.z).offset(dir)
+      val blockPos = BlockPos.ofFloored(pos.x, pos.y + 0.5, pos.z).offset(dir)
       val state = endermite.world.getBlockState(blockPos)
       return state.isOf(Blocks.PURPUR_BLOCK) to blockPos
     }

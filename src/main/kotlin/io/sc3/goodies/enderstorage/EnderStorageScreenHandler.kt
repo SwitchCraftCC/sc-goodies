@@ -1,13 +1,13 @@
 package io.sc3.goodies.enderstorage
 
+import io.sc3.goodies.Registration.ModScreens
+import io.sc3.goodies.util.ChestScreenHandler
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.inventory.Inventory
 import net.minecraft.inventory.SimpleInventory
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.util.math.BlockPos
-import io.sc3.goodies.Registration.ModScreens
-import io.sc3.goodies.util.ChestScreenHandler
 
 class EnderStorageScreenHandler(
   syncId: Int,
@@ -26,8 +26,8 @@ class EnderStorageScreenHandler(
       Frequency.fromPacket(buf)
     )
 
-  override fun close(player: PlayerEntity) {
-    super.close(player)
+  override fun onClosed(player: PlayerEntity) {
+    super.onClosed(player)
 
     val world = player.world
     if (player.world == null || player.world.isClient) return

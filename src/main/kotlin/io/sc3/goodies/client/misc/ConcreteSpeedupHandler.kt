@@ -1,11 +1,11 @@
 package io.sc3.goodies.client.misc
 
+import io.sc3.goodies.misc.ConcreteExtras
 import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.input.KeyboardInput
 import net.minecraft.client.network.ClientPlayerEntity
 import net.minecraft.util.math.BlockPos
-import io.sc3.goodies.misc.ConcreteExtras
 
 private const val VEL_MULTIPLIER = 1.25f
 private const val Y_OFFSET = 1.0 / 16.0
@@ -27,7 +27,7 @@ object ConcreteSpeedupHandler {
   @JvmStatic
   fun playerTick(cp: ClientPlayerEntity) {
     val pos = cp.pos
-    val floorPos = BlockPos(pos.x, pos.y - Y_OFFSET, pos.z)
+    val floorPos = BlockPos.ofFloored(pos.x, pos.y - Y_OFFSET, pos.z)
     val floor = cp.world.getBlockState(floorPos).block
 
     if (speedupBlocks.contains(floor)) {

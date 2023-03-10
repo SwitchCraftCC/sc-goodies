@@ -76,8 +76,8 @@ abstract class ChestScreenHandler(
     return result
   }
 
-  override fun close(player: PlayerEntity) {
-    super.close(player)
+  override fun onClosed(player: PlayerEntity) {
+    super.onClosed(player)
     inv.onClose(player)
   }
 

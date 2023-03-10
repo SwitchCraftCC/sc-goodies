@@ -40,9 +40,9 @@ object ItemMagnetHud {
     }
 
     // Magnet item
-    itemRenderer.renderInGuiWithOverrides(player, magnet, x, y, 0)
+    itemRenderer.renderInGuiWithOverrides(matrices, player, magnet, x, y, 0)
     // Durability bar
-    itemRenderer.renderGuiItemOverlay(textRenderer, magnet, x, y, "")
+    itemRenderer.renderGuiItemOverlay(matrices, textRenderer, magnet, x, y, "")
   }
 
   internal fun initEvents() {

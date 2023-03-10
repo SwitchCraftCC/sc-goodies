@@ -4,6 +4,7 @@ import io.sc3.goodies.ScGoodies.ModId
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.item.BlockItem
 import net.minecraft.registry.Registries
+import net.minecraft.resource.featuretoggle.FeatureFlags
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
@@ -37,7 +38,7 @@ enum class IronStorageVariant(
   }
 
   val chestScreenHandlerType: ScreenHandlerType<IronChestScreenHandler> by lazy {
-    ScreenHandlerType { id, inv -> IronChestScreenHandler(this, id, inv) }
+    ScreenHandlerType({ id, inv -> IronChestScreenHandler(this, id, inv) }, FeatureFlags.VANILLA_FEATURES)
   }
 
   // Shulkers
@@ -59,7 +60,7 @@ enum class IronStorageVariant(
   }
 
   val shulkerScreenHandlerType: ScreenHandlerType<IronShulkerScreenHandler> by lazy {
-    ScreenHandlerType { id, inv -> IronShulkerScreenHandler(this, id, inv) }
+    ScreenHandlerType({ id, inv -> IronShulkerScreenHandler(this, id, inv) }, FeatureFlags.VANILLA_FEATURES)
   }
 
   // Barrels

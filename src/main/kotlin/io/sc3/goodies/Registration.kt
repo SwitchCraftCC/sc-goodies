@@ -326,7 +326,7 @@ object Registration {
   object ModItems {
     val itemGroup: ItemGroup = FabricItemGroup.builder(ModId("main"))
       .icon { ItemStack(Items.AXOLOTL_BUCKET) }
-      .entries { _, entries, _ ->
+      .entries { _, entries ->
         items.forEach(entries::add)
         entries.addAll(AncientTomeItem.getTomeStacks())
       }

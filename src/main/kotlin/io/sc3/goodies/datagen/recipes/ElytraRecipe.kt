@@ -10,6 +10,7 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.ShapelessRecipe
 import net.minecraft.recipe.book.CraftingRecipeCategory
+import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
 
@@ -20,7 +21,9 @@ class ElytraRecipe(
   val outputStack: ItemStack,
   val input: DefaultedList<Ingredient>
 ) : ShapelessRecipe(id, group, category, outputStack, input) {
-  override fun craft(inv: CraftingInventory): ItemStack {
+  override fun craft(inv: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+    val output = getOutput(manager)
+
     for (i in 0 until inv.size()) {
       val stack = inv.getStack(i)
       if (stack.isIn(ScGoodiesItemTags.ELYTRA)) {

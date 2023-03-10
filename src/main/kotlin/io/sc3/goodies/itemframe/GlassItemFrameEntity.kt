@@ -14,7 +14,7 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.BannerItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.network.Packet
+import net.minecraft.network.packet.Packet
 import net.minecraft.network.listener.ClientPlayPacketListener
 import net.minecraft.registry.tag.BlockTags
 import net.minecraft.util.ActionResult
@@ -73,7 +73,7 @@ class GlassItemFrameEntity : ItemFrameEntity, CustomSpawnableEntity {
   }
 
   override fun readCustomSpawnData(nbt: NbtCompound) {
-    attachmentPos = BlockPos(x, y, z)
+    attachmentPos = BlockPos.ofFloored(x, y, z)
     setFacing(Direction.byId(nbt.getByte("Facing").toInt()))
   }
 

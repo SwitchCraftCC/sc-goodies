@@ -1,5 +1,7 @@
 package io.sc3.goodies.datagen.recipes
 
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
 import net.minecraft.inventory.CraftingInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
@@ -8,10 +10,9 @@ import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.ShapelessRecipe
 import net.minecraft.recipe.SpecialRecipeSerializer
 import net.minecraft.recipe.book.CraftingRecipeCategory
+import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
-import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.itemmagnet.ItemMagnetItem
 
 class ItemMagnetUpgradeRecipe(
   id: Identifier,
@@ -25,8 +26,9 @@ class ItemMagnetUpgradeRecipe(
     ofItems(Items.NETHERITE_INGOT)
   )
 ) {
-  override fun craft(inv: CraftingInventory): ItemStack {
-    val output = output
+  override fun craft(inv: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+    val output = getOutput(manager)
+
     for (i in 0 until inv.size()) {
       val stack: ItemStack = inv.getStack(i)
       if (stack.item !is ItemMagnetItem || stack.item !== output.item) {

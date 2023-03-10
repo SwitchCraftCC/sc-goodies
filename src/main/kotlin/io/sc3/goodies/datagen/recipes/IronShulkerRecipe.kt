@@ -13,6 +13,7 @@ import net.minecraft.recipe.Ingredient
 import net.minecraft.recipe.RecipeSerializer
 import net.minecraft.recipe.ShapedRecipe
 import net.minecraft.recipe.book.CraftingRecipeCategory
+import net.minecraft.registry.DynamicRegistryManager
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
 import net.minecraft.util.collection.DefaultedList
@@ -27,7 +28,7 @@ class IronShulkerRecipe(
   private val outputItem: ItemStack,
 ) : ShapedRecipe(id, group, category, width, height, ingredients, outputItem) {
 
-  override fun craft(inventory: CraftingInventory): ItemStack {
+  override fun craft(inventory: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft
     if (shulkerStack.isEmpty) return ItemStack.EMPTY

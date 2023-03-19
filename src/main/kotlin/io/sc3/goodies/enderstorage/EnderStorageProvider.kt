@@ -46,7 +46,7 @@ object EnderStorageProvider {
   class EnderStorageInventory : Inventory {
     val items: DefaultedList<ItemStack> = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY)
 
-    private val blockEntities = mutableSetOf<EnderStorageBlockEntity>()
+    val blockEntities = mutableSetOf<EnderStorageBlockEntity>()
     var viewerCount = 0
 
     override fun clear() {

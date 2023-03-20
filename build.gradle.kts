@@ -36,6 +36,7 @@ val trinketsVersion: String by project
 val cardinalComponentsVersion: String by project
 
 val scLibraryVersion: String by project
+val scTextVersion: String by project
 val fabricPermissionsApiVersion: String by project
 
 val archivesBaseName = "sc-goodies"
@@ -119,6 +120,8 @@ dependencies {
 
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-base", cardinalComponentsVersion))
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-entity", cardinalComponentsVersion))
+
+  modImplementation(include("io.sc3", "sc-text", scTextVersion))
 }
 
 tasks {

@@ -77,6 +77,7 @@ class EnderStorageBlockEntity(
     super.onBroken()
     closeViewers()
     inv?.updateViewers()
+    inv?.removeBlockEntity(this)
   }
 
   override fun createMenu(syncId: Int, playerInv: PlayerInventory, player: PlayerEntity): ScreenHandler? {

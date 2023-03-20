@@ -3,6 +3,7 @@ package io.sc3.goodies.datagen
 import dan200.computercraft.api.ComputerCraftTags
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
@@ -36,6 +37,11 @@ class BlockTagProvider(
       pickaxeBlocks.add(it.slabBlock)
       pickaxeBlocks.add(it.stairsBlock)
     }
+
+    pickaxeBlocks.add(AmethystExtras.slabBlock)
+    pickaxeBlocks.add(AmethystExtras.stairsBlock)
+    getOrCreateTagBuilder(BlockTags.CRYSTAL_SOUND_BLOCKS)
+      .add(AmethystExtras.slabBlock, AmethystExtras.stairsBlock)
 
     leafBlocks.add(ModBlocks.mapleSapling.leaves)
     leafBlocks.add(ModBlocks.sakuraSapling.leaves)

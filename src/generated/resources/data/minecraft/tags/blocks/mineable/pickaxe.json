@@ -90,6 +90,8 @@
     "sc-goodies:red_concrete_slab",
     "sc-goodies:red_concrete_stairs",
     "sc-goodies:black_concrete_slab",
-    "sc-goodies:black_concrete_stairs"
+    "sc-goodies:black_concrete_stairs",
+    "sc-goodies:amethyst_slab",
+    "sc-goodies:amethyst_stairs"
   ]
 }

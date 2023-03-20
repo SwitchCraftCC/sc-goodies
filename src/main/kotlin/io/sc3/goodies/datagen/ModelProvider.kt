@@ -8,6 +8,7 @@ import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -48,6 +49,8 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       registerSlab(gen, it.baseBlock, it.slabBlock, it.texture)
       registerStairs(gen, it.stairsBlock, it.texture)
     }
+    registerSlab(gen, AmethystExtras.baseBlock, AmethystExtras.slabBlock, AmethystExtras.texture)
+    registerStairs(gen, AmethystExtras.stairsBlock, AmethystExtras.texture)
 
     // Nature
     registerTree(gen, ModBlocks.sakuraSapling)

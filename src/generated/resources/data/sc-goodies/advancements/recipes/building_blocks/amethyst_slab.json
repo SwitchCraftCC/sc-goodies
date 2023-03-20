@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sc-goodies:amethyst_slab"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "items": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:amethyst_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "items",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sc-goodies:amethyst_slab"
+    ]
+  }
+}

@@ -7,6 +7,7 @@ import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -137,6 +138,10 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
       builder.add(it.slabBlock, colorNames[it.color] + " Concrete Slab")
       builder.add(it.stairsBlock, colorNames[it.color] + " Concrete Stairs")
     }
+
+    // Amethyst Slabs and Stairs
+    builder.add(AmethystExtras.slabBlock, "Amethyst Slab")
+    builder.add(AmethystExtras.stairsBlock, "Amethyst Stairs")
   }
 
   private fun TranslationBuilder.sub(item: Item, value: String, sub: String = "desc") {

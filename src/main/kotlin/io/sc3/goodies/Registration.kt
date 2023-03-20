@@ -27,6 +27,7 @@ import io.sc3.goodies.itemframe.GlassItemFrameItem
 import io.sc3.goodies.itemmagnet.ItemMagnetItem
 import io.sc3.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import io.sc3.goodies.itemmagnet.ToggleItemMagnetPacket
+import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.misc.EndermitesFormShulkers
 import io.sc3.goodies.misc.PopcornItem
@@ -128,6 +129,17 @@ object Registration {
         AbstractBlock.Settings.copy(it.baseBlock)))
       rItem(stairsBlock, ::BlockItem)
     }
+    // Pretty Slabs and Stairs
+    val amethystSlab = rBlock(
+      AmethystExtras.slabBlockId.path,
+      SlabBlock(AbstractBlock.Settings.copy(AmethystExtras.baseBlock)))
+    rItem(amethystSlab, ::BlockItem)
+    val amethystStairs = rBlock(
+      AmethystExtras.stairsBlockId.path,
+      StairsBlock(AmethystExtras.baseBlock.defaultState,
+        AbstractBlock.Settings.copy(AmethystExtras.baseBlock))
+    )
+    rItem(amethystStairs, ::BlockItem)
 
     TomeEnchantments.init()
     EndermitesFormShulkers.init()

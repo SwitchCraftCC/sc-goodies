@@ -4,6 +4,7 @@ import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.ironstorage.IronShulkerBlock
 import io.sc3.goodies.ironstorage.IronShulkerBlockEntity
 import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
@@ -50,6 +51,9 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
       addDrop(color.slabBlock, ::slabDrops)
       addDrop(color.stairsBlock)
     }
+    addDrop(AmethystExtras.slabBlock)
+    addDrop(AmethystExtras.stairsBlock)
+
 
     addTreeDrops(ModBlocks.sakuraSapling)
     addTreeDrops(ModBlocks.mapleSapling)

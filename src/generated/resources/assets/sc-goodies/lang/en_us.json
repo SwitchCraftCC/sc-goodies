@@ -132,6 +132,8 @@
   "block.sc-goodies.yellow_concrete_slab": "Yellow Concrete Slab",
   "block.sc-goodies.yellow_concrete_stairs": "Yellow Concrete Stairs",
   "category.sc-goodies": "SwitchCraft Goodies",
+  "death.attack.sc-goodies.barrel_hammer": "%s was bonked by %s",
+  "death.attack.sc-goodies.barrel_hammer.item": "%s was bonked by %s using %s",
   "entity.sc-goodies.glass_item_frame": "Glass Item Frame",
   "item.sc-goodies.ancient_tome": "Ancient Tome",
   "item.sc-goodies.ancient_tome.desc": "Can enchant an item one level beyond the max level.",

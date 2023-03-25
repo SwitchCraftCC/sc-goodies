@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "sc-goodies:gold_chest"
-  }
+  },
+  "show_notification": true
 }

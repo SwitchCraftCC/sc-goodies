@@ -29,5 +29,6 @@
   ],
   "result": {
     "item": "sc-goodies:hover_boots_white"
-  }
+  },
+  "show_notification": true
 }

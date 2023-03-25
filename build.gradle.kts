@@ -55,6 +55,7 @@ repositories {
   mavenLocal {
     content {
       includeModule("io.sc3", "sc-library")
+      includeModule("io.sc3", "sc-text")
     }
   }
 
@@ -76,13 +77,6 @@ repositories {
   maven("https://maven.shedaniel.me") // Cloth Config
   maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
   maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
-
-  // forgeconfigapiport-fabric, dependency of CC: Tweaked
-  maven("https://raw.githubusercontent.com/Fuzss/modresources/main/maven/") {
-    content {
-      includeModule("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
-    }
-  }
 }
 
 dependencies {
@@ -98,9 +92,11 @@ dependencies {
 
   modImplementation("cc.tweaked:cc-tweaked-$ccMcVersion-fabric:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
+    exclude("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
   }
   modRuntimeOnly("cc.tweaked:cc-tweaked-$ccMcVersion-fabric:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
+    exclude("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
   }
 
   implementation(include("com.electronwill.night-config", "core", nightConfigVersion))
@@ -177,6 +173,10 @@ tasks {
           "-Dfabric-api.datagen.modid=${archivesBaseName}"
         )
         runDir("build/datagen")
+      }
+
+      named("client") {
+        property("mixin.debug.export", "true")
       }
     }
   }

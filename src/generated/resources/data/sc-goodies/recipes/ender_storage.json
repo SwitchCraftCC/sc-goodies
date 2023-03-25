@@ -25,5 +25,6 @@
   ],
   "result": {
     "item": "sc-goodies:ender_storage"
-  }
+  },
+  "show_notification": true
 }

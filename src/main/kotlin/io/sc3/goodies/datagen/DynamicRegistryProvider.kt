@@ -6,13 +6,14 @@ import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
 import java.util.concurrent.CompletableFuture
 
-class WorldgenProvider(
+class DynamicRegistryProvider(
   out: FabricDataOutput,
   registriesFuture: CompletableFuture<RegistryWrapper.WrapperLookup>
 ) : FabricDynamicRegistryProvider(out, registriesFuture) {
-  override fun getName() = "sc-goodies worldgen"
+  override fun getName() = "sc-goodies dynamic registries"
 
   override fun configure(registries: RegistryWrapper.WrapperLookup, entries: Entries) {
     entries.addAll(registries.getWrapperOrThrow(RegistryKeys.CONFIGURED_FEATURE))
+    entries.addAll(registries.getWrapperOrThrow(RegistryKeys.DAMAGE_TYPE))
   }
 }

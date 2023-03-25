@@ -19,5 +19,6 @@
   ],
   "result": {
     "item": "sc-goodies:iron_diamond_chest_upgrade"
-  }
+  },
+  "show_notification": true
 }

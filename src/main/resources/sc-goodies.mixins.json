@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "AnvilScreenHandlerMixin",
+    "BarrelBlockEntityAccessor",
     "EnderDragonEntityMixin",
     "ExperienceOrbEntityMixin",
     "ForgingScreenHandlerAccessor",
@@ -13,9 +14,9 @@
     "LivingEntityAccessor",
     "LivingEntityMixin",
     "MobEntityAccessor",
+    "PlayerEntityMixin",
     "ShulkerAccessor",
-    "ShulkerBoxBlockEntityAccessor",
-    "BarrelBlockEntityAccessor"
+    "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [
     "client.ClientPlayerEntityMixin",

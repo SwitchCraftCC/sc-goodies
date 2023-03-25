@@ -20,7 +20,6 @@ import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.itemframe.GlassItemFrameEntityRenderer
 import io.sc3.goodies.itemmagnet.ItemMagnetHotkey
 import io.sc3.goodies.nature.ScTree
-import io.sc3.goodies.util.EntitySpawnPacket
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap
 import net.fabricmc.fabric.api.client.model.ModelLoadingRegistry
@@ -67,8 +66,6 @@ object ScGoodiesClient : ClientModInitializer {
     registerTreeRenderLayers(ModBlocks.sakuraSapling)
     registerTreeRenderLayers(ModBlocks.mapleSapling)
     registerTreeRenderLayers(ModBlocks.blueSapling)
-
-    EntitySpawnPacket.initEvents()
 
     ModelLoadingRegistry.INSTANCE.registerModelProvider { _, out ->
       out.accept(ModelIdentifier(ModId("glass_item_frame_back"), "inventory"))

@@ -13,5 +13,6 @@
   "result": {
     "count": 6,
     "item": "sc-goodies:light_blue_concrete_slab"
-  }
+  },
+  "show_notification": true
 }

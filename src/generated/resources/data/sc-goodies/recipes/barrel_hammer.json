@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "sc-goodies:barrel_hammer"
-  }
+  },
+  "show_notification": true
 }

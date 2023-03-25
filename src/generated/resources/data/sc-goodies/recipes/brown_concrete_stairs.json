@@ -15,5 +15,6 @@
   "result": {
     "count": 4,
     "item": "sc-goodies:brown_concrete_stairs"
-  }
+  },
+  "show_notification": true
 }

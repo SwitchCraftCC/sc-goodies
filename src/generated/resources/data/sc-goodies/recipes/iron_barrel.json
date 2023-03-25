@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "sc-goodies:iron_barrel"
-  }
+  },
+  "show_notification": true
 }

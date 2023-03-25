@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "sc-goodies:shulker_box_iron"
-  }
+  },
+  "show_notification": true
 }

@@ -54,11 +54,13 @@ import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.SpawnGroup
+import net.minecraft.entity.damage.DamageType
 import net.minecraft.item.*
 import net.minecraft.registry.Registerable
 import net.minecraft.registry.Registries.*
 import net.minecraft.registry.Registry.register
 import net.minecraft.registry.RegistryKey
+import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.sound.BlockSoundGroup.GRASS
@@ -81,7 +83,7 @@ object Registration {
 
   internal fun init() {
     // Force static initializers to run
-    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities)
+    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities, ModDamageSources)
 
     // Iron Chests and Shulkers
     IronStorageVariant.values().forEach { variant ->
@@ -194,6 +196,10 @@ object Registration {
         ).ignoreVines().build()
       )
     )
+  }
+
+  fun bootstrapDamageTypes(damageTypeRegisterable: Registerable<DamageType?>) {
+    damageTypeRegisterable.register(ModDamageSources.barrelHammer, DamageType("sc-goodies.barrel_hammer", 0.1f))
   }
 
   private fun registerIronChest(variant: IronStorageVariant) {
@@ -418,5 +424,9 @@ object Registration {
         .trackedUpdateRate(Integer.MAX_VALUE)
         .forceTrackedVelocityUpdates(false)
         .build())
+  }
+
+  object ModDamageSources {
+    val barrelHammer = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModId("barrel_hammer"))
   }
 }

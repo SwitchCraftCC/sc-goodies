@@ -79,7 +79,7 @@ class EnderStorageBlock(
   }
 
   override fun getPlacementState(ctx: ItemPlacementContext): BlockState = defaultState
-    .with(facing, ctx.playerLookDirection.opposite)
+    .with(facing, ctx.horizontalPlayerFacing.opposite)
     .with(waterlogged, placementWaterlogged(ctx))
 
   override fun onPlaced(world: World, pos: BlockPos, state: BlockState, placer: LivingEntity?, stack: ItemStack) {

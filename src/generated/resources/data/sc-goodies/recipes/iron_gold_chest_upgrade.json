@@ -16,5 +16,6 @@
   ],
   "result": {
     "item": "sc-goodies:iron_gold_chest_upgrade"
-  }
+  },
+  "show_notification": true
 }

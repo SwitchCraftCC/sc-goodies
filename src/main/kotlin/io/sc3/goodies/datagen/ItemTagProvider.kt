@@ -1,5 +1,6 @@
 package io.sc3.goodies.datagen
 
+import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.goodies.ScGoodiesItemTags.CONCRETE
 import io.sc3.goodies.elytra.DyedElytraItem
@@ -11,6 +12,7 @@ import net.minecraft.item.Item
 import net.minecraft.item.Items
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryWrapper
+import net.minecraft.registry.tag.ItemTags
 import net.minecraft.registry.tag.TagKey
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
@@ -52,6 +54,9 @@ class ItemTagProvider(
         .add(variant.chestItem)
         .add(variant.barrelItem)
     }
+
+    getOrCreateTagBuilder(ItemTags.TOOLS)
+      .add(ModItems.barrelHammer)
   }
 
   private fun addShulkers(tag: TagKey<Item>, variant: IronStorageVariant) {

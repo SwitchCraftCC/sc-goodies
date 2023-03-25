@@ -4,6 +4,7 @@ import io.sc3.goodies.Registration
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.modId
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.goodies.ironstorage.IronStorageVariant
@@ -64,6 +65,8 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
 
     builder.add(ModItems.barrelHammer, "Barrel Hammer")
     builder.sub(ModItems.barrelHammer, "Use while sneaking to convert chests into barrels and vice versa.\nAlso works on Iron, Gold and Diamond Chests and Barrels.")
+    builder.add("death.attack.$modId.barrel_hammer", "%s was bonked by %s")
+    builder.add("death.attack.$modId.barrel_hammer.item", "%s was bonked by %s using %s")
 
     // Ender Storage
     val es = ModBlocks.enderStorage; val esk = es.translationKey

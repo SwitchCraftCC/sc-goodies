@@ -22,5 +22,6 @@
   ],
   "result": {
     "item": "sc-goodies:item_magnet"
-  }
+  },
+  "show_notification": true
 }

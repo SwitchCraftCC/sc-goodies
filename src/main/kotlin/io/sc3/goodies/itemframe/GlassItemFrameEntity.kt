@@ -2,8 +2,6 @@ package io.sc3.goodies.itemframe
 
 import io.sc3.goodies.Registration.ModEntities
 import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.util.CustomSpawnableEntity
-import io.sc3.goodies.util.EntitySpawnPacket
 import net.minecraft.entity.EntityType
 import net.minecraft.entity.data.DataTracker
 import net.minecraft.entity.data.TrackedData
@@ -14,8 +12,9 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.BannerItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
-import net.minecraft.network.packet.Packet
 import net.minecraft.network.listener.ClientPlayPacketListener
+import net.minecraft.network.packet.Packet
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket
 import net.minecraft.registry.tag.BlockTags
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Hand
@@ -24,7 +23,7 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 
-class GlassItemFrameEntity : ItemFrameEntity, CustomSpawnableEntity {
+class GlassItemFrameEntity : ItemFrameEntity {
   private val posBehind
     get() = blockPos.offset(facing.opposite)
 
@@ -72,17 +71,8 @@ class GlassItemFrameEntity : ItemFrameEntity, CustomSpawnableEntity {
     nbt.putBoolean("isGlowingFrame", dataTracker.get(isGlowingFrame))
   }
 
-  override fun readCustomSpawnData(nbt: NbtCompound) {
-    attachmentPos = BlockPos.ofFloored(x, y, z)
-    setFacing(Direction.byId(nbt.getByte("Facing").toInt()))
-  }
-
-  override fun writeCustomSpawnData(nbt: NbtCompound) {
-    nbt.putByte("Facing", facing.id.toByte())
-  }
-
   override fun createSpawnPacket(): Packet<ClientPlayPacketListener> =
-    EntitySpawnPacket.create(this, decorationBlockPos)
+    EntitySpawnS2CPacket(this, facing.id, decorationBlockPos)
 
   override fun getAsItemStack(): ItemStack = if (dataTracker.get(isGlowingFrame)) {
     ItemStack(ModItems.glowGlassItemFrame)

@@ -111,7 +111,7 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
       }
 
       // Ensure there is space in the inventory for the item
-      if (player.inventory.main.none { it.isEmpty || it.isItemEqual(stack) && it.count < it.maxCount }) {
+      if (player.inventory.main.none { it.isEmpty || ItemStack.canCombine(it, stack) && it.count < it.maxCount }) {
         continue
       }
 

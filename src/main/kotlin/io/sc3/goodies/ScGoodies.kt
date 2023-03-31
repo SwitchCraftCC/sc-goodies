@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier
 import org.slf4j.LoggerFactory
 
 object ScGoodies : ModInitializer {
+  @JvmField
   internal val log = LoggerFactory.getLogger("ScGoodies")!!
 
   internal const val modId = "sc-goodies"

@@ -1,8 +1,10 @@
 package io.sc3.goodies.misc
 
+import io.sc3.goodies.glue.EndermiteEntityOwner
 import io.sc3.goodies.mixin.LivingEntityAccessor
 import io.sc3.goodies.mixin.MobEntityAccessor
 import io.sc3.goodies.mixin.ShulkerAccessor
+import io.sc3.library.ext.event
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents
 import net.minecraft.block.Blocks
 import net.minecraft.entity.Entity
@@ -14,12 +16,21 @@ import net.minecraft.entity.mob.ShulkerEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.Direction.NORTH
+import net.minecraft.world.World
 import java.util.*
 
 // TODO: Config for this
 private const val CHANCE = 0.005
 
 object EndermitesFormShulkers {
+  @JvmField
+  val CAN_MERGE = event<(
+    world: World,
+    pos: BlockPos,
+    endermite: EndermiteEntity,
+    playerUuid: UUID?
+  ) -> Boolean> { cb -> { world, pos, endermite, playerUuid -> cb.all{ it(world, pos, endermite, playerUuid) }}}
+
   fun init() {
     ServerEntityEvents.ENTITY_LOAD.register { entity, _ ->
       if (entity is EndermiteEntity) {
@@ -89,8 +100,13 @@ object EndermitesFormShulkers {
     private fun canMerge(dir: Direction): Pair<Boolean, BlockPos> {
       val pos = endermite.pos
       val blockPos = BlockPos.ofFloored(pos.x, pos.y + 0.5, pos.z).offset(dir)
-      val state = endermite.world.getBlockState(blockPos)
-      return state.isOf(Blocks.PURPUR_BLOCK) to blockPos
+      val world = endermite.world
+      val state = world.getBlockState(blockPos)
+
+      val canMerge = state.isOf(Blocks.PURPUR_BLOCK)
+        && CAN_MERGE.invoker().invoke(world, blockPos, endermite, (endermite as EndermiteEntityOwner).owner)
+
+      return canMerge to blockPos
     }
   }
 }

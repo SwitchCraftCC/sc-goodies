@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "power=0": {
+      "model": "sc-goodies:block/dimmable_light_level_0"
+    },
+    "power=1": {
+      "model": "sc-goodies:block/dimmable_light_level_1"
+    },
+    "power=10": {
+      "model": "sc-goodies:block/dimmable_light_level_10"
+    },
+    "power=11": {
+      "model": "sc-goodies:block/dimmable_light_level_11"
+    },
+    "power=12": {
+      "model": "sc-goodies:block/dimmable_light_level_12"
+    },
+    "power=13": {
+      "model": "sc-goodies:block/dimmable_light_level_13"
+    },
+    "power=14": {
+      "model": "sc-goodies:block/dimmable_light_level_14"
+    },
+    "power=15": {
+      "model": "sc-goodies:block/dimmable_light_level_15"
+    },
+    "power=2": {
+      "model": "sc-goodies:block/dimmable_light_level_2"
+    },
+    "power=3": {
+      "model": "sc-goodies:block/dimmable_light_level_3"
+    },
+    "power=4": {
+      "model": "sc-goodies:block/dimmable_light_level_4"
+    },
+    "power=5": {
+      "model": "sc-goodies:block/dimmable_light_level_5"
+    },
+    "power=6": {
+      "model": "sc-goodies:block/dimmable_light_level_6"
+    },
+    "power=7": {
+      "model": "sc-goodies:block/dimmable_light_level_7"
+    },
+    "power=8": {
+      "model": "sc-goodies:block/dimmable_light_level_8"
+    },
+    "power=9": {
+      "model": "sc-goodies:block/dimmable_light_level_9"
+    }
+  }
+}

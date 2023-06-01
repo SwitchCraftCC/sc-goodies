@@ -31,9 +31,7 @@ import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.misc.EndermitesFormShulkers
 import io.sc3.goodies.misc.PopcornItem
-import io.sc3.goodies.nature.ScGrass
-import io.sc3.goodies.nature.ScSaplingGenerator
-import io.sc3.goodies.nature.ScTree
+import io.sc3.goodies.nature.*
 import io.sc3.goodies.tomes.AncientTomeItem
 import io.sc3.goodies.tomes.TomeEnchantments
 import io.sc3.goodies.util.BaseItem
@@ -41,6 +39,7 @@ import io.sc3.library.networking.registerServerReceiver
 import io.sc3.library.recipe.RecipeHandler
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
+import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
@@ -63,6 +62,7 @@ import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
 import net.minecraft.screen.ScreenHandlerType
+import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.sound.BlockSoundGroup.GRASS
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Rarity.EPIC
@@ -252,6 +252,13 @@ object Registration {
     val enderStorage = rBlock("ender_storage", EnderStorageBlock(AbstractBlock.Settings
       .of(Material.STONE).requiresTool().strength(12.5f, 600.0f)))
 
+    val dimmableLight = rBlock("dimmable_light", DimmableLight(AbstractBlock.Settings
+      .of(Material.REDSTONE_LAMP)
+      .luminance(createLightLevelFromPowerState())
+      .strength(0.3F)
+      .sounds(BlockSoundGroup.GLASS)
+    ))
+
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))
     val autumnGrass = rBlock("autumn_grass", ScGrass(grassSettings(MapColor.ORANGE)))
     val blueGrass = rBlock("blue_grass", ScGrass(grassSettings(MapColor.LIGHT_BLUE)))
@@ -370,6 +377,8 @@ object Registration {
     val ancientTome = rItem("ancient_tome", AncientTomeItem(itemSettings()
       .maxCount(1)
       .rarity(UNCOMMON)))
+
+    val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings());
 
     // TODO: Clean up
     val pinkGrass = rItem(ModBlocks.pinkGrass, ::BlockItem, itemSettings())

@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-31T22:09:24.8929256	SwitchCraft Goodies/Recipes
+// 1.19.4	2023-06-01T14:40:44.5274573	SwitchCraft Goodies/Recipes
 4baa848101c3852e69bd5c68b3c43dafa7f54c84 data\sc-goodies\advancements\recipes\tools\elytra_magenta.json
 9ec2dc95ad1bc30400fa08c5e4d327037e30a6c5 data\sc-goodies\advancements\recipes\tools\elytra_pink.json
 0e61cd17a24c400ccb647405a499ed0b104757de data\sc-goodies\advancements\recipes\building_blocks\black_concrete_stairs.json
@@ -42,8 +42,8 @@ b93d78bb3cf4b6008a9ef33e1c0fbff223b3502f data\sc-goodies\advancements\recipes\bu
 d0ccb13bf38fa0f60f99c9f0ea201cff2b6cf5c5 data\sc-goodies\recipes\cyan_concrete_slab.json
 a1363dd2e1f84c872be33344594e68755b675597 data\sc-goodies\advancements\recipes\decorations\glow_glass_item_frame.json
 8df8eece5280aa442c92325009da029cc996c82e data\sc-goodies\recipes\blue_concrete_stairs.json
-f7af6d5abc6fc07f64ca58144a428f2f8da273f1 data\sc-goodies\recipes\hover_boots_dyed_cyan.json
 3dcd5f0199ae76fd69492b85e72c488894612394 data\sc-goodies\advancements\recipes\tools\hover_boots_dyed_cyan.json
+f7af6d5abc6fc07f64ca58144a428f2f8da273f1 data\sc-goodies\recipes\hover_boots_dyed_cyan.json
 a716904cb0326571c05a5f4c7517dc52c04aca5e data\sc-goodies\advancements\recipes\tools\hover_boots_dyed_purple.json
 45b1ebbb8823b94d20e10f7c9965ea0fa76a88ac data\sc-goodies\recipes\hover_boots_dyed_red.json
 ed0dd2b173743303db3935b6c34e87f5201acf3b data\sc-goodies\recipes\diamond_shulker_with_gold_shulker.json

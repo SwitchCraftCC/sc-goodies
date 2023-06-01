@@ -1,4 +1,4 @@
-// 1.19.4	2023-05-31T22:09:24.8864192	SwitchCraft Goodies/Block Loot Tables
+// 1.19.4	2023-06-01T14:40:44.5199502	SwitchCraft Goodies/Block Loot Tables
 8987ae0d66ad58d505242da4549cb334f2c67d55 data\sc-goodies\loot_tables\blocks\shulker_box_gold_gray.json
 d5d927880324da5867e5351aa9767dccf1481327 data\sc-goodies\loot_tables\blocks\gray_concrete_slab.json
 f9be7fc66642d560c0bd8154943d87d5e1b87383 data\sc-goodies\loot_tables\blocks\shulker_box_diamond.json
@@ -24,16 +24,16 @@ cd79d2b76abae45a62e3e54fa47e41d042a54fac data\sc-goodies\loot_tables\blocks\pink
 98822b9bed4a6b9bbba485e178edc9982b1a827a data\sc-goodies\loot_tables\blocks\gray_concrete_stairs.json
 50ab05e127bd2fa44c01c62da76f6bea5c0efeaf data\sc-goodies\loot_tables\blocks\green_concrete_stairs.json
 b39c003831e84c5a40b90d3a9921de2a2819a7da data\sc-goodies\loot_tables\blocks\shulker_box_diamond_magenta.json
-d06b4b3cb1de526d97af0caaa8e3c356bb269507 data\sc-goodies\loot_tables\blocks\magenta_concrete_stairs.json
 9257e01584e099cce72092185981db383e9c01c5 data\sc-goodies\loot_tables\blocks\shulker_box_iron_lime.json
+d06b4b3cb1de526d97af0caaa8e3c356bb269507 data\sc-goodies\loot_tables\blocks\magenta_concrete_stairs.json
 cc312d8a72ec37985338828bfc257cbae8b0a5f4 data\sc-goodies\loot_tables\blocks\shulker_box_gold_green.json
 b293dbc4523e276ac532e81a8fc23b583baf8730 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_pink.json
 56373617b7941578139ebfb3b12c87cf12e84579 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_white.json
 0dc8453f7e9230732b46d4f396b80df7f4ecfdb9 data\sc-goodies\loot_tables\blocks\shulker_box_iron_brown.json
 fc94b929f792d3e32309966a7b5470a7a70460ac data\sc-goodies\loot_tables\blocks\shulker_box_gold_cyan.json
 7b1df51813e7460320236db535a5666a0ab9dc51 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_light_blue.json
-bd892e609892151485662112660e008e59edff41 data\sc-goodies\loot_tables\blocks\shulker_box_iron_white.json
 774f81b147629d194fd5fb6ef03b0a76ee52ef2c data\sc-goodies\loot_tables\blocks\shulker_box_diamond_brown.json
+bd892e609892151485662112660e008e59edff41 data\sc-goodies\loot_tables\blocks\shulker_box_iron_white.json
 ac3a8b5e421ed9d5d35e5d8dbc92d86da3929b80 data\sc-goodies\loot_tables\blocks\pink_concrete_slab.json
 7edb67e24a22c66b8acdc105b7064eb0650570f5 data\sc-goodies\loot_tables\blocks\maple_sapling.json
 46065f77876ed9e44108f6b0cb2ab4983f23ea15 data\sc-goodies\loot_tables\blocks\lime_concrete_stairs.json

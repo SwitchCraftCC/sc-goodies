@@ -13,5 +13,5 @@ val RECIPE_HANDLERS by lazy { listOf(
   ConcreteRecipes,
   ItemFrameRecipes,
   AmethystRecipes,
-  DimmableLightRecipie
+  DimmableLightRecipe
 )}

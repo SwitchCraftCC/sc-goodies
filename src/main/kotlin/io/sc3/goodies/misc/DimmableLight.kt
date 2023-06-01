@@ -3,7 +3,7 @@ package io.sc3.goodies.nature
 import io.sc3.goodies.util.BaseBlock
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
-import net.minecraft.block.RedstoneLampBlock
+import net.minecraft.item.ItemPlacementContext
 import net.minecraft.state.StateManager
 import net.minecraft.state.property.IntProperty
 import net.minecraft.state.property.Properties
@@ -21,6 +21,9 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
 
   override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
     builder.add(power)
+  }
+  override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
+    return defaultState.with(power, ctx.world.getReceivedRedstonePower(ctx.blockPos)) as BlockState
   }
 
   override fun neighborUpdate(

@@ -38,7 +38,7 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
     if (!world!!.isClient) {
       val receivedPower = world.getReceivedRedstonePower(pos)
       if (state!!.get(power) != receivedPower) {
-        world.setBlockState(pos, state.with(power, receivedPower), 2)
+        world.setBlockState(pos, state.with(power, receivedPower), Block.NOTIFY_LISTENERS)
       }
     }
   }

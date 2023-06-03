@@ -137,7 +137,7 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(ModBlocks.blueGrass, "Peppy Grass")
 
     builder.add(ModBlocks.dimmableLight, "Dimmable Light")
-    builder.sub(ModBlocks.dimmableLight, "Emits an amount of light equivalent to the blocks redstone input")
+    builder.sub(ModBlocks.dimmableLight, "Emits an amount of light equivalent to the block's redstone input")
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {

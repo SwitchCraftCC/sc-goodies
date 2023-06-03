@@ -27,11 +27,7 @@ import io.sc3.goodies.itemframe.GlassItemFrameItem
 import io.sc3.goodies.itemmagnet.ItemMagnetItem
 import io.sc3.goodies.itemmagnet.MAGNET_MAX_DAMAGE
 import io.sc3.goodies.itemmagnet.ToggleItemMagnetPacket
-import io.sc3.goodies.misc.AmethystExtras
-import io.sc3.goodies.misc.ConcreteExtras
-import io.sc3.goodies.misc.EndermitesFormShulkers
-import io.sc3.goodies.misc.PopcornItem
-import io.sc3.goodies.nature.DimmableLight
+import io.sc3.goodies.misc.*
 import io.sc3.goodies.nature.ScGrass
 import io.sc3.goodies.nature.ScSaplingGenerator
 import io.sc3.goodies.nature.ScTree
@@ -258,7 +254,8 @@ object Registration {
       .of(Material.REDSTONE_LAMP)
       .luminance(DimmableLight.createLightLevelFromPowerState())
       .strength(0.5F)
-      .sounds(BlockSoundGroup.GLASS)))
+      .sounds(BlockSoundGroup.GLASS))
+    )
 
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))
     val autumnGrass = rBlock("autumn_grass", ScGrass(grassSettings(MapColor.ORANGE)))

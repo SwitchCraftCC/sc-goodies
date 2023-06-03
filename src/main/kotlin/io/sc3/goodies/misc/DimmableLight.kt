@@ -1,4 +1,4 @@
-package io.sc3.goodies.nature
+package io.sc3.goodies.misc
 
 import io.sc3.goodies.util.BaseBlock
 import net.minecraft.block.Block

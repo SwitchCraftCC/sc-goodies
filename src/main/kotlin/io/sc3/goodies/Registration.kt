@@ -39,7 +39,6 @@ import io.sc3.library.networking.registerServerReceiver
 import io.sc3.library.recipe.RecipeHandler
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
-import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
@@ -256,8 +255,7 @@ object Registration {
       .of(Material.REDSTONE_LAMP)
       .luminance(createLightLevelFromPowerState())
       .strength(0.3F)
-      .sounds(BlockSoundGroup.GLASS)
-    ))
+      .sounds(BlockSoundGroup.GLASS)))
 
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))
     val autumnGrass = rBlock("autumn_grass", ScGrass(grassSettings(MapColor.ORANGE)))
@@ -378,7 +376,7 @@ object Registration {
       .maxCount(1)
       .rarity(UNCOMMON)))
 
-    val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings());
+    val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings())
 
     // TODO: Clean up
     val pinkGrass = rItem(ModBlocks.pinkGrass, ::BlockItem, itemSettings())

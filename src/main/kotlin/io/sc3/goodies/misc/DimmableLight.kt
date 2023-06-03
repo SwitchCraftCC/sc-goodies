@@ -22,6 +22,7 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
   override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
     builder.add(power)
   }
+
   override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
     return defaultState.with(power, ctx.world.getReceivedRedstonePower(ctx.blockPos)) as BlockState
   }

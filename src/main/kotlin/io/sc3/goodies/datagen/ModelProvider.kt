@@ -15,7 +15,6 @@ import io.sc3.goodies.nature.ScTree
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
-import net.minecraft.block.BlockState
 import net.minecraft.block.Blocks
 import net.minecraft.data.client.*
 import net.minecraft.data.client.BlockStateModelGenerator.*
@@ -93,13 +92,13 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
   private fun registerDimmableLights(gen: BlockStateModelGenerator) {
     val map = BlockStateVariantMap.create(Properties.POWER)
 
-    for(i in 0..15) {
+    for (i in 0..15) {
       val texture = TexturedModel.CUBE_ALL
         .get(dimmableLight)
         .textures { m -> m.put(TextureKey.ALL, TextureMap.getSubId(dimmableLight, "_level_$i")) }
-        .upload(dimmableLight, "_level_$i", gen.modelCollector);
+        .upload(dimmableLight, "_level_$i", gen.modelCollector)
 
-      if(i == 0) {
+      if (i == 0) {
         gen.registerParentedItemModel(dimmableLight, texture)
       }
 

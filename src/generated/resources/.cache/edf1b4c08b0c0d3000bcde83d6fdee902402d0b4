@@ -1,9 +1,9 @@
-// 1.19.4	2023-06-03T21:22:59.4909984	SwitchCraft Goodies/Model Definitions
+// 1.19.4	2023-06-03T22:43:53.0615921	SwitchCraft Goodies/Model Definitions
 b4bf84e58a4734aafc85dd4aefaeb0e74676bfd6 assets\sc-goodies\blockstates\white_concrete_stairs.json
 db5208f8788825dde937fa7234e39e5837a2ab63 assets\sc-goodies\models\block\potted_blue_sapling.json
 a61669c4a5210dbcef1a5c44ef761f2de8d80ec6 assets\sc-goodies\blockstates\shulker_box_diamond_purple.json
-e426d9e7d648d8d1e587f093575d7f353d486b47 assets\sc-goodies\blockstates\dimmable_light.json
 81c2aa414fd927df4b9411348440a32606f5e3ee assets\sc-goodies\blockstates\shulker_box_iron_red.json
+e426d9e7d648d8d1e587f093575d7f353d486b47 assets\sc-goodies\blockstates\dimmable_light.json
 e8d1d4737036b0984edfd637dbb7f8bca9449500 assets\sc-goodies\models\block\cyan_concrete_stairs.json
 3d733f3b27099423eb021ab291f352d778637482 assets\sc-goodies\blockstates\shulker_box_diamond_green.json
 ec2be0839296a737b62864fa7f559e1213fad207 assets\sc-goodies\blockstates\shulker_box_iron_white.json
@@ -73,8 +73,8 @@ e13488fab2e5d4c208d92ebba21c1933506533fa assets\sc-goodies\models\block\black_co
 22d11ffc06172de61cc7d0fae0a7376d0232bb17 assets\sc-goodies\models\item\elytra_gray.json
 74946c6df890d63532bf8459c105d0dcb5fe9ad4 assets\sc-goodies\models\item\hover_boots_lime.json
 f03ac7d2c2e7c12c1bbf5caa76032cc7cbc2db5a assets\sc-goodies\models\item\amethyst_slab.json
-96d207fec55b8ff1a8aa8060afc3609947c720ff assets\sc-goodies\blockstates\gold_chest.json
 dfab97656361dd497b057436781e86700271dd40 assets\sc-goodies\blockstates\purple_concrete_stairs.json
+96d207fec55b8ff1a8aa8060afc3609947c720ff assets\sc-goodies\blockstates\gold_chest.json
 765d588dc0d004a93663e9e7731d8fa7fce113bf assets\sc-goodies\models\block\orange_concrete_slab_top.json
 bd2e039a11c5205581023159622f60b958515259 assets\sc-goodies\models\item\shulker_box_diamond_blue.json
 f4663460093cfe4f4184669326eb2253c893a84c assets\sc-goodies\models\block\white_concrete_stairs_inner.json
@@ -140,8 +140,8 @@ b2ea1c84b0cecad3ae0c1a93e6d1c389f50825b2 assets\sc-goodies\models\item\hover_boo
 7c36782b02021012f457068a6037aeca5440055f assets\sc-goodies\blockstates\shulker_box_diamond_cyan.json
 14ae491d5c46ae88f4118ff5aa886be9c8dd5656 assets\sc-goodies\models\item\shulker_box_diamond_green.json
 56ecdb727d38fcbf338e7a043fc6f9d708c19d47 assets\sc-goodies\blockstates\maple_leaves.json
-463db1c8faf6c6e2f94a7b281003611f993a4148 assets\sc-goodies\blockstates\shulker_box_iron_light_gray.json
 a5d53f780cf4248bb2b14d1d2bdb8b7152219555 assets\sc-goodies\models\item\vanilla_iron_chest_upgrade.json
+463db1c8faf6c6e2f94a7b281003611f993a4148 assets\sc-goodies\blockstates\shulker_box_iron_light_gray.json
 5b8fb248d8502937398d4c3a94f9731f5451edc9 assets\sc-goodies\models\block\iron_barrel_open.json
 ac70773934de43ed3730562987dadf3dafa3064f assets\sc-goodies\blockstates\shulker_box_gold_gray.json
 cc2a3f17eefb9d39e7b5685c52b4362b1cf291d6 assets\sc-goodies\blockstates\shulker_box_gold_magenta.json
@@ -222,8 +222,8 @@ dba8812d8ee866cca443611542c91a92828272f2 assets\sc-goodies\models\block\shulker_
 06f4841fc2a4902173e22c96817294a8733710ea assets\sc-goodies\blockstates\shulker_box_gold_light_blue.json
 a2c5e0aab1891b55a19cb7d027447a4d7a1ddbaa assets\sc-goodies\blockstates\shulker_box_diamond_red.json
 5658c9f1fb4a98e82a784d3ac0505f38daca9a4b assets\sc-goodies\models\block\light_blue_concrete_stairs_outer.json
-09bf4085d42ece91274e9b7cfa3159742af0f3db assets\sc-goodies\blockstates\blue_concrete_stairs.json
 180231122ed1048efc1371b17bc3e0e40e993877 assets\sc-goodies\models\item\shulker_box_diamond.json
+09bf4085d42ece91274e9b7cfa3159742af0f3db assets\sc-goodies\blockstates\blue_concrete_stairs.json
 f97fbb9c9de58e0d48a99f80775afb7100166e48 assets\sc-goodies\models\block\orange_concrete_stairs_inner.json
 87456b4e6971cfbaca1870414a4a4f0e899e53c7 assets\sc-goodies\models\item\gray_concrete_slab.json
 cc385ba20f22c13b408e2b7b73770a037e8ad2a3 assets\sc-goodies\models\item\shulker_box_iron_brown.json
@@ -349,8 +349,8 @@ f923db9fc69a9924274eb7009cc770ba89f645c2 assets\sc-goodies\models\block\shulker_
 afb112eb10ead09493b6c18b25383ae879297cfc assets\sc-goodies\models\item\item_magnet.json
 a94f05423c92512fbc2ca76f2aac565469800fd0 assets\sc-goodies\models\item\shulker_box_diamond_magenta.json
 11198309f24df716d8456a7b7b51801c4f3b3005 assets\sc-goodies\models\item\shulker_box_diamond_black.json
-12fe04f6e2cdeba89708769a15b211a08e3d76bd assets\sc-goodies\blockstates\blue_sapling.json
 bc01102455229462f857cc6cb9757c9245e22145 assets\sc-goodies\blockstates\cyan_concrete_slab.json
+12fe04f6e2cdeba89708769a15b211a08e3d76bd assets\sc-goodies\blockstates\blue_sapling.json
 bb5b3f5c15421c8802bde69605a6897a938f96e8 assets\sc-goodies\models\block\sakura_sapling.json
 0deabd3ff8d0f09cc8a3d217a79391a065e8b1e4 assets\sc-goodies\models\item\gold_barrel.json
 e2f4163655f926683e6c299d4f372692fb549b98 assets\sc-goodies\models\block\dimmable_light_level_13.json
@@ -424,6 +424,6 @@ eaa88c0ddf4a5b1a8bfd785d97a53841f41ce504 assets\sc-goodies\blockstates\shulker_b
 4c2bbbc8b434d74227dec7f1d245927b971fe3d2 assets\sc-goodies\models\item\blue_grass.json
 55279c9cde38299a6b8f2aedb503b6fe0933e17e assets\sc-goodies\blockstates\shulker_box_gold_cyan.json
 6d5d017dbd0261614b81905a31576d950117e2d7 assets\sc-goodies\models\block\pink_concrete_slab_top.json
-98d3cbc99d5fcb19de0d78f0073b6b20d3fc661b assets\sc-goodies\blockstates\shulker_box_iron_lime.json
 2b466bc4e9def17077cfa9eae28eb8a29006edfe assets\sc-goodies\blockstates\ender_storage.json
+98d3cbc99d5fcb19de0d78f0073b6b20d3fc661b assets\sc-goodies\blockstates\shulker_box_iron_lime.json
 13df2d154e566437a5ca22429a00e65cf455582d assets\sc-goodies\models\item\shulker_box_iron_black.json

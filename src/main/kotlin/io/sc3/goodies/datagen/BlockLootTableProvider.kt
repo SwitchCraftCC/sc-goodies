@@ -54,13 +54,14 @@ class BlockLootTableProvider(out: FabricDataOutput) : FabricBlockLootTableProvid
     addDrop(AmethystExtras.slabBlock)
     addDrop(AmethystExtras.stairsBlock)
 
-
     addTreeDrops(ModBlocks.sakuraSapling)
     addTreeDrops(ModBlocks.mapleSapling)
     addTreeDrops(ModBlocks.blueSapling)
     addDrop(ModBlocks.pinkGrass) { block -> drops(block, Blocks.DIRT) }
     addDrop(ModBlocks.autumnGrass) { block -> drops(block, Blocks.DIRT) }
     addDrop(ModBlocks.blueGrass) { block -> drops(block, Blocks.DIRT) }
+
+    addDrop(ModBlocks.dimmableLight)
   }
 
   private fun registerIronShulkerDrops(type: BlockEntityType<IronShulkerBlockEntity>, block: Block) {

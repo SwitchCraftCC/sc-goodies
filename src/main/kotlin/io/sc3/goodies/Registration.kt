@@ -31,7 +31,10 @@ import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.misc.EndermitesFormShulkers
 import io.sc3.goodies.misc.PopcornItem
-import io.sc3.goodies.nature.*
+import io.sc3.goodies.nature.DimmableLight
+import io.sc3.goodies.nature.ScGrass
+import io.sc3.goodies.nature.ScSaplingGenerator
+import io.sc3.goodies.nature.ScTree
 import io.sc3.goodies.tomes.AncientTomeItem
 import io.sc3.goodies.tomes.TomeEnchantments
 import io.sc3.goodies.util.BaseItem
@@ -254,7 +257,7 @@ object Registration {
     val dimmableLight = rBlock("dimmable_light", DimmableLight(AbstractBlock.Settings
       .of(Material.REDSTONE_LAMP)
       .luminance(DimmableLight.createLightLevelFromPowerState())
-      .strength(0.3F)
+      .strength(0.5F)
       .sounds(BlockSoundGroup.GLASS)))
 
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))

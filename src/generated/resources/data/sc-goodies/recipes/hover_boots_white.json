@@ -17,8 +17,8 @@
       "level": 1
     },
     "j": {
-      "effect": "minecraft:jump_boost",
       "fabric:type": "sc-library:brew",
+      "effect": "minecraft:jump_boost",
       "potion": "minecraft:leaping"
     }
   },

@@ -253,7 +253,7 @@ object Registration {
 
     val dimmableLight = rBlock("dimmable_light", DimmableLight(AbstractBlock.Settings
       .of(Material.REDSTONE_LAMP)
-      .luminance(createLightLevelFromPowerState())
+      .luminance(DimmableLight.createLightLevelFromPowerState())
       .strength(0.3F)
       .sounds(BlockSoundGroup.GLASS)))
 

@@ -11,12 +11,13 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import java.util.function.ToIntFunction
 
-fun createLightLevelFromPowerState(): ToIntFunction<BlockState> {
-  return ToIntFunction { state: BlockState -> state.get(Properties.POWER) ?: 0 }
-}
 class DimmableLight(settings: Settings) : BaseBlock(settings) {
   companion object {
     val power: IntProperty = Properties.POWER
+
+    fun createLightLevelFromPowerState(): ToIntFunction<BlockState> {
+      return ToIntFunction { state: BlockState -> state.get(Properties.POWER) ?: 0 }
+    }
   }
 
   override fun appendProperties(builder: StateManager.Builder<Block, BlockState>) {
@@ -28,16 +29,16 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
   }
 
   override fun neighborUpdate(
-    state: BlockState?,
-    world: World?,
-    pos: BlockPos?,
-    sourceBlock: Block?,
-    sourcePos: BlockPos?,
+    state: BlockState,
+    world: World,
+    pos: BlockPos,
+    sourceBlock: Block,
+    sourcePos: BlockPos,
     notify: Boolean
   ) {
-    if (!world!!.isClient) {
+    if (!world.isClient) {
       val receivedPower = world.getReceivedRedstonePower(pos)
-      if (state!!.get(power) != receivedPower) {
+      if (state.get(power) != receivedPower) {
         world.setBlockState(pos, state.with(power, receivedPower), Block.NOTIFY_LISTENERS)
       }
     }

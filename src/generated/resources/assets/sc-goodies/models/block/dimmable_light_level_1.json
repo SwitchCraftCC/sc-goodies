@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "sc-goodies:block/dimmable_light_level_1"
+  }
+}

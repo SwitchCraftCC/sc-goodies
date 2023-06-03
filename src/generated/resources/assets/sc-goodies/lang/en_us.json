@@ -15,6 +15,8 @@
   "block.sc-goodies.cyan_concrete_stairs": "Cyan Concrete Stairs",
   "block.sc-goodies.diamond_barrel": "Diamond Barrel",
   "block.sc-goodies.diamond_chest": "Diamond Chest",
+  "block.sc-goodies.dimmable_light": "Dimmable Lamp",
+  "block.sc-goodies.dimmable_light.desc": "Emits an amount of light equivalent to the block's redstone input",
   "block.sc-goodies.ender_storage": "Ender Storage",
   "block.sc-goodies.ender_storage.computer_changes.allowed": "Computers are now %s to change the frequency of this Ender Storage.",
   "block.sc-goodies.ender_storage.computer_changes.allowed.colored": "ALLOWED",

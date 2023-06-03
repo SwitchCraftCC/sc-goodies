@@ -1,4 +1,4 @@
-// 1.19.4	2023-03-25T19:24:01.4009025	SwitchCraft Goodies/Recipes
+// 1.19.4	2023-06-03T21:22:59.4967605	SwitchCraft Goodies/Recipes
 9d45880db87168143a9579a0d765fc9a8ce9cb4b data\sc-goodies\recipes\hover_boots_dyed_orange.json
 73878a6000d9ed0e0cb731aeb2d278db0cfb327e data\sc-goodies\recipes\lime_concrete_stairs.json
 b93d78bb3cf4b6008a9ef33e1c0fbff223b3502f data\sc-goodies\advancements\recipes\building_blocks\light_gray_concrete_stairs.json
@@ -23,7 +23,8 @@ c919df971e51a6d45b5a9c918bebf3ecd67cabfe data\sc-goodies\advancements\recipes\bu
 ce7a0419fd67c1e7260b818ea7ce359726230f7e data\sc-goodies\recipes\elytra_light_blue.json
 7a7e0acbdaa09f1678fb8b14ae13e93fb0d9906b data\sc-goodies\advancements\recipes\building_blocks\lime_concrete_stairs.json
 1e13d95d51c13c8fe84838e22f05c3e4ac6c0d37 data\sc-goodies\recipes\hover_boots_dyed_lime.json
-3a54be7799002f8c74f6a378d6b9480d4dd68a3b data\sc-goodies\recipes\hover_boots_white.json
+6f8de4d8ad1ac65ffa23ae385ad37513df8ca0bf data\sc-goodies\recipes\dimmable_light.json
+3501a9e0f098a5b0ee67e8fe3ad61854fea1dcda data\sc-goodies\recipes\hover_boots_white.json
 939a43f738f682e3842046c0b0b7453244c78bcd data\sc-goodies\recipes\vanilla_iron_chest_upgrade.json
 98cc9106379ae5b9bfab1d7acd544d70f5ffd7ab data\sc-goodies\recipes\dragon_scale_elytra.json
 cb496874f6962a45e1c94aad04a4c467552b5be1 data\sc-goodies\advancements\recipes\building_blocks\magenta_concrete_slab.json
@@ -153,9 +154,9 @@ ad2a894c35d601c5746515c32d6d35e62490b34b data\sc-goodies\advancements\recipes\bu
 4d4d6cfc46e334fd8d642634fe3d5aef23557e0a data\sc-goodies\recipes\green_concrete_stairs.json
 0e6c1b98ffd1183fa74fdcd5a7fe9e4071172ffb data\sc-goodies\recipes\elytra_blue.json
 4075333fc5bae30f1d8004edc6221dc7eefb769b data\sc-goodies\recipes\pink_concrete_slab.json
-bba6bdc6131b4bc0c7e5262278b9fb3e1785730e data\sc-goodies\advancements\recipes\tools\elytra_non_binary.json
-79939d43209b646564589119e0aeb6aade8e3a52 data\sc-goodies\recipes\hover_boots_dyed_white.json
 39ad0cd59f84725b5b0f1b09c759f99f1be52323 data\sc-goodies\advancements\recipes\tools\hover_boots_dyed_yellow.json
+79939d43209b646564589119e0aeb6aade8e3a52 data\sc-goodies\recipes\hover_boots_dyed_white.json
+bba6bdc6131b4bc0c7e5262278b9fb3e1785730e data\sc-goodies\advancements\recipes\tools\elytra_non_binary.json
 e3dab7a5d352d063241602fbed6d67a149f26302 data\sc-goodies\advancements\recipes\building_blocks\blue_concrete_stairs.json
 2d9ea607fb2821ae4a1563fef98d1176d6d9bd9c data\sc-goodies\recipes\iron_chest.json
 eca167b0ccfa5c3253f6263ae6243c3616fcb838 data\sc-goodies\recipes\magenta_concrete_stairs.json
@@ -168,6 +169,7 @@ b5d402fde473db49659591b9c23792ac7def64fb data\sc-goodies\advancements\recipes\to
 ff6472147e7fb24866b8e37803facc4e09a1efca data\sc-goodies\recipes\lime_concrete_slab.json
 407c29c4ffeadfdb7fb9d3692640d46b4fb9eb4a data\sc-goodies\advancements\recipes\tools\elytra_black.json
 5d2c3cfb34b7d6483789dc50667ebe161b35642e data\sc-goodies\recipes\hover_boots_dyed_light_blue.json
+014887d7e374c3dfe811adb1bb39184282941b79 data\sc-goodies\advancements\recipes\redstone\dimmable_light.json
 6f9670d1fb9c67283e245ac4c499b703a35fb793 data\sc-goodies\advancements\recipes\decorations\iron_chest.json
 4907c50c27e65ff50fa6576bd671c6e377675262 data\sc-goodies\recipes\gray_concrete_slab.json
 00459e3e54ff0824c6a2fff8614da5415a9a910c data\sc-goodies\recipes\light_gray_concrete_stairs.json

@@ -1,6 +1,7 @@
 package io.sc3.goodies.datagen
 
 import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.Registration.ModBlocks.dimmableLight
 import io.sc3.goodies.Registration.ModBlocks.enderStorage
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.ScGoodies.ModId
@@ -57,6 +58,9 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     registerTree(gen, ModBlocks.mapleSapling)
     registerTree(gen, ModBlocks.blueSapling)
     registerTopSoils(gen, ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
+
+    // Dimmable lights
+    registerDimmableLights(gen)
   }
 
   override fun generateItemModels(gen: ItemModelGenerator) {
@@ -83,6 +87,25 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       .forEach { gen.register(it, GENERATED) }
     SpecialElytraType.values()
       .forEach { gen.register(it.item, GENERATED) }
+  }
+
+  private fun registerDimmableLights(gen: BlockStateModelGenerator) {
+    val map = BlockStateVariantMap.create(Properties.POWER)
+
+    for (i in 0..15) {
+      val texture = TexturedModel.CUBE_ALL
+        .get(dimmableLight)
+        .textures { m -> m.put(TextureKey.ALL, TextureMap.getSubId(dimmableLight, "_level_$i")) }
+        .upload(dimmableLight, "_level_$i", gen.modelCollector)
+
+      if (i == 0) {
+        gen.registerParentedItemModel(dimmableLight, texture)
+      }
+
+      map.register(i, BlockStateVariant.create().put(VariantSettings.MODEL, texture))
+    }
+
+    gen.blockStateCollector.accept(VariantsBlockStateSupplier.create(dimmableLight).coordinate(map))
   }
 
   private fun registerIronChest(gen: BlockStateModelGenerator, variant: IronStorageVariant) {

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "L": {
+      "item": "minecraft:redstone_lamp"
+    },
+    "Q": {
+      "tag": "c:quartz"
+    },
+    "R": {
+      "tag": "c:redstone_dusts"
+    }
+  },
+  "pattern": [
+    " Q ",
+    "RLR",
+    " Q "
+  ],
+  "result": {
+    "item": "sc-goodies:dimmable_light"
+  },
+  "show_notification": true
+}

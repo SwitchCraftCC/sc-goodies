@@ -376,6 +376,16 @@ object Registration {
       .maxCount(1)
       .rarity(UNCOMMON)))
 
+    val salami = rItem("salami", BaseItem(itemSettings().food(
+      FoodComponent.Builder()
+        .hunger(3)
+        .saturationModifier(1.2f)
+        .alwaysEdible()
+        .snack()
+        .build())
+      )
+    )
+
     val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings())
 
     // TODO: Clean up

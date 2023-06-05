@@ -1,4 +1,4 @@
-// 1.19.4	2023-06-04T21:03:16.0404573	SwitchCraft Goodies/Block Loot Tables
+// 1.19.4	2023-06-04T21:12:03.2204056	SwitchCraft Goodies/Block Loot Tables
 8987ae0d66ad58d505242da4549cb334f2c67d55 data\sc-goodies\loot_tables\blocks\shulker_box_gold_gray.json
 d5d927880324da5867e5351aa9767dccf1481327 data\sc-goodies\loot_tables\blocks\gray_concrete_slab.json
 f9be7fc66642d560c0bd8154943d87d5e1b87383 data\sc-goodies\loot_tables\blocks\shulker_box_diamond.json
@@ -64,8 +64,8 @@ e9474e0bf237af41b402101fda1e07c6a1014267 data\sc-goodies\loot_tables\blocks\lime
 d3d32d380519372e51ecbc258248957907ceefa6 data\sc-goodies\loot_tables\blocks\purple_concrete_slab.json
 062581d7b96cc21de8f1eba1871ace31b9627b94 data\sc-goodies\loot_tables\blocks\amethyst_slab.json
 695830bf5a31804a75adc488d9efd99c7eca15a1 data\sc-goodies\loot_tables\blocks\shulker_box_diamond_gray.json
-e4fe94dda950cd87e0db3994423a83e934a99870 data\sc-goodies\loot_tables\blocks\shulker_box_gold_pink.json
 33725750c1babc9b19e122c93774830394d8e1bc data\sc-goodies\loot_tables\blocks\blue_leaves.json
+e4fe94dda950cd87e0db3994423a83e934a99870 data\sc-goodies\loot_tables\blocks\shulker_box_gold_pink.json
 b18d9922562310cb3b60d2941a48263f4a013006 data\sc-goodies\loot_tables\blocks\blue_concrete_slab.json
 e1150a2d3efe1702b4e05b4dc365177f318786ce data\sc-goodies\loot_tables\blocks\iron_barrel.json
 c7da1a474772c8462ab9b8742a276f7c42f2cc95 data\sc-goodies\loot_tables\blocks\purple_concrete_stairs.json

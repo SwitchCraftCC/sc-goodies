@@ -7,7 +7,6 @@ import net.minecraft.recipe.Ingredient.ofItems
 import net.minecraft.recipe.book.RecipeCategory
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.library.recipe.RecipeHandler
-import net.minecraft.data.server.recipe.SingleItemRecipeJsonBuilder
 import java.util.function.Consumer
 
 object ConcreteRecipes : RecipeHandler {
@@ -24,23 +23,8 @@ object ConcreteRecipes : RecipeHandler {
         .criterion("has_concrete", conditionsFromTag(CONCRETE))
         .offerTo(exporter)
 
-      SingleItemRecipeJsonBuilder.createStonecutting(
-        ofItems(it.baseBlock),
-        RecipeCategory.BUILDING_BLOCKS,
-        it.slabBlock,
-        2
-      )
-        .criterion("has_concrete", conditionsFromTag(CONCRETE))
-        .offerTo(exporter, it.slabBlockId.path + "_stonecutter")
-
-      SingleItemRecipeJsonBuilder.createStonecutting(
-        ofItems(it.baseBlock),
-        RecipeCategory.BUILDING_BLOCKS,
-        it.stairsBlock,
-        1
-      )
-        .criterion("has_concrete", conditionsFromTag(CONCRETE))
-        .offerTo(exporter, it.stairsBlockId.path + "_stonecutter")
+      offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, it.slabBlock, it.baseBlock, 2)
+      offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, it.stairsBlock, it.baseBlock, 1)
     }
   }
 }

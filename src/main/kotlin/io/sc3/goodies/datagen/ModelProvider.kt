@@ -82,6 +82,8 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     gen.register(ModItems.glassItemFrame, GENERATED)
     gen.register(ModItems.glowGlassItemFrame, GENERATED)
 
+    gen.register(ModItems.salami, GENERATED)
+
     // Dyed + Special Elytra
     DyedElytraItem.dyedElytraItems.values
       .forEach { gen.register(it, GENERATED) }

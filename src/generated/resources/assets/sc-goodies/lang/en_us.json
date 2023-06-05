@@ -185,6 +185,8 @@
   "item.sc-goodies.item_magnet.level": "Level %s (%s block radius)",
   "item.sc-goodies.popcorn": "Popcorn",
   "item.sc-goodies.popcorn.desc": "A bottomless bag of popcorn.",
+  "item.sc-goodies.salami": "Salami",
+  "item.sc-goodies.salami.desc": "Yummy salami",
   "item.sc-goodies.vanilla_iron_chest_upgrade": "Vanilla to Iron Storage Upgrade",
   "item.sc-goodies.vanilla_iron_chest_upgrade.desc": "Upgrade Vanilla chests, barrels, or shulker boxes to\nIron chests, barrels, or shulker boxes.",
   "itemGroup.sc-goodies.main": "SwitchCraft Goodies",

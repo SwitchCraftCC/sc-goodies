@@ -1,10 +1,10 @@
-// 1.19.4	2023-06-04T21:12:03.219405	SwitchCraft Goodies/Tags for minecraft:item
+// 1.19.4	2023-06-11T19:30:29.0406455	SwitchCraft Goodies/Tags for minecraft:item
+2c4e5be512c4599b49e1a9dcfcc2b44ccf5bf842 data\sc-goodies\tags\items\iron_shulker\diamond.json
 c2ee558053c887d9805f25d9168824b4ea0dd2b0 data\minecraft\tags\items\tools.json
-075527965a65967e888a9e805b4fdd3bfb240063 data\sc-goodies\tags\items\iron_shulker\gold.json
-2fea9be71fbad50a9ef0ba60a243fac124e1419f data\sc-goodies\tags\items\iron_shulker.json
 e7283fd4740f7fe926c4cf2c1e907683e2bd5cfb data\sc-goodies\tags\items\concrete.json
+2fea9be71fbad50a9ef0ba60a243fac124e1419f data\sc-goodies\tags\items\iron_shulker.json
+24112524b0173c604c63e7509ef1507750098953 data\sc-goodies\tags\items\elytra.json
+075527965a65967e888a9e805b4fdd3bfb240063 data\sc-goodies\tags\items\iron_shulker\gold.json
 2a00315763013e1b4191405dfa75039595741a8c data\sc-goodies\tags\items\iron_storage.json
 a51538432f4c4e31168420280e679979012b882d data\sc-goodies\tags\items\iron_shulker\iron.json
-2c4e5be512c4599b49e1a9dcfcc2b44ccf5bf842 data\sc-goodies\tags\items\iron_shulker\diamond.json
-24112524b0173c604c63e7509ef1507750098953 data\sc-goodies\tags\items\elytra.json
 1f7c59186f7dee7e323a852b9df9e9edb145fb52 data\sc-goodies\tags\items\upgradable_storage.json

@@ -14,6 +14,7 @@ import io.sc3.goodies.Registration.ModItems.elytraSettings
 import io.sc3.goodies.Registration.ModItems.itemSettings
 import io.sc3.goodies.Registration.ModItems.rItem
 import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ScGoodies.modId
 import io.sc3.goodies.datagen.recipes.handlers.RECIPE_HANDLERS
 import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.ElytraCauldronBehavior
@@ -66,6 +67,7 @@ import net.minecraft.registry.RegistryKeys.CONFIGURED_FEATURE
 import net.minecraft.screen.ScreenHandlerType
 import net.minecraft.sound.BlockSoundGroup
 import net.minecraft.sound.BlockSoundGroup.GRASS
+import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Rarity.EPIC
 import net.minecraft.util.Rarity.UNCOMMON
@@ -86,6 +88,7 @@ object Registration {
 
   internal fun init() {
     register(ITEM_GROUP, itemGroup, FabricItemGroup.builder()
+      .displayName(Text.translatable("itemGroup.$modId.main"))
       .icon { ItemStack(Items.AXOLOTL_BUCKET) }
       .entries { _, entries ->
         items.forEach(entries::add)

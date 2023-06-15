@@ -1,15 +1,13 @@
 package io.sc3.goodies.client.enderstorage
 
-import com.mojang.blaze3d.systems.RenderSystem
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.enderstorage.EnderStorageScreenHandler
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.ingame.HandledScreen
-import net.minecraft.client.render.GameRenderer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.enderstorage.EnderStorageScreenHandler
 
 class EnderStorageScreen(
   handler: EnderStorageScreenHandler,
@@ -28,38 +26,30 @@ class EnderStorageScreen(
     super.init()
   }
 
-  override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-    RenderSystem.setShader(GameRenderer::getPositionTexProgram)
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-    RenderSystem.setShaderTexture(0, tex)
-
-    drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
+  override fun drawBackground(ctx: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
+    ctx.drawTexture(tex, x, y, 0, 0, backgroundWidth, backgroundHeight)
   }
 
-  override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
-    super.drawForeground(matrices, mouseX, mouseY)
+  override fun drawForeground(ctx: DrawContext, mouseX: Int, mouseY: Int) {
+    super.drawForeground(ctx, mouseX, mouseY)
 
     val freq = handler.frequency
 
-    drawFrequencyWool(matrices, 0, freq.left)
-    drawFrequencyWool(matrices, 1, freq.middle)
-    drawFrequencyWool(matrices, 2, freq.right)
+    drawFrequencyWool(ctx, 0, freq.left)
+    drawFrequencyWool(ctx, 1, freq.middle)
+    drawFrequencyWool(ctx, 2, freq.right)
 
-    textRenderer.draw(matrices, freq.ownerText, 30.0f, 6.0f, 0xFFFFFF)
+    ctx.drawText(textRenderer, freq.ownerText, 30, 6, 0xFFFFFF, false)
   }
 
-  override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
-    renderBackground(matrices)
-    super.render(matrices, mouseX, mouseY, delta)
-    drawMouseoverTooltip(matrices, mouseX, mouseY)
+  override fun render(ctx: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    renderBackground(ctx)
+    super.render(ctx, mouseX, mouseY, delta)
+    drawMouseoverTooltip(ctx, mouseX, mouseY)
   }
 
-  private fun drawFrequencyWool(matrices: MatrixStack, i: Int, color: DyeColor) {
-    RenderSystem.setShader(GameRenderer::getPositionTexProgram)
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-    RenderSystem.setShaderTexture(0, wool[color])
-
-    drawTexture(matrices, 10 + (i * 6), 6, (i * 12.0f) / 16.0f, 0.0f, 4, 8, 16, 16)
+  private fun drawFrequencyWool(ctx: DrawContext, i: Int, color: DyeColor) {
+    ctx.drawTexture(wool[color], 10 + (i * 6), 6, (i * 12.0f) / 16.0f, 0.0f, 4, 8, 16, 16)
   }
 
   companion object {

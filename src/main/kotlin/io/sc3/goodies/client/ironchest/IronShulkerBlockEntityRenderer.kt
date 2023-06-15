@@ -1,5 +1,9 @@
 package io.sc3.goodies.client.ironchest
 
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.ironstorage.IronShulkerBlockEntity
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import net.minecraft.client.model.ModelData
 import net.minecraft.client.model.ModelPart
 import net.minecraft.client.model.ModelPartBuilder.create
@@ -12,10 +16,6 @@ import net.minecraft.client.render.entity.model.EntityModelPartNames.HEAD
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironstorage.IronStorageVariant
-import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
-import io.sc3.goodies.ironstorage.IronShulkerBlockEntity
 
 class IronShulkerBlockEntityRenderer(
   private val variant: IronStorageVariant

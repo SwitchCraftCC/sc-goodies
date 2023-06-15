@@ -3,7 +3,7 @@ package io.sc3.goodies.datagen.recipes
 import com.google.gson.JsonObject
 import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.library.recipe.ShapelessRecipeSpec
-import net.minecraft.inventory.CraftingInventory
+import net.minecraft.inventory.RecipeInputInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Ingredient
@@ -20,7 +20,7 @@ class DragonScaleRecipe(
   outputStack: ItemStack,
   input: DefaultedList<Ingredient>,
 ) : ShapelessRecipe(id, group, category, outputStack, input) {
-  override fun getRemainder(inv: CraftingInventory): DefaultedList<ItemStack> {
+  override fun getRemainder(inv: RecipeInputInventory): DefaultedList<ItemStack> {
     val remainder = DefaultedList.ofSize(inv.size(), ItemStack.EMPTY)
 
     for (i in 0 until remainder.size) {

@@ -3,7 +3,7 @@ package io.sc3.goodies.datagen.recipes
 import com.google.gson.JsonObject
 import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.library.recipe.ShapelessRecipeSpec
-import net.minecraft.inventory.CraftingInventory
+import net.minecraft.inventory.RecipeInputInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Ingredient
@@ -21,7 +21,7 @@ class ElytraRecipe(
   val outputStack: ItemStack,
   val input: DefaultedList<Ingredient>
 ) : ShapelessRecipe(id, group, category, outputStack, input) {
-  override fun craft(inv: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+  override fun craft(inv: RecipeInputInventory, manager: DynamicRegistryManager): ItemStack {
     val output = getOutput(manager)
 
     for (i in 0 until inv.size()) {

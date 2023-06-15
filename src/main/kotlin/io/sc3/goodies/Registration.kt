@@ -45,14 +45,18 @@ import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
-import net.minecraft.block.Material.SOLID_ORGANIC
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
+import net.minecraft.block.enums.Instrument
+import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.damage.DamageType
-import net.minecraft.item.*
+import net.minecraft.item.BlockItem
+import net.minecraft.item.Item
+import net.minecraft.item.ItemStack
+import net.minecraft.item.Items
 import net.minecraft.registry.Registerable
 import net.minecraft.registry.Registries.*
 import net.minecraft.registry.Registry.register
@@ -78,8 +82,17 @@ import java.util.*
 
 object Registration {
   private val items = mutableListOf<Item>()
+  private val itemGroup = RegistryKey.of(RegistryKeys.ITEM_GROUP, ModId("main"))
 
   internal fun init() {
+    register(ITEM_GROUP, itemGroup, FabricItemGroup.builder()
+      .icon { ItemStack(Items.AXOLOTL_BUCKET) }
+      .entries { _, entries ->
+        items.forEach(entries::add)
+        entries.addAll(AncientTomeItem.getTomeStacks())
+      }
+      .build())
+
     // Force static initializers to run
     listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities, ModDamageSources)
 
@@ -248,33 +261,35 @@ object Registration {
 
   object ModBlocks {
     val enderStorage = rBlock("ender_storage", EnderStorageBlock(AbstractBlock.Settings
-      .of(Material.STONE).requiresTool().strength(12.5f, 600.0f)))
+      .copy(Blocks.ENDER_CHEST)
+      .luminance { 0 }
+      .strength(12.5f, 600.0f)))
 
     val dimmableLight = rBlock("dimmable_light", DimmableLight(AbstractBlock.Settings
-      .of(Material.REDSTONE_LAMP)
+      .copy(Blocks.REDSTONE_LAMP)
       .luminance(DimmableLight.createLightLevelFromPowerState())
       .strength(0.5F)
-      .sounds(BlockSoundGroup.GLASS))
-    )
+      .sounds(BlockSoundGroup.GLASS)))
 
     val pinkGrass = rBlock("pink_grass", ScGrass(grassSettings(MapColor.PINK)))
     val autumnGrass = rBlock("autumn_grass", ScGrass(grassSettings(MapColor.ORANGE)))
     val blueGrass = rBlock("blue_grass", ScGrass(grassSettings(MapColor.LIGHT_BLUE)))
 
-    val sakuraSapling = registerSapling("sakura")
-    val mapleSapling = registerSapling("maple")
-    val blueSapling = registerSapling("blue")
+    val sakuraSapling = registerSapling("sakura", MapColor.PINK)
+    val mapleSapling = registerSapling("maple", MapColor.ORANGE)
+    val blueSapling = registerSapling("blue", MapColor.LIGHT_BLUE)
 
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
 
-    fun blockSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.STONE)
+    fun blockSettings(): AbstractBlock.Settings = AbstractBlock.Settings.create()
+      .mapColor(MapColor.STONE_GRAY)
+      .instrument(Instrument.BASEDRUM)
       .strength(2.0f)
       .nonOpaque()
 
-    fun chestSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.STONE)
+    fun chestSettings(): AbstractBlock.Settings = AbstractBlock.Settings.create()
+      .mapColor(MapColor.STONE_GRAY)
       .strength(2.0f)
       .requiresTool()
       .nonOpaque()
@@ -285,9 +300,9 @@ object Registration {
         be?.suffocates() ?: true
       }
 
-      return AbstractBlock.Settings
-        .of(Material.SHULKER_BOX)
+      return AbstractBlock.Settings.create()
         .mapColor(color?.mapColor ?: MapColor.PURPLE)
+        .pistonBehavior(PistonBehavior.DESTROY)
         .strength(2.0f)
         .dynamicBounds()
         .nonOpaque()
@@ -295,24 +310,22 @@ object Registration {
         .blockVision(predicate)
     }
 
-    fun barrelSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.STONE)
-      .strength(2.0f)
-      .requiresTool()
-      .nonOpaque()
+    fun barrelSettings() = chestSettings()
 
-    private fun leavesSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.LEAVES)
+    private fun leavesSettings(mapColor: MapColor): AbstractBlock.Settings = AbstractBlock.Settings.create()
+      .mapColor(mapColor)
+      .sounds(GRASS)
       .strength(0.2f)
       .ticksRandomly()
-      .sounds(GRASS)
       .nonOpaque()
       .allowsSpawning { _, _, _, _ -> false }
       .suffocates { _, _, _ -> false }
       .blockVision { _, _, _ -> false }
 
-    private fun saplingSettings(): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(Material.PLANT)
+    private fun saplingSettings(mapColor: MapColor): AbstractBlock.Settings = AbstractBlock.Settings.create()
+      .mapColor(mapColor)
+      .sounds(GRASS)
+      .pistonBehavior(PistonBehavior.DESTROY)
       .noCollision()
       .ticksRandomly()
       .breakInstantly()
@@ -320,16 +333,16 @@ object Registration {
 
     private fun potSettings(): AbstractBlock.Settings = AbstractBlock.Settings.copy(Blocks.POTTED_OAK_SAPLING)
 
-    private fun grassSettings(color: MapColor): AbstractBlock.Settings = AbstractBlock.Settings
-      .of(SOLID_ORGANIC, color)
+    private fun grassSettings(mapColor: MapColor): AbstractBlock.Settings = AbstractBlock.Settings.create()
+      .mapColor(mapColor)
+      .sounds(GRASS)
       .ticksRandomly()
       .strength(0.6f)
-      .sounds(GRASS)
 
-    private fun registerSapling(name: String): ScTree {
+    private fun registerSapling(name: String, mapColor: MapColor): ScTree {
       val feature = RegistryKey.of(CONFIGURED_FEATURE, ModId("${name}_tree"))
-      val sapling = rBlock("${name}_sapling", SaplingBlock(ScSaplingGenerator(feature), saplingSettings()))
-      val leaves = rBlock("${name}_leaves", LeavesBlock(leavesSettings()))
+      val sapling = rBlock("${name}_sapling", SaplingBlock(ScSaplingGenerator(feature), saplingSettings(mapColor)))
+      val leaves = rBlock("${name}_leaves", LeavesBlock(leavesSettings(mapColor)))
       val potted = rBlock("potted_${name}_sapling", FlowerPotBlock(sapling, potSettings()))
       val saplingItem = rItem(sapling, ::BlockItem, itemSettings())
       val leavesItem = rItem(leaves, ::BlockItem, itemSettings())
@@ -347,14 +360,6 @@ object Registration {
   }
 
   object ModItems {
-    val itemGroup: ItemGroup = FabricItemGroup.builder(ModId("main"))
-      .icon { ItemStack(Items.AXOLOTL_BUCKET) }
-      .entries { _, entries ->
-        items.forEach(entries::add)
-        entries.addAll(AncientTomeItem.getTomeStacks())
-      }
-      .build()
-
     val barrelHammer = rItem("barrel_hammer", BarrelHammerItem(itemSettings()
       .maxDamage(64)))
 

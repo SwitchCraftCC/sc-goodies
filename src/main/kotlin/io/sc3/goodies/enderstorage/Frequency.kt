@@ -1,6 +1,8 @@
 package io.sc3.goodies.enderstorage
 
 import com.google.gson.Gson
+import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.library.ext.optCompound
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
@@ -9,8 +11,6 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.DyeColor
-import io.sc3.goodies.Registration.ModBlocks
-import io.sc3.library.ext.optCompound
 import java.util.*
 
 private val gson = Gson()
@@ -101,7 +101,7 @@ data class Frequency(
       val ownerName = if (nbt.contains("ownerName")) {
         nbt.getString("ownerName")
       } else if (owner != null && server != null) {
-        server.userCache.getByUuid(owner).orElse(null)?.name
+        server.userCache?.getByUuid(owner)?.orElse(null)?.name
       } else {
         null
       }

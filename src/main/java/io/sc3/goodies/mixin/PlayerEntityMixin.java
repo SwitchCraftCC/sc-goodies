@@ -49,7 +49,7 @@ public class PlayerEntityMixin {
   private net.minecraft.entity.damage.DamageSource redirectPlayerAttack(DamageSources instance, PlayerEntity attacker) {
     if (isBarrelHammering) {
       PlayerEntity player = (PlayerEntity) (Object) this;
-      var damageType = player.world.getRegistryManager().get(RegistryKeys.DAMAGE_TYPE)
+      var damageType = player.getWorld().getRegistryManager().get(RegistryKeys.DAMAGE_TYPE)
         .entryOf(Registration.ModDamageSources.INSTANCE.getBarrelHammer());
       isBarrelHammering = false;
       return new DamageSource(damageType, player);

@@ -1,5 +1,9 @@
 package io.sc3.goodies.client.ironchest
 
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.ironstorage.IronChestBlock
+import io.sc3.goodies.ironstorage.IronChestBlockEntity
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import net.minecraft.client.model.ModelData
 import net.minecraft.client.model.ModelPart
 import net.minecraft.client.model.ModelPartBuilder.create
@@ -12,10 +16,6 @@ import net.minecraft.client.render.block.entity.BlockEntityRenderer
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.RotationAxis
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.ironstorage.IronChestBlock
-import io.sc3.goodies.ironstorage.IronChestBlockEntity
-import io.sc3.goodies.ironstorage.IronStorageVariant
 import kotlin.math.pow
 
 class IronChestBlockEntityRenderer(private val block: IronChestBlock) : BlockEntityRenderer<IronChestBlockEntity> {

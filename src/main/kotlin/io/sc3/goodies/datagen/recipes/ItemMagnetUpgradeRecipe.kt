@@ -2,7 +2,7 @@ package io.sc3.goodies.datagen.recipes
 
 import io.sc3.goodies.Registration.ModItems
 import io.sc3.goodies.itemmagnet.ItemMagnetItem
-import net.minecraft.inventory.CraftingInventory
+import net.minecraft.inventory.RecipeInputInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.recipe.Ingredient
@@ -26,7 +26,7 @@ class ItemMagnetUpgradeRecipe(
     ofItems(Items.NETHERITE_INGOT)
   )
 ) {
-  override fun craft(inv: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+  override fun craft(inv: RecipeInputInventory, manager: DynamicRegistryManager): ItemStack {
     val output = getOutput(manager)
 
     for (i in 0 until inv.size()) {
@@ -35,8 +35,7 @@ class ItemMagnetUpgradeRecipe(
         continue
       }
 
-      val result = stack.copy()
-      result.count = 1
+      val result = stack.copyWithCount(1)
 
       // Only increment the level if the magnet is not already at the max - i.e. only if the radius is now different
       val oldLevel = ItemMagnetItem.stackLevel(stack)

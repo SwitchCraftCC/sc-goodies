@@ -1,5 +1,9 @@
 package io.sc3.goodies.tomes
 
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
+import io.sc3.goodies.util.AnvilEvents
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.loot.v2.LootTableSource
 import net.minecraft.enchantment.Enchantment
@@ -23,10 +27,6 @@ import net.minecraft.screen.Property
 import net.minecraft.text.Text.literal
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.random.Random
-import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
-import io.sc3.goodies.util.AnvilEvents
 
 private const val UPGRADE_COST = 10
 private const val UPGRADE_COST_MAXED = 30
@@ -57,10 +57,10 @@ object TomeEnchantments {
   )
 
   private val lootWeights = mapOf(
-    STRONGHOLD_LIBRARY_CHEST  to 30,
-    SIMPLE_DUNGEON_CHEST      to 20,
-    BASTION_TREASURE_CHEST    to 25,
-    WOODLAND_MANSION_CHEST    to 15
+    STRONGHOLD_LIBRARY_CHEST  to 10,
+    SIMPLE_DUNGEON_CHEST      to 3,
+    BASTION_TREASURE_CHEST    to 15,
+    WOODLAND_MANSION_CHEST    to 10
   )
 
   fun init() {

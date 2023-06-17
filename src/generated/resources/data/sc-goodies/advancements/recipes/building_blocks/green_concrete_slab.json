@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:green_concrete_slab"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

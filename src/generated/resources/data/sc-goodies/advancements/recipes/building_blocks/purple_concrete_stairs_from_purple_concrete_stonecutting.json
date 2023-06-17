@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:purple_concrete_stairs_from_purple_concrete_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:pink_concrete_slab_from_pink_concrete_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

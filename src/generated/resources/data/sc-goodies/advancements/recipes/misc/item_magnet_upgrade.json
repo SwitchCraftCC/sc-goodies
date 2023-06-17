@@ -30,5 +30,6 @@
     "recipes": [
       "sc-goodies:item_magnet_upgrade"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:elytra_lesbian"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:shulker_box_gold"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

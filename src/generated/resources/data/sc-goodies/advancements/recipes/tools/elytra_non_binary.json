@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:elytra_non_binary"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

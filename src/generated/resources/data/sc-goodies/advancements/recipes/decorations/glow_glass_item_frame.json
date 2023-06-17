@@ -43,5 +43,6 @@
     "recipes": [
       "sc-goodies:glow_glass_item_frame"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

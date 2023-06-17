@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:green_concrete_stairs_from_green_concrete_stonecutting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

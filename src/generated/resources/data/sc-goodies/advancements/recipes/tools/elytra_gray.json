@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:elytra_gray"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -39,5 +39,6 @@
     "recipes": [
       "sc-goodies:gold_diamond_chest_upgrade"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

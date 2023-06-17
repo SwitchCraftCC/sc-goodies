@@ -39,5 +39,6 @@
     "recipes": [
       "sc-goodies:vanilla_iron_chest_upgrade"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

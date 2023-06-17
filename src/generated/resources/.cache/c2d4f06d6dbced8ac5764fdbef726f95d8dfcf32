@@ -1,4 +1,4 @@
-// 1.19.4	2023-06-11T19:30:29.0373825	SwitchCraft Goodies/Tags for minecraft:block
+// 1.20.1	2023-06-17T18:04:31.0807981	SwitchCraft Goodies/Tags for minecraft:block
 864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\leaves.json
 0d2897cde6738bba267d1e3db7ca8da38d11c6ac data\minecraft\tags\blocks\crystal_sound_blocks.json
 864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\mineable\hoe.json
@@ -6,6 +6,6 @@ d271db8ff8e5339b949a85bdfd38e23238b785b2 data\minecraft\tags\blocks\mineable\pic
 9add93461267d841a135d57165b955ef109901c1 data\minecraft\tags\blocks\dirt.json
 9add93461267d841a135d57165b955ef109901c1 data\minecraft\tags\blocks\mineable\shovel.json
 864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\completes_find_tree_tutorial.json
-864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\lava_pool_stone_cannot_replace.json
 864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\computercraft\tags\blocks\turtle_always_breakable.json
+864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\lava_pool_stone_cannot_replace.json
 864839e4fdbc62745fcce9b3d37e3d0900b3cf7b data\minecraft\tags\blocks\parrots_spawnable_on.json

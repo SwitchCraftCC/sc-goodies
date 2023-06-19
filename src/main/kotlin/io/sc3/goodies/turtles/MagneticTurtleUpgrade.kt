@@ -34,10 +34,9 @@ class MagneticTurtleUpgrade(id: Identifier) : ITurtleUpgrade {
   }
 
   override fun getCraftingItem(): ItemStack {
-    return Registration.ModItems.itemMagnet.defaultStack
+    val stack = Registration.ModItems.itemMagnet.defaultStack;
+    stack.orCreateNbt.putInt("level",3);
+    return stack;
   }
 
-  override fun isItemSuitable(stack: ItemStack): Boolean {
-    return stack.item is ItemMagnetItem
-  }
 }

@@ -19,10 +19,10 @@ class MagnetTurtlePeripheral(var turtleAccess: ITurtleAccess, var side: TurtleSi
 
   @LuaFunction(mainThread = true)
   fun magnetize(distance: Int): MethodResult {
-    if (distance in 1..24) {
+    if (distance in 1..6) {
       turtleAccess.consumeFuel(distance * distance)
       return if (turtleAccess.fuelLevel >= distance * distance || !turtleAccess.isFuelNeeded) {
-        val range: Box = Box(turtleAccess.position).expand(distance.toDouble(), (2).toDouble(), distance.toDouble())
+        val range: Box = Box(turtleAccess.position).expand(distance.toDouble(), (1).toDouble(), distance.toDouble())
         val entityList: List<Entity> = turtleAccess.level.getOtherEntities(null, range)
         for (entity in entityList) {
           if (entity is ItemEntity) {

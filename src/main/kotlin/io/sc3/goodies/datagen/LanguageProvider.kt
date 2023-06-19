@@ -148,6 +148,9 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     // Amethyst Slabs and Stairs
     builder.add(AmethystExtras.slabBlock, "Amethyst Slab")
     builder.add(AmethystExtras.stairsBlock, "Amethyst Stairs")
+
+    // Turtle Upgrade Adjectives
+    builder.add("upgrade.sc-goodies.magnet.adjective","Magnetic")
   }
 
   private fun TranslationBuilder.sub(item: Item, value: String, sub: String = "desc") {

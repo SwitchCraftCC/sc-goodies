@@ -188,5 +188,6 @@
   "item.sc-goodies.vanilla_iron_chest_upgrade": "Vanilla to Iron Storage Upgrade",
   "item.sc-goodies.vanilla_iron_chest_upgrade.desc": "Upgrade Vanilla chests, barrels, or shulker boxes to\nIron chests, barrels, or shulker boxes.",
   "itemGroup.sc-goodies.main": "SwitchCraft Goodies",
-  "key.sc-goodies.toggle_item_magnet": "Toggle Item Magnet"
+  "key.sc-goodies.toggle_item_magnet": "Toggle Item Magnet",
+  "upgrade.sc-goodies.magnet.adjective": "Magnetic"
 }

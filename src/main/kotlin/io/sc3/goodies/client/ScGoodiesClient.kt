@@ -1,5 +1,7 @@
 package io.sc3.goodies.client
 
+import dan200.computercraft.api.client.ComputerCraftAPIClient
+import dan200.computercraft.api.client.turtle.TurtleUpgradeModeller
 import dev.emi.trinkets.api.client.TrinketRendererRegistry
 import io.sc3.goodies.Registration
 import io.sc3.goodies.Registration.ModBlockEntities
@@ -71,6 +73,13 @@ object ScGoodiesClient : ClientModInitializer {
       out.accept(ModelIdentifier(ModId("glass_item_frame_back"), "inventory"))
     }
     EntityRendererRegistry.register(Registration.ModEntities.glassItemFrameEntity, ::GlassItemFrameEntityRenderer)
+
+    //Turtle Upgrades and tools
+    ComputerCraftAPIClient.registerTurtleUpgradeModeller(
+      Registration.ModTurtleUpgrades.magnetTurtle,
+      TurtleUpgradeModeller.flatItem()
+    )
+
   }
 
   private fun registerIronChestRenderer(variant: IronStorageVariant) {

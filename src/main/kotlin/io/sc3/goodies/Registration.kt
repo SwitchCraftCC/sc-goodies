@@ -1,5 +1,6 @@
 package io.sc3.goodies
 
+import dan200.computercraft.api.turtle.TurtleUpgradeSerialiser
 import io.sc3.goodies.Registration.ModBlockEntities.rBlockEntity
 import io.sc3.goodies.Registration.ModBlocks.autumnGrass
 import io.sc3.goodies.Registration.ModBlocks.barrelSettings
@@ -34,6 +35,7 @@ import io.sc3.goodies.nature.ScSaplingGenerator
 import io.sc3.goodies.nature.ScTree
 import io.sc3.goodies.tomes.AncientTomeItem
 import io.sc3.goodies.tomes.TomeEnchantments
+import io.sc3.goodies.turtles.MagneticTurtleUpgrade
 import io.sc3.goodies.util.BaseItem
 import io.sc3.library.networking.registerServerReceiver
 import io.sc3.library.recipe.RecipeHandler
@@ -60,6 +62,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.item.Items
 import net.minecraft.registry.Registerable
 import net.minecraft.registry.Registries.*
+import net.minecraft.registry.Registry
 import net.minecraft.registry.Registry.register
 import net.minecraft.registry.RegistryKey
 import net.minecraft.registry.RegistryKeys
@@ -97,7 +100,7 @@ object Registration {
       .build())
 
     // Force static initializers to run
-    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities, ModDamageSources)
+    listOf(ModBlocks, ModItems, ModBlockEntities, ModScreens, ModEntities, ModDamageSources, ModTurtleUpgrades)
 
     // Iron Chests and Shulkers
     IronStorageVariant.values().forEach { variant ->
@@ -444,4 +447,17 @@ object Registration {
   object ModDamageSources {
     val barrelHammer = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModId("barrel_hammer"))
   }
+  object ModTurtleUpgrades{
+    private fun <T : TurtleUpgradeSerialiser<*>?> register(name: net.minecraft.util.Identifier, serialiser: T): T {
+      val registry = REGISTRIES[TurtleUpgradeSerialiser.registryId().value] as Registry<in TurtleUpgradeSerialiser<*>>?
+      register(registry, name, serialiser)
+      return serialiser
+    }
+
+    val magnetTurtle: TurtleUpgradeSerialiser<MagneticTurtleUpgrade> = register(
+      ModId("magnet"),
+      TurtleUpgradeSerialiser.simple {MagneticTurtleUpgrade(it)}
+    )
+  }
+
 }

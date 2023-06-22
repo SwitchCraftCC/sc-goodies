@@ -16,9 +16,12 @@ import net.minecraft.item.EnchantedBookItem
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items.ENCHANTED_BOOK
 import net.minecraft.loot.LootManager
+import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTable
 import net.minecraft.loot.LootTables.*
+import net.minecraft.loot.entry.EmptyEntry
 import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.registry.Registries.LOOT_FUNCTION_TYPE
 import net.minecraft.registry.Registry.register
 import net.minecraft.resource.ResourceManager
@@ -56,6 +59,8 @@ object TomeEnchantments {
     PIERCING
   )
 
+  private const val maxTomeCount = 3.0f
+  private const val lootWeightEmpty = 30
   private val lootWeights = mapOf(
     STRONGHOLD_LIBRARY_CHEST  to 10,
     SIMPLE_DUNGEON_CHEST      to 3,
@@ -79,7 +84,10 @@ object TomeEnchantments {
       .apply { TomeLootFunction(emptyArray()) }
       .build()
 
-    builder.modifyPools { it.with(entry) }
+    builder.pool(LootPool.builder()
+      .rolls(UniformLootNumberProvider.create(0.0f, maxTomeCount))
+      .with(EmptyEntry.builder().weight(lootWeightEmpty))
+      .with(entry))
   }
 
   fun applyRandomEnchantment(stack: ItemStack, rand: Random) {

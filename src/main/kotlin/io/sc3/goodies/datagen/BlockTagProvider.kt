@@ -22,6 +22,8 @@ class BlockTagProvider(
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
     getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
+    getOrCreateTagBuilder(BlockTags.SNIFFER_DIGGABLE_BLOCK)
+      .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     val pickaxeBlocks = mutableListOf<Block>(ModBlocks.enderStorage)
     val leafBlocks = mutableListOf<Block>()

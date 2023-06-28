@@ -42,6 +42,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.`object`.builder.v1.block.entity.FabricBlockEntityTypeBuilder
 import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricEntityTypeBuilder
 import net.fabricmc.fabric.api.registry.FlattenableBlockRegistry
+import net.fabricmc.fabric.api.registry.TillableBlockRegistry
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType
 import net.fabricmc.loader.api.FabricLoader
 import net.minecraft.block.*
@@ -54,10 +55,7 @@ import net.minecraft.entity.EntityDimensions
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.damage.DamageType
-import net.minecraft.item.BlockItem
-import net.minecraft.item.Item
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
+import net.minecraft.item.*
 import net.minecraft.registry.Registerable
 import net.minecraft.registry.Registries.*
 import net.minecraft.registry.Registry.register
@@ -164,6 +162,22 @@ object Registration {
     FlattenableBlockRegistry.register(ModBlocks.pinkGrass, Blocks.DIRT_PATH.defaultState)
     FlattenableBlockRegistry.register(autumnGrass, Blocks.DIRT_PATH.defaultState)
     FlattenableBlockRegistry.register(blueGrass, Blocks.DIRT_PATH.defaultState)
+
+    TillableBlockRegistry.register(
+      ModBlocks.pinkGrass,
+      HoeItem::canTillFarmland,
+      HoeItem.createTillAction(Blocks.FARMLAND.defaultState)
+    )
+    TillableBlockRegistry.register(
+      autumnGrass,
+      HoeItem::canTillFarmland,
+      HoeItem.createTillAction(Blocks.FARMLAND.defaultState)
+    )
+    TillableBlockRegistry.register(
+      blueGrass,
+      HoeItem::canTillFarmland,
+      HoeItem.createTillAction(Blocks.FARMLAND.defaultState)
+    )
 
     RECIPE_HANDLERS.forEach(RecipeHandler::registerSerializers)
   }

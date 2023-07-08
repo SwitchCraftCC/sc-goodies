@@ -48,6 +48,8 @@ class BlockTagProvider(
     leafBlocks.add(ModBlocks.mapleSapling.leaves)
     leafBlocks.add(ModBlocks.sakuraSapling.leaves)
     leafBlocks.add(ModBlocks.blueSapling.leaves)
+    getOrCreateTagBuilder(BlockTags.SAPLINGS)
+      .add(ModBlocks.mapleSapling.sapling, ModBlocks.sakuraSapling.sapling, ModBlocks.blueSapling.sapling)
 
     getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
       .add(*pickaxeBlocks.toTypedArray())

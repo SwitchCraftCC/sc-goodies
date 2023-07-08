@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-07T16:55:20.2261281	SwitchCraft Goodies/Recipes
+// 1.20.1	2023-07-07T18:37:00.6226005	SwitchCraft Goodies/Recipes
 0dd51abe8bd104bcc3f484824f0aa0e96f8202c0 data\sc-goodies\recipes\purple_concrete_slab.json
 de63988c1d0b5a508e985ade40fbfd9a3cb92437 data\sc-goodies\recipes\gray_concrete_slab_from_gray_concrete_stonecutting.json
 d803b09c78e330d9d281ef4efd3f541e06ab51e8 data\sc-goodies\recipes\yellow_concrete_slab_from_yellow_concrete_stonecutting.json
@@ -181,8 +181,8 @@ d68b17d99cb1bb4716f02e7c1a15f61e5849c96f data\sc-goodies\advancements\recipes\bu
 9047f384288af3895408fcc300582e5cd105ecaf data\sc-goodies\advancements\recipes\building_blocks\pink_concrete_stairs_from_pink_concrete_stonecutting.json
 d2b7da806b398c83089b737acba127cf23bd0733 data\sc-goodies\advancements\recipes\building_blocks\yellow_concrete_slab.json
 8aff06643df9942eb61f10916bb7dcd3d9706072 data\sc-goodies\recipes\brown_concrete_stairs_from_brown_concrete_stonecutting.json
-a3ef9272deecce435bc61dfc409fdf9973ff59b0 data\sc-goodies\advancements\recipes\building_blocks\gray_concrete_slab.json
 07bf6b0b89f879784b197e1dc48322540d5a56b9 data\sc-goodies\advancements\recipes\tools\elytra_lesbian.json
+a3ef9272deecce435bc61dfc409fdf9973ff59b0 data\sc-goodies\advancements\recipes\building_blocks\gray_concrete_slab.json
 b82ab0462d2e9bfb5bb9b0146af2257f79096073 data\sc-goodies\advancements\recipes\decorations\diamond_chest_with_iron_chest.json
 e67f7a404b558a31d8d043de4489db3606afdca9 data\sc-goodies\advancements\recipes\decorations\blue_grass.json
 de319ac02768203b86b5ac9ef973e4aa54b052f8 data\sc-goodies\recipes\iron_diamond_chest_upgrade.json

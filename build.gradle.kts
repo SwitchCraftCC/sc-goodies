@@ -75,7 +75,7 @@ repositories {
 
   maven("https://maven.terraformersmc.com/releases") // Mod Menu
   maven("https://maven.shedaniel.me") // Cloth Config
-  maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
+  maven("https://maven.ladysnake.org/releases") // Trinkets
   maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
 }
 

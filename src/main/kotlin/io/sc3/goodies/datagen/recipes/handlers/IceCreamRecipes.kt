@@ -14,7 +14,6 @@ import net.minecraft.registry.Registries
 import java.util.function.Consumer
 
 object IceCreamRecipes : RecipeHandler {
-
   fun iceCreamRecipe(ingredientA: Ingredient, ingredientB: Ingredient, makes: Item, exporter: Consumer<RecipeJsonProvider>) {
     ShapedRecipeJsonBuilder
       .create(RecipeCategory.FOOD, makes)

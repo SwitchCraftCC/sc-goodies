@@ -57,6 +57,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     registerTree(gen, ModBlocks.sakuraSapling)
     registerTree(gen, ModBlocks.mapleSapling)
     registerTree(gen, ModBlocks.blueSapling)
+    registerTree(gen, ModBlocks.pearSapling)
     registerTopSoils(gen, ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     // Dimmable lights
@@ -78,9 +79,12 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     gen.register(ModItems.itemMagnet, GENERATED)
     gen.register(ModItems.dragonScale, GENERATED)
     gen.register(ModItems.popcorn, GENERATED)
+    gen.register(ModBlocks.pearSapling.fruit, GENERATED)
     gen.register(ModItems.ancientTome, GENERATED)
     gen.register(ModItems.glassItemFrame, GENERATED)
     gen.register(ModItems.glowGlassItemFrame, GENERATED)
+
+
 
     // Dyed + Special Elytra
     DyedElytraItem.dyedElytraItems.values

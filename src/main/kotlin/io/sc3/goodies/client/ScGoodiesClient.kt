@@ -66,6 +66,7 @@ object ScGoodiesClient : ClientModInitializer {
     registerTreeRenderLayers(ModBlocks.sakuraSapling)
     registerTreeRenderLayers(ModBlocks.mapleSapling)
     registerTreeRenderLayers(ModBlocks.blueSapling)
+    registerTreeRenderLayers(ModBlocks.pearSapling)
 
     ModelLoadingRegistry.INSTANCE.registerModelProvider { _, out ->
       out.accept(ModelIdentifier(ModId("glass_item_frame_back"), "inventory"))

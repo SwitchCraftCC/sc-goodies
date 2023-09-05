@@ -1,5 +1,6 @@
 package io.sc3.goodies.nature
 
+import io.sc3.goodies.misc.FruitItem
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.`object`.builder.v1.trade.TradeOfferHelper
 import net.minecraft.block.Block
@@ -20,7 +21,8 @@ data class ScTree(
   val leaves: Block,
   val treeFeature: RegistryKey<ConfiguredFeature<*, *>>,
   val potted: Block,
-  val saplingItem: Item
+  val saplingItem: Item,
+  val fruit: FruitItem?
 ) {
   private val lootWeights = mapOf(
     VILLAGE_PLAINS_CHEST to 6,
@@ -30,6 +32,9 @@ data class ScTree(
   fun registerTreeLoot() {
     TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3) {
       TradeOffers.SellItemFactory(sapling.asItem(), 6, 1, 15)
+      if (fruit != null) {
+        TradeOffers.SellItemFactory(fruit, 1, 4, 16, 5)
+      }
     }
 
     LootTableEvents.MODIFY.register { _, _, id, builder, _ ->

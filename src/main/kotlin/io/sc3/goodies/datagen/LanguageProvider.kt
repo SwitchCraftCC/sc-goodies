@@ -122,6 +122,8 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
       "The scale will be consumed when crafting.")
     builder.add(ModItems.popcorn, "Popcorn")
     builder.sub(ModItems.popcorn, "A bottomless bag of popcorn.")
+    builder.add(ModBlocks.pearSapling.fruit, "Pear")
+    builder.sub(ModBlocks.pearSapling.fruit!!, "A fruit delicious enough to warrant eating 47 in one sitting.")
 
     builder.add(ModItems.glassItemFrame, "Glass Item Frame")
     builder.sub(ModItems.glassItemFrame, "An item frame with an invisible background when it contains an item.")
@@ -132,6 +134,7 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(ModBlocks.sakuraSapling, "Sakura")
     builder.add(ModBlocks.mapleSapling, "Maple")
     builder.add(ModBlocks.blueSapling, "Peppy")
+    builder.add(ModBlocks.pearSapling, "Pear")
     builder.add(ModBlocks.pinkGrass, "Pink Grass")
     builder.add(ModBlocks.autumnGrass, "Autumn Grass")
     builder.add(ModBlocks.blueGrass, "Peppy Grass")

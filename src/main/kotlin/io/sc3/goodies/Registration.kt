@@ -7,6 +7,7 @@ import io.sc3.goodies.Registration.ModBlocks.blueGrass
 import io.sc3.goodies.Registration.ModBlocks.blueSapling
 import io.sc3.goodies.Registration.ModBlocks.chestSettings
 import io.sc3.goodies.Registration.ModBlocks.mapleSapling
+import io.sc3.goodies.Registration.ModBlocks.pearSapling
 import io.sc3.goodies.Registration.ModBlocks.rBlock
 import io.sc3.goodies.Registration.ModBlocks.sakuraSapling
 import io.sc3.goodies.Registration.ModBlocks.shulkerSettings
@@ -224,6 +225,20 @@ object Registration {
         ).ignoreVines().build()
       )
     )
+
+    featureRegisterable.register(
+      pearSapling.treeFeature,
+      ConfiguredFeature(
+        Feature.TREE,
+        TreeFeatureConfig.Builder(
+          BlockStateProvider.of(Blocks.OAK_LOG),
+          LargeOakTrunkPlacer(3, 9, 0),
+          BlockStateProvider.of(pearSapling.leaves),
+          LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
+          TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
+        ).ignoreVines().build()
+      )
+    )
   }
 
   fun bootstrapDamageTypes(damageTypeRegisterable: Registerable<DamageType?>) {
@@ -295,6 +310,7 @@ object Registration {
     val sakuraSapling = registerSapling("sakura", MapColor.PINK)
     val mapleSapling = registerSapling("maple", MapColor.ORANGE)
     val blueSapling = registerSapling("blue", MapColor.LIGHT_BLUE)
+    val pearSapling = registerSapling("pear", MapColor.LIME, true)
 
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
@@ -356,20 +372,27 @@ object Registration {
       .ticksRandomly()
       .strength(0.6f)
 
-    private fun registerSapling(name: String, mapColor: MapColor): ScTree {
+    private fun registerSapling(name: String, mapColor: MapColor, hasFruit: Boolean = false): ScTree {
       val feature = RegistryKey.of(CONFIGURED_FEATURE, ModId("${name}_tree"))
       val sapling = rBlock("${name}_sapling", SaplingBlock(ScSaplingGenerator(feature), saplingSettings(mapColor)))
       val leaves = rBlock("${name}_leaves", LeavesBlock(leavesSettings(mapColor)))
       val potted = rBlock("potted_${name}_sapling", FlowerPotBlock(sapling, potSettings()))
       val saplingItem = rItem(sapling, ::BlockItem, itemSettings())
       val leavesItem = rItem(leaves, ::BlockItem, itemSettings())
+      var fruitItem: FruitItem? = null
+      if (hasFruit) {
+        fruitItem = rItem("${name}_fruit", FruitItem(itemSettings()
+          .food(FruitItem.foodComponent)
+          .maxCount(64)))
+      }
 
       val tree = ScTree(
         sapling,
         leaves,
         feature,
         potted,
-        saplingItem
+        saplingItem,
+        fruitItem
       )
       tree.registerTreeLoot()
       return tree

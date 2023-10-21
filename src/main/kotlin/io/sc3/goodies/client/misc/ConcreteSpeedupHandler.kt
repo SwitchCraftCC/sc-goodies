@@ -5,6 +5,8 @@ import net.minecraft.block.Block
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.input.KeyboardInput
 import net.minecraft.client.network.ClientPlayerEntity
+import net.minecraft.registry.Registries.BLOCK
+import net.minecraft.util.Identifier
 import net.minecraft.util.math.BlockPos
 
 private const val VEL_MULTIPLIER = 1.25f
@@ -22,6 +24,7 @@ object ConcreteSpeedupHandler {
       speedupBlocks.add(color.slabBlock)
       speedupBlocks.add(color.stairsBlock)
     }
+    speedupBlocks.add(BLOCK.get(Identifier("dirt_path")))
   }
 
   @JvmStatic

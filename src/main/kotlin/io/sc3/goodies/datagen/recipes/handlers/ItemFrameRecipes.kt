@@ -33,5 +33,16 @@ object ItemFrameRecipes : RecipeHandler {
       .criterion("has_item_frame", conditionsFromItem(ITEM_FRAME))
       .criterion("has_glow_ink_sac", conditionsFromItem(GLOW_INK_SAC))
       .offerTo(exporter)
+
+    // Glow Glass Item Frame Alternate
+    ShapedRecipeJsonBuilder
+      .create(RecipeCategory.DECORATIONS, glowGlassItemFrame)
+      .pattern("GGG")
+      .pattern("GIG")
+      .pattern("GGG")
+      .input('G', ConventionalItemTags.GLASS_PANES)
+      .input('I', GLOW_ITEM_FRAME)
+      .criterion("has_glow_item_frame", conditionsFromItem(GLOW_ITEM_FRAME))
+      .offerTo(exporter, "glow_glass_item_frame_alternate")
   }
 }

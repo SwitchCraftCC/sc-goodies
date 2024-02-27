@@ -72,10 +72,34 @@ repositories {
     }
   }
 
-  maven("https://maven.terraformersmc.com/releases") // Mod Menu
-  maven("https://maven.shedaniel.me") // Cloth Config
-  maven("https://maven.ladysnake.org/releases") // Trinkets
-  maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
+  maven("https://maven.shedaniel.me") {
+    // cloth-config
+    content {
+      includeGroup("me.shedaniel.cloth")
+      includeGroup("me.shedaniel.cloth.api")
+    }
+  }
+
+  maven("https://maven.terraformersmc.com") {
+    // Trinkets, mod-menu
+    content {
+      includeModule("dev.emi", "trinkets")
+      includeGroup("com.terraformersmc")
+    }
+  }
+
+  maven("https://maven.ladysnake.org/releases") {
+    // Cardinal Components API (dependency of Trinkets)
+    content {
+      includeGroup("dev.onyxstudios.cardinal-components-api")
+    }
+  }
+
+  maven("https://oss.sonatype.org/content/repositories/snapshots") {
+    content {
+      includeModule("me.lucko", "fabric-permissions-api")
+    }
+  }
 }
 
 dependencies {

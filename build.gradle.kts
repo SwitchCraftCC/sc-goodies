@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   val kotlinVersion: String by System.getProperties()
   kotlin("jvm").version(kotlinVersion)
+  kotlin("plugin.serialization").version(kotlinVersion)
 
   id("fabric-loom") version "1.5-SNAPSHOT"
   id("maven-publish")
@@ -37,6 +38,9 @@ val cardinalComponentsVersion: String by project
 val scLibraryVersion: String by project
 val scTextVersion: String by project
 val fabricPermissionsApiVersion: String by project
+
+val kotlinSerializationVersion: String by project
+val annotationsVersion: String by project
 
 val archivesBaseName = "sc-goodies"
 version = modVersion
@@ -137,6 +141,9 @@ dependencies {
 
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-base", cardinalComponentsVersion))
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-entity", cardinalComponentsVersion))
+
+  implementation("org.jetbrains", "annotations", annotationsVersion)
+  implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", kotlinSerializationVersion)
 
   modImplementation(include("io.sc3", "sc-text", scTextVersion))
 }

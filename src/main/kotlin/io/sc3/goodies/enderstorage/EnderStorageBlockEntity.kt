@@ -83,7 +83,7 @@ class EnderStorageBlockEntity(
   override fun createMenu(syncId: Int, playerInv: PlayerInventory, player: PlayerEntity): ScreenHandler? {
     val inv = inv ?: return null
     viewingPlayers.add(player)
-    return EnderStorageScreenHandler(syncId, playerInv, inv, pos, frequency)
+    return EnderStorageScreenHandler(syncId, playerInv, inv, pos, frequency, frequencyState)
   }
 
   override fun getDisplayName(): Text = cachedState.block.name
@@ -91,6 +91,7 @@ class EnderStorageBlockEntity(
   override fun writeScreenOpeningData(player: ServerPlayerEntity, buf: PacketByteBuf) {
     buf.writeBlockPos(pos)
     frequency.toPacket(buf)
+    frequencyState.toPacket(buf)
   }
 
   fun removeViewer(player: PlayerEntity) {

@@ -12,12 +12,15 @@ import net.minecraft.text.Text.translatable
 import net.minecraft.util.Formatting.GREEN
 import net.minecraft.util.Formatting.YELLOW
 
-class EnderStorageDescriptionCommand(target: EnderStorageTargetType) : EnderStorageBaseCommand(target) {
+class EnderStorageDescriptionCommand(
+  target: EnderStorageTargetType,
+  private val clear: Boolean = false
+) : EnderStorageBaseCommand(target) {
   override fun run(ctx: CommandContext<ServerCommandSource>): Int {
     val (state, freq) = getState(ctx)
-    val desc = getString(ctx, "description")
+    val desc = if (!clear) getString(ctx, "description") else null
 
-    if (!FrequencyState.isValidDescription(desc)) {
+    if (!clear && !FrequencyState.isValidDescription(desc)) {
       throw INVALID_DESCRIPTION.create()
     }
 
@@ -27,12 +30,22 @@ class EnderStorageDescriptionCommand(target: EnderStorageTargetType) : EnderStor
     ctx.source.sendFeedback({
       val base = of("", GREEN)
       val freqText = freq.toTextParts(YELLOW)
-      val descText = of(desc, YELLOW)
-      when (target) {
-        OWN -> base + translatable("$TL_KEY.changed_description_own", *freqText, descText)
-        PUBLIC -> base + translatable("$TL_KEY.changed_description_public", *freqText, descText)
-        PRIVATE -> base + translatable("$TL_KEY.changed_description_private",
-          of(freq.ownerName ?: freq.owner?.toString() ?: "Unknown", YELLOW), *freqText, descText)
+      val descText = if (!clear) of(desc, YELLOW) else null
+
+      if (clear) {
+        when (target) {
+          OWN -> base + translatable("$TL_KEY.cleared_description_own", *freqText)
+          PUBLIC -> base + translatable("$TL_KEY.cleared_description_public", *freqText)
+          PRIVATE -> base + translatable("$TL_KEY.cleared_description_private",
+            of(freq.ownerName ?: freq.owner?.toString() ?: "Unknown", YELLOW), *freqText)
+        }
+      } else {
+        when (target) {
+          OWN -> base + translatable("$TL_KEY.changed_description_own", *freqText, descText)
+          PUBLIC -> base + translatable("$TL_KEY.changed_description_public", *freqText, descText)
+          PRIVATE -> base + translatable("$TL_KEY.changed_description_private",
+            of(freq.ownerName ?: freq.owner?.toString() ?: "Unknown", YELLOW), *freqText, descText)
+        }
       }
     }, true)
 

@@ -93,6 +93,12 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.sub(es, "Changed the description for your %s, %s, %s Ender Storage to: %s", "changed_description_own")
     builder.sub(es, "Changed the description for the public %s, %s, %s Ender Storage to: %s", "changed_description_public")
     builder.sub(es, "Changed the description for %s's personal %s, %s, %s Ender Storage to: %s", "changed_description_private")
+    builder.sub(es, "Cleared the name for your %s, %s, %s Ender Storage.", "cleared_name_own")
+    builder.sub(es, "Cleared the name for the public %s, %s, %s Ender Storage.", "cleared_name_public")
+    builder.sub(es, "Cleared the name for %s's personal %s, %s, %s Ender Storage.", "cleared_name_private")
+    builder.sub(es, "Cleared the description for your %s, %s, %s Ender Storage.", "cleared_description_own")
+    builder.sub(es, "Cleared the description for the public %s, %s, %s Ender Storage.", "cleared_description_public")
+    builder.sub(es, "Cleared the description for %s's personal %s, %s, %s Ender Storage.", "cleared_description_private")
     colorNames.forEach { (color, name) -> builder.add("$esk.frequency.${color.getName()}", name) }
 
     // Hover Boots

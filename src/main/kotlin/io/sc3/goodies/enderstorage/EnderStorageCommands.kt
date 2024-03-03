@@ -37,16 +37,18 @@ object EnderStorageCommands {
         .then(literal("own")
           .requires(require(P_OWN_BASE, 0))
           .then(dyeArg("left").then(dyeArg("middle").then(dyeArg("right")
-            // /enderstorage own <left> <middle> <right> name <name>
+            // /enderstorage own <left> <middle> <right> name [name]
             .then(literal("name")
               .requires(require(P_OWN_NAME, 0))
               .then(argument("name", greedyString())
-                .executes(EnderStorageNameCommand(OWN))))
-            // /enderstorage own <left> <middle> <right> description <description>
+                .executes(EnderStorageNameCommand(OWN, clear = false)))
+              .executes(EnderStorageNameCommand(OWN, clear = true)))
+            // /enderstorage own <left> <middle> <right> description [description]
             .then(literal("description")
               .requires(require(P_OWN_DESCRIPTION, 0))
               .then(argument("description", greedyString())
-                .executes(EnderStorageDescriptionCommand(OWN))))))))
+                .executes(EnderStorageDescriptionCommand(OWN, clear = false)))
+              .executes(EnderStorageDescriptionCommand(OWN, clear = true)))))))
         // (Staff commands)
         // /enderstorage public ...
         .then(literal("public")
@@ -60,16 +62,18 @@ object EnderStorageCommands {
             .then(literal("locate")
               .requires(require(P_PUBLIC_LOCATE, 3))
               .executes(EnderStorageLocateCommand(PUBLIC)))
-            // /enderstorage public <left> <middle> <right> name <name>
+            // /enderstorage public <left> <middle> <right> name [name]
             .then(literal("name")
               .requires(require(P_PUBLIC_NAME, 3))
               .then(argument("name", greedyString())
-                .executes(EnderStorageNameCommand(PUBLIC))))
-            // /enderstorage public <left> <middle> <right> description <description>
+                .executes(EnderStorageNameCommand(PUBLIC, clear = false)))
+              .executes(EnderStorageNameCommand(PUBLIC, clear = true)))
+            // /enderstorage public <left> <middle> <right> description [description]
             .then(literal("description")
               .requires(require(P_PUBLIC_DESCRIPTION, 3))
               .then(argument("description", greedyString())
-                .executes(EnderStorageDescriptionCommand(PUBLIC))))))))
+                .executes(EnderStorageDescriptionCommand(PUBLIC, clear = false)))
+              .executes(EnderStorageDescriptionCommand(PUBLIC, clear = true)))))))
         // /enderstorage private ...
         .then(literal("private")
           .requires(require(P_PRIVATE_BASE, 3))
@@ -84,16 +88,18 @@ object EnderStorageCommands {
               .then(literal("locate")
                 .requires(require(P_PRIVATE_OTHERS_LOCATE, 3))
                 .executes(EnderStorageLocateCommand(PRIVATE)))
-              // /enderstorage private <left> <middle> <right> name <name>
+              // /enderstorage private <left> <middle> <right> name [name]
               .then(literal("name")
                 .requires(require(P_PRIVATE_OTHERS_NAME, 3))
                 .then(argument("name", greedyString())
-                  .executes(EnderStorageNameCommand(PRIVATE))))
-              // /enderstorage private <left> <middle> <right> description <description>
+                  .executes(EnderStorageNameCommand(PRIVATE, clear = false)))
+                .executes(EnderStorageNameCommand(PRIVATE, clear = true)))
+              // /enderstorage private <left> <middle> <right> description [description]
               .then(literal("description")
                 .requires(require(P_PRIVATE_OTHERS_DESCRIPTION, 3))
                 .then(argument("description", greedyString())
-                  .executes(EnderStorageDescriptionCommand(PRIVATE))))))))))
+                  .executes(EnderStorageDescriptionCommand(PRIVATE, clear = false)))
+                .executes(EnderStorageDescriptionCommand(PRIVATE, clear = true)))))))))
     }
   }
 }

@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_icecream_chocolate": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sc-goodies:icecream_chocolate"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_icecream_sweetberry": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sc-goodies:icecream_sweetberry"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_icecream_vanilla": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sc-goodies:icecream_vanilla"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "sc-goodies:icecream_neapolitan"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_icecream_vanilla",
+      "has_icecream_chocolate",
+      "has_icecream_sweetberry",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "sc-goodies:icecream_neapolitan"
+    ]
+  },
+  "sends_telemetry_event": false
+}

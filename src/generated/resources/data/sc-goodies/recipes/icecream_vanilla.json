@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "minecraft:snowball"
+    },
+    "b": {
+      "item": "minecraft:bowl"
+    },
+    "e": {
+      "item": "minecraft:egg"
+    },
+    "m": {
+      "item": "minecraft:milk_bucket"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SsS",
+    "mbe"
+  ],
+  "result": {
+    "item": "sc-goodies:icecream_vanilla"
+  },
+  "show_notification": true
+}

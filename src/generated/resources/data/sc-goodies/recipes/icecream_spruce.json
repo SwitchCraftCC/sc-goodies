@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": [
+      {
+        "item": "minecraft:spruce_sapling"
+      },
+      {
+        "item": "minecraft:spruce_leaves"
+      }
+    ],
+    "B": [
+      {
+        "item": "minecraft:spruce_sapling"
+      },
+      {
+        "item": "minecraft:spruce_leaves"
+      }
+    ],
+    "S": {
+      "item": "minecraft:snowball"
+    },
+    "b": {
+      "item": "minecraft:bowl"
+    },
+    "e": {
+      "item": "minecraft:egg"
+    },
+    "m": {
+      "item": "minecraft:milk_bucket"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "ASB",
+    "SsS",
+    "mbe"
+  ],
+  "result": {
+    "item": "sc-goodies:icecream_spruce"
+  },
+  "show_notification": true
+}

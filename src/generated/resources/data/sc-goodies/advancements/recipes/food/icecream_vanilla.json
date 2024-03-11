@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_cooked_porkchop": {
+    "has_snowball": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:cooked_porkchop"
+              "minecraft:snowball"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:salami_recipe"
+        "recipe": "sc-goodies:icecream_vanilla"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_cooked_porkchop",
+      "has_snowball",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:salami_recipe"
+      "sc-goodies:icecream_vanilla"
     ]
   },
   "sends_telemetry_event": false

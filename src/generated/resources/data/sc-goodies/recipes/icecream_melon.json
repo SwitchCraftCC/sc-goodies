@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "A": {
+      "item": "minecraft:melon_slice"
+    },
+    "B": {
+      "item": "minecraft:melon_slice"
+    },
+    "S": {
+      "item": "minecraft:snowball"
+    },
+    "b": {
+      "item": "minecraft:bowl"
+    },
+    "e": {
+      "item": "minecraft:egg"
+    },
+    "m": {
+      "item": "minecraft:milk_bucket"
+    },
+    "s": {
+      "item": "minecraft:sugar"
+    }
+  },
+  "pattern": [
+    "ASB",
+    "SsS",
+    "mbe"
+  ],
+  "result": {
+    "item": "sc-goodies:icecream_melon"
+  },
+  "show_notification": true
+}

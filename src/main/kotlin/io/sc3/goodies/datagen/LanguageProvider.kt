@@ -149,7 +149,6 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(ModItems.popcorn, "Popcorn")
     builder.sub(ModItems.popcorn, "A bottomless bag of popcorn.")
 
-
     builder.add(ModItems.iceCreamVanilla, "Vanilla Ice Cream")
     builder.sub(ModItems.iceCreamVanilla, "A delicious treat!")
     builder.add(ModItems.iceCreamChocolate, "Chocolate Ice Cream")

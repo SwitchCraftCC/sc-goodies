@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sc-goodies:icecream_vanilla"
+    },
+    [
+      {
+        "item": "minecraft:spruce_sapling"
+      },
+      {
+        "item": "minecraft:spruce_leaves"
+      }
+    ],
+    [
+      {
+        "item": "minecraft:spruce_sapling"
+      },
+      {
+        "item": "minecraft:spruce_leaves"
+      }
+    ]
+  ],
+  "result": {
+    "item": "sc-goodies:icecream_spruce"
+  }
+}

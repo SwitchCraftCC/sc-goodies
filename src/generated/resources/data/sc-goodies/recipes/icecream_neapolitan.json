@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "sc-goodies:icecream_vanilla"
+    },
+    {
+      "item": "sc-goodies:icecream_chocolate"
+    },
+    {
+      "item": "sc-goodies:icecream_sweetberry"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "sc-goodies:icecream_neapolitan"
+  }
+}

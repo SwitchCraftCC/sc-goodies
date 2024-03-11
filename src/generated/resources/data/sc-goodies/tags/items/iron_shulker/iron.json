@@ -3,20 +3,20 @@
   "values": [
     "sc-goodies:shulker_box_iron",
     "sc-goodies:shulker_box_iron_white",
+    "sc-goodies:shulker_box_iron_light_gray",
+    "sc-goodies:shulker_box_iron_gray",
+    "sc-goodies:shulker_box_iron_black",
+    "sc-goodies:shulker_box_iron_brown",
+    "sc-goodies:shulker_box_iron_red",
     "sc-goodies:shulker_box_iron_orange",
-    "sc-goodies:shulker_box_iron_magenta",
-    "sc-goodies:shulker_box_iron_light_blue",
     "sc-goodies:shulker_box_iron_yellow",
     "sc-goodies:shulker_box_iron_lime",
-    "sc-goodies:shulker_box_iron_pink",
-    "sc-goodies:shulker_box_iron_gray",
-    "sc-goodies:shulker_box_iron_light_gray",
-    "sc-goodies:shulker_box_iron_cyan",
-    "sc-goodies:shulker_box_iron_purple",
-    "sc-goodies:shulker_box_iron_blue",
-    "sc-goodies:shulker_box_iron_brown",
     "sc-goodies:shulker_box_iron_green",
-    "sc-goodies:shulker_box_iron_red",
-    "sc-goodies:shulker_box_iron_black"
+    "sc-goodies:shulker_box_iron_cyan",
+    "sc-goodies:shulker_box_iron_light_blue",
+    "sc-goodies:shulker_box_iron_blue",
+    "sc-goodies:shulker_box_iron_purple",
+    "sc-goodies:shulker_box_iron_magenta",
+    "sc-goodies:shulker_box_iron_pink"
   ]
 }

@@ -1,8 +1,13 @@
 package io.sc3.goodies.enderstorage
 
-import com.google.gson.Gson
 import io.sc3.goodies.Registration.ModBlocks
+import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.util.UuidSerializer
 import io.sc3.library.ext.optCompound
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NbtCompound
@@ -11,16 +16,19 @@ import net.minecraft.server.MinecraftServer
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.DyeColor
+import net.minecraft.util.Formatting
 import java.util.*
 
-private val gson = Gson()
-
+@Serializable
 data class Frequency(
-  val owner    : UUID?    = null,
-  val ownerName: String?  = null,           // Not used for identification, just for rendering
-  val left     : DyeColor = DyeColor.WHITE,
-  val middle   : DyeColor = DyeColor.WHITE,
-  val right    : DyeColor = DyeColor.WHITE
+  @Serializable(with = UuidSerializer::class)
+  val owner: UUID? = null,
+
+  val ownerName: String? = null, // Not used for identification, just for rendering
+
+  val left  : DyeColor = DyeColor.WHITE,
+  val middle: DyeColor = DyeColor.WHITE,
+  val right : DyeColor = DyeColor.WHITE
 ) {
   val personal
     get() = owner != null
@@ -53,17 +61,21 @@ data class Frequency(
     buf.writeEnumConstant(right)
   }
 
-  fun toKey() = gson.toJson(this)
+  fun toKey() = json.encodeToString(this)
 
-  fun toText(): Text {
-    val key = "block.sc-goodies.ender_storage.frequency"
-    return translatable(
-      key,
-      translatable("$key.${left.getName()}"),
-      translatable("$key.${middle.getName()}"),
-      translatable("$key.${right.getName()}")
+  fun toTextParts(vararg formatting: Formatting): Array<Text> {
+    val key = "block.$modId.ender_storage.frequency"
+    return arrayOf(
+      translatable("$key.${left.getName()}").formatted(*formatting),
+      translatable("$key.${middle.getName()}").formatted(*formatting),
+      translatable("$key.${right.getName()}").formatted(*formatting),
     )
   }
+
+  fun toText(): Text = translatable(
+    "block.$modId.ender_storage.frequency",
+    *toTextParts()
+  )
 
   fun dyeColor(index: Int): DyeColor = when (index) {
     0 -> left
@@ -95,6 +107,10 @@ data class Frequency(
   }
 
   companion object {
+    private val json = Json {
+      ignoreUnknownKeys = true
+    }
+
     fun fromNbt(nbt: NbtCompound, server: MinecraftServer? = null): Frequency {
       val owner = if (nbt.containsUuid("owner")) nbt.getUuid("owner") else null
 
@@ -115,15 +131,15 @@ data class Frequency(
       )
     }
 
-    fun fromPacket(buf: PacketByteBuf): Frequency = Frequency(
-      owner = buf.readNullable(PacketByteBuf::readUuid),
+    fun fromPacket(buf: PacketByteBuf) = Frequency(
+      owner     = buf.readNullable(PacketByteBuf::readUuid),
       ownerName = buf.readNullable(PacketByteBuf::readString),
-      left = buf.readEnumConstant(DyeColor::class.java),
-      middle = buf.readEnumConstant(DyeColor::class.java),
-      right = buf.readEnumConstant(DyeColor::class.java)
+      left      = buf.readEnumConstant(DyeColor::class.java),
+      middle    = buf.readEnumConstant(DyeColor::class.java),
+      right     = buf.readEnumConstant(DyeColor::class.java)
     )
 
-    fun fromKey(key: String) = gson.fromJson(key, Frequency::class.java)
+    fun fromKey(key: String) = json.decodeFromString<Frequency>(key)
 
     fun fromStack(stack: ItemStack): Frequency? {
       // Get the frequency either from the item's direct NBT, or its BlockEntity NBT tag (creative pick)

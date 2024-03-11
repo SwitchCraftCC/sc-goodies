@@ -15,7 +15,8 @@ class EnderStorageScreenHandler(
   inv: Inventory,
 
   val pos: BlockPos,
-  val frequency: Frequency
+  val frequency: Frequency,
+  val state: FrequencyState
 ) : ChestScreenHandler(syncId, playerInv, inv, ModScreens.enderStorage, rows = 3, yStart = 35, playerYStart = 49) {
   constructor(syncId: Int, playerInv: PlayerInventory, buf: PacketByteBuf) :
     this(
@@ -23,7 +24,8 @@ class EnderStorageScreenHandler(
       playerInv,
       SimpleInventory(EnderStorageProvider.INVENTORY_SIZE),
       buf.readBlockPos(),
-      Frequency.fromPacket(buf)
+      Frequency.fromPacket(buf),
+      FrequencyState.fromPacket(buf)
     )
 
   override fun onClosed(player: PlayerEntity) {

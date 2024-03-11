@@ -11,7 +11,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Formatting.GREEN
 import net.minecraft.util.Formatting.YELLOW
 
-class EnderStorageLocateCommand(private: Boolean) : EnderStorageBaseCommand(private) {
+class EnderStorageLocateCommand(target: EnderStorageTargetType) : EnderStorageBaseCommand(target) {
   override fun run(ctx: CommandContext<ServerCommandSource>): Int {
     val (inv, frequency) = getInventory(ctx)
 

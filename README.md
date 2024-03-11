@@ -23,7 +23,9 @@ SwitchCraft server in the style of many older mods. Highly opinionated.
 - Dragon Scales, in the style of [Quark](https://github.com/VazkiiMods/Quark/).
 - Dyeable Elytra, in the style of Quark. Adds Elytra in the 16 dye colors, as well as a few special ones.
 - Ancient Tomes, in the style of Quark.
+- Salami
 - Popcorn
+- Ice Cream - Vanilla, Chocolate, Sweet Berry, Neapolitan, Spruce, Melon, Beetroot, and Triple Gooberberry.
 - Concrete stairs and slabs, speed-up when walking on concrete
 - Endermites bury into Purpur Blocks to form Shulkers, similar to Quark.
 - Sakura Trees, Maple Trees, Peppy Trees

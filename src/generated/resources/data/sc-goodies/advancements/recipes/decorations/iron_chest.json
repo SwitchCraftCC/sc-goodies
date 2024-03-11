@@ -30,5 +30,6 @@
     "recipes": [
       "sc-goodies:iron_chest"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:diamond_shulker_with_iron_shulker"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

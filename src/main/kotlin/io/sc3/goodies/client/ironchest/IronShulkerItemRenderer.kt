@@ -1,14 +1,14 @@
 package io.sc3.goodies.client.ironchest
 
+import io.sc3.goodies.client.ironchest.IronShulkerBlockEntityRenderer.Companion.renderShulker
+import io.sc3.goodies.ironstorage.IronStorageVariant
 import net.fabricmc.fabric.api.client.rendering.v1.BuiltinItemRendererRegistry.DynamicItemRenderer
 import net.minecraft.client.render.VertexConsumerProvider
+import net.minecraft.client.render.model.json.ModelTransformationMode
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.item.ItemStack
 import net.minecraft.util.DyeColor
 import net.minecraft.util.math.Direction
-import io.sc3.goodies.client.ironchest.IronShulkerBlockEntityRenderer.Companion.renderShulker
-import io.sc3.goodies.ironstorage.IronStorageVariant
-import net.minecraft.client.render.model.json.ModelTransformationMode
 
 class IronShulkerItemRenderer(
   private val variant: IronStorageVariant,

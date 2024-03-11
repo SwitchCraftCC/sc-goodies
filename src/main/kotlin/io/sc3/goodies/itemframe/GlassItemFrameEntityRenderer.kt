@@ -31,9 +31,9 @@ import net.minecraft.util.math.Vec3d
 
 private const val ITEM_RENDER_SCALE = 1.5f
 
-class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
+class GlassItemFrameEntityRenderer(
   ctx: EntityRendererFactory.Context
-) : EntityRenderer<T>(ctx) {
+) : EntityRenderer<GlassItemFrameEntity>(ctx) {
   private val mc = MinecraftClient.getInstance()
   private val blockRenderManager = ctx.blockRenderManager
   private val itemRenderer = ctx.itemRenderer
@@ -43,10 +43,10 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
   private val bannerEntity = BannerBlockEntity(BlockPos.ORIGIN, Blocks.WHITE_BANNER.defaultState)
   private val bannerModel = ctx.getPart(EntityModelLayers.BANNER).getChild("flag")
 
-  override fun getTexture(entity: T): Identifier =
+  override fun getTexture(entity: GlassItemFrameEntity): Identifier =
     SpriteAtlasTexture.BLOCK_ATLAS_TEXTURE
 
-  override fun render(entity: T, yaw: Float, tickDelta: Float, matrices: MatrixStack,
+  override fun render(entity: GlassItemFrameEntity, yaw: Float, tickDelta: Float, matrices: MatrixStack,
                       consumers: VertexConsumerProvider, originalLight: Int) {
     super.render(entity, yaw, tickDelta, matrices, consumers, originalLight)
 
@@ -82,8 +82,8 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
     matrices.pop()
   }
 
-  private fun renderItemStack(entity: T, matrices: MatrixStack, consumers: VertexConsumerProvider, light: Int,
-                              stack: ItemStack) {
+  private fun renderItemStack(entity: GlassItemFrameEntity, matrices: MatrixStack, consumers: VertexConsumerProvider,
+                              light: Int, stack: ItemStack) {
     matrices.push()
 
     val mapId = entity.mapId
@@ -146,13 +146,13 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
     matrices.pop()
   }
 
-  override fun getPositionOffset(entity: T, tickDelta: Float): Vec3d = Vec3d(
+  override fun getPositionOffset(entity: GlassItemFrameEntity, tickDelta: Float): Vec3d = Vec3d(
     (entity.horizontalFacing.offsetX.toFloat() * 0.3f).toDouble(),
     -0.25,
     (entity.horizontalFacing.offsetZ.toFloat() * 0.3f).toDouble()
   )
 
-  override fun hasLabel(entity: T) =
+  override fun hasLabel(entity: GlassItemFrameEntity) =
     if (MinecraftClient.isHudEnabled()
       && !entity.heldItemStack.isEmpty
       && entity.heldItemStack.hasCustomName()
@@ -165,7 +165,7 @@ class GlassItemFrameEntityRenderer<T : GlassItemFrameEntity>(
       false
     }
 
-  override fun renderLabelIfPresent(entity: T, text: Text, matrices: MatrixStack,
+  override fun renderLabelIfPresent(entity: GlassItemFrameEntity, text: Text, matrices: MatrixStack,
                                     consumers: VertexConsumerProvider, light: Int) {
     super.renderLabelIfPresent(entity, entity.heldItemStack.name, matrices, consumers, light)
   }

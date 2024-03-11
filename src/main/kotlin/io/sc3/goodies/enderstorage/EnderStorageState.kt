@@ -6,11 +6,20 @@ import net.minecraft.world.PersistentState
 
 class EnderStorageState : PersistentState() {
   val inventories = mutableMapOf<Frequency, EnderStorageProvider.EnderStorageInventory>()
+  val states = mutableMapOf<Frequency, FrequencyState>()
 
   override fun writeNbt(nbt: NbtCompound): NbtCompound {
     inventories.forEach { (frequency, inv) ->
-      val inventoryNbt = NbtCompound()
-      nbt.put(frequency.toKey(), Inventories.writeNbt(inventoryNbt, inv.items))
+      val freqNbt = NbtCompound()
+      Inventories.writeNbt(freqNbt, inv.items) // Write the items
+      nbt.put(frequency.toKey(), freqNbt)
+    }
+
+    // Write the states separately, even if they don't have an inventory for some reason
+    states.forEach { (frequency, state) ->
+      val freqNbt = nbt.getCompound(frequency.toKey()) // Returns an empty compound if it doesn't exist
+      state.toNbt(freqNbt)
+      nbt.put(frequency.toKey(), freqNbt)
     }
 
     return nbt
@@ -22,11 +31,12 @@ class EnderStorageState : PersistentState() {
 
       nbt.keys.forEach { key ->
         val frequency = Frequency.fromKey(key)
-        val inventoryNbt = nbt.getCompound(key)
+        val freqNbt = nbt.getCompound(key)
 
         val inv = EnderStorageProvider.EnderStorageInventory()
-        Inventories.readNbt(inventoryNbt, inv.items)
+        Inventories.readNbt(freqNbt, inv.items) // Read the items
         state.inventories[frequency] = inv
+        state.states[frequency] = FrequencyState.fromNbt(freqNbt) // Read the name and description
       }
 
       return state

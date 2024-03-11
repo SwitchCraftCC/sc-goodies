@@ -22,6 +22,9 @@ object ConcreteRecipes : RecipeHandler {
         .group("concrete_stairs")
         .criterion("has_concrete", conditionsFromTag(CONCRETE))
         .offerTo(exporter)
+
+      offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, it.slabBlock, it.baseBlock, 2)
+      offerStonecuttingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, it.stairsBlock, it.baseBlock, 1)
     }
   }
 }

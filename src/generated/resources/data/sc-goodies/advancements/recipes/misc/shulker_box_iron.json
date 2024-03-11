@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:shulker_box_iron"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

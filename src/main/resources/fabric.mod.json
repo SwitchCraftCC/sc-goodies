@@ -62,6 +62,6 @@
     "fabric-language-kotlin": ">=${fabric_kotlin_version}",
     "fabric-permissions-api-v0": "*",
     "sc-library": "1.x",
-    "trinkets": ">=3.4.0"
+    "trinkets": ">=3.7.0"
   }
 }

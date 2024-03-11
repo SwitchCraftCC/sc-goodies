@@ -56,6 +56,16 @@ object EnderStorageMethods : GenericPeripheral {
     )
   }
 
+  @LuaFunction(mainThread = true)
+  @JvmStatic
+  fun getName(be: EnderStorageBlockEntity): String? =
+    be.frequencyState.name
+
+  @LuaFunction(mainThread = true)
+  @JvmStatic
+  fun getDescription(be: EnderStorageBlockEntity): String? =
+    be.frequencyState.description
+
   private fun Int.toColor(): DyeColor =
     DyeColor.byId(floor(log2(toDouble())).toInt())
 

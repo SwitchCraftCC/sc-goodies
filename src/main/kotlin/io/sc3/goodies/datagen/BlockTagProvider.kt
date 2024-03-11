@@ -22,6 +22,8 @@ class BlockTagProvider(
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
     getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE)
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
+    getOrCreateTagBuilder(BlockTags.SNIFFER_DIGGABLE_BLOCK)
+      .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     val pickaxeBlocks = mutableListOf<Block>(ModBlocks.enderStorage)
     val leafBlocks = mutableListOf<Block>()
@@ -46,6 +48,8 @@ class BlockTagProvider(
     leafBlocks.add(ModBlocks.mapleSapling.leaves)
     leafBlocks.add(ModBlocks.sakuraSapling.leaves)
     leafBlocks.add(ModBlocks.blueSapling.leaves)
+    getOrCreateTagBuilder(BlockTags.SAPLINGS)
+      .add(ModBlocks.mapleSapling.sapling, ModBlocks.sakuraSapling.sapling, ModBlocks.blueSapling.sapling)
 
     getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
       .add(*pickaxeBlocks.toTypedArray())

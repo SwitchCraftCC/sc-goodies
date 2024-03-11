@@ -14,13 +14,13 @@ import java.util.*
 fun userArg(name: String): RequiredArgumentBuilder<ServerCommandSource, String>
   = argument(name, word())
   .suggests { ctx, builder ->
-    val names = ctx.source.server.userCache.byName.keys
+    val names = ctx.source.server.userCache?.byName?.keys ?: emptySet()
     CommandSource.suggestMatching(names, builder)
     builder.buildFuture()
   }
 
 fun parseUserArg(ctx: CommandContext<ServerCommandSource>, name: String): GameProfile {
-  val cache = ctx.source.server.userCache
+  val cache = ctx.source.server.userCache ?: throw IllegalStateException("User cache not available")
   val query = getString(ctx, name)
 
   // Try matching a UUID first, otherwise resolve the query as a username

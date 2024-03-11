@@ -19,8 +19,12 @@ object EnderStorageProvider {
     return state
   }
 
-  fun getInventory(server: MinecraftServer, frequency: Frequency,
-                   be: EnderStorageBlockEntity? = null, create: Boolean = true): EnderStorageInventory? {
+  fun getInventory(
+    server: MinecraftServer,
+    frequency: Frequency,
+    be: EnderStorageBlockEntity? = null,
+    create: Boolean = true
+  ): EnderStorageInventory? {
     // NB: We can execute this task on the server thread and re-join later, but I think it's probably better to leave it
     // to the caller to ensure they are only running this on the server thread.
     if (!server.isOnThread) {
@@ -41,6 +45,10 @@ object EnderStorageProvider {
 
     be?.let { inv.addBlockEntity(it) }
     return inv
+  }
+
+  fun getState(frequency: Frequency): FrequencyState {
+    return state.states.computeIfAbsent(frequency) { FrequencyState() }
   }
 
   class EnderStorageInventory : Inventory {

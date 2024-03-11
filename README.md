@@ -6,7 +6,7 @@
 [![Download on Modrinth](https://i.imgur.com/hbYUrTZ.png)](https://modrinth.com/mod/sc-goodies/)
 <!-- modrinth_exclude.end -->
 
-Fabric 1.19 mod for the SwitchCraft server. "Lemmmy's bag of tricks" - a collection of tiny additions designed for the
+Fabric 1.20 mod for the SwitchCraft server. "Lemmmy's bag of tricks" - a collection of tiny additions designed for the
 SwitchCraft server in the style of many older mods. Highly opinionated.
 
 ![sc-goodies](img/header.png)
@@ -42,5 +42,5 @@ your modpack.
 
 ## License
 
-This mod and it's source code is licensed under the 
+This mod and its source code is licensed under the 
 [MIT license](https://github.com/SwitchCraftCC/sc-goodies/blob/HEAD/LICENSE).

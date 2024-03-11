@@ -1,5 +1,9 @@
 package io.sc3.goodies.client.elytra
 
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.elytra.BaseElytraItem
+import io.sc3.goodies.elytra.DyedElytraItem
+import io.sc3.goodies.elytra.SpecialElytraItem
 import net.minecraft.client.network.AbstractClientPlayerEntity
 import net.minecraft.client.render.OverlayTexture
 import net.minecraft.client.render.RenderLayer
@@ -16,10 +20,6 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.elytra.BaseElytraItem
-import io.sc3.goodies.elytra.DyedElytraItem
-import io.sc3.goodies.elytra.SpecialElytraItem
 
 class BaseElytraFeatureRenderer(
   ctx: FeatureRendererContext<AbstractClientPlayerEntity, PlayerEntityModel<AbstractClientPlayerEntity>>,

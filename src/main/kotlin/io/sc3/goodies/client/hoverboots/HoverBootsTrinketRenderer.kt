@@ -2,6 +2,8 @@ package io.sc3.goodies.client.hoverboots
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.client.TrinketRenderer
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.hoverboots.HoverBootsItem
 import net.minecraft.client.render.OverlayTexture
 import net.minecraft.client.render.VertexConsumerProvider
 import net.minecraft.client.render.entity.model.EntityModel
@@ -9,8 +11,6 @@ import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.util.DyeColor
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.hoverboots.HoverBootsItem
 
 object HoverBootsTrinketRenderer : TrinketRenderer {
   private val textures = DyeColor.values().associateWith {

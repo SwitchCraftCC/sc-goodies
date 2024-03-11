@@ -1,12 +1,10 @@
 package io.sc3.goodies.client.ironchest
 
-import com.mojang.blaze3d.systems.RenderSystem
+import io.sc3.goodies.ironstorage.IronChestScreenHandler
+import net.minecraft.client.gui.DrawContext
 import net.minecraft.client.gui.screen.ingame.HandledScreen
-import net.minecraft.client.render.GameRenderer
-import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.player.PlayerInventory
 import net.minecraft.text.Text
-import io.sc3.goodies.ironstorage.IronChestScreenHandler
 
 class IronChestScreen(
   handler: IronChestScreenHandler,
@@ -22,21 +20,17 @@ class IronChestScreen(
     super.init()
   }
 
-  override fun drawBackground(matrices: MatrixStack, delta: Float, mouseX: Int, mouseY: Int) {
-    RenderSystem.setShader(GameRenderer::getPositionTexProgram)
-    RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f)
-    RenderSystem.setShaderTexture(0, variant.screenTex)
-
-    drawTexture(matrices, x, y, 0, 0, backgroundWidth, backgroundHeight)
+  override fun drawBackground(ctx: DrawContext, delta: Float, mouseX: Int, mouseY: Int) {
+    ctx.drawTexture(variant.screenTex, x, y, 0, 0, backgroundWidth, backgroundHeight)
   }
 
-  override fun drawForeground(matrices: MatrixStack, mouseX: Int, mouseY: Int) {
+  override fun drawForeground(ctx: DrawContext, mouseX: Int, mouseY: Int) {
     // No-op: don't draw the container title/inventory title, we don't have space!
   }
 
-  override fun render(matrices: MatrixStack, mouseX: Int, mouseY: Int, delta: Float) {
-    renderBackground(matrices)
-    super.render(matrices, mouseX, mouseY, delta)
-    drawMouseoverTooltip(matrices, mouseX, mouseY)
+  override fun render(ctx: DrawContext, mouseX: Int, mouseY: Int, delta: Float) {
+    renderBackground(ctx)
+    super.render(ctx, mouseX, mouseY, delta)
+    drawMouseoverTooltip(ctx, mouseX, mouseY)
   }
 }

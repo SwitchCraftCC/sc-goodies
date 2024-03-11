@@ -2,6 +2,9 @@ package io.sc3.goodies.client.itemmagnet
 
 import dev.emi.trinkets.api.SlotReference
 import dev.emi.trinkets.api.client.TrinketRenderer
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.itemmagnet.ItemMagnetItem
+import io.sc3.goodies.mixin.client.PlayerEntityModelAccessor
 import net.minecraft.client.render.OverlayTexture
 import net.minecraft.client.render.RenderLayer
 import net.minecraft.client.render.VertexConsumerProvider
@@ -11,9 +14,6 @@ import net.minecraft.client.render.entity.model.PlayerEntityModel
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.ItemStack
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.itemmagnet.ItemMagnetItem
-import io.sc3.goodies.mixin.client.PlayerEntityModelAccessor
 
 object ItemMagnetTrinketRenderer : TrinketRenderer {
   private val texture = ModId("textures/entity/item_magnet.png")

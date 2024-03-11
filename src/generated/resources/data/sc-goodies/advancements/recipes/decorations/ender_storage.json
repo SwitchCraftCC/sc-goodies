@@ -30,5 +30,6 @@
     "recipes": [
       "sc-goodies:ender_storage"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

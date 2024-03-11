@@ -28,5 +28,6 @@
     "recipes": [
       "sc-goodies:blue_concrete_stairs"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

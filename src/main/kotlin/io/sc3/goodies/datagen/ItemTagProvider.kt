@@ -57,6 +57,9 @@ class ItemTagProvider(
 
     getOrCreateTagBuilder(ItemTags.TOOLS)
       .add(ModItems.barrelHammer)
+
+    getOrCreateTagBuilder(ItemTags.BOOKSHELF_BOOKS)
+      .add(ModItems.ancientTome)
   }
 
   private fun addShulkers(tag: TagKey<Item>, variant: IronStorageVariant) {

@@ -1,5 +1,9 @@
 package io.sc3.goodies.tomes
 
+import io.sc3.goodies.Registration.ModItems
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
+import io.sc3.goodies.util.AnvilEvents
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents
 import net.fabricmc.fabric.api.loot.v2.LootTableSource
 import net.minecraft.enchantment.Enchantment
@@ -12,9 +16,12 @@ import net.minecraft.item.EnchantedBookItem
 import net.minecraft.item.ItemStack
 import net.minecraft.item.Items.ENCHANTED_BOOK
 import net.minecraft.loot.LootManager
+import net.minecraft.loot.LootPool
 import net.minecraft.loot.LootTable
 import net.minecraft.loot.LootTables.*
+import net.minecraft.loot.entry.EmptyEntry
 import net.minecraft.loot.entry.ItemEntry
+import net.minecraft.loot.provider.number.UniformLootNumberProvider
 import net.minecraft.registry.Registries.LOOT_FUNCTION_TYPE
 import net.minecraft.registry.Registry.register
 import net.minecraft.resource.ResourceManager
@@ -23,10 +30,6 @@ import net.minecraft.screen.Property
 import net.minecraft.text.Text.literal
 import net.minecraft.util.Identifier
 import net.minecraft.util.math.random.Random
-import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.ScGoodies.ModId
-import io.sc3.goodies.tomes.AncientTomeItem.Companion.stackEnchantment
-import io.sc3.goodies.util.AnvilEvents
 
 private const val UPGRADE_COST = 10
 private const val UPGRADE_COST_MAXED = 30
@@ -56,11 +59,13 @@ object TomeEnchantments {
     PIERCING
   )
 
+  private const val maxTomeCount = 3.0f
+  private const val lootWeightEmpty = 30
   private val lootWeights = mapOf(
-    STRONGHOLD_LIBRARY_CHEST  to 30,
-    SIMPLE_DUNGEON_CHEST      to 20,
-    BASTION_TREASURE_CHEST    to 25,
-    WOODLAND_MANSION_CHEST    to 15
+    STRONGHOLD_LIBRARY_CHEST  to 10,
+    SIMPLE_DUNGEON_CHEST      to 3,
+    BASTION_TREASURE_CHEST    to 15,
+    WOODLAND_MANSION_CHEST    to 10
   )
 
   fun init() {
@@ -79,7 +84,10 @@ object TomeEnchantments {
       .apply { TomeLootFunction(emptyArray()) }
       .build()
 
-    builder.modifyPools { it.with(entry) }
+    builder.pool(LootPool.builder()
+      .rolls(UniformLootNumberProvider.create(0.0f, maxTomeCount))
+      .with(EmptyEntry.builder().weight(lootWeightEmpty))
+      .with(entry))
   }
 
   fun applyRandomEnchantment(stack: ItemStack, rand: Random) {

@@ -10,7 +10,6 @@ import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityTicker
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.block.entity.ShulkerBoxBlockEntity.AnimationStage.CLOSED
-import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.LivingEntity
@@ -20,7 +19,7 @@ import net.minecraft.inventory.Inventories
 import net.minecraft.item.BlockItem
 import net.minecraft.item.ItemPlacementContext
 import net.minecraft.item.ItemStack
-import net.minecraft.loot.context.LootContext
+import net.minecraft.loot.context.LootContextParameterSet
 import net.minecraft.loot.context.LootContextParameters.BLOCK_ENTITY
 import net.minecraft.screen.ScreenHandler
 import net.minecraft.stat.Stat
@@ -103,11 +102,11 @@ class IronShulkerBlock(
     super.onBreak(world, pos, state, player)
   }
 
-  override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
-    val be = builder.getNullable(BLOCK_ENTITY) as? IronShulkerBlockEntity ?:
+  override fun getDroppedStacks(state: BlockState, builder: LootContextParameterSet.Builder): MutableList<ItemStack> {
+    val be = builder.getOptional(BLOCK_ENTITY) as? IronShulkerBlockEntity ?:
       return super.getDroppedStacks(state, builder)
 
-    builder.putDrop(contents) { _, consumer ->
+    builder.addDynamicDrop(contents) { consumer ->
       for (i in 0 until be.size()) {
         consumer.accept(be.getStack(i))
       }
@@ -164,8 +163,6 @@ class IronShulkerBlock(
 
   override fun rotate(state: BlockState, rotation: BlockRotation) =
     state.with(facing, rotation.rotate(state.get(facing)))
-
-  override fun getPistonBehavior(state: BlockState) = PistonBehavior.DESTROY
 
   override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {
     // Don't call super, we don't want the default .desc implementation

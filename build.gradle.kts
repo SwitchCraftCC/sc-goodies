@@ -4,9 +4,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   val kotlinVersion: String by System.getProperties()
   kotlin("jvm").version(kotlinVersion)
+  kotlin("plugin.serialization").version(kotlinVersion)
 
-  id("fabric-loom") version "1.1-SNAPSHOT"
-  id("io.github.juuxel.loom-quiltflower") version "1.8.0"
+  id("fabric-loom") version "1.5-SNAPSHOT"
   id("maven-publish")
   id("signing")
   id("com.modrinth.minotaur") version "2.+"
@@ -38,6 +38,9 @@ val cardinalComponentsVersion: String by project
 val scLibraryVersion: String by project
 val scTextVersion: String by project
 val fabricPermissionsApiVersion: String by project
+
+val kotlinSerializationVersion: String by project
+val annotationsVersion: String by project
 
 val archivesBaseName = "sc-goodies"
 version = modVersion
@@ -73,10 +76,34 @@ repositories {
     }
   }
 
-  maven("https://maven.terraformersmc.com/releases") // Mod Menu
-  maven("https://maven.shedaniel.me") // Cloth Config
-  maven("https://ladysnake.jfrog.io/artifactory/mods") // Trinkets
-  maven("https://oss.sonatype.org/content/repositories/snapshots") // fabric-permissions-api
+  maven("https://maven.shedaniel.me") {
+    // cloth-config
+    content {
+      includeGroup("me.shedaniel.cloth")
+      includeGroup("me.shedaniel.cloth.api")
+    }
+  }
+
+  maven("https://maven.terraformersmc.com") {
+    // Trinkets, mod-menu
+    content {
+      includeModule("dev.emi", "trinkets")
+      includeGroup("com.terraformersmc")
+    }
+  }
+
+  maven("https://maven.ladysnake.org/releases") {
+    // Cardinal Components API (dependency of Trinkets)
+    content {
+      includeGroup("dev.onyxstudios.cardinal-components-api")
+    }
+  }
+
+  maven("https://oss.sonatype.org/content/repositories/snapshots") {
+    content {
+      includeModule("me.lucko", "fabric-permissions-api")
+    }
+  }
 }
 
 dependencies {
@@ -92,11 +119,9 @@ dependencies {
 
   modImplementation("cc.tweaked:cc-tweaked-$ccMcVersion-fabric:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
-    exclude("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
   }
   modRuntimeOnly("cc.tweaked:cc-tweaked-$ccMcVersion-fabric:$ccVersion") {
     exclude("net.fabricmc.fabric-api", "fabric-gametest-api-v1")
-    exclude("fuzs.forgeconfigapiport", "forgeconfigapiport-fabric")
   }
 
   implementation(include("com.electronwill.night-config", "core", nightConfigVersion))
@@ -116,6 +141,9 @@ dependencies {
 
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-base", cardinalComponentsVersion))
   modImplementation(include("dev.onyxstudios.cardinal-components-api", "cardinal-components-entity", cardinalComponentsVersion))
+
+  implementation("org.jetbrains", "annotations", annotationsVersion)
+  implementation("org.jetbrains.kotlinx", "kotlinx-serialization-json", kotlinSerializationVersion)
 
   modImplementation(include("io.sc3", "sc-text", scTextVersion))
 }

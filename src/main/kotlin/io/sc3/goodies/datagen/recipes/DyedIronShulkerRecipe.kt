@@ -4,7 +4,7 @@ import io.sc3.goodies.ScGoodiesItemTags
 import io.sc3.goodies.datagen.recipes.IronShulkerRecipe.Companion.shulkerItem
 import io.sc3.goodies.ironstorage.IronShulkerItem
 import net.fabricmc.fabric.api.tag.convention.v1.ConventionalItemTags.DYES
-import net.minecraft.inventory.CraftingInventory
+import net.minecraft.inventory.RecipeInputInventory
 import net.minecraft.item.DyeItem
 import net.minecraft.item.ItemStack
 import net.minecraft.recipe.Ingredient.fromTag
@@ -20,7 +20,7 @@ class DyedIronShulkerRecipe(id: Identifier, category: CraftingRecipeCategory) : 
   private val ironShulker = fromTag(ScGoodiesItemTags.ANY_IRON_SHULKER_BOX)
   private val dye = fromTag(DYES)
 
-  override fun matches(inv: CraftingInventory, world: World): Boolean {
+  override fun matches(inv: RecipeInputInventory, world: World): Boolean {
     var hasShulker = false
     var hasDye = false
 
@@ -46,7 +46,7 @@ class DyedIronShulkerRecipe(id: Identifier, category: CraftingRecipeCategory) : 
     return hasShulker && hasDye
   }
 
-  override fun craft(inventory: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+  override fun craft(inventory: RecipeInputInventory, manager: DynamicRegistryManager): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft
     if (shulkerStack.isEmpty) return ItemStack.EMPTY
@@ -60,7 +60,7 @@ class DyedIronShulkerRecipe(id: Identifier, category: CraftingRecipeCategory) : 
     return result
   }
 
-  private fun dyeItem(inv: CraftingInventory): DyeColor? {
+  private fun dyeItem(inv: RecipeInputInventory): DyeColor? {
     for (i in 0 until inv.size()) {
       val stack = inv.getStack(i)
       if (stack.isEmpty) continue

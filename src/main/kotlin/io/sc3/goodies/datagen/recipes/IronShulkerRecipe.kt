@@ -6,7 +6,7 @@ import io.sc3.goodies.ironstorage.IronShulkerItem
 import io.sc3.library.recipe.ShapedRecipeSpec
 import net.minecraft.block.Block
 import net.minecraft.block.ShulkerBoxBlock
-import net.minecraft.inventory.CraftingInventory
+import net.minecraft.inventory.RecipeInputInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.network.PacketByteBuf
 import net.minecraft.recipe.Ingredient
@@ -28,7 +28,7 @@ class IronShulkerRecipe(
   private val outputItem: ItemStack,
 ) : ShapedRecipe(id, group, category, width, height, ingredients, outputItem) {
 
-  override fun craft(inventory: CraftingInventory, manager: DynamicRegistryManager): ItemStack {
+  override fun craft(inventory: RecipeInputInventory, manager: DynamicRegistryManager): ItemStack {
     val shulkerStack = shulkerItem(inventory)
     // No shulker found - disallow craft
     if (shulkerStack.isEmpty) return ItemStack.EMPTY
@@ -53,7 +53,7 @@ class IronShulkerRecipe(
         else -> null
       }
 
-    fun shulkerItem(inv: CraftingInventory): ItemStack {
+    fun shulkerItem(inv: RecipeInputInventory): ItemStack {
       var shulkerStack = ItemStack.EMPTY
 
       for (i in 0 until inv.size()) {

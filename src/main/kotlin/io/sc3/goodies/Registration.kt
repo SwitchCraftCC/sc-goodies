@@ -405,19 +405,17 @@ object Registration {
       .maxCount(1)
       .rarity(UNCOMMON)))
 
-    val salami = rItem("salami", BaseItem(itemSettings().food(
-      FoodComponent.Builder()
-        .hunger(3)
-        .saturationModifier(1.2f)
-        .alwaysEdible()
-        .snack()
-        .build())
-      )
-    )
+    val salami = rItem("salami", BaseItem(itemSettings().food(FoodComponent.Builder()
+      .hunger(3)
+      .saturationModifier(1.2f)
+      .alwaysEdible()
+      .snack()
+      .build())))
     
     val popcorn = rItem("popcorn", PopcornItem(itemSettings()
       .food(PopcornItem.foodComponent)
       .maxCount(1)))
+
     val iceCreamVanilla = rIceCreamItem("icecream_vanilla")
     val iceCreamChocolate = rIceCreamItem("icecream_chocolate")
     val iceCreamSweetBerry = rIceCreamItem("icecream_sweetberry")
@@ -425,10 +423,11 @@ object Registration {
     val iceCreamSpruce = rIceCreamItem("icecream_spruce")
     val iceCreamMelon = rIceCreamItem("icecream_melon")
     val iceCreamBeetroot = rIceCreamItem("icecream_beetroot")
-    // This is a bit messy, but a much simpler way to have the sundae be worth more food
-    val iceCreamSundae = rItem("icecream_sundae", IceCreamItem(itemSettings()
-      .food(FoodComponent.Builder().hunger(7).saturationModifier(8.0f).alwaysEdible().build())
-      .maxCount(16)))
+    val iceCreamSundae = rIceCreamItem("icecream_sundae", FoodComponent.Builder()
+      .hunger(7)
+      .saturationModifier(8.0f)
+      .alwaysEdible()
+      .build())
 
     val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings())
 
@@ -446,9 +445,10 @@ object Registration {
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value).also { items.add(it) }
 
-    private fun rIceCreamItem(name: String): Item = rItem(name, IceCreamItem(itemSettings()
-      .food(IceCreamItem.foodComponent)
-      .maxCount(16)))
+    private fun rIceCreamItem(name: String, foodComponent: FoodComponent = IceCreamItem.foodComponent): Item =
+      rItem(name, IceCreamItem(itemSettings()
+        .food(foodComponent)
+        .maxCount(16)))
 
     fun <B : Block, I : Item> rItem(parent: B, supplier: (B, Item.Settings) -> I,
                                     settings: Item.Settings = itemSettings()): I {

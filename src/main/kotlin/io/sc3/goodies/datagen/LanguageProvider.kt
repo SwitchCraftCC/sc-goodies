@@ -162,6 +162,9 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.sub(ModItems.glowGlassItemFrame, "A glowing item frame with an invisible background when it contains an item.")
     builder.add(Registration.ModEntities.glassItemFrameEntity, "Glass Item Frame")
 
+    builder.add(ModItems.salami, "Salami")
+    builder.sub(ModItems.salami, "Yummy salami")
+
     builder.add(ModBlocks.sakuraSapling, "Sakura")
     builder.add(ModBlocks.mapleSapling, "Maple")
     builder.add(ModBlocks.blueSapling, "Peppy")

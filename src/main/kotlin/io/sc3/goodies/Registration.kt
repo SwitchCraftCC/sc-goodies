@@ -395,6 +395,16 @@ object Registration {
       .maxCount(1)
       .rarity(UNCOMMON)))
 
+    val salami = rItem("salami", BaseItem(itemSettings().food(
+      FoodComponent.Builder()
+        .hunger(3)
+        .saturationModifier(1.2f)
+        .alwaysEdible()
+        .snack()
+        .build())
+      )
+    )
+    
     val popcorn = rItem("popcorn", PopcornItem(itemSettings()
       .food(PopcornItem.foodComponent)
       .maxCount(1)))

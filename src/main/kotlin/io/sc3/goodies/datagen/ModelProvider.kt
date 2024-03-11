@@ -82,6 +82,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     gen.register(ModItems.glassItemFrame, GENERATED)
     gen.register(ModItems.glowGlassItemFrame, GENERATED)
 
+    gen.register(ModItems.salami, GENERATED)
     gen.register(ModItems.iceCreamVanilla, GENERATED)
     gen.register(ModItems.iceCreamChocolate, GENERATED)
     gen.register(ModItems.iceCreamSweetBerry, GENERATED)

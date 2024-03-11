@@ -82,6 +82,15 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     gen.register(ModItems.glassItemFrame, GENERATED)
     gen.register(ModItems.glowGlassItemFrame, GENERATED)
 
+    gen.register(ModItems.iceCreamVanilla, GENERATED)
+    gen.register(ModItems.iceCreamChocolate, GENERATED)
+    gen.register(ModItems.iceCreamSweetBerry, GENERATED)
+    gen.register(ModItems.iceCreamNeapolitan, GENERATED)
+    gen.register(ModItems.iceCreamSpruce, GENERATED)
+    gen.register(ModItems.iceCreamMelon, GENERATED)
+    gen.register(ModItems.iceCreamBeetroot, GENERATED)
+    gen.register(ModItems.iceCreamSundae, GENERATED)
+
     // Dyed + Special Elytra
     DyedElytraItem.dyedElytraItems.values
       .forEach { gen.register(it, GENERATED) }

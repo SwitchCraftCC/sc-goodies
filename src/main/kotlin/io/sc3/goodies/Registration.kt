@@ -391,12 +391,24 @@ object Registration {
     val dragonScale = rItem("dragon_scale", BaseItem(itemSettings()
       .maxCount(16)
       .rarity(EPIC)))
-    val popcorn = rItem("popcorn", PopcornItem(itemSettings()
-      .food(PopcornItem.foodComponent)
-      .maxCount(1)))
     val ancientTome = rItem("ancient_tome", AncientTomeItem(itemSettings()
       .maxCount(1)
       .rarity(UNCOMMON)))
+
+    val popcorn = rItem("popcorn", PopcornItem(itemSettings()
+      .food(PopcornItem.foodComponent)
+      .maxCount(1)))
+    val iceCreamVanilla = rIceCreamItem("icecream_vanilla")
+    val iceCreamChocolate = rIceCreamItem("icecream_chocolate")
+    val iceCreamSweetBerry = rIceCreamItem("icecream_sweetberry")
+    val iceCreamNeapolitan = rIceCreamItem("icecream_neapolitan")
+    val iceCreamSpruce = rIceCreamItem("icecream_spruce")
+    val iceCreamMelon = rIceCreamItem("icecream_melon")
+    val iceCreamBeetroot = rIceCreamItem("icecream_beetroot")
+    // This is a bit messy, but a much simpler way to have the sundae be worth more food
+    val iceCreamSundae = rItem("icecream_sundae", IceCreamItem(itemSettings()
+      .food(FoodComponent.Builder().hunger(7).saturationModifier(8.0f).alwaysEdible().build())
+      .maxCount(16)))
 
     val dimmableLight = rItem(ModBlocks.dimmableLight, ::BlockItem, itemSettings())
 
@@ -413,6 +425,10 @@ object Registration {
 
     fun <T : Item> rItem(name: String, value: T): T =
       register(ITEM, ModId(name), value).also { items.add(it) }
+
+    private fun rIceCreamItem(name: String): Item = rItem(name, IceCreamItem(itemSettings()
+      .food(IceCreamItem.foodComponent)
+      .maxCount(16)))
 
     fun <B : Block, I : Item> rItem(parent: B, supplier: (B, Item.Settings) -> I,
                                     settings: Item.Settings = itemSettings()): I {

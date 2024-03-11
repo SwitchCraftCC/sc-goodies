@@ -32,9 +32,13 @@ import io.sc3.goodies.misc.*
 import io.sc3.goodies.nature.ScGrass
 import io.sc3.goodies.nature.ScSaplingGenerator
 import io.sc3.goodies.nature.ScTree
+import io.sc3.goodies.shark.DyedSharkItem
+import io.sc3.goodies.shark.SpecialSharkItem
+import io.sc3.goodies.shark.SpecialSharkType
 import io.sc3.goodies.tomes.AncientTomeItem
 import io.sc3.goodies.tomes.TomeEnchantments
 import io.sc3.goodies.util.BaseItem
+import io.sc3.goodies.util.niceDyeOrder
 import io.sc3.library.networking.registerServerReceiver
 import io.sc3.library.recipe.RecipeHandler
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings
@@ -102,7 +106,7 @@ object Registration {
       registerIronChest(variant)
 
       registerIronShulker(variant) // Undyed shulker
-      DyeColor.values().forEach { registerIronShulker(variant, it) }
+      niceDyeOrder.forEach { registerIronShulker(variant, it) }
 
       // Shulker block entities, done in bulk for each dyed variant + undyed
       registerIronShulkerBlockEntities(variant)
@@ -127,11 +131,17 @@ object Registration {
     registerServerReceiver(ToggleItemMagnetPacket.id, ToggleItemMagnetPacket::fromBytes)
 
     // Dyed + Special Elytra
-    DyeColor.values()
+    niceDyeOrder
       .forEach { rItem("elytra_${it.getName()}", DyedElytraItem(it, elytraSettings())) }
     SpecialElytraType.values()
       .forEach { rItem("elytra_${it.type}", SpecialElytraItem(it, elytraSettings())) }
     ElytraCauldronBehavior.registerBehavior()
+
+    // Dyed + Special Sharks
+    niceDyeOrder
+      .forEach { rItem("shark_${it.getName()}", DyedSharkItem(it, itemSettings())) }
+    SpecialSharkType.values()
+      .forEach { rItem("shark_${it.type}", SpecialSharkItem(it, itemSettings())) }
 
     // Concrete Slabs and Stairs
     ConcreteExtras.colors.values.forEach {
@@ -382,7 +392,7 @@ object Registration {
 
     val enderStorage = rItem(ModBlocks.enderStorage, ::BlockItem, itemSettings())
 
-    val hoverBoots = DyeColor.values().associateWith {
+    val hoverBoots = niceDyeOrder.associateWith {
       rItem("hover_boots_${it.getName()}", HoverBootsItem(it, itemSettings().maxCount(1)))
     }
 

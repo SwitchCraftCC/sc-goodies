@@ -3,20 +3,20 @@ package io.sc3.goodies.datagen
 import io.sc3.goodies.Registration
 import io.sc3.goodies.Registration.ModBlocks
 import io.sc3.goodies.Registration.ModItems
-import io.sc3.goodies.ScGoodies.ModId
 import io.sc3.goodies.ScGoodies.modId
+import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageUpgrade
 import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
+import io.sc3.goodies.shark.DyedSharkItem
+import io.sc3.goodies.shark.SpecialSharkType
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider
 import net.minecraft.block.Block
 import net.minecraft.item.Item
-import net.minecraft.registry.Registries.ITEM
-import net.minecraft.util.DyeColor
 import net.minecraft.util.DyeColor.*
 
 class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
@@ -120,10 +120,21 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add("key.sc-goodies.toggle_item_magnet", "Toggle Item Magnet")
 
     // Elytra
-    DyeColor.values()
-      .forEach { builder.add(ITEM.get(ModId("elytra_${it.getName()}")), "${colorNames[it]} Elytra") }
+    DyedElytraItem.dyedElytraItems
+      .forEach { (color, item) -> builder.add(item, "${colorNames[color]} Elytra") }
     SpecialElytraType.values()
-      .forEach { builder.add(ITEM.get(ModId("elytra_${it.type}")), "${it.humanName} Elytra") }
+      .forEach { builder.add(it.item, "${it.humanName} Elytra") }
+
+    // Sharks
+    DyedSharkItem.dyedSharkItems.forEach { (color, item) ->
+      builder.add(item, "${colorNames[color]} Soft Toy Shark")
+      // Include the accent-less name in the description too, to make it easier to search for in REI.
+      builder.sub(item, "A soft toy shark, also known as a BLÅHAJ (Blahaj).", "desc")
+    }
+    SpecialSharkType.values().forEach {
+      builder.add(it.item, "${it.humanName} Soft Toy Shark")
+      builder.sub(it.item, "A soft toy shark, also known as a BLÅHAJ (Blahaj).", "desc")
+    }
 
     // Ancient Tome
     val at = ModItems.ancientTome

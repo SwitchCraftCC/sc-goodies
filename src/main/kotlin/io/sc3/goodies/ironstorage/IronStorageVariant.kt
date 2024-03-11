@@ -1,6 +1,7 @@
 package io.sc3.goodies.ironstorage
 
 import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.util.niceDyeOrder
 import net.minecraft.block.entity.BlockEntityType
 import net.minecraft.item.BlockItem
 import net.minecraft.registry.Registries
@@ -44,12 +45,12 @@ enum class IronStorageVariant(
   // Shulkers
   val shulkerBlock by lazy { Registries.BLOCK.get(ModId(shulkerId)) as IronShulkerBlock }
   val dyedShulkerBlocks: Map<DyeColor, IronShulkerBlock> by lazy {
-    DyeColor.values().associateWith { color ->
+    niceDyeOrder.associateWith { color ->
       Registries.BLOCK.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerBlock
     }
   }
   val dyedShulkerItems: Map<DyeColor, IronShulkerItem> by lazy {
-    DyeColor.values().associateWith { color ->
+    niceDyeOrder.associateWith { color ->
       Registries.ITEM.get(ModId(shulkerId + "_" + color.getName())) as IronShulkerItem
     }
   }

@@ -116,3 +116,8 @@ run/
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
 !gradle-wrapper.jar
+
+# TODO: Still not sure if it's right to exclude the cache from git, as the Fabric example project doesn't do this. But
+#       it causes way too many issues with PRs, and sometimes it's better to just clear the cache before datagenning
+#       anyway.
+src/generated/resources/.cache

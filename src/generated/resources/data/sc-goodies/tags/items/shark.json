@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "sc-goodies:shark_white",
+    "sc-goodies:shark_orange",
+    "sc-goodies:shark_magenta",
+    "sc-goodies:shark_light_blue",
+    "sc-goodies:shark_yellow",
+    "sc-goodies:shark_lime",
+    "sc-goodies:shark_pink",
+    "sc-goodies:shark_gray",
+    "sc-goodies:shark_light_gray",
+    "sc-goodies:shark_cyan",
+    "sc-goodies:shark_purple",
+    "sc-goodies:shark_blue",
+    "sc-goodies:shark_brown",
+    "sc-goodies:shark_green",
+    "sc-goodies:shark_red",
+    "sc-goodies:shark_black",
+    "sc-goodies:shark_trans"
+  ]
+}

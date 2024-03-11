@@ -1,0 +1,7 @@
+{
+  "parent": "sc-goodies:item/shark_base",
+  "textures": {
+    "particle": "sc-goodies:item/shark_light_gray",
+    "texture": "sc-goodies:item/shark_light_gray"
+  }
+}

@@ -6,6 +6,8 @@ import io.sc3.goodies.ScGoodiesItemTags.CONCRETE
 import io.sc3.goodies.elytra.DyedElytraItem
 import io.sc3.goodies.elytra.SpecialElytraType
 import io.sc3.goodies.ironstorage.IronStorageVariant
+import io.sc3.goodies.shark.DyedSharkItem
+import io.sc3.goodies.shark.SpecialSharkType
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider
 import net.minecraft.item.Item
@@ -23,9 +25,11 @@ class ItemTagProvider(
   future: CompletableFuture<RegistryWrapper.WrapperLookup>
 ) : FabricTagProvider<Item>(out, RegistryKeys.ITEM, future) {
   override fun configure(arg: RegistryWrapper.WrapperLookup) {
+    // Concrete
     getOrCreateTagBuilder(CONCRETE)
       .add(*DyeColor.values().map { Identifier("${it.getName()}_concrete") }.toTypedArray())
 
+    // Elytra
     getOrCreateTagBuilder(ScGoodiesItemTags.ELYTRA)
       .add(Items.ELYTRA)
       .apply {
@@ -33,6 +37,14 @@ class ItemTagProvider(
         SpecialElytraType.values().forEach { add(it.item) }
       }
 
+    // Sharks
+    getOrCreateTagBuilder(ScGoodiesItemTags.SHARK)
+      .apply {
+        DyedSharkItem.dyedSharkItems.values.forEach { add(it) }
+        SpecialSharkType.values().forEach { add(it.item) }
+      }
+
+    // Shulkers
     addShulkers(ScGoodiesItemTags.IRON_SHULKER_BOX, IronStorageVariant.IRON)
     addShulkers(ScGoodiesItemTags.GOLD_SHULKER_BOX, IronStorageVariant.GOLD)
     addShulkers(ScGoodiesItemTags.DIAMOND_SHULKER_BOX, IronStorageVariant.DIAMOND)
@@ -41,6 +53,7 @@ class ItemTagProvider(
       .addTag(ScGoodiesItemTags.GOLD_SHULKER_BOX)
       .addTag(ScGoodiesItemTags.DIAMOND_SHULKER_BOX)
 
+    // All sc-goodies storages
     getOrCreateTagBuilder(ScGoodiesItemTags.ANY_UPGRADABLE_STORAGE)
       .add(Items.CHEST)
       .add(Items.SHULKER_BOX)
@@ -55,9 +68,11 @@ class ItemTagProvider(
         .add(variant.barrelItem)
     }
 
+    // Tools
     getOrCreateTagBuilder(ItemTags.TOOLS)
       .add(ModItems.barrelHammer)
 
+    // Tomes
     getOrCreateTagBuilder(ItemTags.BOOKSHELF_BOOKS)
       .add(ModItems.ancientTome)
   }

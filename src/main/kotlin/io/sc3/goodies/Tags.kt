@@ -9,6 +9,7 @@ object ScGoodiesItemTags {
   val CONCRETE = register("concrete")
 
   val ELYTRA = register("elytra")
+  val SHARK = register("shark")
 
   val ANY_IRON_SHULKER_BOX = register("iron_shulker")
   val IRON_SHULKER_BOX = register("iron_shulker/iron")

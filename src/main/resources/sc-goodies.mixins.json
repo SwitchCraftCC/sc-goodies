@@ -21,6 +21,7 @@
     "ShulkerBoxBlockEntityAccessor"
   ],
   "client": [
+    "client.BipedEntityModelMixin",
     "client.ClientPlayerEntityMixin",
     "client.PlayerEntityModelAccessor",
     "client.PlayerEntityRendererMixin"

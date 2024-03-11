@@ -1,12 +1,13 @@
 package io.sc3.goodies.misc
 
+import io.sc3.goodies.ScGoodies.ModId
+import io.sc3.goodies.util.niceDyeOrder
 import net.minecraft.registry.Registries.BLOCK
 import net.minecraft.util.DyeColor
 import net.minecraft.util.Identifier
-import io.sc3.goodies.ScGoodies.ModId
 
 object ConcreteExtras {
-  val colors = DyeColor.values().associateWith(::ConcreteExtra)
+  val colors = niceDyeOrder.associateWith(::ConcreteExtra)
 
   class ConcreteExtra(val color: DyeColor) {
     private val col

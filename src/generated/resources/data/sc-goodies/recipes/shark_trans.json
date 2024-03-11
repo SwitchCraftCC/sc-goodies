@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "0": {
+      "item": "minecraft:light_blue_wool"
+    },
+    "1": {
+      "item": "minecraft:light_blue_wool"
+    },
+    "2": {
+      "item": "minecraft:pink_wool"
+    },
+    "3": {
+      "item": "minecraft:pink_wool"
+    },
+    "4": {
+      "item": "minecraft:white_wool"
+    },
+    "D": {
+      "item": "minecraft:pink_dye"
+    }
+  },
+  "pattern": [
+    " 0 ",
+    "123",
+    "D4 "
+  ],
+  "result": {
+    "item": "sc-goodies:shark_trans"
+  },
+  "show_notification": true
+}

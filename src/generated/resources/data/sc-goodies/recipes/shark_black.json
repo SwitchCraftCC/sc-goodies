@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "D": {
+      "item": "minecraft:pink_dye"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    },
+    "X": {
+      "item": "minecraft:black_wool"
+    }
+  },
+  "pattern": [
+    " X ",
+    "XXX",
+    "DW "
+  ],
+  "result": {
+    "item": "sc-goodies:shark_black"
+  },
+  "show_notification": true
+}

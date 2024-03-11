@@ -9,6 +9,7 @@ val RECIPE_HANDLERS by lazy { listOf(
   ItemMagnetRecipes,
   DragonScaleRecipes,
   ElytraRecipes,
+  SharkRecipes,
   HoverBootsRecipes,
   ConcreteRecipes,
   ItemFrameRecipes,

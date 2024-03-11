@@ -12,6 +12,9 @@ import io.sc3.goodies.ironstorage.IronStorageVariant
 import io.sc3.goodies.misc.AmethystExtras
 import io.sc3.goodies.misc.ConcreteExtras
 import io.sc3.goodies.nature.ScTree
+import io.sc3.goodies.shark.BaseSharkItem
+import io.sc3.goodies.shark.DyedSharkItem
+import io.sc3.goodies.shark.SpecialSharkType
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider
 import net.minecraft.block.Block
@@ -97,6 +100,12 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
       .forEach { gen.register(it, GENERATED) }
     SpecialElytraType.values()
       .forEach { gen.register(it.item, GENERATED) }
+
+    // Dyed + Special Sharks
+    DyedSharkItem.dyedSharkItems.values
+      .forEach { registerShark(gen, it, it.color.getName()) }
+    SpecialSharkType.values()
+      .forEach { registerShark(gen, it.item, it.type) }
   }
 
   private fun registerDimmableLights(gen: BlockStateModelGenerator) {
@@ -229,6 +238,18 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     }
   }
 
+  private fun registerShark(gen: ItemModelGenerator, item: BaseSharkItem, name: String) {
+    log.info("Registering shark model item=$item name=$name")
+
+    sharkModel.upload(
+      getItemModelId(item),
+      TextureMap()
+        .put(TextureKey.TEXTURE, ModId("item/shark_$name"))
+        .put(TextureKey.PARTICLE, ModId("item/shark_$name")),
+      gen.writer
+    )
+  }
+
   companion object {
     private val log by ScGoodiesDatagen::log
 
@@ -238,6 +259,11 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     )
 
     val ironShulkerModel = Model(Optional.of(ModId("block/iron_shulker_base")), Optional.empty(),
+      TextureKey.TEXTURE,
+      TextureKey.PARTICLE
+    )
+
+    val sharkModel = Model(Optional.of(ModId("item/shark_base")), Optional.empty(),
       TextureKey.TEXTURE,
       TextureKey.PARTICLE
     )

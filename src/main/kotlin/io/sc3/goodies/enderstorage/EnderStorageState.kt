@@ -2,6 +2,7 @@ package io.sc3.goodies.enderstorage
 
 import net.minecraft.inventory.Inventories
 import net.minecraft.nbt.NbtCompound
+import net.minecraft.server.MinecraftServer
 import net.minecraft.world.PersistentState
 
 class EnderStorageState : PersistentState() {
@@ -26,14 +27,14 @@ class EnderStorageState : PersistentState() {
   }
 
   companion object {
-    fun fromNbt(nbt: NbtCompound): EnderStorageState {
+    fun fromNbt(server: MinecraftServer, nbt: NbtCompound): EnderStorageState {
       val state = EnderStorageState()
 
       nbt.keys.forEach { key ->
         val frequency = Frequency.fromKey(key)
         val freqNbt = nbt.getCompound(key)
 
-        val inv = EnderStorageProvider.EnderStorageInventory()
+        val inv = EnderStorageProvider.EnderStorageInventory(server)
         Inventories.readNbt(freqNbt, inv.items) // Read the items
         state.inventories[frequency] = inv
         state.states[frequency] = FrequencyState.fromNbt(freqNbt) // Read the name and description

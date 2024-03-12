@@ -7,8 +7,11 @@ import net.minecraft.inventory.Inventory
 import net.minecraft.item.ItemStack
 import net.minecraft.server.MinecraftServer
 import net.minecraft.util.collection.DefaultedList
+import org.slf4j.LoggerFactory
 
 object EnderStorageProvider {
+  private val log = LoggerFactory.getLogger("ScGoodies/EnderStorageProvider")!!
+
   const val INVENTORY_SIZE = 27
 
   lateinit var state: EnderStorageState
@@ -32,13 +35,13 @@ object EnderStorageProvider {
     }
 
     state = server.overworld.persistentStateManager.getOrCreate(
-      EnderStorageState::fromNbt,
+      { nbt -> EnderStorageState.fromNbt(server, nbt) },
       this::createState,
       "$modId-ender-storage"
     )
 
     val inv = if (create) {
-      state.inventories.computeIfAbsent(frequency) { EnderStorageInventory() }
+      state.inventories.computeIfAbsent(frequency) { EnderStorageInventory(server) }
     } else {
       state.inventories[frequency] ?: return null
     }
@@ -51,10 +54,10 @@ object EnderStorageProvider {
     return state.states.computeIfAbsent(frequency) { FrequencyState() }
   }
 
-  class EnderStorageInventory : Inventory {
+  class EnderStorageInventory(private val server: MinecraftServer) : Inventory {
     val items: DefaultedList<ItemStack> = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY)
 
-    val blockEntities = mutableSetOf<EnderStorageBlockEntity>()
+    private val blockEntities = mutableSetOf<EnderStorageBlockEntity>()
     var viewerCount = 0
 
     override fun clear() {
@@ -83,11 +86,14 @@ object EnderStorageProvider {
     }
 
     override fun markDirty() {
+      checkOnThread()
       state.markDirty()
 
-      blockEntities.forEach {
-        if (!it.isRemoved) {
-          it.markDirty()
+      synchronized(blockEntities) {
+        blockEntities.forEach {
+          if (!it.isRemoved) {
+            it.markDirty()
+          }
         }
       }
     }
@@ -109,20 +115,44 @@ object EnderStorageProvider {
     }
 
     fun updateViewers() {
-      blockEntities.forEach {
-        if (!it.isRemoved) {
-          it.updateViewerCount()
-          it.world?.scheduleBlockTick(it.pos, it.cachedState.block, 5)
+      checkOnThread()
+
+      synchronized(blockEntities) {
+        blockEntities.forEach {
+          if (!it.isRemoved) {
+            it.updateViewerCount()
+            it.world?.scheduleBlockTick(it.pos, it.cachedState.block, 5)
+          }
         }
       }
     }
 
     fun addBlockEntity(be: EnderStorageBlockEntity) {
-      blockEntities.add(be)
+      checkOnThread()
+      synchronized(blockEntities) {
+        blockEntities.add(be)
+      }
     }
 
     fun removeBlockEntity(be: EnderStorageBlockEntity) {
-      blockEntities.remove(be)
+      checkOnThread()
+      synchronized(blockEntities) {
+        blockEntities.remove(be)
+      }
+    }
+
+    fun snapshotBlockEntities(): Set<EnderStorageBlockEntity> {
+      checkOnThread()
+      synchronized(blockEntities) {
+        return blockEntities.toSet()
+      }
+    }
+
+    private fun checkOnThread() {
+      if (!server.isOnThread && !server.isStopping) {
+        // Don't throw an exception here, but log it, so we can track down the cause later
+        log.error("EnderStorageInventory blockEntities accessed off-thread!", RuntimeException())
+      }
     }
   }
 }

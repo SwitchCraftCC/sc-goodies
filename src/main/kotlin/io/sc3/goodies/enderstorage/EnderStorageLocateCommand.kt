@@ -15,20 +15,25 @@ class EnderStorageLocateCommand(target: EnderStorageTargetType) : EnderStorageBa
   override fun run(ctx: CommandContext<ServerCommandSource>): Int {
     val (inv, frequency) = getInventory(ctx)
 
-    val locations = inv.blockEntities.map {
-      val world = it.world?.registryKey?.value.toString()
-      val p = it.pos
-      val text = of("${p.x}, ${p.y}, ${p.z}", YELLOW) + of(" in ", GREEN) +
-        of(world.replace("minecraft:", ""), YELLOW)
+    // Ensure the ES block entities list is only accessed on the server thread
+    ctx.source.server.submit {
+      // TODO: move wrapCommandExceptions to sc-library
+      val locations = inv.snapshotBlockEntities().map {
+        val world = it.world?.registryKey?.value.toString()
+        val p = it.pos
+        val text = of("${p.x}, ${p.y}, ${p.z}", YELLOW) + of(" in ", GREEN) +
+          of(world.replace("minecraft:", ""), YELLOW)
 
-      text
-        .hover(of("Click to teleport to this location", GREEN))
-        .runCommand("/tppos ${p.x} ${p.y} ${p.z} $world")
+        text
+          .hover(of("Click to teleport to this location", GREEN))
+          .runCommand("/tppos ${p.x} ${p.y} ${p.z} $world")
+      }
+
+      val title = of("Locations of $frequency", GREEN)
+
+      Pagination(locations, title, padding = padding).sendTo(ctx.source)
     }
 
-    val title = of("Locations of $frequency", GREEN)
-
-    Pagination(locations, title, padding = padding).sendTo(ctx.source)
     return SINGLE_SUCCESS
   }
 

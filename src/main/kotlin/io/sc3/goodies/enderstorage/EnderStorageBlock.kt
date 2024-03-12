@@ -256,7 +256,8 @@ class EnderStorageBlock(
     return ScreenHandler.calculateComparatorOutput(inv)
   }
 
-  override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: ShapeContext) = chestShape
+  override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: ShapeContext): VoxelShape = 
+    chestShape
 
   override fun getRaycastShape(state: BlockState, world: BlockView, pos: BlockPos): VoxelShape {
     val facing = state.get(facing)
@@ -265,10 +266,10 @@ class EnderStorageBlock(
 
   override fun getRenderType(state: BlockState) = BlockRenderType.ENTITYBLOCK_ANIMATED
 
-  override fun mirror(state: BlockState, mirror: BlockMirror) =
+  override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
     state.rotate(mirror.getRotation(state.get(facing)))
 
-  override fun rotate(state: BlockState, rotation: BlockRotation) =
+  override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
     state.with(facing, rotation.rotate(state.get(facing)))
 
   override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType) =

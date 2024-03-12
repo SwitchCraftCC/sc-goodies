@@ -29,6 +29,7 @@ import net.minecraft.util.hit.BlockHitResult
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.util.math.random.Random
+import net.minecraft.util.shape.VoxelShape
 import net.minecraft.world.BlockView
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
@@ -111,14 +112,15 @@ class IronChestBlock(
     return ScreenHandler.calculateComparatorOutput(be)
   }
 
-  override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: ShapeContext) = shape
+  override fun getOutlineShape(state: BlockState, world: BlockView, pos: BlockPos, ctx: ShapeContext): VoxelShape = 
+    shape
 
   override fun getRenderType(state: BlockState) = BlockRenderType.ENTITYBLOCK_ANIMATED
 
-  override fun mirror(state: BlockState, mirror: BlockMirror) =
+  override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
     state.rotate(mirror.getRotation(state.get(facing)))
 
-  override fun rotate(state: BlockState, rotation: BlockRotation) =
+  override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
     state.with(facing, rotation.rotate(state.get(facing)))
 
   override fun canPathfindThrough(state: BlockState, world: BlockView, pos: BlockPos, type: NavigationType) =

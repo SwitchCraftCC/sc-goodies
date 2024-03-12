@@ -5,9 +5,9 @@ import java.util.UUID;
 
 public interface EndermiteEntityOwner {
   @Nullable
-  default UUID getOwner() {
+  default UUID sc_goodies$getOwner() {
     return null;
   }
 
-  default void setOwner(@Nullable UUID owner) {}
+  default void sc_goodies$setOwner(@Nullable UUID owner) {}
 }

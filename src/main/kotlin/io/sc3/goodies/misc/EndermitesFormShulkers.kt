@@ -103,8 +103,12 @@ object EndermitesFormShulkers {
       val world = endermite.world
       val state = world.getBlockState(blockPos)
 
-      val canMerge = state.isOf(Blocks.PURPUR_BLOCK)
-        && CAN_MERGE.invoker().invoke(world, blockPos, endermite, (endermite as EndermiteEntityOwner).owner)
+      val canMerge = state.isOf(Blocks.PURPUR_BLOCK) && CAN_MERGE.invoker().invoke(
+        world,
+        blockPos,
+        endermite,
+        (endermite as EndermiteEntityOwner).`sc_goodies$getOwner`()
+      )
 
       return canMerge to blockPos
     }

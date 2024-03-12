@@ -92,10 +92,10 @@ class IronBarrelBlock(
 
   override fun getRenderType(state: BlockState) = BlockRenderType.MODEL
 
-  override fun mirror(state: BlockState, mirror: BlockMirror) =
+  override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
     state.rotate(mirror.getRotation(state.get(facing)))
 
-  override fun rotate(state: BlockState, rotation: BlockRotation) =
+  override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
     state.with(facing, rotation.rotate(state.get(facing)))
 
   override fun hasComparatorOutput(state: BlockState) = true

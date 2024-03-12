@@ -18,7 +18,7 @@ class ElytraRecipe(
   id: Identifier,
   group: String,
   category: CraftingRecipeCategory,
-  val outputStack: ItemStack,
+  outputStack: ItemStack,
   val input: DefaultedList<Ingredient>
 ) : ShapelessRecipe(id, group, category, outputStack, input) {
   override fun craft(inv: RecipeInputInventory, manager: DynamicRegistryManager): ItemStack {

@@ -1,6 +1,6 @@
 package io.sc3.goodies.client.enderstorage
 
-class ScrollingText(private val rawScrollSize: Float) {
+class ScrollingText(rawScrollSize: Float) {
   private var scrollSize = rawScrollSize.coerceAtLeast(0f)
 
   var pos = 0f

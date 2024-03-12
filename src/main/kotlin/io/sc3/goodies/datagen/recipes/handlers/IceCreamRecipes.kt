@@ -14,7 +14,12 @@ import net.minecraft.registry.Registries
 import java.util.function.Consumer
 
 object IceCreamRecipes : RecipeHandler {
-  fun iceCreamRecipe(ingredientA: Ingredient, ingredientB: Ingredient, makes: Item, exporter: Consumer<RecipeJsonProvider>) {
+  private fun iceCreamRecipe(
+    ingredientA: Ingredient,
+    ingredientB: Ingredient,
+    makes: Item,
+    exporter: Consumer<RecipeJsonProvider>
+  ) {
     ShapedRecipeJsonBuilder
       .create(RecipeCategory.FOOD, makes)
       .pattern("ASB")
@@ -29,6 +34,7 @@ object IceCreamRecipes : RecipeHandler {
       .input('B', ingredientB)
       .criterion("has_snowball", RecipeProvider.conditionsFromItem(SNOWBALL))
       .offerTo(exporter)
+
     ShapelessRecipeJsonBuilder
       .create(RecipeCategory.FOOD, makes)
       .input(ModItems.iceCreamVanilla)
@@ -79,7 +85,7 @@ object IceCreamRecipes : RecipeHandler {
       ModItems.iceCreamBeetroot, exporter
     )
 
-    //Sundae Recipe
+    // Sundae Recipe
     ShapedRecipeJsonBuilder
       .create(RecipeCategory.FOOD, ModItems.iceCreamSundae)
       .pattern(" b ")
@@ -90,7 +96,8 @@ object IceCreamRecipes : RecipeHandler {
       .input('b', SWEET_BERRIES)
       .criterion("has_icecream_vanilla", RecipeProvider.conditionsFromItem(ModItems.iceCreamVanilla))
       .offerTo(exporter)
-    //Neapolitan Recipe
+
+    // Neapolitan Recipe
     ShapelessRecipeJsonBuilder
       .create(RecipeCategory.FOOD, ModItems.iceCreamNeapolitan, 3)
       .input(ModItems.iceCreamVanilla)

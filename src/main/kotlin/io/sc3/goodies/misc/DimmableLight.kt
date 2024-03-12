@@ -24,7 +24,7 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
     builder.add(power)
   }
 
-  override fun getPlacementState(ctx: ItemPlacementContext): BlockState? {
+  override fun getPlacementState(ctx: ItemPlacementContext): BlockState {
     return defaultState.with(power, ctx.world.getReceivedRedstonePower(ctx.blockPos)) as BlockState
   }
 
@@ -39,7 +39,7 @@ class DimmableLight(settings: Settings) : BaseBlock(settings) {
     if (!world.isClient) {
       val receivedPower = world.getReceivedRedstonePower(pos)
       if (state.get(power) != receivedPower) {
-        world.setBlockState(pos, state.with(power, receivedPower), Block.NOTIFY_LISTENERS)
+        world.setBlockState(pos, state.with(power, receivedPower), NOTIFY_LISTENERS)
       }
     }
   }

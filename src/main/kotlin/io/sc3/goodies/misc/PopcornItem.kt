@@ -9,7 +9,7 @@ import io.sc3.goodies.util.BaseItem
 class PopcornItem(settings: Settings) : BaseItem(settings) {
   override fun finishUsing(stack: ItemStack, world: World, user: LivingEntity): ItemStack {
     // Don't consume the item when finished eating.
-    return stack;
+    return stack
   }
 
   companion object {

@@ -53,9 +53,9 @@ import net.minecraft.block.*
 import net.minecraft.block.AbstractBlock.ContextPredicate
 import net.minecraft.block.entity.BlockEntity
 import net.minecraft.block.entity.BlockEntityType
-import net.minecraft.block.enums.Instrument
 import net.minecraft.block.piston.PistonBehavior
 import net.minecraft.entity.EntityDimensions
+import net.minecraft.entity.EntityType
 import net.minecraft.entity.EquipmentSlot
 import net.minecraft.entity.SpawnGroup
 import net.minecraft.entity.damage.DamageType
@@ -309,12 +309,6 @@ object Registration {
     fun <T : Block> rBlock(name: String, value: T): T =
       register(BLOCK, ModId(name), value)
 
-    fun blockSettings(): AbstractBlock.Settings = AbstractBlock.Settings.create()
-      .mapColor(MapColor.STONE_GRAY)
-      .instrument(Instrument.BASEDRUM)
-      .strength(2.0f)
-      .nonOpaque()
-
     fun chestSettings(): AbstractBlock.Settings = AbstractBlock.Settings.create()
       .mapColor(MapColor.STONE_GRAY)
       .strength(2.0f)
@@ -482,7 +476,7 @@ object Registration {
   }
 
   object ModEntities {
-    val glassItemFrameEntity = register(ENTITY_TYPE, ModId("glass_item_frame"),
+    val glassItemFrameEntity: EntityType<GlassItemFrameEntity> = register(ENTITY_TYPE, ModId("glass_item_frame"),
       FabricEntityTypeBuilder.create(SpawnGroup.MISC, ::GlassItemFrameEntity)
         .dimensions(EntityDimensions.changing(0.5f, 0.5f))
         .trackRangeChunks(10)
@@ -492,6 +486,7 @@ object Registration {
   }
 
   object ModDamageSources {
-    val barrelHammer = RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModId("barrel_hammer"))
+    val barrelHammer: RegistryKey<DamageType?> =
+      RegistryKey.of(RegistryKeys.DAMAGE_TYPE, ModId("barrel_hammer"))
   }
 }

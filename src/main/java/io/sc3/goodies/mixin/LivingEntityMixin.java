@@ -16,7 +16,7 @@ public class LivingEntityMixin {
     HoverBootsItem.onLivingJump((LivingEntity) (Object) this);
   }
 
-  @ModifyVariable(method = "handleFallDamage", at = @At("HEAD"), ordinal = 0)
+  @ModifyVariable(method = "handleFallDamage", at = @At("HEAD"), ordinal = 0, argsOnly = true)
   private float handleFallDamage(float fallDistance) {
     return HoverBootsItem.modifyFallDistance((LivingEntity) (Object) this, fallDistance);
   }

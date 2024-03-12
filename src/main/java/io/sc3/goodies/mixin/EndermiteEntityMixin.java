@@ -18,6 +18,7 @@ import static io.sc3.goodies.ScGoodies.modId;
 
 @Mixin(EndermiteEntity.class)
 public class EndermiteEntityMixin implements EndermiteEntityOwner {
+  @Unique
   private static final String OWNER_KEY = new Identifier(modId, "endermite_owner").toString();
 
   @Unique
@@ -26,12 +27,12 @@ public class EndermiteEntityMixin implements EndermiteEntityOwner {
 
   @Override
   @Nullable
-  public UUID getOwner() {
+  public UUID sc_goodies$getOwner() {
     return owner;
   }
 
   @Override
-  public void setOwner(@Nullable UUID owner) {
+  public void sc_goodies$setOwner(@Nullable UUID owner) {
     this.owner = owner;
   }
 

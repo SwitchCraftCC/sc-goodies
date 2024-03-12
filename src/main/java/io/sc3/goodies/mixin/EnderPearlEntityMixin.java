@@ -30,7 +30,7 @@ public class EnderPearlEntityMixin {
     EndermiteEntity endermite
   ) {
     if (player != null) {
-      ((EndermiteEntityOwner) endermite).setOwner(player.getUuid());
+      ((EndermiteEntityOwner) endermite).sc_goodies$setOwner(player.getUuid());
     }
   }
 }

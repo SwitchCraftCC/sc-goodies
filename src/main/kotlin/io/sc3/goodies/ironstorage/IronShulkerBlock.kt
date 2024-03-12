@@ -158,10 +158,10 @@ class IronShulkerBlock(
 
   override fun getRenderType(state: BlockState) = BlockRenderType.ENTITYBLOCK_ANIMATED
 
-  override fun mirror(state: BlockState, mirror: BlockMirror) =
+  override fun mirror(state: BlockState, mirror: BlockMirror): BlockState =
     state.rotate(mirror.getRotation(state.get(facing)))
 
-  override fun rotate(state: BlockState, rotation: BlockRotation) =
+  override fun rotate(state: BlockState, rotation: BlockRotation): BlockState =
     state.with(facing, rotation.rotate(state.get(facing)))
 
   override fun appendTooltip(stack: ItemStack, world: BlockView?, tooltip: MutableList<Text>, options: TooltipContext) {

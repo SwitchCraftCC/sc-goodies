@@ -204,8 +204,6 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     add(block.translationKey + ".$sub", value)
   }
 
-  private fun String.addArticle() = if (lowercase().matches(Regex("^[aeiou].*"))) "an $this" else "a $this"
-
   private fun TranslationBuilder.add(tree: ScTree, name: String) {
     add(tree.leaves, "$name Leaves")
     add(tree.sapling, "$name Sapling")

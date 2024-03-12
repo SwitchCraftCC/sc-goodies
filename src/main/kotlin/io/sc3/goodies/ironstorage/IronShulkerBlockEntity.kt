@@ -1,5 +1,7 @@
 package io.sc3.goodies.ironstorage
 
+import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
+import io.sc3.goodies.util.ChestUtil
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
 import net.minecraft.block.entity.LootableContainerBlockEntity
@@ -22,8 +24,6 @@ import net.minecraft.util.collection.DefaultedList
 import net.minecraft.util.math.*
 import net.minecraft.world.World
 import net.minecraft.world.event.GameEvent
-import io.sc3.goodies.ironstorage.IronShulkerBlock.Companion.facing
-import io.sc3.goodies.util.ChestUtil
 import java.util.stream.IntStream
 
 class IronShulkerBlockEntity(
@@ -35,8 +35,7 @@ class IronShulkerBlockEntity(
     DefaultedList.ofSize(variant.size, ItemStack.EMPTY)
   private val availableSlots: IntArray = IntStream.range(0, variant.size).toArray()
 
-  var viewerCount = 0
-    private set
+  private var viewerCount = 0
   var animationStage = CLOSED
   private var animationProgress = 0.0f
   private var prevAnimationProgress = 0.0f

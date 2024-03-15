@@ -24,6 +24,7 @@ private const val SPEED = 0.75
 
 private const val MIN_RANGE = 3
 private const val MAX_RANGE = 6
+private const val EXTRA_DISABLE_RANGE = 2
 
 const val MAGNET_MAX_DAMAGE = 6912
 const val MAGNET_XP_MULTIPLIER = 16
@@ -78,16 +79,17 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     }
 
     val range = player.boundingBox.expand(radius.toDouble())
+    val extraDisableRange = range.expand(EXTRA_DISABLE_RANGE.toDouble())
 
     // Look for other players with magnets in the range in case they will conflict
-    val otherPlayers = world.getEntitiesByClass(ServerPlayerEntity::class.java, range) {
+    val otherPlayers = world.getEntitiesByClass(ServerPlayerEntity::class.java, extraDisableRange) {
       it != player && it.isAlive && !it.isSpectator
     }
     val blocked = player.isSpectator || otherPlayers.any {
       val components = ItemMagnetState.magnetComponents(it)
       val otherRadius = playerMagnetRadius(components) ?: return@any false
-      val otherRange = it.boundingBox.expand(otherRadius.toDouble())
-      range.intersects(otherRange)
+      val otherRange = it.boundingBox.expand(otherRadius.toDouble() + EXTRA_DISABLE_RANGE.toDouble())
+      extraDisableRange.intersects(otherRange)
     }
 
     // If there are conflicts, disable the magnet

@@ -26,7 +26,7 @@ object ItemMagnetHud {
     }
     val y = mc.window.scaledHeight - 19
 
-    if (ItemMagnetItem.stackBlocked(magnet) && ItemMagnetItem.stackEnabled(magnet)) {
+    if (ItemMagnetItem.stackBlocked(magnet) != null && ItemMagnetItem.stackEnabled(magnet)) {
       // Blocked icon
       ctx.drawTexture(blockedTex, x, y, 200, 0.0f, 0.0f, 16, 16, 16, 16)
       return

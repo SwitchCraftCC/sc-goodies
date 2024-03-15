@@ -6,15 +6,19 @@ import dev.emi.trinkets.api.TrinketsApi
 import io.sc3.goodies.itemmagnet.ItemMagnetHotkey.toggleBinding
 import io.sc3.goodies.itemmagnet.ItemMagnetState.playerMagnetRadius
 import io.sc3.library.Tooltips
+import io.sc3.library.ext.optString
+import io.sc3.library.ext.putOptString
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.ItemEntity
 import net.minecraft.entity.LivingEntity
+import net.minecraft.entity.decoration.ItemFrameEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.Formatting.*
+import net.minecraft.util.math.Box
 import net.minecraft.world.World
 import kotlin.math.absoluteValue
 
@@ -41,8 +45,9 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     if (world?.isClient == true) {
       addEnabledTooltip(stack, tooltip, enabled)
 
-      if (stackBlocked(stack)) {
-        tooltip.add(translatable("$translationKey.blocked").formatted(RED))
+      // If the magnet is blocked, add the reason
+      stackBlocked(stack)?.let {
+        tooltip.add(translatable("$translationKey.${it.tooltipKey}").formatted(RED))
       }
     }
 
@@ -79,23 +84,14 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     }
 
     val range = player.boundingBox.expand(radius.toDouble())
-    val extraDisableRange = range.expand(EXTRA_DISABLE_RANGE.toDouble())
+    val blocked = shouldMagnetBlock(range, world, player)
 
-    // Look for other players with magnets in the range in case they will conflict
-    val otherPlayers = world.getEntitiesByClass(ServerPlayerEntity::class.java, extraDisableRange) {
-      it != player && it.isAlive && !it.isSpectator
-    }
-    val blocked = player.isSpectator || otherPlayers.any {
-      val components = ItemMagnetState.magnetComponents(it)
-      val otherRadius = playerMagnetRadius(components) ?: return@any false
-      val otherRange = it.boundingBox.expand(otherRadius.toDouble() + EXTRA_DISABLE_RANGE.toDouble())
-      extraDisableRange.intersects(otherRange)
-    }
-
-    // If there are conflicts, disable the magnet
+    // If the blocked state has updated, update the stack NBT
     if (blocked != stackBlocked(magnetStack)) {
       setStackBlocked(magnetStack, blocked)
-      if (blocked) return
+
+      // If there are any conflicts, disable the magnet
+      if (blocked != null) return
     }
 
     // Do nothing if the magnet is disabled, out of charge, or we are in spectator mode
@@ -128,6 +124,45 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     }
   }
 
+  private fun shouldMagnetBlock(range: Box, world: World, player: ServerPlayerEntity): BlockedReason? {
+    if (player.isSpectator) return null
+
+    val extraDisableRange = range.expand(EXTRA_DISABLE_RANGE.toDouble())
+
+    // Look for item frames with magnets in the range too - these can be used to block magnets in an area
+    val itemFrames = world.getEntitiesByClass(ItemFrameEntity::class.java, extraDisableRange) {
+      !it.heldItemStack.isEmpty && it.heldItemStack.item is ItemMagnetItem
+    }
+
+    if (itemFrames.any {
+      val stack = it.heldItemStack
+      val otherRadius = stackRadius(stack)
+        shouldMagnetBlock(otherRadius, it.boundingBox, extraDisableRange)
+    }) {
+      return BlockedReason.ITEM_FRAME
+    }
+
+    // Look for other players with magnets in the range in case they will conflict
+    val otherPlayers = world.getEntitiesByClass(ServerPlayerEntity::class.java, extraDisableRange) {
+      it != player && it.isAlive && !it.isSpectator
+    }
+
+    if (otherPlayers.any {
+      val components = ItemMagnetState.magnetComponents(it)
+      val otherRadius = playerMagnetRadius(components) ?: return@any false
+        shouldMagnetBlock(otherRadius, it.boundingBox, extraDisableRange)
+    }) {
+      return BlockedReason.PLAYER
+    }
+
+    return null
+  }
+
+  private fun shouldMagnetBlock(radius: Int, source: Box, extraDisableRange: Box): Boolean {
+    val otherRange = source.expand(radius.toDouble() + EXTRA_DISABLE_RANGE.toDouble())
+    return extraDisableRange.intersects(otherRange)
+  }
+
   companion object {
     fun stackLevel(stack: ItemStack): Int {
       if (stack.isEmpty) return 0
@@ -143,9 +178,25 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     fun setStackEnabled(stack: ItemStack, enabled: Boolean) =
       stack.orCreateNbt.putBoolean("disabled", !enabled)
 
-    fun stackBlocked(stack: ItemStack): Boolean =
-      stack.orCreateNbt.getBoolean("blocked")
-    fun setStackBlocked(stack: ItemStack, blocked: Boolean) =
-      stack.orCreateNbt.putBoolean("blocked", blocked)
+    fun stackBlocked(stack: ItemStack): BlockedReason? =
+      stack.orCreateNbt.optString("blocked_reason")
+        ?.let { BlockedReason.valueOf(it) }
+
+    fun setStackBlocked(stack: ItemStack, blocked: BlockedReason?) {
+      stack.orCreateNbt.apply {
+        remove("blocked") // remove legacy boolean key
+
+        if (blocked == null) {
+          remove("blocked_reason")
+        } else {
+          putOptString("blocked_reason", blocked.name)
+        }
+      }
+    }
+
+    enum class BlockedReason(val tooltipKey: String) {
+      PLAYER("blocked_player"),
+      ITEM_FRAME("blocked_item_frame")
+    }
   }
 }

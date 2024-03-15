@@ -111,10 +111,12 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
     builder.add(im, "Item Magnet")
     builder.sub(im, "Vacuums nearby items into your inventory.\n" +
       "Charge with experience orbs.\n" +
-      "Upgrade with Nether Stars and Netherite Ingots.")
+      "Upgrade with Nether Stars and Netherite Ingots.\n" +
+      "Place in an Item Frame to disable nearby magnets.")
     builder.sub(im, "Magnet enabled (press %s to toggle in-game)", "enabled")
     builder.sub(im, "Magnet disabled (press %s to toggle in-game)", "disabled")
-    builder.sub(im, "Magnet blocked (other players are nearby)", "blocked")
+    builder.sub(im, "Magnet blocked (other players are nearby)", "blocked_player")
+    builder.sub(im, "Magnet blocked (magnet item frame is nearby)", "blocked_item_frame")
     builder.sub(im, "Level %s (%s block radius)", "level")
     builder.sub(im, "Charge: %s/%s", "charge")
     builder.add("key.sc-goodies.toggle_item_magnet", "Toggle Item Magnet")

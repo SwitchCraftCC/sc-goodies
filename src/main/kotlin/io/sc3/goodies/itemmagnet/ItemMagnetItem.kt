@@ -89,10 +89,10 @@ class ItemMagnetItem(settings: Settings) : TrinketItem(settings) {
     // If the blocked state has updated, update the stack NBT
     if (blocked != stackBlocked(magnetStack)) {
       setStackBlocked(magnetStack, blocked)
-
-      // If there are any conflicts, disable the magnet
-      if (blocked != null) return
     }
+
+    // If there are any conflicts, disable the magnet
+    if (blocked != null) return
 
     // Do nothing if the magnet is disabled, out of charge, or we are in spectator mode
     if (!stackEnabled(magnetStack) || damage >= maxDamage || player.isSpectator) {

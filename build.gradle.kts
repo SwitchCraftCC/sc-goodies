@@ -6,7 +6,7 @@ plugins {
   kotlin("jvm").version(kotlinVersion)
   kotlin("plugin.serialization").version(kotlinVersion)
 
-  id("fabric-loom") version "1.5-SNAPSHOT"
+  id("fabric-loom") version "1.6-SNAPSHOT"
   id("maven-publish")
   id("signing")
   id("com.modrinth.minotaur") version "2.+"

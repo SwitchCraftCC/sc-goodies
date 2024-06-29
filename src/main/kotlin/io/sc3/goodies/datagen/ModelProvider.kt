@@ -78,6 +78,7 @@ class ModelProvider(out: FabricDataOutput) : FabricModelProvider(out) {
     }
 
     gen.register(ModItems.barrelHammer, HANDHELD)
+    gen.register(ModItems.stairWrench, HANDHELD)
     gen.register(ModItems.itemMagnet, GENERATED)
     gen.register(ModItems.dragonScale, GENERATED)
     gen.register(ModItems.popcorn, GENERATED)

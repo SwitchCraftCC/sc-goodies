@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": {
+      "tag": "c:iron_ingots"
+    },
+    "S": {
+      "tag": "minecraft:wooden_stairs"
+    }
+  },
+  "pattern": [
+    " IS",
+    " II",
+    "I  "
+  ],
+  "result": {
+    "item": "sc-goodies:stair_wrench"
+  },
+  "show_notification": true
+}

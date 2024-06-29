@@ -382,6 +382,9 @@ object Registration {
   }
 
   object ModItems {
+    val stairWrench = rItem("stair_wrench", StairWrenchItem(itemSettings()
+      .maxCount(1)))
+
     val barrelHammer = rItem("barrel_hammer", BarrelHammerItem(itemSettings()
       .maxDamage(64)))
 

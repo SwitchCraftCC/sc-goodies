@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "sc-goodies:white_concrete_stairs",
+    "sc-goodies:light_gray_concrete_stairs",
+    "sc-goodies:gray_concrete_stairs",
+    "sc-goodies:black_concrete_stairs",
+    "sc-goodies:brown_concrete_stairs",
+    "sc-goodies:red_concrete_stairs",
+    "sc-goodies:orange_concrete_stairs",
+    "sc-goodies:yellow_concrete_stairs",
+    "sc-goodies:lime_concrete_stairs",
+    "sc-goodies:green_concrete_stairs",
+    "sc-goodies:cyan_concrete_stairs",
+    "sc-goodies:light_blue_concrete_stairs",
+    "sc-goodies:blue_concrete_stairs",
+    "sc-goodies:purple_concrete_stairs",
+    "sc-goodies:magenta_concrete_stairs",
+    "sc-goodies:pink_concrete_stairs"
+  ]
+}

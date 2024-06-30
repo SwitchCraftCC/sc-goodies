@@ -26,6 +26,8 @@ class BlockTagProvider(
       .add(ModBlocks.pinkGrass, ModBlocks.autumnGrass, ModBlocks.blueGrass)
 
     val pickaxeBlocks = mutableListOf<Block>(ModBlocks.enderStorage)
+    val slabBlocks = mutableListOf<Block>()
+    val stairBlocks = mutableListOf<Block>()
     val leafBlocks = mutableListOf<Block>()
 
     IronStorageVariant.entries.forEach {
@@ -38,6 +40,8 @@ class BlockTagProvider(
     ConcreteExtras.colors.values.forEach {
       pickaxeBlocks.add(it.slabBlock)
       pickaxeBlocks.add(it.stairsBlock)
+      slabBlocks.add(it.slabBlock)
+      stairBlocks.add(it.stairsBlock)
     }
 
     pickaxeBlocks.add(AmethystExtras.slabBlock)
@@ -53,6 +57,11 @@ class BlockTagProvider(
 
     getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
       .add(*pickaxeBlocks.toTypedArray())
+
+    getOrCreateTagBuilder(BlockTags.SLABS)
+      .add(*slabBlocks.toTypedArray())
+    getOrCreateTagBuilder(BlockTags.STAIRS)
+      .add(*stairBlocks.toTypedArray())
 
     getOrCreateTagBuilder(BlockTags.COMPLETES_FIND_TREE_TUTORIAL)
       .add(*leafBlocks.toTypedArray())

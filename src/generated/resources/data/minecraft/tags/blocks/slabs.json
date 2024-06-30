@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "sc-goodies:white_concrete_slab",
+    "sc-goodies:light_gray_concrete_slab",
+    "sc-goodies:gray_concrete_slab",
+    "sc-goodies:black_concrete_slab",
+    "sc-goodies:brown_concrete_slab",
+    "sc-goodies:red_concrete_slab",
+    "sc-goodies:orange_concrete_slab",
+    "sc-goodies:yellow_concrete_slab",
+    "sc-goodies:lime_concrete_slab",
+    "sc-goodies:green_concrete_slab",
+    "sc-goodies:cyan_concrete_slab",
+    "sc-goodies:light_blue_concrete_slab",
+    "sc-goodies:blue_concrete_slab",
+    "sc-goodies:purple_concrete_slab",
+    "sc-goodies:magenta_concrete_slab",
+    "sc-goodies:pink_concrete_slab"
+  ]
+}

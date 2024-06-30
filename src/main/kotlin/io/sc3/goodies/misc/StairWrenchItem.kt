@@ -10,23 +10,26 @@ import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
 import net.minecraft.server.network.ServerPlayerEntity
+import net.minecraft.state.property.Properties
 import net.minecraft.state.property.Property
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting
 import net.minecraft.util.Hand
+import net.minecraft.util.Identifier
 import net.minecraft.util.Util
 import net.minecraft.util.math.BlockPos
+import net.minecraft.util.math.Direction
 import net.minecraft.world.World
 import net.minecraft.world.WorldAccess
 
 class StairWrenchItem(settings: Settings) : BaseItem(settings) {
-  private var properties: List<Property<*>> = listOf(StairsBlock.FACING, StairsBlock.HALF, StairsBlock.SHAPE)
+  private var properties = listOf(StairsBlock.FACING, StairsBlock.HALF, StairsBlock.SHAPE)
 
-  override fun canMine(state: BlockState?, world: World, pos: BlockPos?, miner: PlayerEntity): Boolean {
+  override fun canMine(state: BlockState, world: World, pos: BlockPos, miner: PlayerEntity): Boolean {
     if (!world.isClient) {
-      this.use(miner, state ?: return false, world, pos ?: return false, false, miner.getStackInHand(Hand.MAIN_HAND))
+      this.crank(miner, state, world, pos, false, miner.getStackInHand(Hand.MAIN_HAND))
     }
     return false
   }
@@ -46,7 +49,7 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
     val world = context.world
     if (!world.isClient && playerEntity != null) {
       val blockPos = context.blockPos
-      if (!this.use(playerEntity, world.getBlockState(blockPos), world, blockPos, true, context.stack)) {
+      if (!this.crank(playerEntity, world.getBlockState(blockPos), world, blockPos, true, context.stack)) {
         return ActionResult.FAIL
       }
     }
@@ -54,23 +57,23 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
     return ActionResult.success(world.isClient)
   }
 
-  private fun use(player: PlayerEntity, state: BlockState, world: WorldAccess, pos: BlockPos, update: Boolean, stack: ItemStack): Boolean {
-    val block = state.block
-    if (block is StairsBlock) {
-      val stateManager = block.stateManager
-      val mode = stack.orCreateNbt.getString("Property")
-      val property = stateManager.getProperty(mode) ?: properties.first()
-      if (update) {
-        val blockState = cycle(state, property, player.shouldCancelInteraction())
-        world.setBlockState(pos, blockState, Block.FORCE_STATE or Block.NOTIFY_LISTENERS)
-      } else {
-        val newProperty = cycle(properties, property, player.shouldCancelInteraction())
-        stack.orCreateNbt.putString("Property", newProperty.name)
-        sendMessage(player as ServerPlayerEntity, translatable("$translationKey.mode", newProperty.name))
-      }
-      return true
+  private fun crank(player: PlayerEntity, state: BlockState, world: WorldAccess, pos: BlockPos, update: Boolean, stack: ItemStack): Boolean {
+    if (!state.streamTags().anyMatch {
+      it.id.equals(Identifier("minecraft:stairs"))
+    }) return false
+    val stateManager = state.block.stateManager
+    val mode = stack.orCreateNbt.getString("Property")
+    val property = stateManager.getProperty(mode)
+    if (property == null || !properties.contains(property)) return false
+    if (update) {
+      val blockState = cycle(state, property, player.shouldCancelInteraction())
+      world.setBlockState(pos, blockState, Block.FORCE_STATE or Block.NOTIFY_LISTENERS)
+    } else {
+      val newProperty = cycle(properties, property, player.shouldCancelInteraction())
+      stack.orCreateNbt.putString("Property", newProperty.name)
+      sendMessage(player as ServerPlayerEntity, translatable("$translationKey.mode", newProperty.name))
     }
-    return false
+    return true
   }
 
   private fun <T: Comparable<T>>cycle(state: BlockState, property: Property<T>, inverse: Boolean): BlockState {
@@ -78,6 +81,8 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
   }
 
   private fun <T>cycle(elements: Iterable<T>, current: T, inverse: Boolean): T {
+    @Suppress("UNCHECKED_CAST") // Suppress deez unchecked nuts, etc etc
+    if (current is Direction) return current.rotateYClockwise() as T
     return if (inverse) Util.previous(elements, current) else Util.next(elements, current)
   }
 

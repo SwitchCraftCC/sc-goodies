@@ -65,7 +65,7 @@ class LanguageProvider(out: FabricDataOutput) : FabricLanguageProvider(out) {
 
     builder.add(ModItems.stairWrench, "Stair Wrench")
     builder.sub(ModItems.stairWrench, "Mode: %s", "mode")
-    builder.sub(ModItems.stairWrench, "Hit stairs to cycle through property values.\nUse on stairs to cycle through the property to manipulate.")
+    builder.sub(ModItems.stairWrench, "Use on stairs to cycle through property values.\nUse while sneaking to cycle through the property to manipulate.")
     builder.sub(ModItems.stairWrench, "Invalid property: %s", "invalid")
 
     builder.add(ModItems.barrelHammer, "Barrel Hammer")

@@ -257,7 +257,7 @@
   "item.sc-goodies.shark_yellow": "Yellow Soft Toy Shark",
   "item.sc-goodies.shark_yellow.desc": "A soft toy shark, also known as a BLÅHAJ (Blahaj).",
   "item.sc-goodies.stair_wrench": "Stair Wrench",
-  "item.sc-goodies.stair_wrench.desc": "Hit stairs to cycle through property values.\nUse on stairs to cycle through the property to manipulate.",
+  "item.sc-goodies.stair_wrench.desc": "Use on stairs to cycle through property values.\nUse while sneaking to cycle through the property to manipulate.",
   "item.sc-goodies.stair_wrench.invalid": "Invalid property: %s",
   "item.sc-goodies.stair_wrench.mode": "Mode: %s",
   "item.sc-goodies.vanilla_iron_chest_upgrade": "Vanilla to Iron Storage Upgrade",

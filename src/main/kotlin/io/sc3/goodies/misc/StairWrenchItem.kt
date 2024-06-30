@@ -9,16 +9,12 @@ import net.minecraft.client.item.TooltipContext
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.item.ItemStack
 import net.minecraft.item.ItemUsageContext
+import net.minecraft.registry.tag.BlockTags
 import net.minecraft.server.network.ServerPlayerEntity
-import net.minecraft.state.property.Properties
 import net.minecraft.state.property.Property
 import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
-import net.minecraft.util.ActionResult
-import net.minecraft.util.Formatting
-import net.minecraft.util.Hand
-import net.minecraft.util.Identifier
-import net.minecraft.util.Util
+import net.minecraft.util.*
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.math.Direction
 import net.minecraft.world.World
@@ -58,16 +54,13 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
   }
 
   private fun crank(player: PlayerEntity, state: BlockState, world: WorldAccess, pos: BlockPos, update: Boolean, stack: ItemStack): Boolean {
-    if (!state.streamTags().anyMatch {
-      it.id.equals(Identifier("minecraft:stairs"))
-    }) return false
+    if (!state.isIn(BlockTags.STAIRS)) return false
     val stateManager = state.block.stateManager
     val mode = stack.orCreateNbt.getString("Property")
     val property = stateManager.getProperty(mode)
     if (property == null || !properties.contains(property)) return false
     if (update) {
-      val blockState = cycle(state, property, player.shouldCancelInteraction())
-      world.setBlockState(pos, blockState, Block.FORCE_STATE or Block.NOTIFY_LISTENERS)
+      world.setBlockState(pos, cycle(state, property, player.shouldCancelInteraction()), Block.FORCE_STATE or Block.NOTIFY_LISTENERS)
     } else {
       val newProperty = cycle(properties, property, player.shouldCancelInteraction())
       stack.orCreateNbt.putString("Property", newProperty.name)
@@ -81,7 +74,7 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
   }
 
   private fun <T>cycle(elements: Iterable<T>, current: T, inverse: Boolean): T {
-    @Suppress("UNCHECKED_CAST") // Suppress deez unchecked nuts, etc etc
+    @Suppress("UNCHECKED_CAST")
     if (current is Direction) return current.rotateYClockwise() as T
     return if (inverse) Util.previous(elements, current) else Util.next(elements, current)
   }

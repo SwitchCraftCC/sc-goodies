@@ -18,6 +18,7 @@ import net.minecraft.text.Text
 import net.minecraft.text.Text.translatable
 import net.minecraft.util.ActionResult
 import net.minecraft.util.Formatting.GRAY
+import net.minecraft.util.Formatting.RED
 import net.minecraft.util.Hand.MAIN_HAND
 import net.minecraft.util.Util
 import net.minecraft.util.math.BlockPos
@@ -65,9 +66,14 @@ class StairWrenchItem(settings: Settings) : BaseItem(settings) {
     // TODO: Allow this to work with some other types of blocks
     if (!state.isIn(BlockTags.STAIRS)) return false
 
-    val mode = stack.orCreateNbt.optString("Property")
-    val property = mode?.let { state.block.stateManager.getProperty(mode) } ?: fallbackProperty
+    val mode = stack.orCreateNbt.optString("Property") ?: fallbackProperty.name
+    val property = mode?.let { state.block.stateManager.getProperty(mode) }
     if (property == null || !properties.contains(property)) {
+      // Send an 'Invalid property' message to real players (but not fake players, e.g. turtles)
+      if (player::class.java == ServerPlayerEntity::class.java) {
+        player.sendMessage(translatable("$translationKey.invalid", mode).color(RED), true)
+      }
+
       return false // Invalid mode (target block doesn't have the property)
     }
 
